@@ -1,0 +1,152 @@
+{
+	"cytoscape": [
+		{
+			"data": {
+				"id": "a",
+				"weight": 2,
+				"name": "你点了a"
+			}
+		}, {
+			"data": {
+				"id": "b",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "c",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "d",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "e",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "f",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "g",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "h",
+				"weight": 5
+			}
+		}, {
+			"data": {
+				"id": "i",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "j",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "k",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "l",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "m",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "n",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "o",
+				"weight": 5
+			}
+		}, {
+			"data": {
+				"id": "p",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "q",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "r",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "s",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "t",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "u",
+				"weight": 1
+			}
+		}, {
+			"data": {
+				"id": "v",
+				"weight": 5
+			}
+		}, {
+			"data": {
+				"id": "ab",
+				"source": "a",
+				"target": "b"
+			}
+		}, {
+			"data": {
+				"id": "ac",
+				"source": "a",
+				"target": "c"
+			}
+		}, {
+			"data": {
+				"id": "ad",
+				"source": "a",
+				"target": "d"
+			}
+		}, {
+			"data": {
+				"id": "ae",
+				"source": "a",
+				"target": "e"
+			}
+		}, {
+			"data": {
+				"id": "af",
+				"source": "a",
+				"target": "f"
+			}
+		}, {
+			"data": {
+				"id": "ag",
+				"source": "a",
+				"target": "g"
+			}
+		}
+	]
+}

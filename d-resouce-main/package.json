@@ -1,0 +1,43 @@
+{
+  "name": "d-resouce",
+  "version": "1.0.3",
+  "description": "读取资源管理相关工具",
+  "main": "dist/d-resouce.cjs.js",
+  "module": "dist/d-resouce.esm.js",
+  "browser": "dist/d-resouce.umd.js",
+  "files": [
+    "dist/*.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ByronYan01/d-resouce.git"
+  },
+  "keywords": [
+    "file",
+    "folder",
+    "read",
+    "Resource",
+    "management"
+  ],
+  "author": "ByronYan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ByronYan01/d-resouce/issues"
+  },
+  "homepage": "https://github.com/ByronYan01/d-resouce#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "eslint": "^8.51.0",
+    "rollup": "^2.72.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  }
+}
