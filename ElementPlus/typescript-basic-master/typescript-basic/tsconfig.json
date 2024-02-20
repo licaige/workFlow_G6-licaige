@@ -1,0 +1,9 @@
+{
+  "files": ["test.ts", "test2.d.ts"],
+  "compilerOptions": {
+    "outDir": "./output",
+    "module": "ESNext",
+    "target":"ES5",
+    "declaration": true
+  }
+}
