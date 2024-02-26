@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+
+# source code
+src
+demo
+.babelrc
+.editorconfig
+main.ts
+script
+docs
+
+# package
+rollup.config.js

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios Ext</title>
+  </head>
+  <body>
+    <h2>Axios Ext</h2>
+
+    <b>API调用:</b>
+    <pre>
+      const modules = {
+        app: {
+          login: {
+            url: "/api/login",
+            method: "post",
+          },
+        },
+      };
+
+      const axiosExt = window["axios-ext"];
+      const apis = axiosExt.createApis({ modules });
+    </pre>
+
+    <b>输出：</b>
+    <pre>
+      {
+        app: {
+          login: function(){ }
+        }
+      }
+    </pre>
+
+    <p>F12控制台中查看具体输出</p>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../dist/axios-business.umd.js"></script>
+
+    <script>
+      const modules = {
+        app: {
+          login: {
+            url: "/api/login",
+            method: "post",
+          },
+        },
+      };
+
+      const axiosExt = window["axios-business"];
+      const apis = axiosExt.createApis({ modules });
+      console.log(apis);
+    </script>
+  </body>
+</html>
