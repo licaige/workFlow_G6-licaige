@@ -1,0 +1,48 @@
+.last-comments-relevant{
+  &-container{
+    width: 100%;
+    margin: 40px 0 166px;
+  }
+  &-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    height: 31px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 16px;
+  }
+  &-title:after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 6px;
+    height: 22px;
+    background: #0091FF;
+    left: 0;
+    top: 4.5px;
+  }
+  &-button{
+    display: flex;
+    justify-content: center;
+
+    &>div{
+      width: 300px;
+      height: 50px;
+      background: #F5F5F5;
+      border-radius: 37px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 400;
+      color: #666666;
+
+      img{
+        margin-left: 5px;
+        width: 9px;
+        height: 5px;
+      }
+    }
+  }
+}

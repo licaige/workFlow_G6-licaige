@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>发布平台</title>
+  <style>
+    body{
+      padding-left: 60px;
+    }
+    .obj-container{
+      display: flex;
+      align-items: center;
+      height: 40px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    .obj-name{
+      width: 100px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333333;
+      line-height: 40px;
+    }
+    .obj-btn{
+      width: 50px;
+      height: 20px;
+      border-radius: 2px;
+      background: #0091FF;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<body>
+<!-- 标题显示 -->
+<h1>请点击发布按钮进行发布</h1>
+<!-- 发布平台主要内容 -->
+<div id="container"></div>
+</body>
+</html>
+
+
+<script>
+window.onload  = function () {
+  // 获取到容器
+  const container = document.getElementById('container');
+
+  // 创建需要发布的应用的列表
+  const dirList = [
+    'main',
+    'react15',
+    'react16',
+    'vue2',
+    'vue3',
+  ];
+
+  let html = '';
+
+  dirList.forEach(item => {
+    html += `
+      <div class="obj-container">
+        <div class="obj-name">${item}</div>
+        <div class="obj-btn" id="${item}">发布</div>
+      </div>
+    `;
+  })
+  container.innerHTML = html;
+
+  // 添加发布的功能
+  container.onclick = function (event) {
+    if (event.target.className !== 'obj-btn') {
+      return;
+    }
+    // 请求接口
+    $.get(`http://127.0.0.1:3001?name=${event.target.id}`)
+  }
+}
+</script>

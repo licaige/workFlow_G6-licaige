@@ -1,0 +1,48 @@
+.video-detail{
+  &-container{
+    margin-top: 30px;
+  }
+  &-play{
+    width: 100%;
+    height: 415px;
+    margin-bottom:20px;
+    background: #0091FF;
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &-title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+  &-observer{
+    font-size: 16px;
+    color: #999999;
+    height: 21px;
+    display: flex;
+    align-items: center;
+
+    img{
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+    }
+    span:first-child{
+      margin-right: 20px;
+    }
+    span:last-child{
+      margin-left: 20px;
+    }
+  }
+  &-prompt{
+    margin: 15px 0 60px;
+    font-size: 18px;
+    color: #333333;
+    line-height: 36px;
+  }
+}

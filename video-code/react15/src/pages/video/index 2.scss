@@ -1,0 +1,10 @@
+.video{
+  &-container{
+    width: 100%;
+  }
+  &-content{
+    width: 1200px;
+    min-height: 100%;
+    margin: 30px auto 0;
+  }
+}

@@ -1,0 +1,48 @@
+.last-article{
+  &-container{
+    width: 100%;
+    min-height: 100%;
+  }
+  &-title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    margin: 23px 0 28px;
+  }
+  &-author{
+    height: 20px;
+    display: flex;
+    font-size: 16px;
+    color: #666666;
+
+    span{
+      display: flex;
+      align-items: center;
+    }
+    span:first-child{
+      width: 40px;
+      height: 20px;
+      background: #E3EFFF;
+      border-radius: 4px 0px 4px 0px;
+      font-size: 14px;
+      color: #1677FF;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    span:last-child{
+      font-size: 16px;
+      color: #999999;
+      margin-left: 30px;
+    }
+  }
+  &-detail{
+    margin: 23px 0 30px;
+    font-size: 18px;
+    color: #333333;
+    line-height: 36px;
+
+    img{
+      width: 100%;
+    }
+  }
+}

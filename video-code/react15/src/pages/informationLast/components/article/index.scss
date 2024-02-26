@@ -1,0 +1,87 @@
+.last-article{
+  &-container{
+    width: 100%;
+    min-height: 100%;
+  }
+  &-title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    margin: 23px 0 28px;
+  }
+  &-author{
+    height: 20px;
+    display: flex;
+    font-size: 16px;
+    color: #666666;
+
+    span{
+      display: flex;
+      align-items: center;
+    }
+    span:first-child{
+      width: 40px;
+      height: 20px;
+      background: #E3EFFF;
+      border-radius: 4px 0px 4px 0px;
+      font-size: 14px;
+      color: #1677FF;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    span:last-child{
+      font-size: 16px;
+      color: #999999;
+      margin-left: 30px;
+    }
+  }
+  &-detail{
+    margin: 23px 0 30px;
+    font-size: 18px;
+    color: #333333;
+    line-height: 36px;
+
+    img{
+      width: 100%;
+    }
+  }
+  &-operation{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+
+    &>div{
+      width: 96px;
+      height: 42px;
+      border-radius: 24px;
+      border: 1px solid #A2A2A2;
+      margin-left: 10px;
+      font-size: 17px;
+      font-weight: 400;
+      color: #6B7183;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      img{
+        width: 20px;
+        height: 20px;
+        margin-right: 7px;
+      }
+    }
+  }
+  &-operation &-star-hover, &-operation &-praise-hover{
+    color: #F14545;
+    border: 1px solid #F14545;
+  }
+  &-operation &-stared{
+    border: 1px solid #0091FF;
+    color: #0091FF;
+  }
+
+  &-operation &-praised{
+    border: 1px solid #F24300;
+    color: #F24300;
+  }
+}

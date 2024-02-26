@@ -1,0 +1,77 @@
+.hot-video{
+  &-container{
+    width: 422px;
+  }
+  &-title{
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    line-height: 26px;
+    position: relative;
+  }
+  &-title:after{
+    content: '';
+    width: 292px;
+    height: 1px;
+    background: #EEEEEE;
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+  }
+  &-list{
+    margin-top: 20px;
+  }
+  &-item{
+    display: flex;
+    margin-bottom: 15px;
+
+    &-img{
+      width: 160px;
+      height: 90px;
+      margin-right: 20px;
+      margin-left: 15px;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &-title{
+      font-size: 16px;
+      color: #333333;
+      line-height: 21px;
+      margin-bottom: 18px;
+    }
+    &-operation{
+      font-size: 14px;
+      color: #B5B5B5;
+      line-height: 19px;
+      display: flex;
+      justify-content: space-between;
+
+      img{
+        width: 14px;
+        height: 14px;
+        margin-right: 6px;
+      }
+    }
+  }
+  &-button{
+    width: 382px;
+    height: 50px;
+    background: #F5FAFF;
+    border: 1px solid #0091FF;
+    font-size: 18px;
+    color: #2686D2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 0;
+
+    img{
+      width: 10px;
+      height: 6px;
+      margin-left: 6px;
+    }
+  }
+}

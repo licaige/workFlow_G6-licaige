@@ -1,0 +1,30 @@
+.newCar {
+  width: calc(100% - 190px);
+  margin-left: 190px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  &Item {
+    flex: 0 25%;
+    text-align: center;
+
+    &Image {
+      width: 204px;
+      height: 153px;
+    }
+
+    &Title {
+      font-size: 16px;
+      color: #333333;
+      line-height: 21px;
+    }
+
+    &Date {
+      font-size: 14px;
+      color: #F24300;
+      line-height: 19px;
+    }
+  }
+}
