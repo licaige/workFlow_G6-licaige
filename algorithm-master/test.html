@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/browse/vue-amazing-ui@latest/dist/style.css">
+    <title>Vue Amazing UI</title>
+  </head>
+  <body>
+    <div id="app">
+      <tag color="pink">pink</tag>
+    </div>
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="https://unpkg.com/vue-amazing-ui@latest"></script>
+    <script type="module">
+      import { Tag } from 'https://unpkg.com/vue-amazing-ui@latest'
+      const App = {
+        data () {
+          return {
+            value: ''
+          }
+        }
+      }
+      Vue.createApp(App).component('tag', Tag).mount('#app')
+      </script>
+  </body>
+</html>
