@@ -1,0 +1,28 @@
+# Ignore directories:
+dist/
+dist/**
+/public
+/docs
+/bin
+build
+coverage
+
+# Ignore artifacts
+node_modules
+Dockerfile
+
+# Ignore files:
+*.html
+
+.github
+.swc
+.vscode
+.idea
+.local
+.eslintrc.js
+.eslintrc.cjs
+.prettierrc
+*.sh
+*.md
+*.woff
+*.ttf

@@ -1,0 +1,116 @@
+{
+  extends: [
+    '@commitlint/config-conventional'
+  ],
+  rules: {
+    'type-enum': [
+      2,
+      'always',
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        'merge',
+        "build",
+        "ci",
+        "revert",
+        "chore",
+      ]
+    ],
+    'subject-case': [0, 'never'],
+  },
+  prompt: {
+    'questions': {
+      type: {
+        description: "选择你要提交的类型 :",
+        enum: {
+          'feat': {
+            description: "特性: 新增/修改功能",
+            title: 'Features'
+          },
+          'fix': {
+            description: "修复: 修复缺陷bug",
+            title: 'Bug Fixes',
+          },
+          'docs': {
+            description: "文档: 文档变更",
+            title: 'Documentation',
+          },
+          'style': {
+            description: "格式: 代码格式（不影响功能，例如空格、分号等格式修正）",
+            title: 'stylesheet',
+          },
+          'refactor': {
+            description: "重构: 代码重构/优化（不包括 bug 修复、功能新增）",
+            title: 'refactor'
+          },
+          'chore': {
+            description: "其他: 对构建过程或辅助工具和库的更改（不影响源文件、测试用例）",
+            title: 'chore'
+          },
+          'ci': {
+              description: "集成: 修改 CI 配置、脚本",
+              title: 'ci'
+          },
+          'perf': {
+            description: "性能: 性能优化",
+            title: 'perf'
+          },
+          'revert': {
+            description: "回退: 回滚 commit",
+            title: 'revert'
+          },
+          'test': {
+            description: "测试: 添加疏漏测试或已有测试改动",
+            title: 'test'
+          },
+          'merge': {
+            description: "合并: 代码合并",
+            title: 'build'
+          },
+          'build': {
+            description: "构建: 构建流程、外部依赖变更（如升级 npm 包、修改 vite 配置等）",
+            title: 'build'
+          },
+        }
+      },
+      scope: {
+        description: "选择一个提交范围（可选）:",
+      }, 
+      customScope: {
+        description: "请输入自定义的提交范围 :",
+      }, 
+      subject: {
+        description: "填写简短精炼的变更描述 :\n",
+      },
+      body: {
+        description: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
+      },
+      breaking: {
+        description: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
+      }, 
+      footerPrefixesSelect: {
+        description:  "选择关联issue前缀（可选）:",
+      },
+      customFooterPrefix: {
+        description: "输入自定义issue前缀 :",
+      }, 
+      footer: {
+        description: "列举关联issue (可选) 例如: #31, #I3244 :\n",
+      }, 
+      generatingByAI: {
+        description: "正在通过 AI 生成你的提交简短描述...",
+      }, 
+      generatedSelectByAI: {
+        description: "选择一个 AI 生成的简短描述:",
+      },
+      confirmCommit: {
+        description: "是否提交或修改commit ?",
+      },
+    }
+  }
+}

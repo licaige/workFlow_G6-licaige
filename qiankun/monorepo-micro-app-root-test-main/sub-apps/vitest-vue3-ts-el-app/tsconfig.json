@@ -1,0 +1,23 @@
+{
+	// "files"指定一个包含相对或绝对文件路径的列表。通过 "files"属性明确指定的文件却总是会被包含在内，不管"exclude"如何设置。
+	"files": [
+		"types/axios.d.ts",
+		"types/auto-imports.d.ts",
+		"types/components.d.ts",
+		"types/env.d.ts",
+		"types/global.d.ts",
+		"types/vue.d.ts",
+		"types/vuedraggable.d.ts"
+	],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		},
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.vitest.json"
+		}
+	]
+}

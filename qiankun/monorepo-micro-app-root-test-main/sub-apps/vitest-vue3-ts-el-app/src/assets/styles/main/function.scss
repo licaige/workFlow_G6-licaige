@@ -1,0 +1,223 @@
+@charset "UTF-8";
+
+/**--- $声明全局变量  ---**/
+$font-stack: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI', Roboto, Helvetica,
+	'Helvetica Neue', Arial, 'Noto Sans', sans-serif, Oxygen, 'Apple Color Emoji', 'Segoe UI Emoji',
+	'Segoe UI Symbol', 'Noto Color Emoji', Ubuntu, 'Cantarell', 'SimSun';
+$font-mono: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+$primary-color: #9e9e9e;
+$color-light: #e3edf5;
+$color-gray: #666;
+$color-gray-light: #ccc;
+$color-gray-dark: #343a40;
+$color-blue: #368ae5;
+$color-blue-light: #2abafd;
+$color-blue-gray: #9ecddd;
+$color-dark: #32408f;
+$color-red: #c03e20;
+$color-yellow-dark: #ffe608;
+// Visual Screen colors
+$vs-primary-color: #58dff8;
+$bar-bg-color: rgb(5, 18, 58);
+$bling-line-bg: linear-gradient(
+	to right,
+	rgba(0, 0, 0, 0),
+	rgba(226, 253, 255, 1),
+	rgba(0, 0, 0, 0)
+);
+
+$margin-width: 1.5rem;
+$block-margin: 1rem;
+$box-title-font-size: 0.8rem;
+$box-title-line-height: 1.5rem;
+
+$bar-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+$bar-shadow-t-bottom: 0 10px 20px rgba(0, 0, 0, 0.5);
+$bar-shadow-t-left: -10px 2px 10px rgba(0, 0, 0, 0.5);
+$bar-shadow-t-right: 10px 2px 10px rgba(0, 0, 0, 0.5);
+
+$bar-shadow-b-top: 0 -10px 20px rgba(0, 0, 0, 0.5);
+$bar-shadow-b-left: -10px -2px 10px rgba(0, 0, 0, 0.5);
+$bar-shadow-b-right: 10px -2px 10px rgba(0, 0, 0, 0.5);
+
+/*--- 定义被继承的样式 ---*/
+/** 
+    white-space，控制空白字符的显示，同时还能控制是否自动换行。它有五个值：normal | nowrap | pre | pre-wrap | pre-line
+    word-break，控制单词如何被拆分换行。它有三个值：normal | break-all | keep-all
+    word-wrap（overflow-wrap）控制长度超过一行的单词是否被拆分换行，是word-break的补充，它有两个值：normal | break-word
+**/
+
+/*文本换行的方式*/
+%txt-p-bk {
+	white-space: pre; //空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签
+	word-wrap: break-word; //在长单词或 URL 地址内部进行换行
+	word-break: keep-all; //只能在半角空格或连字符处换行
+}
+%txt-pw-wb {
+	white-space: pre-wrap; //保留空白符序列，但是正常地进行换行
+	word-wrap: break-word;
+	word-break: break-all; //允许在单词内换行
+}
+%txt-pl-wb {
+	white-space: pre-line; //合并空白符序列，但是保留换行符
+	word-wrap: break-word;
+	word-break: break-all;
+}
+%txt-nb {
+	white-space: normal; //空格被合并，自动换行。
+	word-wrap: break-word;
+	word-break: break-all;
+}
+//文本不换行
+%txt-nnw {
+	white-space: nowrap; //文本不会换行，直到遇到 <br> 标签为止
+	word-wrap: normal; //只在允许的断字点换行, 否则单词长度超过一行也不允许拆成两行显示
+}
+//文本不换行，溢出省略
+%txt-nw-ep {
+	overflow: hidden;
+	@extend %txt-nnw;
+	text-overflow: ellipsis; //显示省略符号来代表被修剪的文本
+}
+//文本不换行，溢出修剪
+%txt-nw-cp {
+	overflow: hidden;
+	@extend %txt-nnw;
+	text-overflow: clip; //修剪文本
+}
+//Flex 弹性布局, 注: 标准属性放在兼容属性之后, 低版本的兼容性写法放到最后（ps：css向下兼容），否则无效
+%display_flex {
+	/* 低版本兼容性 */
+	display: -webkit-box; /* 老版本语法: Chrome 4+, Safari 3.1, iOS Safari 3.2+, Safari, iOS, Android browser, older WebKit browsers. */
+	display: -moz-box; /* 老版本语法: Firefox (buggy) */
+	display: -ms-flexbox; /* 混合版本语法: IE 10 */
+	display: box; /* OLD - Android 4.4- */
+
+	display: -webkit-flex; /* 新版本语法: Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+	display: -moz-flex; /* Firefox 18+ */
+	display: flex; /* 新版本语法: Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+
+	// display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+	// display: -moz-box; /* Firefox 17- */
+	// display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+	// display: -moz-flex; /* Firefox 18+ */
+	// display: -ms-flexbox; /* IE 10 */
+	// display: -ms-flex;
+	// display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+}
+
+// inline-flex 行内元素Flex布局
+%display_inline-flex {
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: inline-flex;
+
+	/* 低版本兼容性 */
+	display: -webkit-inline-box;
+	display: -moz-inline-box;
+	display: -ms-inline-flexbox;
+}
+
+// 混合宏（Mixin）
+// Flex 容器属性
+@mixin flex-flow($direction: 'row', $wrap: 'nowrap', $box: 'normal') {
+	//flex-direction属性，决定主轴的方向（即项目的排列方向）。 水平方向：row，row-reverse |  垂直方向：column，column-reverse
+	//flex-wrap属性:  nowrap（默认）:不换行 ｜ wrap：换行，第一行在上方 ｜ wrap-reverse：换行，第一行在下方。
+	-webkit-flex-flow: $direction $wrap;
+	-moz-flex-flow: $direction $wrap;
+	-ms-flex-flow: $direction $wrap;
+	flex-flow: $direction $wrap;
+
+	/* 低版本兼容性 */
+	-webkit-box-direction: $box; //normal 以默认方向显示子元素 reverse反方向 inherit继承
+}
+
+//项目在主轴(纵向)上的对齐方式
+// flex-start默认值，左对齐 | flex-end右对齐 | center居中 |
+// space-between两端对齐，项目之间的间隔都相等 | space-around每个项目两侧的间隔相等;
+@mixin justify-content($content: 'space-between', $justify: 'justify') {
+	/* 低版本兼容性 */
+	-webkit-box-pack: $justify;
+	-ms-flex-pack: $justify;
+
+	-webkit-justify-content: $content;
+	-moz-justify-content: $content;
+	-ms-justify-content: $content;
+	-o-justify-content: $content;
+	justify-content: $content;
+	//         -webkit-box-pack: center;
+	//   -webkit-justify-content: center;
+	//             -ms-flex-pack: center;
+	//           justify-content: center;
+}
+
+//定义项目在交叉轴(横向)上对齐方式
+// flex-start交叉轴的起点对齐 | flex-end交叉轴的终点对齐 | center交叉轴的中点对齐
+// baseline项目的第一行文字的基线对齐 | stretch默认值，如果项目未设置高度或设为auto，将占满整个容器的高度
+@mixin align-items($align: stretch) {
+	-webkit-align-items: $align;
+	-moz-align-items: $align;
+	-ms-align-items: $align;
+	align-items: $align;
+
+	/* 低版本兼容性 */
+	-webkit-box-align: $align;
+	-ms-flex-align: $align;
+}
+
+//Flex 项目属性
+@mixin flex-style($grow: 0, $shrink: 1, $basis: auto) {
+	// flex属性是flex-grow, flex-shrink 和 flex-basis的简写
+	// none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+	// flex-grow属性定义项目的放大比例。默认为0，即如果存在剩余空间，也不放大 ｜ 1，则它们将等分剩余空间 ｜ 2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍
+	// flex-shrink属性定义了项目的缩小比例。 默认为1，即如果空间不足，该项目将缩小 ｜ 0，其他项目都为1，则空间不足时，前者不缩小。
+	// flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+	-webkit-flex: $grow $shrink $basis;
+	-moz-flex: $grow $shrink $basis;
+	-ms-flex: $grow $shrink $basis;
+	flex: $grow $shrink $basis;
+
+	/* 低版本兼容性 */
+	//box-flex 属性规定框的子元素是否可伸缩其尺寸
+	-webkit-box-flex: $grow; /* OLD - iOS 6-, Safari 3.1-6 */
+	-moz-box-flex: $grow; /* OLD - Firefox 19- */
+}
+//order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+@mixin order($int: 0) {
+	-ms-flex-order: $int;
+	-webkit-order: $int;
+	order: $int;
+	/* 低版本兼容性 */
+	-webkit-box-ordinal-group: $int; /* OLD - iOS 6-, Safari 3.1-6 */
+	-moz-box-ordinal-group: $int; /* OLD - Firefox 19- */
+}
+// align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
+@mixin align-self($self: auto) {
+	// 默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch | flex-start | flex-end | center | baseline | stretch
+	align-self: $self;
+}
+
+@mixin border-radius($tl-radius, $tr-radius: null, $br-radius: null, $bl-radius: null) {
+	-webkit-border-radius: $tl-radius $tr-radius $br-radius $bl-radius;
+	-moz-border-radius: $tl-radius $tr-radius $br-radius $bl-radius;
+	-ms-border-radius: $tl-radius $tr-radius $br-radius $bl-radius;
+	border-radius: $tl-radius $tr-radius $br-radius $bl-radius;
+}
+
+@mixin size($width, $height) {
+	width: $width;
+	height: $height;
+}
+
+// .bg-red {background-color: #c03e20!important; }
+// .bg-orange{background-color:#ff8318!important; }
+// .bg-yellow {background-color: #fabf30 !important; }
+// .bg-blue { background-color: #1f50cd !important; }
+// .bg-blue-368ae5 { background-color: #368ae5 !important; }
+// .bg-05586d { background-color: #05586d !important; }
+// .bg-0b90b1 { background-color: #0b9eb1 !important; }
+// .bg-3f9316 { background-color: #3f9316 !important; }
+// .bg-62d529 { background-color: #62d529 !important; }
+// .bg-512e90 { background-color: #512e90 !important; }
+// .bg-703fc8 { background-color: #703fc8 !important; }

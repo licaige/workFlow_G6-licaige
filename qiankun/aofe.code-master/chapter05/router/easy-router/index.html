@@ -1,0 +1,35 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="demo"></div>
+<button id="blue">Router Blue</button>
+<button id="home">Router Home</button>
+
+<script src="easy-router.js"></script>
+<script>
+  Router.add('', function () {
+    document.getElementById('demo').innerHTML = "Router Home";
+  });
+  Router.add('/', function () {
+    document.getElementById('demo').innerHTML = "Router Home";
+  });
+  Router.add('/blue', function () {
+    document.getElementById('demo').innerHTML = "Router Blue";
+  });
+</script>
+<script>
+document.getElementById("blue").addEventListener("click", function (ev) {
+  Router.navigate("/blue")
+});
+document.getElementById("home").addEventListener("click", function (ev) {
+  Router.navigate("/")
+});
+</script>
+</body>
+</html>

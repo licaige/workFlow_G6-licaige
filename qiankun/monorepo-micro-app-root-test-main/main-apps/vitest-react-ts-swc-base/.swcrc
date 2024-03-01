@@ -1,0 +1,29 @@
+{
+	"minify": true,
+	// Optional, configure minification options
+	"jsc": {
+		"minify": {
+			"compress": {
+				"unused": true,
+				"drop_debugger": true,
+				"drop_console": true,
+				"pure_funcs": ["console.error", "console.warn"]
+			},
+			// "compress": true,
+			"mangle": true
+		},
+		"parser": {
+			"syntax": "typescript",
+			"tsx": true
+		},
+		"externalHelpers": true
+	},
+	"env": {
+		"targets": {
+			"chrome": "79"
+		},
+		"mode": "entry",
+		"coreJs": "3.22"
+	},
+	"resolutions": { "terser": "npm:@swc/core" }
+}

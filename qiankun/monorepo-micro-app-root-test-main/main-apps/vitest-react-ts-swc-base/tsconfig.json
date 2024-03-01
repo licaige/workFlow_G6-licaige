@@ -1,0 +1,38 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"sourceMap": true,
+		"useDefineForClassFields": true,
+		"skipLibCheck": true,
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"typeRoots": ["node_modules/@types", "./typings"],
+		// types设置typeRoots目录下需要包括在编译之中的类型模块。默认情况下，该目录下的所有类型模块，都会自动包括在编译之中
+		"types": ["vite/client", "node", "lodash-es", "react", "react-dom", "react-router-dom"],
+		"baseUrl": ".",
+		// 路径映射，别名
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react-jsx",
+
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noFallthroughCasesInSwitch": true,
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+	"references": [{ "path": "./tsconfig.node.json" }]
+}

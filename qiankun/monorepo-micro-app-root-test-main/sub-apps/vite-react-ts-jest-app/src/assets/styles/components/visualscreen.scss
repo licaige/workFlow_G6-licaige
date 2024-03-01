@@ -1,0 +1,494 @@
+@charset "UTF-8";
+@import '../main/function.scss';
+
+html,
+body {
+	overflow: auto;
+	// @media all and (max-width: 1024px) and (max-height: 600px) {
+	// }
+	@media all and (min-width: 1024px) and (min-height: 600px) {
+		overflow: hidden;
+	}
+}
+body {
+	color: #cecece;
+	// font-size: 14px;
+	// line-height: 2.1666666;
+	background: radial-gradient(70% 70% at 50% 50%, #10293f 0%, #050f17 100%);
+	-webkit-font-smoothing: antialiased; /*chrome、safari 抗锯齿*/
+	-moz-osx-font-smoothing: grayscale;
+	zoom: auto;
+}
+
+.visual-screen {
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+
+	display: flex;
+	// font-size: 1rem;
+	z-index: -1000;
+	// background-color: rgb(3, 12, 38);
+	background-image: url('../../images/stars-bg.jpg');
+	background-size: cover;
+
+	@media all and (max-width: 1024px) {
+		// 1rem = 10px
+		width: 102.4rem; // 1024px
+		height: 60rem; // 600px
+		overflow-x: auto;
+	}
+	@media all and (max-height: 600px) {
+		width: 102.4rem;
+		height: 60rem;
+		overflow-y: auto;
+	}
+
+	/* 最大宽高比 */
+	@media all and (min-width: 1025px) and (min-height: 601px) and (max-aspect-ratio: 16/9) {
+		width: 100vw;
+		height: 56.25vw; // 900/16
+	}
+
+	/* 最小宽高比 */
+	@media all and (min-width: 1025px) and (min-height: 601px) and (min-aspect-ratio: 16/9) {
+		width: 177.778vh; // 1600/9
+		height: 100vh;
+	}
+
+	.view-main {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		top: 3rem;
+		z-index: 0;
+		overflow: hidden;
+
+		.view-con {
+			//继承，使用@extend调用占位符代码
+			@extend %display_flex;
+			//调用混合宏
+			@include flex-flow(row, nowrap, normal); // -webkit-box-orient: horizontal;
+			@include align-items(stretch);
+			@include justify-content(space-between, justify);
+			// position: absolute;
+			// top: 0;
+			// left: 0;
+			// z-index: 0;
+			// overflow: hidden;
+			@media all and (max-width: 1024px) {
+				width: 1024px;
+				height: calc(800px - 3rem);
+				@media (min-height: 800px) {
+					height: calc(100vh - 3rem);
+				}
+			}
+			@media all and (min-width: 1024px) and (min-height: 800px) {
+				width: 100vw;
+				height: calc(100vh - 3rem);
+			}
+
+			.vs-left,
+			.vs-right,
+			.vs-main,
+			.vf-left,
+			.vf-right {
+				height: 100%;
+				// vertical-align: top;
+				padding: 20px 10px;
+			}
+
+			.vs-main {
+				/*flex-grow 属性用于设置或检索弹性盒的扩展比率。*/
+				@include flex-style(1, 1, auto);
+				// width: 40vw;
+			}
+			.vs-left,
+			.vs-right {
+				@include flex-style(0, 1, 30vw);
+			}
+			.vs-left {
+				@include order(-1);
+			}
+
+			.vs-left {
+				& > div {
+					display: flex;
+					flex-direction: column;
+					height: 100%;
+				}
+
+				& > div > div:not(:last-child) {
+					height: 32%;
+					flex-shrink: 0;
+					//flex-grow: 1;
+					margin-bottom: $block-margin;
+				}
+
+				& > div > div:last-child {
+					flex-grow: 1;
+				}
+			}
+
+			.vs-right {
+				flex-grow: 1;
+				padding-top: $block-margin;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.vs-right-top {
+				flex-grow: 1;
+				position: relative;
+			}
+			.vs-right-bottom {
+				height: 35%;
+				display: flex;
+				& > div:first-child {
+					width: 20%;
+					margin-right: $block-margin;
+				}
+				& > div:nth-child(2) {
+					margin-right: $block-margin;
+					width: 30%;
+				}
+				& > div:nth-child(3) {
+					flex-grow: 1;
+					display: flex;
+					flex-direction: column;
+					& > div:first-child {
+						height: 33%;
+						margin-bottom: 1em;
+					}
+					& > div:last-child {
+						flex-grow: 1;
+					}
+				}
+			}
+
+			.vs-box {
+				border-radius: 0.5em;
+				background: rgba(0, 0, 0, 0.2);
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+				width: 100%;
+				height: 100%;
+				padding: 0.8em;
+				display: flex;
+				flex-direction: column;
+
+				&-title {
+					&:before {
+						content: ' ';
+						height: 4px;
+						width: 4px;
+						border-radius: 50%;
+						margin: -2px 1px 0 -4px;
+						background: white;
+						display: inline-block;
+						vertical-align: middle;
+					}
+					padding-left: 1em;
+					font-size: $box-title-font-size;
+					font-weight: 700;
+					line-height: $box-title-line-height;
+					color: white;
+					margin-bottom: $box-title-line-height/2;
+				}
+
+				&-content {
+					width: 100%;
+					flex-grow: 1;
+					padding: 0 1em;
+				}
+
+				&-legend {
+					position: absolute;
+					right: 0;
+					top: -1.5 * $box-title-line-height;
+					font-size: 0.8em;
+					line-height: $box-title-line-height;
+					color: white;
+				}
+
+				& > dt > strong {
+					line-height: 30px;
+					color: #fff;
+				}
+				& > dt h3 {
+					display: inline-block;
+					font: bold 16px/30px $font-stack;
+					color: #fff;
+				}
+			}
+
+			#mapLayer {
+				position: fixed !important;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 1;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.vf-left,
+			.vf-right {
+				position: absolute;
+				z-index: 100;
+				@media all and (max-width: 1024px) {
+					width: 310px;
+				}
+				@media all and (min-width: 1024px) {
+					width: 30vw;
+				}
+			}
+			.vf-left {
+				left: 0;
+			}
+			.vf-right {
+				right: 0;
+			}
+
+			.panel-box {
+				position: relative;
+				z-index: 0;
+				margin-bottom: 2.3rem;
+				@media all and (max-width: 1024px) {
+					height: calc(400px - 6.8rem);
+					@media (min-height: 800px) {
+						height: calc(50vh - 6.8rem);
+					}
+				}
+				@media all and (min-width: 1024px) and (min-height: 800px) {
+					height: calc(50vh - 6.8rem);
+				}
+				.corner-lt,
+				.corner-lb,
+				.corner-rt,
+				.corner-rb {
+					position: absolute;
+					z-index: -1;
+					width: 2rem;
+					height: 2rem;
+					overflow: hidden;
+					background-color: transparent;
+					border: 5px solid #d8b000;
+					border-radius: 5px;
+				}
+				.corner-lt {
+					left: 0;
+					top: 0;
+					border-width: 5px 0 0 5px;
+				}
+				.corner-lb {
+					left: 0;
+					bottom: 0;
+					border-width: 0 0 5px 5px;
+				}
+				.corner-rt {
+					right: 0;
+					top: 0;
+					border-width: 5px 5px 0 0;
+				}
+				.corner-rb {
+					right: 0;
+					bottom: 0;
+					border-width: 0 5px 5px 0;
+				}
+
+				.panel-con {
+					position: absolute;
+					z-index: -1;
+					left: 5px;
+					right: 5px;
+					top: 5px;
+					bottom: 5px;
+					background: rgba(2, 2, 37, 0.9);
+					// box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+					border: 1px solid rgb(15, 138, 238);
+					// width: 100%;
+					// height: 100%;
+					padding: 5px;
+					display: flex;
+					flex-direction: column;
+
+					/*==== 标题 ====*/
+					.title {
+						position: relative;
+						z-index: 10;
+						line-height: 3.2rem;
+						overflow: hidden;
+						margin: 0.5rem;
+						padding: 0 10px;
+						text-align: left;
+						// align-items: center;
+						color: #fff;
+						font-size: 1.3rem;
+						background: linear-gradient(to right, #3053ae, #0b1f4b);
+
+						& > .btn-group {
+							float: right;
+						}
+					}
+
+					.title-left {
+						top: 4%;
+						height: 8%;
+					}
+
+					.title-right {
+						top: 2%;
+						height: 4%;
+					}
+
+					.content {
+						position: relative;
+						width: 100%;
+						height: calc(100% - 4.2rem);
+						// overflow: hidden;
+						padding: 0 0.5rem;
+						// flex-grow: 1;
+						z-index: 1;
+						.top-info {
+							font-size: 1.5rem;
+							font-weight: bold;
+							border-bottom: 1px solid #3486da;
+							strong {
+								color: #fff;
+								margin-left: 2rem;
+								// &::last-child {
+								//   padding-left: 3rem;
+								// }
+							}
+							span {
+								color: #3c93e9;
+								margin-right: 2rem;
+							}
+						}
+						.el-carousel {
+							height: 100%;
+							&-height {
+								height: calc(100% - 2rem);
+							}
+							&__container {
+								height: 100% !important;
+							}
+							&__button {
+								margin: 0 5px !important;
+								width: 8px !important;
+								height: 8px !important;
+								border-radius: 100%;
+								background: #007aff !important;
+								opacity: 0.8 !important;
+								&:hover {
+									opacity: 1 !important;
+								}
+							}
+							.is-active > button {
+								background-color: #fff !important;
+							}
+						}
+						.table-box {
+							width: 100%;
+							background: transparent !important;
+							// height: 90%;
+							// height: calc(100% - 1rem);
+						}
+						.el-table {
+							color: #fff;
+							background: transparent !important;
+							*background: rgba(2, 2, 37, 0.9);
+							border-color: #a5c1eb !important;
+							&:before {
+								background: transparent;
+							}
+							tr,
+							td {
+								background: transparent;
+								color: #fff;
+								border: none;
+							}
+							&__row--striped td {
+								background: rgba(213, 219, 235, 0.18);
+							}
+							th {
+								background: rgba(213, 219, 235, 0.1);
+								font-size: 1rem;
+								color: #3c93e9;
+								font-weight: bold;
+							}
+							.td-tag {
+								display: inline-block;
+								line-height: 1rem;
+								padding: 0 6px;
+								color: #22dcf5;
+								background: transparent !important;
+								border: 1px solid #22dcf5;
+								border-radius: 1rem;
+							}
+							.tag-green,
+							.tag-yellow,
+							.tag-red {
+								display: inline-block;
+								width: 20px;
+								height: 5px;
+								margin: 3px 3px auto auto;
+							}
+							.tag-green {
+								background-color: #0cf03d;
+							}
+							.tag-yellow {
+								background-color: #f8e21a;
+							}
+							.tag-red {
+								background-color: #eb1010;
+							}
+						}
+						.chart-box {
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					& > dt > strong {
+						line-height: 30px;
+						color: #fff;
+					}
+					& > dt h3 {
+						display: inline-block;
+						font: bold 16px/30px $font-stack;
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}
+
+.vs-icon {
+	display: inline-block;
+	background-size: contain;
+	vertical-align: middle;
+	width: 1em;
+	height: 1em;
+	background-repeat: no-repeat;
+}
+
+// @media all and (min-width: 1366px) {
+// 	html {
+// 		font-size: 14.23px;
+// 	}
+// }
+// @media all and (min-width: 1920px) {
+// 	html {
+// 		font-size: 20px;
+// 	}
+// }
+
+/* 最小宽高比 */
+// @media all and (min-width: 9999px) and (min-aspect-ratio: 2/1) {
+// 	html {
+// 		font-size: 20px * (200vh / 1920px);
+// 	}
+// }

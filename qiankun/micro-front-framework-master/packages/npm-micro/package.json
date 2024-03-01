@@ -1,0 +1,19 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap"
+  },
+  "author": "chencs",
+  "license": "ISC",
+  "dependencies": {
+    "react-router-dom": "^6.6.1"
+  },
+  "engines": {
+    "node": ">16"
+  },
+  "engineStrict": true,
+  "devDependencies": {
+    "lerna": "^6.3.0"
+  }
+}

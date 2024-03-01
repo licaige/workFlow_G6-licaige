@@ -1,0 +1,6 @@
+*.d.ts
+**/*.min.*
+
+node_modules/
+dist/
+build/

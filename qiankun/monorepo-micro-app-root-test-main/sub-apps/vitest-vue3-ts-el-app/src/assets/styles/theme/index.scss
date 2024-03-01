@@ -1,0 +1,53 @@
+@use 'sass:map';
+
+$colors: () !default;
+$--colors: map.deep-merge(
+	(
+		'primary': (
+			'base': #1638b1,
+		),
+		'success': (
+			'base': #5caf50,
+		),
+		'warning': (
+			'base': #ff9800,
+		),
+		'danger': (
+			'base': #d31616,
+		),
+		'error': (
+			'base': #ed3030,
+		),
+		'info': (
+			'base': #2196f3,
+		),
+		'light': (
+			'base': #f8f9fa,
+		),
+	),
+	$colors
+);
+
+// we can add this to custom namespace, default is 'el'
+// @forward 'element-plus/theme-chalk/src/mixins/config.scss' with (
+// 	$namespace: 'ep'
+// );
+
+// You should use them in scss, because we calculate it by sass.
+// comment next lines to use default color
+/* 只需要重写你需要的即可 */
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+	// do not use same name, it will override.
+	$colors: $--colors,
+	$button-padding-horizontal: ('default': 60px)
+);
+
+// 如果只是按需导入，则可以忽略以下内容。
+// if you want to import all 如果你想导入所有样式:
+// @use "element-plus/theme-chalk/src/index.scss" as *;
+
+// You can comment it to hide debug info.
+// @debug $--colors;
+
+// custom dark variables
+// @use './theme.dark.scss';

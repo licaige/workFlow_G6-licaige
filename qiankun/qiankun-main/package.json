@@ -1,0 +1,10 @@
+{
+  "license": "MIT",
+  "author": {
+    "name": "展名扬",
+    "email": "912419071@qq.com"
+  },
+  "dependencies": {
+    "axios": "^1.6.7"
+  }
+}

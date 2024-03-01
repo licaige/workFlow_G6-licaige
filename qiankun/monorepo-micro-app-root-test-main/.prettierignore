@@ -1,0 +1,17 @@
+*.d.ts
+**/*.min.*
+
+node_modules/
+dist/
+dist/**
+build/
+coverage
+
+# Ignore files:
+*.html
+
+.github
+
+.next
+
+.swc

@@ -1,0 +1,16 @@
+{
+  "*.(j|t)s?(x)": [
+    "eslint --cache --fix",
+    "prettier --parser=typescript --write --cache",
+    "git add"
+  ],
+  "*.{vue,html}": [
+    "eslint --cache --fix",
+    "prettier --parser=vue --write --cache",
+    "git add"
+  ],
+  "*.{less,sass,scss,styl,json}": [
+    "prettier --write --cache --ignore-unknown",
+    "git add"
+  ]
+}

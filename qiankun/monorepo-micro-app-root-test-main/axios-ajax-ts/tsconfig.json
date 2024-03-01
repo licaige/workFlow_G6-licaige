@@ -1,0 +1,52 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext", // "commonjs"
+		"lib": ["ES2015", "ES2020", "ESNext", "DOM", "DOM.Iterable"],
+		"skipLibCheck": true,
+
+		/* Bundler mode */
+		"moduleResolution": "bundler", // "node"
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		// 是否通过为所有导入模块创建命名空间对象，允许CommonJS和ES模块之间的互操作性，开启改选项时，也自动开启- allowSyntheticDefaultImports选项，默认：false
+		"esModuleInterop": true,
+		// 是否允许从没有默认导出的模块中默认导入，默认：false
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+
+		/* Others */
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"sourceMap": true,
+		// 允许您从模块文件内部访问作为全局变量的 UMD 导出，如果不使用该选项，从 UMD 模块导出需要一个导入声明，默认：false
+		"allowUmdGlobalAccess": true,
+		"removeComments": true,
+		"typeRoots": ["node_modules/@types", "./types"],
+		// types设置typeRoots目录下需要包括在编译之中的类型模块。默认情况下，该目录下的所有类型模块，都会自动包括在编译之中
+		"types": ["qs"],
+		// 根（root）文件夹列表，表示运行时组合工程结构的内容
+		"rootDir": "./",
+		/* 仅用来控制输出的目录结构 --outDir
+		 * 输出目录，即 tsc 编译后的文件输出的文件夹路径（基于tsconfig.json文件的相对路径）
+		 */
+		"outDir": "./lib",
+		// 仅支持 "amd" 和 "system" 模块
+		// 将输出文件合并为一个文件。合并的顺序是根据传入编译器的文件顺序、<reference``>和 import的文件顺序决定的
+		// "outFile": "./lib/index.js",
+		// 生成相应的 .d.ts文件
+		"declaration": true
+		// 生成声明文件'.d.ts'的输出路径
+		// "declarationDir": "./lib/types"
+	},
+	"include": ["./*.ts", "./*.d.ts", "utils/index.ts", "types/index.d.ts"]
+}

@@ -1,0 +1,21 @@
+{
+	// "files"指定一个包含相对或绝对文件路径的列表。通过 "files"属性明确指定的文件却总是会被包含在内，不管"exclude"如何设置。
+	"files": ["types/index.d.ts", "types/global.d.ts", "types/axios.d.ts", "types/env.d.ts"], // "src/shims-tsx.d.ts",
+
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		},
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.test.json"
+		}
+	]
+
+	// 从另一个配置文件里继承配置
+	// "extends": "@tsconfig/recommended",
+	// 让 IDE 在保存文件的时候根据 tsconfig.json 重新生成文件
+	// "compileOnSave": true, // 支持这个特性需要Visual Studio 2015， TypeScript 1.8.4 以上并且安装 atom-typescript 插件
+}

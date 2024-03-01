@@ -1,0 +1,412 @@
+@charset "UTF-8";
+
+@import '../main/function.scss';
+
+.head-logo {
+	// height: 56px;
+	overflow: hidden;
+	// text-align: left;
+	// padding: 9px;
+	// margin-bottom: 8px;
+	svg,
+	img {
+		// display: inline-block;
+		float: left;
+		width: auto;
+		height: 38px;
+		// margin: 0 0 0 -3px;
+		margin-right: 8px;
+		padding: 5px;
+	}
+	.title {
+		float: left;
+		height: 38px;
+		color: #fff;
+		font: normal 16px/38px 'Microsoft YaHei';
+	}
+}
+
+.box-top,
+.ul-box,
+.dl-list dd {
+	//继承，使用@extend调用占位符代码
+	@extend %display_flex;
+	//调用混合宏
+	@include flex-flow(row, nowrap, normal); // -webkit-box-orient: horizontal;
+	@include align-items(stretch);
+	@include justify-content(space-between, justify);
+	word-wrap: break-word;
+	background-color: #fff;
+	// box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
+}
+.box-top {
+	height: 88px;
+	> figure {
+		@include flex-style(0, 0, 88px);
+		height: 88px;
+		@include border-radius(4px, 0, 0, 4px);
+		color: #fff;
+		font: 260 36px/68px $font-stack;
+		text-align: center;
+		// vertical-align: middle;
+		margin: 0;
+	}
+	> figure,
+	> section {
+		padding: 10px;
+	}
+	> section {
+		@include flex-style(1, 1, auto);
+		color: #fff;
+		> h5,
+		> p {
+			@extend %txt-nw-ep;
+		}
+		> h5 {
+			color: #fff;
+			font: 500 20px/30px 'Microsoft YaHei';
+			span {
+				font: normal 14px/30px 'Microsoft YaHei';
+			}
+		}
+		> p {
+			font: normal 14px/26px 'Microsoft YaHei';
+		}
+	}
+}
+.box-top.bg-white section,
+.box-top.bg-white section h5 {
+	color: #333 !important;
+}
+.ul-box {
+	height: 100px;
+	overflow: hidden;
+	box-sizing: border-box;
+	li {
+		border-left: 1px solid #ccc;
+		padding: 5px 10px;
+		color: #666;
+		text-align: center;
+		h5 {
+			color: #0e86f8;
+			font: normal 14px/24px 'Microsoft YaHei';
+		}
+		em {
+			color: #1ad0e0;
+			font: normal 16px/26px 'Microsoft YaHei';
+		}
+		p {
+			color: #666;
+			font: normal 12px/20px 'Microsoft YaHei';
+		}
+		&:first-child {
+			background-color: #0a81ef;
+			@include border-radius(4px, 0, 0, 4px);
+			border: 0;
+			h5 {
+				color: #cbe9f2;
+			}
+			em {
+				color: #fff;
+			}
+			p {
+				color: #eee;
+			}
+		}
+	}
+}
+.ul-box li {
+	@include flex-style(0, 0, 50%);
+	color: #fff;
+}
+
+.dl-top {
+	margin-bottom: 16px;
+	background-color: #fff;
+	background-clip: border-box;
+	display: inline-block;
+	height: 88px;
+	padding: 0 20px;
+}
+
+.dl-top dt {
+	float: left;
+	width: 88px;
+	height: 88px;
+}
+
+.dl-top dt figure {
+	width: 88px;
+	height: 88px;
+	text-align: center;
+	font-size: 58px;
+	line-height: 88px;
+	color: #fff;
+	border-radius: 50%;
+	background: #0074ff;
+}
+
+.dl-top dt figure.gray {
+	background: #666;
+}
+
+.dl-top dd {
+	float: left;
+	padding: 0 15px;
+	color: #9e9e9e;
+}
+
+.dl-top dd span {
+	padding-top: 10px;
+	font: normal 12px/22px 'Microsoft YaHei';
+}
+
+.dl-top dd h5 {
+	font: normal 16px/30px 'Microsoft YaHei';
+	padding-bottom: 15px;
+}
+
+.dl-top dd strong {
+	color: #fff;
+	font: bold 20px/30px 'Microsoft YaHei';
+	padding-right: 10px;
+}
+
+.cdl-box,
+.mdl-box,
+.dl-list {
+	// min-height: 160px;
+	overflow: hidden;
+	padding: 5px 10px;
+	background: #fff;
+	vertical-align: top;
+}
+.cdl-box > dt > strong {
+	line-height: 30px;
+	color: #333;
+}
+.chart-box {
+	height: 280px !important;
+}
+.mdl-box,
+.dl-list {
+	padding: 5px 0;
+}
+.dl-list {
+	height: 495px;
+}
+.mdl-box dt,
+.mdl-box dd,
+.dl-list dt {
+	padding: 0 10px;
+	overflow: hidden;
+}
+.mdl-box dt,
+.dl-list dt {
+	height: 30px;
+	border-bottom: 1px solid #eee;
+}
+.cdl-box dt h3,
+.mdl-box dt h3,
+.dl-list dt h3 {
+	display: inline-block;
+	font: bold 16px/30px $font-stack;
+	color: $color-blue;
+}
+.dl-list dd {
+	padding: 10px;
+	> figure {
+		@include flex-style(0, 0, 40px);
+		@include border-radius(50%);
+		// width: 40px;
+		height: 40px;
+		color: #fff;
+		font: 300 26px/40px $font-stack;
+		text-align: center;
+		vertical-align: middle;
+		margin-right: 10px;
+	}
+	> .agotime {
+		@include flex-style(0, 0, 50px);
+		text-align: right;
+		vertical-align: middle;
+		color: #999;
+		font: normal 12px/40px $font-stack;
+	}
+	> section {
+		@include flex-style(1, 1, auto);
+		color: #666;
+		> h5,
+		> p {
+			@extend %txt-nw-ep;
+		}
+		> h5 {
+			color: $color-dark;
+			font: normal 16px/26px 'Microsoft YaHei';
+			> em {
+				float: right;
+				font: normal 14px/26px 'Microsoft YaHei';
+				color: $color-red;
+			}
+		}
+		> p {
+			font: normal 12px/20px 'Microsoft YaHei';
+		}
+	}
+}
+.list-box-index {
+	height: 283px;
+	h5,
+	p {
+		@extend %txt-nw-ep;
+	}
+	.time-pad {
+		// width: 38px;
+		display: inline-block;
+		padding: 10px 3px 10px 15px;
+		color: $color-gray-light !important;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.ul-box li {
+		@include flex-style(0, 0, 50%);
+	}
+}
+@media (min-width: 576px) {
+	.ul-box li {
+		@include flex-style(0, 0, 33.3333333%);
+	}
+}
+@media (min-width: 768px) {
+	.ul-box li {
+		@include flex-style(0, 0, 20%);
+	}
+}
+@media (min-width: 992px) {
+	.ul-box li {
+		@include flex-style(1, 1, auto);
+	}
+}
+@media (min-width: 1200px) {
+	.ul-box li {
+		@include flex-style(1, 1, auto);
+	}
+}
+@media (min-width: 1600px) {
+	.ul-box li {
+		@include flex-style(1, 1, auto);
+	}
+}
+.box-top,
+.ul-box,
+.dl-top,
+.cdl-box,
+.mdl-box,
+.dl-list {
+	border: 0;
+	margin-bottom: 15px;
+	@include border-radius(4px);
+}
+
+.page-tip-bar {
+	padding: 10px 0 16px;
+}
+
+.page-box,
+.page-con {
+	overflow: hidden;
+	margin-bottom: 16px;
+	background-color: #fff;
+}
+.page-box dt {
+	height: 32px;
+	margin: 10px 0;
+	color: $color-gray-dark;
+	line-height: 32px;
+}
+.page-box dt h3 {
+	float: left;
+	display: inline-block;
+	font-size: 16px;
+	padding: 0 8px;
+}
+.page-box dt h3.page-title {
+	border-left: 3px solid $color-blue-light;
+	line-height: 22px;
+}
+.page-box dd {
+	padding: 10px;
+}
+// .page-box dd table td {
+//     @extend %txt-nw-ep;
+// }
+.table-operations {
+	margin-bottom: 16px;
+}
+.table-operations > h4 {
+	font: bold 16px/36px 'Microsoft YaHei';
+}
+.page-box dt button,
+.page-tip-bar button,
+.table-operations button {
+	float: right;
+	margin-right: 10px;
+}
+
+.main-box {
+	padding: 30px 0;
+}
+.main-con dt,
+.table-con > dt {
+	overflow: hidden;
+	padding: 12px 15px 8px;
+	color: #9e9e9e;
+	border-bottom: 1px solid #eee;
+}
+.main-con > dt > h3,
+.table-con > dt > h4,
+.box-com h3 {
+	display: inline-block;
+	font: bold 18px/26px 'Microsoft YaHei';
+	color: #0e86f8;
+}
+.main-con > dt > h3 > span {
+	cursor: pointer;
+	padding-top: 0;
+	margin-right: 5px;
+}
+
+.box-tpl {
+	width: 100%;
+	min-height: 600px;
+	overflow: hidden;
+	padding: 10px;
+	border: 1px solid $primary-color;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.scroll {
+	&::-webkit-scrollbar {
+		width: 0.25rem;
+		height: 0.25rem;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: hsl(216, 60%, 30%);
+		border-radius: 0.25rem;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: rgba(8, 26, 50, 0.8);
+	}
+	&::-webkit-scrollbar-corner {
+		background-color: rgba(8, 26, 50, 0.8);
+	}
+}

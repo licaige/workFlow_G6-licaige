@@ -1,0 +1,17 @@
+{
+  "name": "npm-esmodules",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "chencs",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "ip": "^2.0.1",
+    "path": "^0.12.7"
+  }
+}

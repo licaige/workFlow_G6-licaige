@@ -1,0 +1,13 @@
+[{
+  "request": {
+    "method": "post",
+    "uri": "/verify-token",
+    "headers": {
+      "authorization": "Bear 32423424324"
+    }
+  },
+  "response": {
+    "status": 200,
+    "text": "{ \"success\": true}"
+  }
+}]

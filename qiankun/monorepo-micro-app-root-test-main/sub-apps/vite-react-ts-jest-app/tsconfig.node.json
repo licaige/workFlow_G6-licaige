@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"types": ["node"],
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext", //  "NodeNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true
+		// "jsx": "react",
+		// "esModuleInterop": true,
+	},
+	"include": [
+		"vite.config.*",
+		"vite.base.config.*",
+		"vite.dev.config.*",
+		"vite.prod.config.*",
+		"jest.config.*",
+		"cypress.config.*"
+		// "nightwatch.conf.*",
+		// "playwright.config.*",
+		// "next-env.d.ts",
+		// "**/*.tsx"
+	]
+}
