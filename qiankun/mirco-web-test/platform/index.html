@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>微前端发布平台</title>
+  <style>
+    body{
+      padding-left: 60px;
+    }
+    .obj-container{
+      display: flex;
+      align-items: center;
+      height: 40px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    .obj-name{
+      width: 100px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333333;
+      line-height: 40px;
+    }
+    .obj-btn{
+      width: 50px;
+      height: 20px;
+      border-radius: 2px;
+      background: #0091FF;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>请点击按钮开始发布</h1>
+  <div id="btn">
+
+  </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  window.onload = function () {
+    const btn = document.getElementById('btn')
+
+    const dirList = [
+      'main',
+      'react15',
+      'react16',
+      'vue2',
+      'vue3',
+    ]
+    let html = ''
+    dirList.forEach(item => {
+      html += `<div class="obj-container">
+          <div class="obj-name">${item}</div>
+          <div
+            class="obj-btn"
+            id='${item}'
+            >发布</div>
+        </div>`
+    })
+
+    btn.innerHTML = html
+
+    btn.onclick = function (e) {
+      if (e.target.className !== 'obj-btn') {
+        return
+      }
+      $.get(`http://localhost:3001/start?name=${e.target.id}`)
+    }
+  }
+</script>
+</html>

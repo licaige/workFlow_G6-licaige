@@ -1,0 +1,92 @@
+.panel {
+  width: 800px;
+  height: 640px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  padding: 0 150px;
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &Logo{
+    display: inline-block;
+    width: 163px;
+    height: 72px;
+    margin-top: 60px;
+    opacity: 0;
+  }
+
+  &Subtitle {
+    width: 144px;
+    height: 47px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #0091FF;
+    line-height: 47px;
+  }
+
+  &Form {
+    display: flex;
+    flex-direction: column;
+
+    &Item {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      height: 65px;
+
+      padding: 0 17px;
+      border-bottom: 1px solid #eee;
+    }
+
+    &Icon {
+      height: 20px;
+      width: 16px;
+      margin-right: 22px;
+    }
+
+    &Send {
+      font-size: 16px;
+      color: #0091FF;
+      line-height: 21px;
+    }
+
+    &Input {
+      border: none;
+      outline: none;
+      height: 100%;
+
+      &::placeholder {
+        height: 21px;
+        font-size: 16px;
+        color: #B0B0B0;
+        line-height: 21px;
+      }
+    }
+
+    &Right {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &Button {
+    width: 500px;
+    height: 60px;
+    margin-top: 55px;
+    background: #0091FF;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    color: #fff;
+  }
+}

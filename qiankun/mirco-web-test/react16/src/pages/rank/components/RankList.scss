@@ -1,0 +1,122 @@
+.rankList {
+  width: calc(100% - 190px);
+  margin-left: 190px;
+  display: flex;
+  flex-direction: column;
+
+  &Item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #E4E4E4;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &Left {
+      display: flex;
+      flex-direction: row;
+
+      &Rank {
+        margin-top: 8px;
+        font-size: 35px;
+        color: #c2c2c2;
+        line-height: 40px;
+      }
+
+      &Image {
+        width: 180px;
+        height: 135px;
+        margin-left: 18px;
+        margin-right: 30px;
+      }
+
+      &Info {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &Right {
+
+      &Top {
+        font-size: 14px;
+        color: #333;
+        line-height: 19px;
+        margin-bottom: 33px;
+        
+        &Split {
+          margin: 0 10px;
+          font-size: 14px;
+          color: #d6d6d6;
+        }
+      }
+
+      &Bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+
+        &Buy {
+          width: 100px;
+          height: 36px;
+          margin-right: 10px;
+          background: #fff;
+          border-radius: 18px;
+          border: 1px solid #0091ff;
+          font-size: 16px;
+          font-weight: 400;
+          color: #2686d2;
+          line-height: 36px;
+        }
+
+        &Price {
+          width: 100px;
+          height: 36px;
+          background: #0091ff;
+          border-radius: 18px;
+          font-size: 16px;
+          font-weight: 400;
+          color: #fff;
+          line-height: 36px;
+        }
+      }
+    }
+
+    &Title {
+      margin-top: 21px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      line-height: 26px;
+    }
+
+    &Subtitle {
+      height: 19px;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #919191;
+      line-height: 19px;
+    }
+
+    &Price {
+      margin-top: 4px;
+      font-size: 22px;
+      color: #f24300;
+      line-height: 29px;
+    }
+
+    &Link {
+      height: 19px;
+      font-size: 14px;
+      color: #333;
+      line-height: 19px;
+    }
+  }
+}
+

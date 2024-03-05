@@ -1,0 +1,53 @@
+.calendar {
+  width: 150px;
+  background: #FFFFFF;
+  border: 1px solid #E4E4E4;
+  text-align: center;
+  position: fixed;
+
+  &Title {
+    height: 32px;
+    background: #0091FF;
+    line-height: 32px;
+    font-size: 15px;
+    color: #FFFFFF;
+  }
+
+  &Year {
+    height: 33px;
+    background: #F0F3F9;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2686D2;
+    line-height: 33px;
+  }
+
+  &Month {
+    height: 33px;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 14px;
+    color: #555555;
+    line-height: 33px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &Clicked {
+    position: relative;
+    color: #0091FF;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 32px;
+      background: #0091FF;
+      content: "";
+    }
+  }
+}

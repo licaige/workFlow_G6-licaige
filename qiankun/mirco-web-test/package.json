@@ -1,0 +1,14 @@
+{
+  "name": "micro-web-test",
+  "version": "1.0.6",
+  "description": "create micro project for myself",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./build/init.js && node ./build/run.js",
+    "start-f": "node ./build/init.js -f && node ./build/run.js"
+  },
+  "author": "yancy",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}

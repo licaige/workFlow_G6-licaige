@@ -1,0 +1,40 @@
+.information-recommend {
+  &-container {
+    width: 100%;
+  }
+
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    position: relative;
+  }
+
+  &-list{
+    margin-top: 30px;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 15px;
+
+    &>div{
+      width: 382px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-left: 34px;
+      position: relative;
+      margin-bottom: 15px;
+    }
+    &>div:after{
+      content:'';
+      display: flex;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #C3C3C3;
+      position: absolute;
+      left: 20px;
+      top: 10px;
+    }
+  }
+}
