@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是 回文串 。返回 s 所有可能的分割方案。
+
+        // 回文串 是正着读和反着读都一样的字符串。
+        // 输入：s = "aab"
+        // 输出：[["a","a","b"],["aa","b"]]
+
+
+        // 1. 回溯 求出字符串的所有分割方案
+        // 2. 动态规划进行优化
+
+
+        // 双指针法判断是否是回文串
+        const isReverseString = (s) => {
+            let i = 0
+            let j = s.length - 1
+
+            let res = true
+
+            while (i < j) {
+                if (s[i] !== s[j]) {
+                    res = false
+                    break
+                }
+
+                i++
+                j--
+            }
+
+            return res
+        }
+
+        var partition = function (s) {
+
+            const res = [] 
+
+            // 剩余string
+            const deep = (restString, resList) => {
+                // 分割完毕记录结果
+                if (!restString){
+                    res.push(resList)
+                }
+
+                // 枚举所有可分割的字符串
+                for (let j = 0; j < restString.length; j++) {
+                    let part = restString.slice(0, j + 1)
+                    let nextRest = restString.slice(j + 1)
+                    // console.log(nextRest);
+                    if (isReverseString(part)) { // 如果是回文串,截取并继续向下,记录结果到map中
+                        deep(nextRest, [...resList, part])
+                    }
+                }
+            }
+
+            deep(s, [])
+
+            console.log(res);
+
+        };
+
+
+        partition('abccd')
+
+    </script>
+</body>
+
+</html>

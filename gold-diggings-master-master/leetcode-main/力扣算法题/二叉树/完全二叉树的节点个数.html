@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1. 对于一个完全二叉树 complete binary tree：
+        //  - 它的所有子树都是完全二叉树
+        //  - 有的子树是perfect二叉树  (节点数等于 2^n)
+        // 对于任意节点, 都判断一下是否是perfect 二叉树
+
+
+
+
+        // 遍历每个节点,检查左右深度,如果深度一样则是完美二叉树,直接返回2^n
+        var countNodes = function (root) {
+            if (root == null) return 0
+
+            let lH, rH = 0;
+            let lNode, rNode = root;
+
+            // 计算左边的深度
+            while (lNode) {
+                lH++;
+                lNode = lNode.left;
+            }
+            // 计算右边深度
+            while (rNode) {
+                rH++;
+                rNode = rNode.right;
+            }
+
+            // 如果深度相同 直接返回计算结果
+            if (lH == rH) return 2 ** lH - 1;
+
+            // 否则计算左右子树的节点数  +1 为根节点
+            return 1 + countNodes(root.left) + countNodes(root.right);
+        }
+
+    </script>
+</body>
+
+</html>

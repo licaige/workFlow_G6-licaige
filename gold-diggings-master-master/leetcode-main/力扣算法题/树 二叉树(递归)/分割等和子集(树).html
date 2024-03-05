@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个 只包含正整数 的 非空 数组 nums 。
+        // 请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
+        // 输入：nums = [1, 5, 11, 5]
+        // 输出：true
+        // 解释：数组可以分割成[1, 5, 5] 和[11] 。
+
+
+
+        // 将数组求和 除以二 即为单个数组的和  
+        //  此时便转化为了完全背包问题
+
+        var canPartition = function (nums) {
+            let sum = nums.reduce((prev, cur) => prev + cur)
+            if (sum % 2 !== 0) return false // 和为单数则不可拆分
+
+            //-------- 完全背包问题------------
+            let target = sum / 2
+            let res = false
+            let dp = []
+
+            // 初始化dp表格
+            nums.forEach(v => {
+                dp.push(new Array(target + 1).fill(false))
+            })
+
+
+            // 检查是否有结果
+            const checkResult = (sum) => {
+                if (sum === target) {
+                    res = true
+                }
+            }
+
+            // 遍历表格 并满足三个状态转移方程 
+            // 如果获得结果直接返回结果
+            for (let i = 0; i < nums.length; i++) {
+                if (res) break
+                for (let j = 0; j < dp[i].length; j++) {
+                    if (res) break
+                    // 如果表格上方的格子是true,则下方的格子也是true
+                    // 此时要保证i-1 >= 0
+                    if (i >= 1 && dp[i - 1][j]) {
+                        dp[i][j] = true
+                        checkResult(j)
+                        continue
+                    }
+                    // 如果子数组最后一项等于j 直接返回true
+                    if (nums[i] === j) {
+                        dp[i][j] = true
+                        checkResult(j)
+                        continue
+                    }
+                    // 如果前一个数组能满足j-11 那么后一个数组即可满足j
+                    // 此时要保证 j-nums[i] > 0 && i-1 >= 0
+                    if (i >= 1 && j > nums[i] && dp[i - 1][j - nums[i]]) {
+                        dp[i][j] = true
+                        checkResult(j)
+                        continue
+                    }
+                }
+            }
+
+            return res
+        };
+
+
+
+        canPartition([1, 5, 11, 5])
+    </script>
+</body>
+
+</html>

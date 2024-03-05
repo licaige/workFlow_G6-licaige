@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 将链表的奇数(索引)和偶数(索引)分离   第一个节点为奇  第二个偶  类推
+        // 1-2-3-4-5 =>   1-3-5- 2-4
+        // 2-1-3-5-6-4-7 => 2-3-6-7- 1-5-4
+
+        //你必须在 O(1) 的额外空间复杂度和 O(n) 的时间复杂度下解决这个问题。
+        // 因为是链表  不需要使用原地算法  只需要定义两个指针
+
+        // 定义两个指针 odd  even  , 扫描奇偶节点 
+        // 将第0个节点作为奇链表head
+        // 第1个节点作为偶链表head
+        // 持续生成两个链表  链接即可
+        
+        var oddEvenList = function (head) {
+            if (!head) return head
+
+            let evenHead = head.next;
+            let odd = head, even = evenHead;
+
+            while (even !== null && even.next !== null) {
+                odd.next = even.next
+                odd = odd.next
+
+                even.next = odd.next
+                even = even.next
+            }
+
+            // 拼接两个链表
+            odd.next = evenHead
+            
+            return head
+        };
+
+    </script>
+</body>
+
+</html>

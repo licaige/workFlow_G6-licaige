@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 106.  从中序与前序遍历序列构造二叉树
+        // 106.  从中序与后序遍历序列构造二叉树
+
+        // https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/?envType=study-plan-v2&id=top-interview-150
+
+        // 给出一个二叉树的 前序-中序  中序-后序遍历序列,  构造返回这颗二叉树的head
+        // preorder = [3,9,20,15,7], inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+
+        // 中序遍历特性:   根节点的左右两边分别是左右子树
+        // 前序遍历特性:   第一个节点是root
+        // 后序遍历特性:   最后一个节点是root
+
+        // 比如上面的树 根节点为3
+        // 中序遍历      9  [3]  15-20-7     3的左右两边分别是左右子数
+        // 左右两边同理   20的左右两边也是左右子树
+
+
+        // inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+
+
+        // 每次将后序序列的最后一位弹出, 就是下一个子树的root节点
+
+
+        function TreeNode(val, left, right) {
+            this.val = (val === undefined ? 0 : val)
+            this.left = (left === undefined ? null : left)
+            this.right = (right === undefined ? null : right)
+        }
+
+        var buildTree = function (inorder, postorder) {
+
+            //当preorder和inorder均为空的时候说明已经到了空节点
+            if (!postorder.length || !inorder.length) return null;
+
+            // 找到根节点(后序遍历的结尾)  弹出一位
+            let root = new TreeNode(postorder.pop());
+
+            //找到postorder.pop()对应inorder中的位置
+            let index = inorder.indexOf(root.val);
+
+            //左右子树递归
+            // 从inorder中分离出左子树和右子树,进行下次递归  后序遍历,先执行左子树 在执行右子树
+            root.right = buildTree(inorder.slice(index + 1), postorder);
+            root.left = buildTree(inorder.slice(0, index), postorder);
+
+            //返回根节点
+            return root;
+        };
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 使用数组计算斐波那契数列   (不使用递归)
+        
+        [1,1,2,3,5,8,13,21,34]
+
+        
+        function fib(num){
+            //1准备一个数组 (写好前两项)
+            var arr=[1,1]
+            //2 用while语句循环push数组
+            while(arr.length <=num){
+                // 把数组的最后两项相加   成为新项  追加进数组
+                arr.push(arr[arr.length-1]+arr[arr.length-2])
+            }
+            // 最后一项就是计算结果
+            return arr[arr.length-1]
+
+        }
+
+
+        console.time('使用数组法')
+        console.log(fib(800));
+        console.timeEnd('使用数组法')
+
+        // 总结  此方法的巧妙在于    数组arr本身就是一个缓存   使得计算更快
+        // 这个方法比利用递归  且使用缓存思想更快一些
+    </script>
+</body>
+</html>

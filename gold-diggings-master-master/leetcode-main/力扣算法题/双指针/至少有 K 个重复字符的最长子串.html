@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个字符串 s 和一个整数 k ，请你找出 s 中的最长子串， 
+        // 要求该子串中的每一字符出现次数都不少于 k 。返回这一子串的长度。
+
+        // 输入：s = "aaabb", k = 3
+        // 输出：3
+        // 解释：最长子串为 "aaa" ，其中 'a' 重复了 3 次。
+
+        // 输入：s = "ababbc", k = 2
+        // 输出：5
+        // 解释：最长子串为 "ababb" ，其中 'a' 重复了 2 次， 'b' 重复了 3 次。
+
+        var longestSubstring = function (s, k) {
+
+            let res = 0
+
+            // 判断子串是否符合条件
+            const check = (subStr) => {
+                const litterMap = {}
+                let res = true
+
+                for (let i = 0; i < subStr.length; i++) {
+                    let l = subStr[i]
+                    if (litterMap[l]) {
+                        litterMap[l]++
+                    } else {
+                        litterMap[l] = 1
+                    }
+                }
+
+                for (let key in litterMap) {
+                    if (litterMap[key] < k) {
+                        res = false
+                        break
+                    }
+                }
+
+                return res
+            }
+
+            // 双指针法确定字符串(从大到小)
+            //(优化) 这里先记录全量字符串的字母map, 每次将减少的字母从中-1即可, 不需要重新生成字母map
+            for (let i = 0; i < s.length; i++) {
+                for (let j = s.length; j > i; j--) {
+                    let length = j - i
+                    let subStr = s.slice(i, j)
+
+                    if (length < res) continue
+
+                    if (check(subStr)) {
+                        res = subStr.length
+                    }
+                }
+            }
+
+            return res
+        };
+
+        console.log(longestSubstring("aabbccdd", 2));
+    </script>
+</body>
+
+</html>

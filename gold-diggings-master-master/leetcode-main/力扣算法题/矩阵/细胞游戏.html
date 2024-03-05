@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 题目地址
+        // https://leetcode.cn/problems/game-of-life/description/?favorite=2ckc81c&orderBy=most_votes
+
+
+
+        // 方案, 在矩阵中,如果使用原地算法, 可以使用额外的状态来模拟
+        // 0：死细胞  1:活细胞  2:死细胞转为的活细胞 3:活细胞转为的死细胞 
+
+        var gameOfLife = function (board) {
+
+            const checkLived = (x, y) => {
+                // 八个需要检查的点位
+                const needCheckCells = [
+                    [x - 1, y - 1],
+                    [x, y - 1],
+                    [x + 1, y - 1],
+                    [x + 1, y],
+                    [x + 1, y + 1],
+                    [x, y + 1],
+                    [x - 1, y + 1],
+                    [x - 1, y]
+                ]
+
+                let lived = 0
+                // 检查八个点位
+                for (let i = 0; i < needCheckCells.length; i++) {
+                    let [_x, _y] = needCheckCells[i]
+                    if (board[_y]?.[_x] === 1) { lived++ }
+                    else if (board[_y]?.[_x] === 3) { lived++ }
+                }
+
+                return lived
+            }
+
+            // 更新状态
+            const changeCellState = (x, y) => {
+
+                const lived = checkLived(x, y)
+
+                if (board[y][x] === 1) {
+                    if (lived < 2) {
+                        board[y][x] = 3
+                    }
+                    else if (lived > 3) {
+                        board[y][x] = 3
+                    }
+                }
+
+                else if (board[y][x] === 0) {
+                    if (lived === 3) {
+                        board[y][x] = 2
+                    }
+                }
+            }
+
+            // 第一次遍历,更改细胞状态
+            for (let x = 0; x < board[0].length; x++) {
+                for (let y = 0; y < board.length; y++) {
+                    changeCellState(x, y)
+                }
+            }
+
+            // 第二次遍历, 只保留0和1,生成结果
+            for (let x = 0; x < board[0].length; x++) {
+                for (let y = 0; y < board.length; y++) {
+                    if (board[y][x] === 2) {
+                        board[y][x] = 1
+                    }
+                    if (board[y][x] === 3) {
+                        board[y][x] = 0
+                    }
+                }
+            }
+
+            return board
+        }
+
+        const board = [[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]]
+        gameOfLife(board)
+    </script>
+</body>
+
+</html>

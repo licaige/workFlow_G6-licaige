@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        //不同路径
+
+        // 一个长为m 宽为n的网格
+        // 从左上角开始走  每次只能往下或者往右移动一步 
+        // 问一共有多少种不同路径
+
+
+        // ------动态规划网格问题----------
+        // dp[i][j] 表示从左上角走到(i,j)的路径数量
+        // 两种情况  从上方走到(i,j)  或者从左边走到(i,j)
+        // ！！！ 这里需要思考一下为什么
+        // 所以  dp(i,j)= dp(i−1,j) + dp(i,j−1)
+
+
+
+        // ---------动态规划------------------
+        var uniquePaths = function (m, n) {
+            // 准备dp数组
+            const dp = new Array(m).fill(0).map(() => new Array(n).fill(0));
+            // 处理边界条件(顶部和左部)
+            for (let i = 0; i < m; i++) {
+                dp[i][0] = 1;
+            }
+            for (let j = 0; j < n; j++) {
+                dp[0][j] = 1;
+            }
+
+            // 填写dp表格
+            for (let i = 1; i < m; i++) {
+                for (let j = 1; j < n; j++) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+            console.log(dp[m - 1][n - 1]);
+            return dp[m - 1][n - 1]
+        }
+
+        //--------------- 经典网格问题  递归-----------------------
+        // 超时
+        var uniquePaths2 = function (m, n) {
+
+            let pathCount = 0
+            const deep = (x, y) => {
+                // 检查当前路径是否合法
+                if (y > m || x > n) return
+                // 走到终点
+                if (y === m && x === n) {
+                    pathCount++
+                    return
+                }
+                // 继续深入
+                deep(x + 1, y)
+                deep(x, y + 1)
+            }
+
+            deep(1, 1)
+
+            console.log(pathCount);
+            return pathCount
+        };
+
+        uniquePaths2(13, 15)
+    </script>
+</body>
+
+</html>

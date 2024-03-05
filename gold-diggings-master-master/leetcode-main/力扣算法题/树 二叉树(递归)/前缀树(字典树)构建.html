@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 又称前缀树或字典树，是一棵有根树，其每个节点包含以下字段：
+        // 1. 指向子节点的指针数组 children Array[26]
+        // 2.布尔字段 isEnd,表示该节点是否为字符串的结尾
+
+
+
+
+        var Tire = function () {
+            this.children = {} // 字母映射
+        }
+
+        // 保存单词方法
+        Tire.prototype.insert = function (word) {
+            let node = this.children // 首个索引
+
+            for (let letter of word) {
+                if (!node[letter]) { //本层查找字母  无则插入
+                    node[letter] = {}
+                }
+
+                node = node[letter] // 进入下一层
+            }
+
+            node.isEnd = true // 记录结束点
+        }
+        // 渐进深入查询是否存在此段字母
+        Trie.prototype.searchPrefix = function (prefix) {
+            let node = this.children
+
+            for (let letter of prefix) {
+                if (!node[letter]) {
+                    return false
+                }
+
+                node = node[letter]
+            }
+
+            return node // 返回末尾节点
+        }
+
+        // 查询方法(存在此段并且是结尾)
+        Trie.prototype.search = function (word) {
+            const node = this.searchPrefix(word)
+
+            return node !== undefined
+                && node.isEnd == true
+        }
+
+        // 前缀树的开头  比如保存了apple,app 的前缀树  开头为app  
+        Trie.prototype.startsWith = function (prefix) {
+            const node = this.searchPrefix(prefix)
+            return  node !== false
+        };
+    </script>
+</body>
+
+</html>

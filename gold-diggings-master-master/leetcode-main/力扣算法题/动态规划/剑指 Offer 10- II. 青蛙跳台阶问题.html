@@ -1,0 +1,55 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-09-20 09:58:18
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-09-20 10:25:51
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 剑指 Offer 10- II. 青蛙跳台阶问题
+        // https://leetcode.cn/leetbook/read/illustration-of-algorithm/57hyl5/
+
+        // 状态转移方程
+        // 最后一步只有两种情况   跳1级 跳2级
+        // 当为1级台阶  剩余n-1级  有f(n-1)种
+        // 当为2级台阶  剩余n-2级  有f(n-2)种
+
+        // 故 f(n) = f(n-1)+f(n-1)
+        // 与斐波那契数列相同
+
+
+        var numWays = function (n) {
+            const dp = new Array(n).fill(0)
+            const mod = 1e9 + 7
+
+            dp[0] = 1
+            dp[1] = 1
+            dp[2] = 2
+
+            if (n <= 2) return dp[n]
+
+            for (let i = 3; i <= n; i++) {
+                dp[i] = (dp[i - 1] + dp[i - 2]) % mod
+            }
+
+            return dp[n] % mod
+        };
+
+
+        console.log(numWays(7));
+    </script>
+</body>
+
+</html>

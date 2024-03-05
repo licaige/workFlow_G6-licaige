@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 构建dp[i]  i为n位数字最多能组成的结果数量
+        // 同青蛙跳台阶(升级版)
+
+        // +1位, 种类数不变
+        // +2位, 种类数可能*2或者不变
+
+        // dp[i] = dp[i-1]+dp[i-2]   10-25之间
+        //         dp[i-1]           10-25以外
+
+
+
+
+
+        var crackNumber = function (ciphertext) {
+            // 特殊情况处理
+            let len = ciphertext.length
+            ciphertext = ciphertext.toString()
+            if (len == 0) return 0
+            if (len == 1) return 1
+
+            // 准备helper
+            const check = (a, b) => {
+                let res = parseInt(a) * 10 + parseInt(b)
+                return res <= 25 && res >= 10
+            }
+
+            // 初始化dp
+            const dp = new Array(len).fill(0)
+            dp[0] = 1
+            dp[1] = check(ciphertext[0], ciphertext[1]) ? 2 : 1
+
+            // 动态规划
+            for (let i = 2; i < ciphertext.length; i++) {
+                dp[i] = check(ciphertext[i - 1], ciphertext[i])
+                    ? dp[i - 1] + dp[i - 2]
+                    : dp[i - 1]
+            }
+
+            return dp[len - 1]
+        };
+
+
+        console.log(crackNumber("216612"));
+    </script>
+</body>
+
+</html>

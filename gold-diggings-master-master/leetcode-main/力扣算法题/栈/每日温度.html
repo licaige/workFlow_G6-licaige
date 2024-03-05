@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，
+        // 其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。
+        // 如果气温在这之后都不会升高，请在该位置用 0 来代替。
+
+
+        // --------双指针暴力解法-----------------
+        var dailyTemperatures2 = function (temperatures) {
+
+            let res = []
+
+            // 双指针
+            for (let i = 0; i < temperatures.length; i++) {
+                for (let j = i + 1; j < temperatures.length; j++) {
+
+                    if (temperatures[i] < temperatures[j]) {
+                        res.push(j - i)
+                        break
+                    }
+
+                    if (j === temperatures.length - 1 && temperatures[i] >= temperatures[j]) {
+                        res.push(0)
+                        break
+                    }
+                }
+            }
+
+            // 最后一位补一个0
+            res.push(0)
+
+            return res
+        };
+
+
+        // ----------------单调栈法---------------------------
+        // 遍历温度  如果栈为空,则直接i进栈  
+        // 如果栈不为空  比较栈顶元素和当前温度    
+        var dailyTemperatures = function (temperatures) {
+
+            // 准备一个数组
+            let res = new Array(temperatures.length).fill(0)
+
+            // 准备一个栈
+            let stack = []
+            
+            // 遍历
+            for (let i = 0; i < temperatures.length; i++) {
+                if (stack.length === 0) {
+                    stack.push({ index: i, temp: temperatures[i] })
+                }
+                // 比较比较栈顶元素prevIndex和当前温度
+                // 如果高, 弹栈, 对应的等待天数赋为 i - prevIndex
+                // 重复上述操作直到栈为空或者栈顶元素对应的温度小于等于当前温度，然后将 i 进栈。
+                else {
+
+                    while (stack.length > 0) {
+                        let isHigh = stack[stack.length - 1].temp < temperatures[i]
+                        if (isHigh) {
+                            let prev = stack.pop()
+                            res[prev.index] = i - prev.index
+                        } else {
+                            stack.push({ index: i, temp: temperatures[i] })
+                            break
+                        }
+                    }
+
+                    // while结束时,如果栈内无节点  添加一个节点
+                    if (stack.length === 0) {
+                        stack.push({ index: i, temp: temperatures[i] })
+                    }
+
+                }
+            }
+
+            return res
+        }
+
+
+        dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
+    </script>
+</body>
+
+</html>

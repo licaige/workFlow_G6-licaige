@@ -1,0 +1,108 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-09-21 12:46:33
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-09-26 14:11:12
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // https://leetcode.cn/leetbook/read/illustration-of-algorithm/9a1yp=-c/
+
+
+        // 以*分割 
+
+        // 输入  s = "a a a"
+        // 输入  p = "a b * a c * a"
+        // 逐个增加s和p的长度
+
+        //  a  可以匹配
+        //  a 
+
+        // aa  不能       a    不能
+        // a              ab
+
+        // 由此构建树  并转化为动态规划
+
+
+
+        var articleMatch = function (s, p) {
+            // 准备DP 
+            let m = s.length + 1
+            let n = p.length + 1
+
+            // 构建dp  长pl  高sl
+            const dp = new Array(sLen + 1);
+            for (let i = 0; i < dp.length; i++) {
+                dp[i] = new Array(pLen + 1).fill(false); // 将项默认为false
+            }
+
+            if (s == "aa", p = "a") return true
+
+            //初始化
+
+            // dp[0][0]为空字符  故dp[i][j] 对应s[i-1] p[j-1]
+            dp[0][0] = true
+            // dp首行表示s为空字符串  只有p的偶数位为*时才能匹配 设置为true
+            for (let j = 2; j < n; j += 2) {
+                dp[0][j] = dp[0][j - 2] && p[j - 1] == '*';
+            }
+
+            // 遍历DP 构造  设置状态转移方程
+            for (let i = 1; i < m; i++) {
+                for (let j = 1; j < n; j++) {
+
+
+                    // p[j-1]为*时  以下三种情况为true
+                    if (p[j - 1] == '*') {
+                        // 将*匹配0个字符时
+                        if (dp[i][j - 2]) {
+                            dp[i][j] = true
+                        }
+                        // 多出现一个字符时
+                        else if (dp[i - 1][j] && s[i - 1] == p[j - 2]) {
+                            dp[i][j] = true;
+                        }
+                        // 多出现一个.匹配符时
+                        else if (dp[i - 1][j] && p[j - 2] == '.') {
+                            dp[i][j] = true
+                        }
+                    }
+
+                    // p[j - 1]不为*时 以下两种情况为true
+                    else {
+                        // 通配符多出现一次时
+                        if (dp[i - 1][j - 1] && s[i - 1] == p[j - 1]) {
+                            dp[i][j] = true
+                        }
+                        // 将字符.看作s[i - 1]时
+                        else if (dp[i - 1][j - 1] && p[j - 1] == '.') {
+                            dp[i][j] = true
+                        }
+                    }
+                }
+            }
+
+
+            // 返回结果
+            return dp[m - 1][n - 1];
+        };
+
+
+
+        // 输入: input = "aa", article = "a*"
+        // 输入: input = "ab", article = ".*"
+    </script>
+</body>
+
+</html>

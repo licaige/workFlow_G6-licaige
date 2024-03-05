@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 两数之和2 - 输入有序数组
+        // https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/?envType=study-plan-v2&id=top-interview-150
+
+        // 一个递增数组
+        // 找到两个数,和为target, 返回两个数的index+1组成的数组
+
+        // numbers = [2,7,11,15], target = 9
+        // 选择2和7  
+        // 返回[1,2]
+
+
+
+        // 方案,双指针
+        // 1 2 4 5 7 
+        // 双指针选择7+1 因为7+1<9 左指针右移,选择7+2
+        // 1 2 4 5 7       // 则先选择7+1   
+
+        // 双指针选择8+3 因为8+3>9 右指针左移,选择3+7 => 3+5 => 4+5 
+        // 如果是 3 4 5 7 8
+
+
+        var twoSum = function (numbers, target) {
+            // 双指针
+            let left = 0
+            let right = numbers.length - 1
+
+            while (left < right) {
+                let sum = numbers[left] + numbers[right]
+                if (sum > target) {
+                    right--
+                }
+                if (sum < target) {
+                    left++
+                }
+                if (sum == target) {
+                    break
+                }
+            }
+
+            return [left + 1, right + 1]
+        };
+
+        twoSum([-1, 0], -1)
+    </script>
+</body>
+
+</html>

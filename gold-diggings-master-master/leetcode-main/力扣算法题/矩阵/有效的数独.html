@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 请你判断一个 9 x 9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
+        // 数字 1 - 9 在每一行只能出现一次。
+        // 数字 1 - 9 在每一列只能出现一次。
+        // 数字 1 - 9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+
+
+        // 1. 遍历
+        // 2. 进行判断
+        // 在第 i 个行中是否出现过  (收集x判断)
+        // 在第 j 个列中是否出现过  (收集y判断)
+        // 是否出现在某个3*3块中  
+        // 可以将一个9*9转化为3*3  , 坐标转化为小数,  比如(1,1) = (0.3,0.3)    而(2,2) = (0.6,0.6)  
+        // 此时0.3和0.6向上取整,如果相同则表明在同一个3*3块内 
+        var isValidSudoku = function (board) {
+
+            let res = true
+
+            // 记录数字出现的位置 初始化map
+            const numMap = {}
+            for (let i = 1; i <= 9; i++) {
+                numMap[i.toString()] = []
+            }
+
+            // 遍历board,记录出现位置
+            for (let y = 0; y < 9; y++) {
+                for (let x = 0; x < 9; x++) {
+                    if (board[y][x] != '.') {
+                        let num = board[y][x]
+                        numMap[num].push([x + 1, y + 1])
+                    }
+                }
+            }
+
+            // 遍历num出现位置,判断是否是同行/同列
+            let numList = Object.keys(numMap)
+            for (let j = 0; j < numList.length; j++) {
+
+                if (!res) break
+
+                let num = numMap[numList[j]]
+
+                let xList = []
+                let yList = []
+                let xListBlock = []
+                let yListBlock = []
+
+                for (let i = 0; i < num.length; i++) {
+                    let [x, y] = num[i]
+                    let _x = Math.ceil(x / 3)
+                    let _y = Math.ceil(y / 3)
+                    // 是否出现在同列
+                    if (xList.indexOf(x) == -1) { xList.push(x) } else {
+                        res = false
+                        break
+                    }
+                    // 是否出现在同行
+                    if (yList.indexOf(y) == -1) { yList.push(y) } else {
+                        res = false
+                        break
+                    }
+                    debugger
+                    // 是否出现在某个3*3块中  
+                    if (xListBlock.indexOf(_x) == -1) { xListBlock.push(_x) } else {
+                        res = false
+                        break
+                    }
+                    if (yListBlock.indexOf(_y) == -1) { yListBlock.push(_y) } else {
+                        res = false
+                        break
+                    }
+                }
+            }
+
+            return res
+
+        };
+
+        let board =
+            [["5", "3", ".", ".", "7", ".", ".", ".", "."]
+                , ["6", ".", ".", "1", "9", "5", ".", ".", "."]
+                , [".", "9", "8", ".", ".", ".", ".", "6", "."]
+                , ["8", ".", ".", ".", "6", ".", ".", ".", "3"]
+                , ["4", ".", ".", "8", ".", "3", ".", ".", "1"]
+                , ["7", ".", ".", ".", "2", ".", ".", ".", "6"]
+                , [".", "6", ".", ".", ".", ".", "2", "8", "."]
+                , [".", ".", ".", "4", "1", "9", ".", ".", "5"]
+                , [".", ".", ".", ".", "8", ".", ".", "7", "9"]]
+
+        console.log(isValidSudoku(board));
+    </script>
+</body>
+
+</html>

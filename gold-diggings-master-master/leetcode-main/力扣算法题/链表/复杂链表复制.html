@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // Definition for a Node.
+        function Node(val, next, random) {
+            this.val = val;
+            this.next = next;
+            this.random = random;
+        };
+
+
+        var copyRandomList = function (head) {
+
+            // 首先遍历链表,复制所有的节点
+            const map = new Map()
+
+            let _cur = head
+            while (_cur) {
+                map.set(_cur, new Node(_cur.val))
+                _cur = _cur.next
+            }
+
+            // 再遍历链表,添加random和next指针
+            let cur = head
+            while (cur) {
+
+                const copy = map.get(cur)
+
+                if (cur.next) {
+                    const copyNext = map.get(cur.next)
+                    copy.next = copyNext
+                }
+
+                if (cur.random) {
+                    const copyRandom = map.get(cur.random)
+                    copy.random = copyRandom
+                }
+                
+                cur = cur.next
+            }
+
+            return map.get(head)
+        };
+
+
+    </script>
+</body>
+
+</html>

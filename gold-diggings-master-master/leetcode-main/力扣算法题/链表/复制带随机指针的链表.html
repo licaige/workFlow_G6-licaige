@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // Definition for a Node.
+        function Node(val, next, random) {
+            this.val = val;
+            this.next = next;
+            this.random = random;
+        };
+
+        // 见图解
+        // https://leetcode.cn/problems/copy-list-with-random-pointer/solutions/295083/liang-chong-shi-xian-tu-jie-138-fu-zhi-dai-sui-ji-/?orderBy=most_votes
+
+        var copyRandomList = function (head) {
+
+            // 创建hash表记录节点  key为原节点 value为copy节点
+
+            const map = new Map()
+
+            // 遍历链表 复制节点
+            let cur = head
+            while (cur) {
+                let copyCur = new Node(cur.val)
+                map.set(cur, copyCur)
+                cur = cur.next
+            }
+
+            // 再次遍历,设置复制节点的next和random
+            let cur_2 = head
+            while (cur_2) {
+                let copyCur_2 = map.get(cur_2)
+                // 设置next
+                if (cur_2.next) {
+                    copyCur_2.next = map.get(cur_2.next)
+                } else {
+                    copyCur_2.next = null
+                }
+                //设置random
+                copyCur_2.random = map.get(cur_2.random)
+
+                cur_2 = cur_2.next
+            }
+
+            // 返回头部节点
+            return map.get(head)
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        let quickSort = (arr) => {
+            quick(arr, 0, arr.length - 1)
+        }
+
+        let quick = (arr, left, right) => {
+            let index
+            if (left < right) {
+                // 划分数组
+                index = partition(arr, left, right)
+                if (left < index - 1) {
+                    quick(arr, left, index - 1)
+                }
+                if (index < right) {
+                    quick(arr, index, right)
+                }
+            }
+        }
+
+
+        // 一次检测
+        let partition = (arr, left, right) => {
+            // 取中间项为基准
+            var datum = arr[Math.floor(Math.random() * (right - left + 1)) + left],
+                i = left,
+                j = right
+            // 开始调整
+            while (i <= j) {
+                // 左指针右移
+                while (arr[i] < datum) {
+                    i++
+                }
+                // 右指针左移
+                while (arr[j] > datum) {
+                    j--
+                }
+                // 交换
+                if (i <= j) {
+                    swap(arr, i, j)
+                    i += 1
+                    j -= 1
+                }
+            }
+            return i
+        }
+
+        // 交换
+        let swap = (arr, i, j) => {
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+
+        // 测试
+        let arr = [1, 3, 2, 5, 4]
+        quickSort(arr)
+
+    </script>
+</body>
+
+</html>

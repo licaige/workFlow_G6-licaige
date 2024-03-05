@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxProduct = function (nums) {
+
+            let resList = [...nums]
+
+            // 递归找到子数组, 计算乘积并记录
+            // 构建乘积树
+            const deep = (res, i) => {
+                if (i > nums.length-1) return
+
+                let nextRes = res * nums[i]
+
+                resList.push(nextRes)
+
+                deep(nextRes, i + 1)
+            }
+
+            for (let i = 0; i < nums.length; i++) {
+                deep(nums[i], i+1)
+            }
+
+            // 找到最大乘积
+            return Math.max(...resList)
+        };
+
+
+        console.log(maxProduct([2, 3, -2, 4]));
+    </script>
+</body>
+
+</html>

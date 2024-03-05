@@ -1,0 +1,15 @@
+{
+  "name": "lzy-web-watcher",
+  "version": "1.0.0",
+  "description": "前端性能监控器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "lzy-webpack-build"
+  },
+  "author": "lzy19926",
+  "license": "ISC",
+  "dependencies": {
+    "lzy-webpack": "^2.1.8"
+  }
+}

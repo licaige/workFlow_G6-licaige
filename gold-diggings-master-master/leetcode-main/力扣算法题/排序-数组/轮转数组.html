@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
+
+        // 输入: nums = [1,2,3,4,5,6,7], k = 3
+        // 输出: [5,6,7,1,2,3,4]
+        // 解释:
+        // 向右轮转 1 步: [7,1,2,3,4,5,6]
+        // 向右轮转 2 步: [6,7,1,2,3,4,5]
+        // 向右轮转 3 步: [5,6,7,1,2,3,4]
+
+
+
+        // 方案一, 使用额外数组, 进行反转
+        //[5,6,7] + [1,2,3,4]  
+        //[7,6,5] + [1,2,3,4]  
+
+
+        // 方案二, 反转两次数组, 不使用额外空间
+
+        // [7，6，5，4，3，2，1]  反转一次
+        // [5，6，7] + [1,2,3,4]  反转两段数组
+
+
+        const reverse = (nums, start, end) => {
+            while (start < end) {
+                const temp = nums[start]
+                nums[start] = nums[end]
+                nums[end] = temp;
+                start += 1;
+                end -= 1;
+            }
+        }
+
+        var rotate = function (nums, k) {
+
+            // 如果k>nums.length, 则只需要轮转k-n*length次
+            // 比如k==4  length==3  只需要轮转4-3=1次 
+            // 故这里进行取模运算
+            k %= nums.length
+            reverse(nums, 0, nums.length - 1);
+            reverse(nums, 0, k - 1);
+            reverse(nums, k, nums.length - 1);
+        };
+    </script>
+</body>
+
+</html>

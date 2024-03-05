@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+        // 输入：n = 3
+        // 输出：["((()))","(()())","(())()","()(())","()()()"]
+
+        // 括号为一颗树,  根为左括号 "("  每次往下分成两支 "("或 ")"
+        // 进行递归
+
+        // 准备n个左括号  n个右括号  当已用的右括号>已用左括号时, 括号组不成立
+
+        var generateParenthesis = function (n) {
+
+            let resList = []
+
+            const deep = (str, left, right) => {
+
+                // 判断已经使用的左右括号数量 
+                // 括号用完时推出
+                if (right > left) return
+                if (right > n || left > n) return
+
+                // 判断是否走到树最底层(完成递归)
+                if (str.length >= 2 * n) {
+                    resList.push(str)
+                    return
+                }
+                // 左递归
+                deep(str + '(', left + 1, right)
+                // 右递归
+                deep(str + ')', left, right + 1)
+            }
+
+            deep('', 0, 0)
+
+            return resList
+        };
+
+
+        generateParenthesis(3)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-10-20 10:10:24
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-10-20 10:58:56
+ * @Description:
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https://leetcode.cn/leetbook/read/illustration-of-algorithm/lhp2v5/
+        // 砍竹子
+
+
+        // 现需要将一根长为正整数 bamboo_len 的竹子砍为若干段，每段长度均为正整数。
+        // 请返回每段竹子长度的最大乘积是多少。
+        // 如 len=12  分为3*3*3*3 = 81
+
+        var cuttingBamboo = function (bamboo_len) {
+
+            // 方案一 数学推导（最好背诵）
+            // 由一系列数学公式推导  当拆分长度为 a = e(2.7) 时, 最大
+            // 故当a=3时最大
+            // 则可以直接将bamboo_len拆分为多个长度为3的段
+
+            // 方案二  贪心
+            // 往往有  n1*n2 > n1+n2 == n
+            // 往往有  n1*n2*n3 > n1+n2+n3 == n (仅有3+3 2+2+2不符合)
+
+            //可得推论 当拆分段数越多   乘积越大
+
+            //推论三： 为使乘积最大，只有长度为 2和3 的不应该再拆分 且3比2更优
+
+            // 特殊情况
+            if (bamboo_len == 2) return 1
+            if (bamboo_len == 3) return 2
+
+            let left = bamboo_len
+            let res = 1
+            while (left >= 3) {
+                left -= 3
+                res *= 3
+            }
+
+            if (left == 0) return res
+            else if (left == 1) return (res / 3) * 4
+            else if (left == 2) return res * 2
+        };
+
+        console.log(cuttingBamboo(13));
+    </script>
+</body>
+
+</html>

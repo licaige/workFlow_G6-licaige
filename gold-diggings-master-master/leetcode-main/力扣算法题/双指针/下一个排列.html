@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //给定数字序列的字典序中下一个更大的排列
+
+        // 字典序  按1-9  a-z的排序
+        // 123  // 最小
+        // 321  // 最大  (ABC同理)
+
+
+        //   以排列 [4,5,2,6,3,1] 为例：
+        // 1. 找到符合条件的一对数字(尽可能小的大数(右侧))  尽可能大的小数(左侧)
+        // 左侧: 2   从右到左扫描,136升序 6-2降序, 故选择2
+        // 右侧: 3   从136中选择大于2的最小数字 即3
+
+        // 交换 2和3得[4,5,3,6,2,1]
+        // 3后的数字升序排列得[4,5,3,1,2,6]
+
+
+        // 原地对index1后续进行升序排序  
+        function sortAfterElement(arr, i) {
+            const subArr = arr.slice(i);
+            subArr.sort((a, b) => a - b);
+            arr.splice(i, subArr.length, ...subArr);
+        }
+
+        var nextPermutation = function (nums) {
+            // 找到不符合降序排列的数字
+            let index1 = nums.length - 1;
+            for (let i = nums.length; i > 0; i--) {
+                if (nums[i] > nums[i - 1]) {
+                    index1 = i - 1
+                    break
+                }
+            }
+            // 边界情况,如果已经是降序,下一个排列是升序
+            if (index1 === nums.length - 1) {
+                return nums.sort((a, b) => a - b)
+            }
+
+            // 找到i-1右边大于a的最小数
+            let index2;
+            for (let j = index1 + 1; j < nums.length; j++) {
+                if (nums[j] > nums[index1]) {
+                    if (!index2) {
+                        index2 = j
+                    } else if (nums[j] < nums[index2]) {
+                        index2 = j
+                    }
+                }
+            }
+            // 交换两个数
+            let temp = nums[index1];
+            nums[index1] = nums[index2];
+            nums[index2] = temp;
+
+            // 对index1后续进行升序排序
+            sortAfterElement(nums, index1 + 1)
+
+            return nums
+        };
+
+        console.log(nextPermutation([3, 2, 1]));
+    </script>
+</body>
+
+</html>

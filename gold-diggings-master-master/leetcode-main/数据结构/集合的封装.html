@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let el = document.querySelector('.el')
+        console.log(el);
+        class Set {
+            constructor() {
+                // 集合的属性 使用对象  不需要进行检测
+                this.items = {}
+            }
+
+            // -----------添加元素到集合中add方法-----------------
+            add(value) {
+                // 判断当前集合中是否已经包含该元素  如果已经包含则添加失败
+                if (this.has(value)) return false
+                // 给对象添加一个键值对 key:value-value:value
+                this.items[value] = value
+                return true
+            }
+
+            // ----------判断集合是否有此属性has------------
+            has() {
+                return this.items.hasOwnProperty(value) // 返回boolean
+            }
+
+            // ------------remove方法-----------------
+            remove(value) {
+                // 判断是否有此元素
+                if (!this.has(value)) return false
+                // 如果包含此元素
+                // 使用delete操作符删除对象属性
+                delete this.items[value]
+            }
+            // -------------clear清空合集------------
+            clear() {
+                this.items = {}
+            }
+            // -------------size方法获取合集元素个数-----------
+            size() {
+                return Object.keys(this.items).length
+            }
+            // ------------values获取所有元素------------
+            values() {
+                return Object.keys(this.items)
+            }
+
+
+            // ----------并集  集合操作 ----------------
+            union(otherSet) {
+                // this是集合A  otherSet是集合B
+                // 1.创建新集合
+                let unionSet = new Set()
+                // 2.集合A中所有元素添加到新集合中(方法已封装)
+                let valuesA = this.values()
+                for (let i = 0; i < valuesA.length; i++) {
+                    unionSet.add(valuesA[i])
+                }
+                // 3.取出B中的元素 判断是否需要添加(因为add方法中已经判断了 可以直接加)
+                let valuesB = otherSet.values()
+                for (let i = 0; i < valuesB.length; i++) {
+                    unionSet.add(valuesB[i])
+                }
+
+                return unionSet
+            }
+        }
+    </script>
+</body>
+
+</html>

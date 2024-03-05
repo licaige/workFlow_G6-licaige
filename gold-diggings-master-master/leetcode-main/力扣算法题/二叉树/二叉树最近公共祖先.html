@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        //  如果节点node保证 : p在节点左子树(或本身)   q在节点右子树中(或本身)  
+        // 则说明node是该节点的公共祖先 
+
+
+        var lowestCommonAncestor = function (root, p, q) {
+
+            const deep = (root) => {
+                if (!root) return null
+
+                // 当遍历到q,p时,直接返回结果
+                if (root === q || root === p) return root
+
+                // 判断左子树中是否有p或者q
+                let left = deep(root.left)
+
+                // 判断右子树中是否有p或者q
+                let right = deep(root.right)
+
+                // 结果判断  如果该节点左右子树都符合,则该节点就是公共祖先
+                if (left && right) return root
+                // 右子树存在,左子树不存在  返回right从右子树开始继续查找
+                if (!left && right) return right
+                // 左子树存在,右子树不存在  返回left从左子树开始继续查找
+                if (left && !right) return left
+            }
+
+            return deep(root)
+        };
+
+
+    </script>
+</body>
+
+</html>

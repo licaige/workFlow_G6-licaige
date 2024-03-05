@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 拓扑排序  向量图法
+        var canFinish = function (numCourses, prerequisites) {
+            // 保存入度
+            let inMap = {}
+
+            for (let i = 0; i < numCourses; i++) {
+                inMap[i] = 0
+            }
+
+            for (let i = 0; i < prerequisites.length; i++) {
+                let course = prerequisites[i][0]
+                inMap[course] += 1
+            }
+
+
+
+            // 学习某个课程,减少其依赖课程的入度
+            const learn = (course) => {
+                debugger
+                for (let i = 0; i < prerequisites.length; i++) {
+                    let c = prerequisites[i][0]
+                    let dep = prerequisites[i][1]
+                    if (dep === course) {
+                        inMap[c] -= 1
+                        // 如果某个学科入度为0,继续学习
+                        if (inMap[c] === 0) {
+                            learn(parseInt(c))
+                        }
+                    }
+                }
+                // 学习完毕将其标记为-1
+                inMap[course] = -1
+            }
+
+            // 找到入度为0的课程进行学习
+            const startLearn = () => {
+                for (let key in inMap) {
+                    if (inMap[key] === 0) {
+                        learn(parseInt(key))
+                    }
+                }
+            }
+
+
+            startLearn()
+
+            // console.log(inMap);
+            // 检查inMap,如果所有课程入度都为0,则可以学完
+            let res = true
+            for (let key in inMap) {
+                if (inMap[key] > 0) {
+                    res = false
+                    break
+                }
+            }
+
+            return res
+        };
+
+
+        console.log(canFinish(4, [[2, 0], [1, 0], [3, 1], [3, 2], [1, 3]]));
+    </script>
+</body>
+
+</html>

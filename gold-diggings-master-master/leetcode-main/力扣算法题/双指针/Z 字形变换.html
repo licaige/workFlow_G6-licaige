@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+
+
+        // PAYPALISHIRING 
+
+        // P   A   H   N
+        // A P L S I I G
+        // Y   I   R
+
+        // 使用对象数组模拟坐标
+        // 刚开始竖着走,每次row+1  当走到最后一行时, 设置isCross为true, 
+        // 表示开始斜着走, 斜着走的时候每次row+1,line+1
+        var convert = function (s, numRows) {
+            let row = 0
+            let line = 0
+            let isCross = false
+            // 处理特殊情况
+            if (s.length <= numRows) {
+                return s
+            }
+            if (numRows <= 2) {
+                return s
+            }
+            // 设置棋盘
+            let map = {}
+            for (let i = 0; i < numRows; i++) {
+                map[i] = []
+            }
+
+            for (let i = 0; i < s.length; i++) {
+
+                let l = s[i]
+                // 竖着走时
+                if (!isCross) {
+                    map[row][line] = l
+
+                    if (row === numRows - 1) {
+                        isCross = true
+                        row--
+                        line++
+                    } else {
+                        row++
+                    }
+                }
+                // 斜着走时
+                else {
+                    map[row][line] = l
+                    row--
+                    line++
+                    if (row < 0) {
+                        isCross = false
+                        row += 2
+                        line--
+                    }
+                }
+            }
+
+            // 聚合字符
+            let res = ''
+            for (let i = 0; i < numRows; i++) {
+                map[i].forEach((v) => {
+                    res = res + v
+                })
+            }
+
+            return res
+        };
+
+        console.log(convert('AB', 1));
+
+    </script>
+</body>
+
+</html>

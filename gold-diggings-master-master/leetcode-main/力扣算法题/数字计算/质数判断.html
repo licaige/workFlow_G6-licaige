@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给定整数 n ，返回 所有小于非负整数 n 的质数的数量 。
+        // 输入：n = 10
+        // 输出：4
+        // 解释：小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。
+
+
+        // 方案一  
+        // 见notion笔记  质数判断
+        // 因此我们只需要枚举 [2,根号n] 中的所有数,判断是否是n的因素
+
+        // 判断是否是质数
+        const isPrime = (x) => {
+            for (let i = 2; i * i <= x; i++) {
+                if (x % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        var countPrimes = function (n) {
+            let count = 0;
+            for (let i = 2; i < n; ++i) {
+                isPrime(i) && count++
+            }
+            return count
+        };
+
+        console.log(isPrime(4));
+    </script>
+</body>
+
+</html>

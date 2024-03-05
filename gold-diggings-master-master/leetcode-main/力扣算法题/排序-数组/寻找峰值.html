@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给你一个整数数组 nums，找到峰值元素并返回其索引。
+        // 找到任意峰值返回index即可
+        // 可以假设 超过数组的两边为 -Infinity
+        // 峰值元素  : 左右两边都小于当前元素  如 [1,2,4,3,2]  其中4就是峰值元素
+        // 
+        // 方案一: 寻找最大值:  数组最大值就是一个可行解
+
+        // 方案二: 爬坡+二分
+        // 从随机位置i开始  
+        // 如果发现当前是上坡, nums[i−1]<nums[i]<nums[i+1]  往右走
+        // 如果当前已经是峰值, nums[i−1]<nums[i]>nums[i+1]  返回结果
+        // 如果发现当前是下坡, nums[i−1]>nums[i]>nums[i+1]  往左走
+
+        // 方案三  方案二的二分优化
+        // 由于会选择往左或者往右走, 
+        // 如果 nums[i]<nums[i+1]，那么我们抛弃 [l,i][l, i][l,i] 的范围，在剩余 [i+1,r][i+1, r][i+1,r] 的范围内继续随机选取下标
+        // 如果 nums[i]>nums[i+1]，那么我们抛弃 [i,r][i, r][i,r] 的范围，在剩余 [l,i−1][l, i-1][l,i−1] 的范围内继续随机选取下标。
+      
+      
+      
+        var findPeakElement = function (nums) {
+            const n = nums.length;
+            let idx = parseInt(Math.random() * n);
+
+            while (!(compare(nums, idx - 1, idx) < 0 && compare(nums, idx, idx + 1) > 0)) {
+                if (compare(nums, idx, idx + 1) < 0) {
+                    idx += 1;
+                } else {
+                    idx -= 1;
+                }
+            }
+
+            return idx;
+        }
+
+        // 辅助函数，输入下标 i，返回一个二元组 (0/1, nums[i])
+        // 方便处理 nums[-1] 以及 nums[n] 的边界情况
+        const get = (nums, idx) => {
+            if (idx === -1 || idx === nums.length) {
+                return [0, 0];
+            }
+            return [1, nums[idx]];
+        }
+
+        // 比较两个下标元素
+        const compare = (nums, idx1, idx2) => {
+            const num1 = get(nums, idx1);
+            const num2 = get(nums, idx2);
+            if (num1[0] !== num2[0]) {
+                return num1[0] > num2[0] ? 1 : -1;
+            }
+            if (num1[1] === num2[1]) {
+                return 0;
+            }
+            return num1[1] > num2[1] ? 1 : -1;
+        }
+
+    </script>
+</body>
+
+</html>

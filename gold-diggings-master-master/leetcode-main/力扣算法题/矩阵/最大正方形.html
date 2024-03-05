@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+
+        var maximalSquare = function (matrix) {
+            // 遍历每个点,进行检测
+            let resList = []
+            let res = 0
+
+            for (let x = 0; x < matrix[0].length; x++) {
+                for (let y = 0; y < matrix.length; y++) {
+
+
+                    if (matrix[y][x] === "0") continue
+
+                    // 计算最大边长
+                    let maxLength = matrix.length - y < matrix[0].length - x
+                        ? matrix.length - y
+                        : matrix[0].length - x
+
+                    // 判断最大结果,如果小于已存在结果,不执行
+                    if (maxLength * maxLength < res) continue
+
+                    // 开始画正方形,进行检测
+                    let hasVal = false
+                    let isSqure = true
+
+                    const checkByLine = (l) => {
+                        for (let x2 = x; x2 <= x + l - 1; x2++) {
+                            for (let y2 = y; y2 <= y + l - 1; y2++) {
+                                let checkPoint = matrix?.[y2]?.[x2]
+                                if (checkPoint === "0" || !checkPoint) {
+                                    // 退出本次边长循环
+                                    return false
+                                }
+
+                                // 走到最后一个点时,记录结果
+                                if (x2 == x + l - 1 && y2 == y + l - 1) {
+                                    resList.push([x, y, l * l])
+                                    let newRes = l * l
+                                    res = newRes > res ? newRes : res
+                                    hasVal = true
+                                }
+                            }
+                        }
+
+                    }
+
+                    for (let l = maxLength; l >= 1; l--) {
+                        if (hasVal) break
+                        checkByLine(l)
+                    }
+
+                }
+            }
+
+            console.log(resList, res);
+            return res
+        };
+
+
+        // maximalSquare([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "0", "0", "1", "0"]])
+        // maximalSquare([["1"]])
+
+
+        maximalSquare([["1", "1", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "1", "1", "1", "1"]])
+    </script>
+</body>
+
+</html>

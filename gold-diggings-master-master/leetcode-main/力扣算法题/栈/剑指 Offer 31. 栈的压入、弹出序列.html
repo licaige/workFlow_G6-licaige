@@ -1,0 +1,73 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-09-07 12:11:50
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-09-07 12:34:50
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        //剑指 Offer 31. 栈的压入、弹出序列
+        // https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/description/?envType=study-plan-v2&envId=coding-interviews
+
+
+        // pushed = [1,2,3,4,5]
+        // popped = [4,5,3,2,1]
+
+        // 模拟压入和弹出的过程
+        // 比如上述顺序, 先push [1]  然后检查是否能pop pop为4 则继续压入
+        // [1,2,3,4] 此时可以pop 执行pop
+
+        // 检查是否能继续pop   此时需要pop 5  故不行,只能继续push 
+
+        // 检查最终是否能实现流程即可
+
+
+        var validateStackSequences = function (pushed, popped) {
+            // 边界处理
+            if (pushed.length == 0 && popped.length == 0) return true
+
+            const stack = []
+
+            let j = 0
+
+            for (let i = 0; i < pushed.length; i++) {
+
+                stack.push(pushed[i])
+
+                // 尝试pop
+                while (j < popped.length - 1) {
+                    if (stack[stack.length - 1] == popped[j]) {
+                        stack.pop()
+                        j++
+                    } else {
+                        break
+                    }
+                }
+
+            }
+
+            // 如果pop结束,则证明可行
+            return j == popped.length - 1
+        };
+
+
+        let pushed = [1, 2, 3, 4, 5], popped = [4, 5, 3, 2, 1]
+
+        // let pushed = [1, 2, 3, 4, 5], popped = [4, 3, 5, 1, 2]
+        console.log(validateStackSequences(pushed, popped));
+    </script>
+</body>
+
+</html>

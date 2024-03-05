@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 删除排序链表中的重复元素 II
+        // https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/description/?envType=study-plan-v2&id=top-interview-150
+        // 输入：head = [1,2,3,3,4,4,5]
+        // 输出：[1, 2, 5]
+        // 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。
+
+
+        // 方案  两次遍历链表
+        // 第一次链表去重,记录需要删除的val
+        // 第二次删除val内保存的节点
+
+        var deleteDuplicates = function (head) {
+            // 边界处理
+            if (!head) return head
+
+            let cur = head
+            let prevNode = null
+            let shouldDelVal = new Set()
+
+            // 链表去重
+            while (cur) {
+                if (cur.val == prevNode?.val) {
+                    prevNode.next = cur.next
+                    shouldDelVal.add(cur.val) // 记录需要删除的节点
+                } else {
+                    prevNode = cur    // 如果未删除节点,才更新prevNode
+                }
+
+                cur = cur.next
+            }
+
+            // 删除val内保存的节点
+            let cur2 = head
+            let prevNode2 = null
+            while (cur2) {
+                if (shouldDelVal.has(cur2.val)) {
+                    if (cur2 == head) {  // 删除头部
+                        head = cur2.next
+                    } else {             // 删除节点
+                        prevNode2.next = cur2.next
+                    }
+                } else {
+                    prevNode2 = cur2      // 更新prevNode
+                }
+
+                cur2 = cur2.next
+            };
+
+            return head
+        }
+
+    </script>
+</body>
+
+</html>

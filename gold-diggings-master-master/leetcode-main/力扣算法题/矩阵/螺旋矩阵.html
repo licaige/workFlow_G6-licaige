@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+
+
+        var spiralOrder = function (matrix) {
+
+            let res = []
+            // 封装上下左右四种逻辑
+            const check = (x, y) => typeof matrix[y]?.[x] == "number"
+
+            const goRight = (x, y) => {
+                if (!check(x, y)) return
+
+                for (x; x < matrix[0].length; x++) {
+                    // 推入结果数组, 标记经过
+                    check(x, y) && res.push(matrix[y][x])
+                    matrix[y][x] = false
+                    // 如果走到头则向下继续
+                    if (typeof matrix[y]?.[x + 1] != "number") {
+                        goDown(x, y + 1)
+                    }
+                }
+            }
+
+
+            const goDown = (x, y) => {
+                if (!check(x, y)) return
+
+                for (y; y < matrix.length; y++) {
+                    check(x, y) && res.push(matrix[y][x])
+                    matrix[y][x] = false
+                    if (typeof matrix[y + 1]?.[x] != "number") {
+                        goLeft(x - 1, y)
+                    }
+                }
+            }
+
+            const goLeft = (x, y) => {
+                if (!check(x, y)) return
+
+                for (x; x >= 0; x--) {
+                    check(x, y) && res.push(matrix[y][x])
+                    matrix[y][x] = false
+                    if (typeof matrix[y]?.[x - 1] != "number") {
+                        goUp(x, y - 1)
+                    }
+                }
+            }
+
+            const goUp = (x, y) => {
+                if (!check(x, y)) return
+
+                for (y; y >= 0; y--) {
+                    check(x, y) && res.push(matrix[y][x])
+                    matrix[y][x] = false
+                    if (typeof matrix[y - 1]?.[x] != "number") {
+                        goRight(x + 1, y)
+                    }
+                }
+            }
+
+
+            goRight(0, 0)
+
+            debugger
+            return res
+        };
+
+        let matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+        spiralOrder(matrix)
+    </script>
+</body>
+
+</html>

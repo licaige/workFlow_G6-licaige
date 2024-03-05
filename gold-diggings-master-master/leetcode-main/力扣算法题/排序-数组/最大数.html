@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给定一组非负整数 nums，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。
+
+        // 注意：输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+        // 输入：nums = [3,30,34,5,9]
+        // 输出："9534330"
+
+
+
+        // 方案一  [3, 30, 34, 5, 9, 73]
+        // 比较    ${a}${b}  与  ${b}${a} 的大小 进行排序即可
+        // 330 与 303  选择330   [3,30]
+        // 3034 与 3430   选择3430 [3,34,30]
+        // 类推即可
+
+        var largestNumber = function (nums) {
+            nums.sort((a, b) => {
+                let S1 = `${a}${b}`;
+                let S2 = `${b}${a}`;
+                return S2 - S1;
+            })
+
+            return nums[0] ? nums.join('') : '0';
+        };
+
+        largestNumber([3, 30, 34, 5, 9, 73])
+    </script>
+</body>
+
+</html>

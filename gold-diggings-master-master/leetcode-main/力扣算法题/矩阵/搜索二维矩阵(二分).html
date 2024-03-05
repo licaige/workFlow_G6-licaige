@@ -1,0 +1,53 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2022-12-29 16:32:10
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-09-19 10:02:53
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 二分查找数组(需要nums为正序排列)
+        const search = (nums, target) => {
+            let low = 0, high = nums.length - 1;
+            while (low <= high) {
+                const mid = Math.floor((high - low) / 2) + low;
+                const num = nums[mid];
+                if (num === target) {
+                    return mid;
+                } else if (num > target) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+            return -1;
+        }
+
+        var searchMatrix = function (matrix, target) {
+            for (const row of matrix) {
+                const index = search(row, target);
+                if (index >= 0) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+
+    </script>
+</body>
+
+</html>

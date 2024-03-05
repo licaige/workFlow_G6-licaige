@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+
+class List{
+    constructor(name){
+        //想在List类里面使用new Node创建一个新类
+        this.newNode = new Node(name)
+        // 在构造函数里写class不能用
+        class Node{
+            constructor(name){
+                this.name = name
+            }
+        }
+    }
+}
+
+function Queue(){
+    // 用数组表示队列元素
+    this.items = []
+    // 1.加入元素到队列中
+    Queue.prototype.inQueue = function(ele){
+        this.items.push(ele)
+    }
+    // 2.删除前端元素
+    // 注意点  数组删除元素效率不高   因为如果数组删除了前面的元素 
+    // 后面的元素就要挨个往前一移动
+    Queue.prototype.deQueue = function(){
+        return this.items.shift()
+    }
+    // 3.查看前端元素
+    Queue.prototype.front = function(){
+        return this.items[0]
+    }
+    // 4.查看队列是否为空
+    Queue.prototype.front = function(){
+        return this.items.length == 0
+    }
+    // 5.查看队列中元素个数
+    Queue.prototype.size = function(){
+        return this.items.length 
+    }
+    // 6.toString方法
+    Queue.prototype.toString = function(){
+        let resultStr = ''
+        for(let i=0;i<this.items.length;i++){
+            resultStr += this.items[i]+' '
+        }
+        return resultStr
+    }
+}
+
+
+var queue1 = new Queue()
+
+
+    </script>
+</body>
+</html>

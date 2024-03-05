@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 思路,对于数组[4, 5, 6, 7, 0, 1, 2]来说 ，分为两部分 [4，5，6,7]和[0,1,2] 
+        // 先找到这两个数组  如果target在0和2之间, 那就在2号数组之间二分, 如果target在4-7之间,就在1号数组之间二分
+        var search = function (nums, target) {
+            // 找到交换点
+            let point;
+            for (let i = 1; i < nums.length; i++) {
+                if (nums[i] < nums[i - 1]) {
+                    point = i
+                    break
+                }
+            }
+
+            // 如果没有交换点,则数组递增 直接二分
+            if (!point) {
+                return searchRange(nums, target)
+            }
+
+            // 拆分为两个数组
+            let nums1 = nums.splice(0, point)
+            let nums2 = nums
+
+
+            // 二分查找法 找到sort后的下标
+            let index1 = searchRange(nums1, target)
+            let index2 = searchRange(nums2, target)
+
+            if (index1 != -1) return index1
+            else if (index2 != -1) return index2 + point
+            else return -1
+        };
+
+        // 二分查找法, 记录当前left和right的值, 如果中心点与左右点重合, 则推出递归
+        function searchRange(nums, target) {
+
+            let res = -1
+            let index = nums.length - 1
+            let left = 0
+            let right = index
+            let midIndex = Math.round((right - left) / 2)
+
+            // 特殊情况直接返回-1
+            if (target > nums[index] || target < nums[0]) return -1
+
+            const deep = () => {
+
+                if (target > nums[midIndex]) {
+                    left = midIndex
+                    midIndex = midIndex + Math.round((right - left) / 2)
+
+                } else if (target < nums[midIndex]) {
+                    right = midIndex
+                    midIndex = midIndex - Math.round((right - left) / 2)
+                }
+
+                if (target == nums[midIndex]) {
+                    res = midIndex
+                    return
+                }
+
+                if (midIndex > left && midIndex < right) {
+                    deep()
+                }
+            }
+            deep()
+
+            return res
+        };
+
+
+    </script>
+</body>
+
+</html>

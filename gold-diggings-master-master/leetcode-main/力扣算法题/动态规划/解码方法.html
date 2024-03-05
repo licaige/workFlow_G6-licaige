@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //解码方法
+
+        // 输入：s = "12"
+        // 输出：2
+        // 解释：它可以解码为 "AB"（1 2）或者 "L"（12）。
+
+        // 输入：s = "226"
+        // 输出：3
+        // 解释：它可以解码为 "BZ" (2 26), "VF" (22 6), 或者 "BBF" (2 2 6) 。
+
+
+        // 1 <= s.length <= 100
+        // s 只包含数字，并且可能包含前导零。
+
+
+
+        // DFS搜索(会超时)
+        var numDecodings = function (s) {
+
+            let litterMap = {
+                1: 'A',
+                2: 'B',
+                3: 'C',
+                4: 'D',
+                5: 'E',
+                6: 'F',
+                7: 'G',
+                8: 'H',
+                9: 'I',
+                10: 'J',
+                11: 'K',
+                12: 'L',
+                13: 'M',
+                14: 'N',
+                15: 'O',
+                16: 'P',
+                17: 'Q',
+                18: 'R',
+                19: 'S',
+                20: 'T',
+                21: 'U',
+                22: 'V',
+                23: 'W',
+                24: 'X',
+                25: 'Y',
+                26: 'Z',
+            }
+            let res = 0
+
+            const deep = (curStr) => {
+
+                if (curStr.length === 0) {
+                    res++
+                    return
+                }
+
+                let cutS_1 = curStr.slice(0, 1)
+                let nextStr_1 = curStr.slice(1)
+                litterMap[cutS_1] && nextStr_1.length >= 0 && deep(nextStr_1)
+
+                if (curStr.length < 2) return
+                let cutS_2 = curStr.slice(0, 2)
+                let nextStr_2 = curStr.slice(2)
+                litterMap[cutS_2] && nextStr_2.length >= 0 && deep(nextStr_2)
+            }
+
+            deep(s)
+
+            console.log(res);
+            return res
+        };
+
+        numDecodings("111111111111111111111111111111")
+    </script>
+</body>
+
+</html>

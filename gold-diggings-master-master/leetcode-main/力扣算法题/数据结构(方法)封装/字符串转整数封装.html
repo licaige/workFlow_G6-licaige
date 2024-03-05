@@ -1,0 +1,90 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-04-29 22:39:38
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-08-15 12:22:54
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 字符串转换整数 (atoi)
+        // https://leetcode.cn/problems/string-to-integer-atoi/solutions/185648/javascriptzi-dong-ji-guan-fang-ti-jie-de-xiang-xi-/?favorite=2ckc81c&orderBy=most_votes&languageTags=javascript
+
+
+
+        // 自动机类
+        class Automaton {
+            constructor() {
+                // 执行阶段，默认处于开始执行阶段
+                this.state = 'start';
+                // 正负符号，默认是正数
+                this.sign = 1;
+                // 数值，默认是0
+                this.answer = 0;
+
+                this.map = new Map([
+                    ['start', ['start', 'signed', 'in_number', 'end']],
+                    ['signed', ['end', 'end', 'in_number', 'end']],
+                    ['in_number', ['end', 'end', 'in_number', 'end']],
+                    ['end', ['end', 'end', 'end', 'end']]
+                ])
+            }
+
+            // 获取字符类型
+            getType(char) {
+                // 空格
+                if (char === ' ') return 0;
+                // 正负号
+                else if (char === '-' || char === '+') return 1;
+                // 整数
+                else if (typeof Number(char) === 'number' && !isNaN(char)) return 2;
+                // 其他
+                else return 3;
+            }
+
+            // 字符转换执行函数
+            get(char) {
+                const type = this.getType(char)
+                this.state = this.map.get(this.state)[type];
+
+                if (this.state === 'in_number') {
+                    // 当下一个状态是in_number  添加一位数字
+                    this.answer = this.answer * 10 + (char - 0);
+                    // 适配32位机型  解决数字溢出问题  负数需要-1
+                    this.answer = this.sign === 1
+                        ? Math.min(this.answer, Math.pow(2, 31) - 1)
+                        : Math.min(this.answer, -Math.pow(-2, 31));
+                    // 更改符号
+                } else if (this.state === 'signed') {
+                    this.sign = char === '+' ? 1 : -1;
+                }
+            }
+        }
+
+        // 使用表驱动  自动机完成
+        var myAtoi = function (str) {
+
+            let automaton = new Automaton();
+
+            for (let char of str) {
+                automaton.get(char);
+            }
+
+            return automaton.sign * automaton.answer;
+        };
+
+    </script>
+</body>
+
+</html>

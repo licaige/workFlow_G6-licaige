@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 从前序中序顺序构建二叉树
+
+        // 给出一个二叉树的 前序-中序遍历序列,  构造返回这颗二叉树的head
+        // preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+
+
+        // 对于二叉树 前序第一个节点为root 为3
+        // 从中序找到节点3  将其分为两个左右子树序列 [9] [15 20 7]
+        // 持续这个过程
+
+        var deduceTree = function (preorder, inorder) {
+            //
+            let rootNum = preorder.shift()
+
+            const deep = (rootNum, currentInorder, parentNode) => {
+
+                if (currentInorder.length == 0) return null
+
+
+                const rootNode = new TreeNode(rootNum)
+
+                let rootIdx = currentInorder.indexOf(rootNum)
+                let left = currentInorder.slice(0, rootIdx)
+                let right = currentInorder.slice(rootIdx + 1)
+
+                // 左边无子节点
+                if (left.length == 0) {
+                    rootNode.left = null
+                } else {
+                    let nextLeftRoot = preorder.shift()
+                    let leftNode = deep(nextLeftRoot, left, rootNode)
+                    rootNode.left = leftNode
+                }
+                // 右边无子节点
+                if (right.length == 0) {
+                    rootNode.right = null
+                } else {
+                    let nextRightRoot = preorder.shift()
+                    let rightNode = deep(nextRightRoot, right, rootNode)
+                    rootNode.right = rightNode
+                }
+
+                return rootNode
+            }
+
+            let root = deep(rootNum, inorder, null)
+
+            return root
+
+        };
+
+        let preorder = [3, 9, 20, 15, 7], inorder = [9, 3, 15, 20, 7]
+
+        deduceTree(preorder, inorder)
+
+    </script>
+</body>
+
+</html>

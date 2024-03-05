@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 字符串中的字母异位词
+
+        // 给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。
+
+        // 异位词 指由相同字母重排列形成的字符串（包括相同的字符串）。
+        // 输入: s = "cbaebabacd", p = "abc"
+        // 输出: [0,6]
+        // 解释:
+        // 起始索引等于 0 的子串是 "cba", 它是 "abc" 的异位词。
+        // 起始索引等于 6 的子串是 "bac", 它是 "abc" 的异位词。
+
+        // 因为都是小写字母, 记录每个字母出现的次数, 相同即是异位词(26个字母)
+        // 使用滑动窗口+结果记录
+
+        // 浅比较结果对象
+        const shallowCompare = (obj1, obj2) => {
+            let res = true
+            for (let key in obj1) {
+                if (obj1[key] !== obj2[key]) { res = false }
+            }
+            for (let key in obj2) {
+                if (obj1[key] !== obj2[key]) { res = false }
+            }
+            return res
+        }
+
+
+        var findAnagrams = function (s, p) {
+            let resList = []
+            // 准备两个初始字母记录map
+            let litters = [
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+                'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+            ]
+            let letterMap = {}
+            let subStringMap = {}
+            litters.forEach(l => { letterMap[l] = 0; subStringMap[l] = 0 })
+
+            // 记录p各字母出现次数
+            for (let i = 0; i < p.length; i++) {
+                letterMap[p[i]] === undefined
+                    ? letterMap[p[i]] = 1
+                    : letterMap[p[i]] += 1
+            }
+
+            // 滑动窗口遍历s
+            // 移动窗口, 只需增加最后一个字母,减去最前面的字母即可
+
+            // 准备最开始的字母记录map
+            let len = p.length
+            for (let i = 0; i < len; i++) {
+                subStringMap[s[i]] === undefined
+                    ? subStringMap[s[i]] = 1
+                    : subStringMap[s[i]] += 1
+            }
+            // 初始比较
+            if (shallowCompare(subStringMap, letterMap)) {
+                resList.push(j)
+            }
+
+            // 滑动窗口遍历
+            for (let j = 1; j < s.length - len + 1; j++) {
+                let prevLitter = s[j - 1]
+                let lastLitter = s[j + len - 1]
+                // 减去上一个字母 增加下一个字母
+                subStringMap[prevLitter] -= 1
+
+                subStringMap[lastLitter] === undefined
+                    ? subStringMap[lastLitter] = 1
+                    : subStringMap[lastLitter] += 1
+
+                if (shallowCompare(subStringMap, letterMap)) {
+                    resList.push(j)
+                }
+            }
+
+            console.log(resList);
+            return resList
+        };
+
+
+        findAnagrams("cbaebabacd", "abc")
+    </script>
+</body>
+
+</html>

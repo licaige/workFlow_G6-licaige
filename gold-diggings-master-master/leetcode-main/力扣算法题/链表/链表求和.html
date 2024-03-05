@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 面试题 02.05. 链表求和
+        // https://leetcode.cn/problems/sum-lists-lcci/description/
+
+
+
+        // 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
+        // 请你将两个数相加，并以相同形式返回一个表示和的链表。
+        // 你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+
+
+
+        // 方案 两条链表按位相加  构造新链表
+
+        function addTwoNumbers(l1, l2) {
+            let head = null
+            let tail = null
+            let carry = 0 // 进位
+
+            while (l1 || l2) {
+                // 计算两个节点的sum
+                const n1 = l1 ? l1.val : 0;
+                const n2 = l2 ? l2.val : 0;
+                const sum = n1 + n2 + carry;
+
+                // 计算本次节点值 计算是否进位
+                let nodeVal = 0
+
+                if (sum > 9) {
+                    nodeVal = sum - 10
+                    carry = 1
+                } else {
+                    nodeVal = sum
+                    carry = 0
+                }
+
+                // 拼接链表
+                if (!head) {
+                    head = tail = new ListNode(nodeVal);
+                } else {
+                    tail.next = new ListNode(nodeVal);
+                    tail = tail.next;
+                }
+
+                // 更新l1  l2
+                if (l1) {
+                    l1 = l1.next;
+                }
+                if (l2) {
+                    l2 = l2.next;
+                }
+
+            }
+
+            // 最终 如果carry仍然为1  需要创建新节点
+            if (carry > 0) {
+                tail.next = new ListNode(carry);
+            }
+
+
+            return head
+        };
+
+
+        let l1 = [2, 4, 3], l2 = [5, 6, 4]
+        console.log(addTwoNumbers(l1, l2));
+
+    </script>
+</body>
+
+</html>

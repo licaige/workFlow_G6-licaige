@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+
+
+        // 输入：nums = [2,6,4,8,10,9,15]
+        // 输出：5
+        // 解释：你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。
+
+        // 题解
+        // 正序数组
+        // [2,4,6,8,9,10,15]
+        // [2,6,4,8,10,9,15]  进行比较  头尾除去2  15  中间不符合的地方就是从6-9
+        var findUnsortedSubarray = function (nums) {
+            let sortedArr = [...nums].sort((a, b) => a - b)
+
+            let i = 0
+            let j = nums.length - 1
+            let start = undefined
+            let end = undefined;
+
+            while (i < nums.length - 1) {
+                if (nums[i] !== sortedArr[i]) {
+                    start = i
+                    break
+                }
+                i++
+            }
+
+            while (j > 0) {
+                if (nums[j] !== sortedArr[j]) {
+                    end = j
+                    break
+                }
+                j--
+            }
+
+            // 特殊处理
+            console.log(start, end);
+            if (typeof start === 'undefined' && typeof end === 'undefined') return 0
+
+            return end - start + 1
+        };
+
+
+        console.log(findUnsortedSubarray([1, 2, 3, 4]));
+        console.log(findUnsortedSubarray([4, 3, 2, 1]));
+
+    </script>
+</body>
+
+</html>

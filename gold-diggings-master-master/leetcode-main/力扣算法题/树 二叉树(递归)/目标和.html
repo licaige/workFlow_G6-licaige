@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给你一个整数数组 nums 和一个整数 target 。
+
+        // 向数组中的每个整数前添加 '+' 或 '-' ，然后串联起所有整数，可以构造一个 表达式 ：
+
+        // 例如，nums = [2, 1] ，可以在 2 之前添加 '+' ，在 1 之前添加 '-' ，然后串联起来得到表达式 "+2-1" 。
+        // 返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。
+
+        // 输入：nums = [1,1,1,1,1], target = 3
+        // 输出：5
+        // 解释：一共有 5 种方法让最终目标和为 3 。
+        // -1 + 1 + 1 + 1 + 1 = 3
+        // +1 - 1 + 1 + 1 + 1 = 3
+        // +1 + 1 - 1 + 1 + 1 = 3
+        // +1 + 1 + 1 - 1 + 1 = 3
+        // +1 + 1 + 1 + 1 - 1 = 3
+
+
+
+
+        var findTargetSumWays = function (nums, target) {
+            // 构建两棵树, 递归执行
+            let root = nums[0]
+            nums.shift()
+
+            let resCount = 0
+
+            const deep = (sum, i) => {
+
+                // 走到最底层时判断结果
+                if (i === nums.length) {
+                    if (sum === target) {
+                        resCount++
+                    }
+                    return
+                }
+
+                else if (i < nums.length) {
+                    deep(sum + nums[i], i + 1)
+                    deep(sum - nums[i], i + 1)
+                }
+            }
+
+            deep(root, 0)
+            deep(-root, 0)
+            console.log(resCount);
+            
+            return resCount
+        };
+
+
+        findTargetSumWays([1, 1, 1, 1, 1], 3)
+        findTargetSumWays([1], 1)
+    </script>
+</body>
+
+</html>

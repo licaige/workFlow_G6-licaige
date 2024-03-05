@@ -1,0 +1,22 @@
+{
+  "name": "lzy-microapp",
+  "version": "1.0.0",
+  "description": "简易版microApp微前端框架",
+  "main": "./out/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lzy19926/lzy-microApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lzy19926/lzy-microApp/issues"
+  },
+  "homepage": "https://github.com/lzy19926/lzy-microApp#readme"
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
+
+        // 题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
+
+        // 请不要使用除法，且在 O(n) 时间复杂度内完成此题。
+        //举例: 输入: nums = [1,2,3,4]
+        // 输出: [24,12,8,6]
+        // 请用JS写出对应的程序
+
+
+
+
+
+
+
+
+        // 方案二  先计算i左边的乘积   再计算右边乘积
+        //  比如数组          [1,2,3,4] 
+        //  左边的乘积        [1,1,2,6]
+        //  倒序计算右边乘积  [24,12,4,1]
+        // 最终可得           [24,12,8,6]
+        var productExceptSelf = function (nums) {
+            let res = []
+
+            // 构造左边乘积  记录到res中
+            res[0] = 1
+            for (let i = 1; i < nums.length; i++) {
+                res[i] = res[i - 1] * nums[i - 1]
+            }
+
+            // 记录右边乘积R
+            let R = 1
+            for (let i = nums.length - 1; i >= 0; i--) {
+                res[i] = res[i] * R
+
+                // 最后R需要乘起
+                R = R * nums[i]
+            }
+            // console.log(res);
+            return res
+        };
+
+
+        // 方案一  左右乘积列表()
+        var productExceptSelf2 = function (nums) {
+
+            let res = []
+
+            const caculate = (arr) => {
+                if (arr.length === 0) return
+
+                let res
+                for (let i = 0; i < arr.length; i++) {
+                    if (typeof res !== "number") { res = arr[i] }
+                    else { res = res * arr[i] }
+                }
+                return res
+            }
+
+            for (let i = 0; i < nums.length; i++) {
+                //获得左右两边的数组
+                let left = [...nums].splice(0, i)
+                let right = [...nums].splice(i + 1)
+                //计算左右数组乘积 如果为0,直接设置为1
+                let leftCount = caculate(left)
+                let rightCount = caculate(right)
+
+                let r
+
+                if (typeof leftCount == "number" && typeof rightCount == "number") {
+                    r = leftCount * rightCount
+                } else if (typeof leftCount == "number") {
+                    r = leftCount
+                } else if (typeof rightCount == "number") {
+                    r = rightCount
+                }
+
+                res.push(r)
+            }
+
+
+            return res
+        };
+
+
+        productExceptSelf([1, 2, 3, 4])
+    </script>
+</body>
+
+</html>

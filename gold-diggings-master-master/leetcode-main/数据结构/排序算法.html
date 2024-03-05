@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // --------------冒泡排序算法---------------------
+        function bubblesort(arr) {
+            // 思路  每次for循环排序一个数字 
+            // 一次for结束将需要排序的数字减一  进行下一轮排序
+            let times = arr.length // 需要排序的数字量
+            while (times > 1) {
+                for (let i = 0; i < times; i++) {
+                    // 如果大于则交换位置
+                    if (arr[i] > arr[i + 1]) {
+                        let item = arr[i]
+                        arr[i] = arr[i + 1]
+                        arr[i + 1] = item
+                    }
+                }
+                times -= 1
+            }
+            console.log(arr);
+        }
+        bubblesort(arr1)
+
+        // -------------选择排序-----------------------------
+        // 6个数字  每次从队列里选出最小的一项  跟首位的人进行交换
+        // 之后下一轮只排序五个数字 
+        function selectSort(arr) {
+            let length = arr.length
+
+            // 选出最小的一项并交换
+            // minIndex是已经排号的最小值指针
+            let minIndex = 0
+            for (let i = min + 1; i < length; i++) {
+                if (arr[minIndex] > arr[i]) { // 如果大于则记录下最小值的index
+                    minIndex = i
+                }
+            }
+            // 循环结束  选出最小的一项为arr[minIndex]  与第一位进行交换
+
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

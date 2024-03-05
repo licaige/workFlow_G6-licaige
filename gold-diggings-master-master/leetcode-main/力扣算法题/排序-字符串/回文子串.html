@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 回文数查找思路: 中心扩散法
+        // 遍历字符串, 以每个字符串为中心,两边查找 分为奇数偶数两种情况
+
+        var countSubstrings = function (s) {
+
+            let count = 0
+
+            // 奇数
+            const odd = (c) => {
+                let left = c
+                let right = c
+                while (s[left] === s[right]) {
+                    if (!s[left] || !s[right]) break
+                    count++
+                    left--
+                    right++
+                }
+            }
+            // 偶数
+            const even = (c) => {
+                let left = c
+                let right = c + 1
+                while (s[left] === s[right]) {
+                    if (!s[left] || !s[right]) break
+                    count++
+                    left--
+                    right++
+                }
+            }
+
+            for (let i = 0; i < s.length; i++) {
+                odd(i)
+                even(i)
+            }
+
+            console.log(count);
+            return count
+        };
+
+        countSubstrings("aaaa")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <script>
+        // 寻找连续字符串中,连续重复次数最多的字符
+
+        var str='aaaabbbbcccccdddd'
+
+        //指针  (下标)
+        var i = 0;
+        var j = 1;
+        //设置当前重复次数最多的项
+        var max={item:null,num:0}
+
+        console.log(str.length);
+        // 当i还在范围内的时候,应该继续寻找
+
+        while(i<= str.length-1){
+            //当i和j相同时   j指针后移查找下一位
+            if(str[i] == str[j]){
+                
+            }else{
+                //当发现i和j不一样时  i移动到j当前位置  开始下一次查找
+                var num=j-i
+                
+                //然后和当前重复次数最多的进行比较
+                if(num>max.num){
+                    max.num= num//让它成为最大值
+                    max.item= str[i]// 设置最大字母
+                }
+                //让i移动到j处   开始下一次查找
+                i=j
+            }
+            //不管i和j是否相同  j都要后移
+            j++
+        }
+        console.log(max);
+
+       
+    </script>
+</body>
+</html>

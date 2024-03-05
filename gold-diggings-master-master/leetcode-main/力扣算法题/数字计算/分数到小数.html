@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 计算两个数字相除(分数)
+        // 返回结果小数, 如果是无限循环小数,则将循环部分用括号包起来
+
+        // numerator = 1, denominator = 2  返回 "0.5"
+
+        // 输入：numerator = 4, denominator = 333
+        // 输出："0.(012)"
+
+
+        // 方案  模拟人工计算除法方式(竖式除法)
+        // https://leetcode.cn/problems/fraction-to-recurring-decimal/solutions/1028784/gong-shui-san-xie-mo-ni-shu-shi-ji-suan-kq8c4/?orderBy=most_votes
+
+        var fractionToDecimal = function (numerator, denominator) {
+            if (numerator % denominator == 0) {
+                return '' + Math.floor(numerator / denominator);
+            }
+
+            const sb = [];
+            if (numerator < 0 ^ denominator < 0) {
+                sb.push('-');
+            }
+
+            // 整数部分
+            numerator = Math.abs(numerator);
+            denominator = Math.abs(denominator);
+            const integerPart = Math.floor(numerator / denominator);
+            sb.push(integerPart);
+            sb.push('.');
+
+            // 小数部分
+            const fractionPart = [];
+            const remainderIndexDic = new Map();
+            let remainder = numerator % denominator;
+            let index = 0;
+            while (remainder !== 0 && !remainderIndexDic.has(remainder)) {
+                remainderIndexDic.set(remainder, index);
+                remainder *= 10;
+                fractionPart.push(Math.floor(remainder / denominator));
+                remainder %= denominator;
+                index++;
+            }
+            if (remainder !== 0) { // 有循环节
+                let insertIndex = remainderIndexDic.get(remainder);
+                fractionPart.splice(insertIndex, 0, '(');
+                fractionPart.push(')');
+            }
+            sb.push(fractionPart.join(''));
+
+            return sb.join('');
+        }
+
+
+        if (numerator % denominator == 0) return (numerator / denominator).toString()
+
+        // 模拟人工除法逻辑
+        let res = ""
+        let isPlus = false
+        let nextNumerator = numerator
+        let nextNumeratorList = []
+        let hasNumerator = (num) => nextNumeratorList.indexOf(num) !== -1
+
+        // 判断正负号
+        if ((numerator > 0 && denominator > 0) || (numerator < 0 && denominator < 0)) {
+            isPlus = true
+        }
+
+        nextNumerator = Math.abs(nextNumerator)
+        denominator = Math.abs(denominator)
+
+        // 先补全前几位零
+        while (denominator > nextNumerator) {
+            nextNumerator = nextNumerator * 10
+            res += '0'
+            if (res.length == 1) { res += '.' }
+        }
+        debugger
+        while (nextNumerator !== 0) {
+
+            // 大于情况 补零
+            if (denominator > nextNumerator) {
+                nextNumerator = nextNumerator * 10
+                nextNumeratorList.push(nextNumerator) // 记录出现的余数
+                res += "0"
+                if (res.length == 1) { res += '.' }
+            }
+
+            else {
+                res += Math.floor(nextNumerator / denominator)
+                nextNumerator = (nextNumerator % denominator) * 10
+                // 如果出现过这个余数,则说明从该部分开始进行循环,退出计算
+                if (hasNumerator(nextNumerator)) {
+                    // 找到循环部分
+                    let startIndex = nextNumeratorList.length - nextNumeratorList.indexOf(nextNumerator)
+                    let cyclePart = "(" + res.slice(res.length - startIndex, res.length) + ")"
+                    // 拼接结果
+                    res = res.slice(0, res.length - startIndex) + cyclePart
+                    break
+                } else {
+                    nextNumeratorList.push(nextNumerator) // 记录出现的余数
+                }
+            }
+
+
+        }
+
+
+        return isPlus ? res : '-' + res
+        };
+
+
+        console.log(fractionToDecimal(-50, 8));
+
+    </script>
+</body>
+
+</html>

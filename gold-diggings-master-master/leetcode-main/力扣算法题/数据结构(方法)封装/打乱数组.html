@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个整数数组 nums ，设计算法来打乱一个没有重复元素的数组。
+        // 打乱后，数组的所有排列应该是 等可能 的。
+
+
+        // 方案一, 遍历数组元素, 每个元素随机跟另一个随机元素位置互换
+        // 时间复杂度  O(1)  
+        // 空间复杂度  O(n)
+
+        /**
+         * 获取0-n中随机整数
+        */
+        function getRandomInt(n) {
+            return Math.floor(Math.random() * (n + 1));
+        }
+
+        var Solution = function (nums) {
+            this._originArr = nums
+
+        };
+
+        /**
+         * @return {number[]}   重置数组为原始顺序
+         */
+        Solution.prototype.reset = function () {
+            return this._originArr
+        };
+
+        /**
+         * @return {number[]}    随机打乱数组并返回
+         */
+        Solution.prototype.shuffle = function () {
+            // 遍历数组元素, 每个元素随机跟另一个随机元素位置互换
+            let copyArr = [...this._originArr]
+            let length = copyArr.length
+            for (let i = 0; i < length; i++) {
+                let j = getRandomInt(length - 1)
+                // 互换两个元素位置
+                let a = copyArr[i]
+                let b = copyArr[j]
+                copyArr[i] = b
+                copyArr[j] = a
+            }
+
+            return copyArr
+        };
+
+
+        let nums = [1, 2, 3]
+        var obj = new Solution(nums)
+
+        console.log(obj.reset());
+        console.log(obj.shuffle());
+    </script>
+</body>
+
+</html>

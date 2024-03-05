@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var convertBST = function (root) {
+            // 先进行中序遍历记录数字
+            let nodeMap = {}
+            let valList = []
+            let index = 0
+
+            // 先进行中序遍历记录val,根据遍历index记录node
+            const deep = (node) => {
+                if (!node) return
+
+                deep(node.left)
+
+                nodeMap[index] = node
+                valList.push(node.val)
+                index = index + 1
+
+                deep(node.right)
+            }
+
+            deep(root)
+            // 累加val , 赋值到node上
+            for (let i = index - 1; i >= 0; i--) {
+                let node = nodeMap[i]
+                valList[i - 1] = valList[i] + valList[i - 1]
+                node.val = valList[i]
+            }
+
+            return root
+        };
+    </script>
+</body>
+
+</html>

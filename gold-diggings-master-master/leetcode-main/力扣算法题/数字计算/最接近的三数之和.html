@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 可参考"三数之和"
+        // 首先需要对数组进行去重
+
+        // 快速排序优化
+        function Quick(arr) {
+            if (arr.length <= 1) {
+                return arr
+            }
+            let x = arr[0]
+            let left = []
+            let right = []
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > x) {
+                    right.push(arr[i])
+                } else {
+                    left.push(arr[i])
+                }
+            }
+            return [...Quick(left), x, ...Quick(right)]
+        }
+
+        var threeSumClosest = function (nums, target) {
+            // sort后  通过记录上一个遍历的数字,实现去重
+            nums = Quick(nums)
+
+            let a, b, c
+            let length = nums.length
+
+            // 记录最接近的值,差值
+
+            let closed = { val: undefined, abs: Infinity }
+            // 三重for循环  记录上一个遍历到的数字进行跳过
+            let prevA
+            for (let i = 0; i < length; i++) {
+                if (nums[i] == prevA) continue
+                a = prevA = nums[i]
+
+                let prevB
+                for (let j = i + 1; j < length; j++) {
+                    if (nums[j] == prevB) continue
+                    b = prevB = nums[j]
+
+                    let prevC
+                    for (let k = j + 1; k < length; k++) {
+                        if (nums[k] == prevC) continue
+                        c = prevC = nums[k]
+
+                        // 找到abc 计算和 
+                        let sum = (a + b + c)
+                        let abs = Math.abs(sum - target)
+                        if (abs == 0) return sum
+
+                        if (closed.abs > abs) {
+                            closed.val = sum
+                            closed.abs = abs
+                        }
+                    }
+                }
+            }
+
+            return closed.val
+        };
+
+        console.log(threeSumClosest([4, 0, 5, -5, 3, 3, 0, -4, -5], -2)); // -2
+    </script>
+</body>
+
+</html>

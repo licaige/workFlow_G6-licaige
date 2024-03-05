@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 封装一个stack, 提供基本的pop  push方法,   top获取栈顶元素
+        // 并实现在常数时间内找到最小值的getMin方法
+
+        // MinStack() 初始化堆栈对象。
+        // void push(int val) 将元素val推入堆栈。
+        // void pop() 删除堆栈顶部的元素。
+        // int top() 获取堆栈顶部的元素。
+        // int getMin() 获取堆栈中的最小元素。
+
+
+
+        // 内部维护一个栈, 记录最小值
+        // 入栈的时候保存最小值即可
+        // 出栈时, 如果弹栈的值刚好是最小值(栈顶元素),则弹栈,检查最小栈顶元素是否在栈内,否则一直弹栈直到最小
+        function getTop(arr) {
+            return arr[arr.length - 1]
+        }
+
+        var MinStack = function () {
+            this._stack = []
+            this._minStack = []// 记录最小值的栈
+        };
+
+        MinStack.prototype.push = function (val) {
+            // 更新最小值,栈由上到下记录最小值
+            let top = getTop(this._minStack)
+
+            if (typeof top !== "number") {
+                this._minStack.push(val)
+            }
+            else if (val <= top) {
+                this._minStack.push(val)
+            }
+            this._stack.push(val)
+        };
+
+        MinStack.prototype.pop = function () {
+            let val = this._stack.pop()
+            let min = getTop(this._minStack)
+            // 更新最小值
+            if (val === min) {
+                this._minStack.pop()
+
+                let nextMin = getTop(this._minStack)
+                if (val === nextMin) return
+
+                while (typeof nextMin === "number" && this._stack.indexOf(nextMin) === -1) {
+                    this._minStack.pop()
+                }
+            }
+        };
+
+        MinStack.prototype.top = function () {
+            return getTop(this._stack)
+        };
+
+        MinStack.prototype.getMin = function () {
+            return getTop(this._minStack)
+        };
+
+
+        let minStack = new MinStack();
+
+
+        console.log(minStack.push(0));
+        console.log(minStack.push(1));
+        console.log(minStack.push(0));
+        
+        console.log(minStack.pop());
+        console.log(minStack.getMin());
+
+
+        // console.log(minStack.pop());
+        // console.log(minStack.getMin());
+        // console.log(minStack.pop());
+        // console.log(minStack.push(2147483647));
+        // console.log(minStack.top());
+        // console.log(minStack.getMin());
+        // console.log(minStack.push(-2147483648));
+        // console.log(minStack.top());
+        // console.log(minStack.getMin());
+        
+        // console.log(minStack.pop());
+        // console.log(minStack.getMin());
+    </script>
+</body>
+
+</html>

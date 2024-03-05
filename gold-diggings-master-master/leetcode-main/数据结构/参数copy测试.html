@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+// 连续对数组进行多次排序/反排序  计算时间
+function test(arr) {
+    console.time("no copy")
+    for(let i=0;i<1000;i++){
+        arr.sort((a, b) => a - b)
+        arr.sort((a, b) => b - a)
+    }
+    console.timeEnd("no copy")
+}
+
+
+
+function copyTest(arr) {
+
+    let copyArr = [...arr]
+
+    console.time("copy")
+    for(let i=0;i<1000;i++){
+        copyArr.sort((a, b) => a - b)
+        copyArr.sort((a, b) => b - a)
+    }
+    console.timeEnd("copy")
+}
+
+
+let arr = []
+for (let i = 0; i < 100000; i++) {
+    arr.push(Math.floor(Math.random() * 100))
+}
+
+test(arr)
+// copyTest(arr)
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        var pathSum = function (root, targetSum) {
+            // 遍历二叉树
+
+            let resCount = 0
+
+            const deep = (node, arr) => {
+
+
+                // 生成路径数组
+                let newArr = [...arr, node.val]
+                let reversedArr = [...newArr].reverse()
+                // 使用路径数组计算和
+                // 从当前节点往上递加(反转newArr),检查是否符合结果
+                console.log(node.val, reversedArr);
+                reversedArr.reduce((prev, cur) => {
+                    let res = prev + cur
+                    if (res === targetSum) {
+                        resCount++
+                    }
+                    console.log(res);
+                    return res
+                })
+
+
+                node.left && deep(node.left, newArr)
+                node.right && deep(node.right, newArr)
+            }
+
+
+            deep(root, [])
+        };
+
+    </script>
+</body>
+
+</html>

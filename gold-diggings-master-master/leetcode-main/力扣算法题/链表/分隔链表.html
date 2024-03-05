@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 分隔链表
+        //https://leetcode.cn/problems/partition-list/?envType=study-plan-v2&id=top-interview-150
+        //https://leetcode.cn/problems/partition-list-lcci/?envType=study-plan-v2&envId=cracking-the-coding-interview
+        // 1 4 2 3 2 5 2   标记3, 将链表分割为
+
+        // 小于3     大于3
+        // 1 2 2 2 | 4 3 5   
+
+
+        // 方案  将>=3和<3的节点分别组成两条新链表  拼接即可
+        var partition = function (head, x) {
+            // if (!head) return head
+
+            // 遍历链表 组成一大一小两个新链表
+            let biggerFoot = new ListNode(0)
+            let biggerHead = biggerFoot
+            let smallFoot = new ListNode(0)
+            let smallHead = smallFoot
+            let cur = head
+
+            while (cur) {
+                // 拼接到大链表中
+                if (cur.val >= x) {
+                    biggerFoot.next = cur
+                    biggerFoot = biggerFoot.next
+                }
+                // 拼接到小链表中
+                else {
+                    smallFoot.next = cur
+                    smallFoot = smallFoot.next // 更新小链表尾部
+                }
+
+                cur = cur.next
+            }
+
+            // 拼接两个链表,返回小链表头部 这里大小链表头部用node0代替了  需要替换
+            smallFoot.next = biggerHead.next
+            biggerFoot.next = null
+            return smallHead.next
+        };
+
+    </script>
+</body>
+
+</html>

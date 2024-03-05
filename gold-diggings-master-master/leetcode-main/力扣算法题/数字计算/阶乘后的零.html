@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 计算n阶乘后结尾0的数量
+
+        // 阶乘: !n = n*(n-1)*(n-2)...3*2*1
+
+
+        // 即计算乘法因子中 10 的个数  10=2*5
+
+        // 例子  1*2*3*4*5*6*7*8*9*10 
+        //   1*(2 x 1)*3*4*(5 x 1)*6*7*8*9*(5 * 2)
+        // 分解出  2个2  2个5  那么每个2和5之间组成一个10, 一共有2个零   
+
+
+        // 由于每个双数都能分解出2,所以只取分解出5的数量即可!!!
+
+
+        // 由于25=5*5 ,所以25能拆解出2个5因子来
+        // 故需要递归进一步验证
+
+
+
+        var trailingZeroes = function (n) {
+
+            let count5 = 0
+
+            // 递归找到5
+            const find5 = (num) => {
+                if (num % 5 == 0) {
+                    count5 += 1
+                    find5(num / 5)
+                }
+            }
+
+            // 遍历找出因子
+            for (let i = 1; i <= n; i++) {
+                find5(i)
+            }
+
+            return count5
+        };
+
+        trailingZeroes(10)
+    </script>
+</body>
+
+</html>

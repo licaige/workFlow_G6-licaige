@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 贪心算法 
+        // 我们依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。
+        // 如果最远位置>当前位置, 说明可以跳到此位置,即可更新最远位置
+        // 遍历结束 得到 最远位置>最终位置  即可
+        var canJump = function (nums) {
+
+            let max = nums[0]
+
+            for (let i = 1; i < nums.length; i++) {
+                if (max >= i) {
+                    let curMax = i + nums[i]
+                    max = Math.max(curMax, max)
+                } else {
+                    break
+                }
+            }
+
+            console.log(max);
+
+            if (nums.length - 1 <= max) {
+                return true
+            }
+
+            return false
+        };
+
+        console.log(canJump([2, 3, 1, 1, 4]));
+        console.log(canJump([3, 2, 1, 0, 4]));
+
+    </script>
+</body>
+
+</html>

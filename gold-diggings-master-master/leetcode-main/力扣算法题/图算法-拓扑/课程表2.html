@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 拓扑排序问题, 见笔记
+
+        var findOrder = function (numCourses, prerequisites) {
+            // 遍历,记录入度map
+
+            let map = {}
+            let res = []
+            for (let i = 0; i < numCourses; i++) {
+                map[i] = 0
+            }
+
+            for (let i = 0; i < prerequisites.length; i++) {
+                let course = prerequisites[i][0]
+                map[course]++
+            }
+
+            // 找到起始点
+
+            for (let course in map) {
+                if (map[course] === 0) {
+                    res.push(+course)
+                }
+            }
+
+            if (res.length === 0) return []
+
+            // 递归多次遍历prerequisites
+            const deep = () => {
+                // 通过结果标记, 当无法继续减少课程时跳出
+                let hasRes = false
+
+                for (let i = 0; i < prerequisites.length; i++) {
+                    let course = prerequisites[i][0]
+                    let need = prerequisites[i][1]
+
+                    if (map[need] === 0) {
+                        map[course]--
+                        // 从列表中删除该项
+                        prerequisites.splice(i, 1)
+                        // 标记结果
+                        hasRes = true
+                        if (map[course] === 0) {
+                            res.push(course)
+                        }
+                    }
+                }
+
+                if (prerequisites.length > 0 && hasRes) {
+                    deep()
+                }
+            }
+
+            deep()
+
+            // 检查是否能完成()
+            if (res.length !== numCourses) return []
+
+            return res
+        };
+
+        console.log(findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]));
+        console.log(findOrder(3, [[2, 1], [1, 0]]));
+
+        console.log(findOrder(3, [[1, 0], [1, 2], [0, 1]]));
+    </script>
+</body>
+
+</html>

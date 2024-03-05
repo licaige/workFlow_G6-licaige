@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 74. 搜索二维矩阵
+        // https://leetcode.cn/problems/search-a-2d-matrix/?envType=study-plan-v2&id=top-interview-150
+
+
+        // 相当于二维矩阵的二分查找
+
+        // 方案一  两次二分查找
+        // 方案二  将二维矩阵头尾相连,当作数组进行查找
+
+        // 二分查找行
+        const binarySearchColumn = (matrix, target) => {
+            let low = -1, high = matrix.length - 1;
+            while (low < high) {
+                const mid = Math.floor((high - low + 1) / 2) + low;
+                if (matrix[mid][0] <= target) {
+                    low = mid;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            return low;
+        }
+
+
+        // 二分查找列
+        const binarySearchRow = (row, target) => {
+            let low = 0, high = row.length - 1;
+            while (low <= high) {
+                const mid = Math.floor((high - low) / 2) + low;
+                if (row[mid] == target) {
+                    return true;
+                } else if (row[mid] > target) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+            return false;
+        }
+
+
+        // 进行两次二分查找
+        var searchMatrix = function (matrix, target) {
+            const rowIndex = binarySearchColumn(matrix, target);
+            if (rowIndex < 0) {
+                return false;
+            }
+            return binarySearchRow(matrix[rowIndex], target);
+        };
+
+
+
+
+
+
+
+        // ----------方案二------------------
+        var searchMatrix = function (matrix, target) {
+            const m = matrix.length, n = matrix[0].length;
+            let low = 0, high = m * n - 1;
+            while (low <= high) {
+                const mid = Math.floor((high - low) / 2) + low;
+                const x = matrix[Math.floor(mid / n)][mid % n];
+                if (x < target) {
+                    low = mid + 1;
+                } else if (x > target) {
+                    high = mid - 1;
+                } else {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+
+
+
+
+    </script>
+</body>
+
+</html>

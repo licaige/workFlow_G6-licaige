@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 给定一个 m x n 的矩阵，如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0
+        //  。请使用 原地 算法。
+
+        // 原地算法: 在原有数据上进行修改
+
+        // 方案一: 我们可以用两个标记数组分别记录每一行和每一列是否有零出现。
+
+        // 方案二：可以用矩阵的第一行和第一列,代替方案一中的标记数组,以达到 O(1) 的额外空间。
+        // 但这样会导致原数组的第一行和第一列被修改，无法记录它们是否原本包含 0。
+        // 因此我们需要额外使用两个标记变量分别记录第一行和第一列是否原本包含 0。
+
+        var setZeroes = function (matrix) {
+            debugger
+            // 两个标记记录第一行第一列是否有0出现
+            let line = false
+            let row = false
+
+            // 遍历矩阵  记录0出现情况
+            // todo 注意这里要从第1项开始执行,否则会冲突
+            for (let y = 0; y < matrix.length; y++) {
+                for (let x = 0; x < matrix[0].length; x++) {
+
+                    let num = matrix[y][x]
+                    // 判断第一行第一列是否有0
+                    if (y === 0 && num === 0) { line = true }
+                    if (x === 0 && num === 0) { row = true }
+
+                    // 使用第一行,第一列数组记录行列是否有0
+                    if (num === 0) {
+                        matrix[0][x] = true
+                        matrix[y][0] = true
+                    }
+                }
+            }
+
+            debugger
+            // 遍历第一行修改矩阵
+            for (let x = 1; x < matrix[0].length; x++) {
+                let num = matrix[0][x]
+
+                if (num === true) {
+                    for (let y = 0; y < matrix.length; y++) {
+                        matrix[y][x] = 0
+                    }
+                }
+            }
+            debugger
+            //  遍历第一列修改矩阵
+            for (let y = 1; y < matrix.length; y++) {
+                let num = matrix[y][0]
+
+                if (num === true) {
+                    for (let x = 0; x < matrix[0].length; x++) {
+                        matrix[y][x] = 0
+                    }
+                }
+            }
+
+            debugger
+            // 置零第一行第一列
+            if (line) {
+                for (let x = 0; x < matrix[0].length; x++) {
+                    matrix[0][x] = 0
+                }
+            }
+
+
+            if (row) {
+                for (let y = 0; y < matrix.length; y++) {
+                    matrix[y][0] = 0
+                }
+            }
+        };
+
+
+        let matrix = [[1, 2, 3, 4], [5, 0, 7, 8], [0, 10, 11, 12], [13, 14, 15, 0]]
+        setZeroes(matrix)
+        debugger
+    </script>
+</body>
+
+</html>

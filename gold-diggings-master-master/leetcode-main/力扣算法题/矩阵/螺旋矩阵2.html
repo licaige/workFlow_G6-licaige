@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //https://leetcode.cn/problems/spiral-matrix-ii/?favorite=ex0k24j
+        // 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
+
+
+        var generateMatrix = function (n) {
+
+            // 先生成n*n矩阵
+            let matrix = []
+            let cur = 1
+            let max = n * n + 1 // 留出最后一个空位
+            for (let i = 0; i < n; i++) { matrix.push(new Array(n).fill(0)) }
+
+            const shouldTurn = (x, y) => matrix[y]?.[x] > 0 || typeof matrix[y]?.[x] == "undefined"
+
+            // 封装上下左右四种逻辑
+            const goRight = (x, y) => {
+                for (x; x < n; x++) {
+                    matrix[y][x] = cur
+                    cur++
+                    // 最终终止点
+                    if (cur == max) break
+                    // 检查下一个
+                    if (shouldTurn(x + 1, y)) {
+                        goDown(x, y + 1)
+                        break
+                    }
+                }
+            }
+
+            const goDown = (x, y) => {
+                for (y; y < n; y++) {
+                    matrix[y][x] = cur
+                    cur++
+                    // 最终终止点
+                    if (cur == max) break
+                    // 检查下一个
+                    if (shouldTurn(x, y + 1)) {
+                        goLeft(x - 1, y)
+                        break
+                    }
+                }
+            }
+
+            const goLeft = (x, y) => {
+                for (x; x >= 0; x--) {
+                    matrix[y][x] = cur
+                    cur++
+                    // 最终终止点
+                    if (cur == max) break
+                    // 检查下一个
+                    if (shouldTurn(x - 1, y)) {
+                        goUp(x, y - 1)
+                        break
+                    }
+                }
+            }
+
+            const goUp = (x, y) => {
+                for (y; y >= 0; y--) {
+                    matrix[y][x] = cur
+                    cur++
+                    // 最终终止点
+                    if (cur == max) break
+                    // 检查下一个
+                    if (shouldTurn(x, y - 1)) {
+                        goRight(x + 1, y)
+                        break
+                    }
+                }
+            }
+
+            goRight(0, 0)
+
+            return matrix
+        };
+
+
+        generateMatrix(3)
+    </script>
+</body>
+
+</html>

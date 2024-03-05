@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 77. 组合
+        // 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。 你可以按 任何顺序 返回答案。
+        // https://leetcode.cn/problems/combinations/?envType=study-plan-v2&id=top-interview-150
+        // 输入：n = 4, k = 2
+        // 输出：
+        // [
+        //     [1, 2],
+        //     [1, 3],
+        //     [1, 4],
+        //     [2, 3],
+        //     [2, 4],
+        //     [3, 4],
+        // ]
+
+        var combine = function (n, k) {
+
+            const result = []
+            // 记录需要遍历的数组   结果数量  结果数组
+            const deep = (start, end, count, res) => {
+                for (let i = start; i <= end; i++) {
+                    let nextRes = [...res]
+                    let nextCount = count
+
+                    nextRes.push(i)
+                    nextCount += 1
+
+                    if (nextCount == k) {
+                        result.push(nextRes);
+                        continue
+                    }
+
+                    deep(
+                        i + 1,
+                        end,
+                        nextCount,
+                        nextRes
+                    )
+                }
+            }
+
+            deep(1, n, 0, [])
+
+            return result
+        };
+
+
+        combine(4, 2)
+    </script>
+</body>
+
+</html>

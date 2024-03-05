@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        var removeNthFromEnd = function (head, n) {
+            // 计算链表长度
+            let length = 0
+            let cur = head
+            while (current.next) {
+                length++
+                current = current.next
+            }
+
+            // 计算第n位
+            let c = length - n + 1
+
+            // 删除第c位
+            let current = head
+            let count = 0
+            for (let i = 0; i < c; i++) {
+                current = current.next
+            }
+            console.log(c);
+            console.log(current);
+        };
+
+
+
+    </script>
+</body>
+
+</html>

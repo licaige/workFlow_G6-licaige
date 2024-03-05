@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        //https://leetcode.cn/leetbook/read/illustration-of-algorithm/lhrww7/
+        // 贪心思想, 每次堆叠一个最小的数字
+
+        // 拼接所有密码  组合出最小的数字
+        // 输入: password = [0, 3, 30, 34, 5, 9]
+        // 输出: "03033459"
+
+        // 本质上是一种排序算法
+        // 设拼接的两个数字x y  如果x+y > y+x  则x > y,
+
+        //如  3 0 30 34 5 9      3-0 相比较交换位置
+        //    0 3 30 34 5 9      3-30相比较 再次交换位置
+        //    0 30 3 34 5 9          3-34相比较 不交换 ...
+
+        // 最终得
+        // 0 30 3 34 5 9
+
+
+        var crackPassword = function (password) {
+
+            if (password.length == 0) return "0"
+
+            //可以直接使用sort方法 比较两数拼接和  快速排序
+            password.sort((i, j) => {
+                const first = parseInt(i.toString() + j.toString())
+                const second = parseInt(j.toString() + i.toString())
+
+                return first - second
+            })
+
+
+            // 拼接结果
+            let res = ''
+            password.forEach(num => {
+                res += num.toString()
+            });
+            return res
+
+        };
+
+
+
+        // 代码优化版本
+        var crackPassword = function (password) {
+
+            if (password.length == 0) return "0"
+
+            password.sort((i, j) =>
+                parseInt(i.toString() + j.toString()) - parseInt(j.toString() + i.toString()))
+
+            return password.join("")
+        };
+
+
+        crackPassword([1, 2, 3, 1])
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 1. 记录已经走过的点, 如果走到相同节点,直接退出
+        // 2. 构建树结构,递归
+
+
+        var exist = function (board, word) {
+            // 找到所有的起始字母(用于优化)
+            let firstLitter = []
+            for (let y = 0; y < board.length; y++) {
+
+                for (let x = 0; x < board[0].length; x++) {
+                    if (word[0] === board[y][x]) {
+                        firstLitter.push([x, y])
+                    }
+                }
+
+            }
+
+
+            // 根据起始字母构建树(递归) x,y为坐标,i为查询字母的下标 
+            function check(x, y) {
+
+                let res = false
+
+                //  检查是否走过了节点
+                const hasPoint = (x, y, points) => {
+                    let res = false
+                    points.forEach(p => {
+                        if (p[0] === x && p[1] === y) {
+                            res = true
+                        }
+                    })
+                    return res
+                }
+
+                const deep = (x, y, i, points) => {
+                    // 判断次点是否合法
+                    if (x < 0 || y < 0) return false
+                    if (hasPoint(x, y, points)) return false// 走到之前走过的节点时退出 
+
+                    let curLitter = board?.[y]?.[x]
+                    let litter = word[i]
+
+                    if (curLitter && litter && curLitter === litter) {
+                        // 记录结果
+                        let newPoints = [...points]
+                        newPoints.push([x, y, curLitter])
+                        // 检查是否走完
+                        if (newPoints.length >= word.length) { res = true; return }
+                        // 四个方向执行(回溯, 只要有一个返回了true,则后续的都不执行,使用||符号)
+                        let canFindRest =
+                            deep(x, y - 1, i + 1, newPoints) ||     // 上
+                            deep(x, y + 1, i + 1, newPoints) ||     // 下
+                            deep(x - 1, y, i + 1, newPoints) ||     // 左
+                            deep(x + 1, y, i + 1, newPoints)        // 右
+                    }
+                }
+
+                deep(x, y, 0, [])
+                return res
+            }
+
+            // 遍历起始字母,进行查找, 找到直接返回true
+            let res = false;
+            for (let i = 0; i < firstLitter.length; i++) {
+                let curRes = check(firstLitter[i][0], firstLitter[i][1])
+                if (curRes) {
+                    res = curRes
+                    break
+                }
+            }
+
+            return res
+        };
+        
+        
+        
+        let board = [["A", "A", 'A']]
+        let board2 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+        let board3 = [["A", "B", "C", "E"], ["S", "F", "E", "S"], ["A", "D", "E", "E"]]
+        console.log(exist(board, "AAAA"));
+        console.log(exist(board2, "ABCB"));
+        console.log(exist(board3, "ABCESEEEFS"));
+    </script>
+</body>
+
+</html>

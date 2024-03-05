@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // https://leetcode.cn/problems/flatten-nested-list-iterator/description/?favorite=2ckc81c
+        
+        // 方案1
+        // 先遍历整个嵌套数组,保存起来
+        // 然后实现next , 
+
+        /**
+         * @constructor
+         * @param {NestedInteger[]} nestedList
+         */
+        var NestedIterator = function (nestedList) {
+            this._list = []
+            this._index = -1
+            // 深度优先递归数组  遍历整个嵌套数组,保存元素
+            let deep = (list) => {
+                for (let i = 0; i < list.length; i++) {
+                    if (typeof list[i] == "number") {
+                        this._list.push(list[i])
+                    }
+                    else if (Array.isArray(list[i])) {
+                        deep(list[i])
+                    }
+                }
+            }
+            deep(nestedList)
+        };
+
+
+        /**
+         * @this NestedIterator
+         * @returns {boolean}
+         */
+        NestedIterator.prototype.hasNext = function () {
+            return typeof this._list[this._index + 1] == "number"
+        };
+
+        /**
+         * @this NestedIterator
+         * @returns {integer}
+         */
+        NestedIterator.prototype.next = function () {
+            this._index++
+            return this._list[this._index]
+        };
+
+
+        // your interator should be call like this:
+        let nestedList = [1, [4, [6]]]
+        let i = new NestedIterator(nestedList)
+        let a = [];
+        while (i.hasNext()) a.push(i.next());
+        console.log(a);
+    </script>
+</body>
+
+</html>

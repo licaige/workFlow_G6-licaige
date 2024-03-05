@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 输入：candidates = [2,3,6,7], target = 7
+        // 输出：[[2,2,3],[7]]
+        // 解释：
+        // 2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
+        // 7 也是一个候选， 7 = 7 。
+        // 仅有这两种组合。
+
+
+        // 子数有两种分支,
+        // 1.继续使用当前数字
+        // 2.使用下一个数字
+
+        var combinationSum = function (candidates, target) {
+            const ans = [];
+            const dfs = (target, combine, idx) => {
+                if (idx === candidates.length) {
+                    return;
+                }
+                if (target === 0) {
+                    ans.push(combine);
+                    return;
+                }
+                // 直接跳过
+                dfs(target, combine, idx + 1);
+                // 选择当前数
+                if (target - candidates[idx] >= 0) {
+                    dfs(target - candidates[idx], [...combine, candidates[idx]], idx);
+                }
+            }
+
+            dfs(target, [], 0);
+            return ans;
+        };
+
+
+        // combinationSum([2, 3, 6, 7], 7)
+        // combinationSum([2, 3, 5], 8)
+        // combinationSum([2], 1)
+        combinationSum([3, 3, 5], 11)
+    </script>
+</body>
+
+</html>

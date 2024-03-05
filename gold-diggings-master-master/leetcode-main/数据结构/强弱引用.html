@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 开辟内存空间存放对象,并将obj变量指向该对象
+        let obj = { name: "张三" }
+        // 访问name
+        let name = obj.name
+        // 清除obj到对象的引用
+        obj = null
+        // 此时obj未指向对象,但依然可以访问到name,
+        // 证明对象依然存在于内存中
+        console.log(name); // 张三
+
+        // 开辟内存空间存放对象,并将obj2指向该对象
+        let obj2 = { name: "张三" }
+        // 将obj2放入weakSet
+        let ws = new WeakSet()
+        ws.add(obj2)
+        // 清除obj2到对象的引用
+        obj2 = null
+
+        console.log(ws);
+
+
+    </script>
+</body>
+
+</html>

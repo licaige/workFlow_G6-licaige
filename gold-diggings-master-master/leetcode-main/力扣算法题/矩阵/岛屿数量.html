@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+
+        // 岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+
+        // 此外，你可以假设该网格的四条边均被水包围。
+
+        // 输入：grid = [
+        //   ["1","1","1","1","0"],
+        //   ["1","1","0","1","0"],
+        //   ["1","1","0","0","0"],
+        //   ["0","0","0","0","0"]
+        // ]
+        // 输出：1
+
+
+        // 岛屿问题 详见笔记
+
+        var numIslands = function (grid) {
+            // BFS深度优先遍历
+            const deep = (x, y) => {
+                let val = grid?.[y]?.[x]
+
+                // 是岛屿部分,递归进行上下左右深度遍历,标记为2
+                if (val === "1") {
+                    grid[y][x] = 2
+                    deep(x, y - 1)
+                    deep(x - 1, y)
+                    deep(x, y + 1)
+                    deep(x + 1, y)
+                }
+                // 以遍历过的位置,跳过
+                else if (val === "2") return
+                //  不是岛屿或超出边界,跳过
+                else if (val === '0' || typeof (val) === "undefined") return
+            }
+
+            // 遍历节点,进行深度优先BFS遍历,
+            // 因为上一次遍历后,1的节点被标记为2 ,所以之后已遍历过的节点不会触发deep
+            // deep执行的次数是岛屿数量
+            let res = 0
+
+            for (let y = 0; y < grid.length; y++) {
+                for (let x = 0; x < grid[0].length; x++) {
+                    let val = grid?.[y]?.[x]
+
+                    if (val === "1") {
+                        deep(x, y)
+                        res++
+                    }
+                }
+            }
+
+            return res
+        };
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用最少数量的箭引爆气球
+        // 就是一个区间问题 (最长上升子序列)
+        // https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/solutions/?envType=study-plan-v2&id=top-interview-150
+        //           |          |
+        // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 
+        //                    ------------------
+        //   -------------
+        // -----------
+        //             --------------
+
+
+        // 方案 先进行区间排序 (右端升序排序)
+        // 如果是左端升序排列就会出现   [0, 9], [0, 6], [7, 8]
+        //           |              |
+        // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 
+        // -----------
+        //   -------------
+        //             --------------
+        //                    ------------------
+
+        var findMinArrowShots = function (points) {
+            // 右端升序排列区间
+            points.sort((a, b) => a[1] - b[1])
+
+            // 每次从上一个区间的末尾射箭,扎破气球
+            let count = 1
+            let arrow = points[0][1]
+
+            for (let i = 0; i < points.length; i++) {
+                if (points[i][0] <= arrow && points[i][1] >= arrow) {
+                    continue
+                } else {
+                    arrow = points[i][1]
+                    count++
+                }
+            }
+
+            return count
+        };
+
+        findMinArrowShots([[10, 16], [2, 8], [1, 6], [7, 12]])
+
+
+        [
+            "2620:12a:8008:63b2:b9b:833f:48cb:9c6a",
+            "2606:4700:a0:1d3f:9372:6374:ff64:896a",
+            "2600:9000:21a9:806a:a86:deaa:e841:2b88",
+            "2a04:4e42:4010:a1bc:ed12:f3d3:d8e8:573e",
+            "2600:9000:2181:87a8:71b3:60d1:660c:f8c6",
+            "......"
+        ]
+
+
+    </script>
+</body>
+
+</html>

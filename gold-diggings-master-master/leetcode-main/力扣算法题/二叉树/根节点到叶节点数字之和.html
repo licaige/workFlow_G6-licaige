@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 求根节点到叶节点数字之和
+        // https://leetcode.cn/problems/sum-root-to-leaf-numbers/?envType=study-plan-v2&id=top-interview-150
+
+
+        var sumNumbers = function (root) {
+
+            let res = []
+
+            const deep = (root, path) => {
+                if (!root) return
+
+                //  到达叶子节点
+                if (!root.left && !root.right) {
+                    res.push(parseInt([...path, root.val].join("")))
+                    return
+                }
+
+                deep(root.left, [...path, root.val])
+                deep(root.right, [...path, root.val])
+            }
+
+            deep(root, [])
+
+            // 结果相加
+            return res.reduce((prev, cur) => cur + prev)
+        };
+
+    </script>
+</body>
+
+</html>

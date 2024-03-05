@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 输入: num1 = "2", num2 = "3"
+        // 输出: "6"
+        // 输入: num1 = "123", num2 = "456"
+        // 输出: "56088"
+
+        var multiply = function (num1, num2) {
+
+            //边界判断
+            if (parseInt(num1) == 0 || parseInt(num2) == 0) return "0"
+
+            // 模拟竖式法  生成每列数字
+            let resList = []
+
+            for (let i = num2.length - 1; i >= 0; i--) {
+
+                let prevAdd = 0 // 记录补位的数字
+                let resString = ""
+
+                for (let j = num1.length - 1; j >= 0; j--) {
+                    let res = (parseInt(num2[i]) * parseInt(num1[j]) + prevAdd).toString()
+
+                    if (res.length == 1) { res = "0" + res }
+                    let s = res[1]
+                    let add = res[0]
+                    resString = s + resString
+
+                    prevAdd = parseInt(add)
+
+                    if (j === 0) {
+                        resString = prevAdd.toString() + resString
+                    }
+                }
+
+                resList.push(resString)
+            }
+
+
+            // 字符串相加
+            let finalRes = add(resList)
+
+            // 删除前导零
+            if (finalRes[0] == "0") {
+                finalRes = finalRes.slice(1)
+            }
+
+            return finalRes
+        };
+
+        // 字符串相加方法
+        function add(arr) {
+
+            let maxLength = 0
+            // 填充后缀0
+            arr = arr.map((num, i) => {
+                let count = i
+                while (count > 0) {
+                    num = num + "0"
+                    count--
+                }
+                if (num.length > maxLength) {
+                    maxLength = num.length
+                }
+                return num
+            })
+
+            // 填充前缀零
+            arr = arr.map((num, i) => {
+                while (num.length < maxLength) {
+                    num = "0" + num
+                }
+                return num
+            })
+
+
+            // 相加
+
+            let finalRes = ""
+            let prevAdd = 0
+            for (let i = maxLength - 1; i >= 0; i--) {
+                let res = 0
+
+                for (let j = 0; j < arr.length; j++) {
+                    res += parseInt(arr[j][i])
+                }
+                res += prevAdd
+                res = res.toString()
+                if (res.length == 1) { res = "0" + res }
+
+                let s = res[1]
+                prevAdd = parseInt(res[0])
+
+                finalRes = s + finalRes
+            }
+
+            return finalRes
+        }
+
+        console.log(multiply("123", "456"));
+
+    </script>
+</body>
+
+</html>

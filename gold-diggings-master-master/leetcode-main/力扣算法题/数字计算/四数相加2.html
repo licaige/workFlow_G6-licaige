@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 方案  见notion笔记  (四数相加)
+        //https://leetcode.cn/problems/4sum-ii/description/?favorite=2ckc81c&orderBy=most_votes
+
+        var fourSumCount = function (A, B, C, D) {
+            const countAB = new Map();
+
+            // 遍历A,B  保存两数合到map中
+            for (let a of A) {
+                for (let b of B) {
+                    let sum1 = a + b
+                    countAB.set(sum1, (countAB.get(sum1) || 0) + 1)
+                }
+            }
+
+            // 遍历C,D 判断map是否有值,使得sum1+sum2 =0
+            let ans = 0;
+            for (let c of C) {
+                for (let d of D) {
+                    let sum2 = -(c + d)
+                    if (countAB.has(sum2)) {
+                        ans += countAB.get(sum2);
+                    }
+                }
+            }
+            return ans;
+        };
+
+
+    </script>
+</body>
+
+</html>

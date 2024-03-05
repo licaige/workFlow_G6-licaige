@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // https://leetcode.cn/leetbook/read/illustration-of-algorithm/5vokvr/
+        // 一般来说  出现一个矩阵时,如果我们需要将其每个节点构建出来(构建树)
+        // 可以构建对应的dp (二维或者三维)
+
+
+        var jewelleryValue = function (frame) {
+            // 构建dp
+            const lh = frame[0].length
+            const rh = frame.length
+
+            // 特殊处理
+            if (lh == 0 || rh == 0) return 0
+            if (lh == 1 && rh == 1) return frame[0][0]
+
+            const line = new Array(lh).fill(0)
+            const dp = new Array(rh).fill([...line])
+
+            dp[0][0] = frame[0][0]
+
+            // 设dp[i][j]为 走到ij点时的最大价值
+            for (let i = 0; i < rh; i++) {
+                for (let j = 0; j < lh; j++) {
+
+                    if (i == 0 && j > 0) {
+                        dp[i][j] = dp[i][j - 1] + frame[i][j]
+                    }
+
+                    if (j == 0 && i > 0) {
+                        dp[i][j] = dp[i - 1][j] + frame[i][j]
+                    }
+
+                    // 从左侧或者上侧进入
+                    if (j > 0 && i > 0) {
+                        dp[i][j] = Math.max(
+                            dp[i][j - 1] + frame[i][j],
+                            dp[i - 1][j] + frame[i][j],
+                        )
+                    }
+                }
+            }
+
+            // 返回最大值
+            return dp[rh - 1][lh - 1]
+        };
+
+
+        let frame = [[9, 1, 4, 8]]
+
+        console.log(jewelleryValue(frame));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-07-12 15:42:23
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-10-18 10:28:44
+ * @Description:
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+
+    function getAssetIdAndType({ ip, url, ipv6 }) {
+      const ipID = ipv6 ? ipv6 : ip;
+      const siteId = `${url || ''}___${ipID || ''}`;
+      const assetType = url ? 'domain' : ip ? 'ip' : ipv6 ? 'ipv6' : 'other';
+      return {
+        id: siteId,
+        assetType,
+      };
+    }
+
+
+
+    const searchInfo = getAssetIdAndType({
+      ip: "133.18.65.141",
+      ipv6: "",
+      url: "o5044-861.kagoya.net",
+    });
+
+    console.log(searchInfo);
+
+    const siteInfo = await SiteRepository.findOne({ id: searchInfo.id },{ project: { _id: 1 } });
+  </script>
+</body>
+
+</html>

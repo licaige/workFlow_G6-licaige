@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的连续子数组的个数 。
+        // 输入：nums = [1, 1, 1], k = 2
+        // 输出：2
+
+        // 首先 查询子数组不能用滑动窗口法!!!! 太慢
+
+        // 使用双指针 确定数组的 start 和 end 双重for循环来确定数组
+
+        // 思路, 枚举, 上一个数组和计算出来后,下一个数组和只需要+num[i]即可
+        var subarraySum = function (nums, k) {
+
+            let resCount = 0
+
+            for (let start = 0; start < nums.length; start++) {
+                let sum = 0
+                for (let end = start; end < nums.length; end++) {
+                    sum = sum + nums[end] // 每次用上一个数组和 加上 后一个元素即可
+                    if (sum === k) {
+                        resCount++
+                    }
+                }
+            }
+
+            return resCount
+        };
+
+        console.log(subarraySum([1, 2, 3, 4], 5));
+    </script>
+</body>
+
+</html>

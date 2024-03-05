@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 填充每个节点的下一个右侧节点指针 II
+        //https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/?envType=study-plan-v2&id=top-interview-150
+
+        //    1->
+        //  2-> 3
+        //4-> 5->  7
+        //
+        // 层序遍历后指向
+
+        var connect = function (root) {
+            if (!root) return root
+
+            const deep = (nodeList) => {
+                let nextNodeList = []
+                // 层序遍历
+                for (let i = 0; i < nodeList.length; i++) {
+                    nodeList[i].left && nextNodeList.push(nodeList[i].left)
+                    nodeList[i].right && nextNodeList.push(nodeList[i].right)
+                }
+
+                if (!nextNodeList.length) return
+
+                // 连接本层结果
+                for (let j = 0; j < nextNodeList.length; j++) {
+                    nextNodeList[j].next = nextNodeList[j + 1] ? nextNodeList[j + 1] : null
+
+                }
+                // 下层遍历
+                deep(nextNodeList)
+            }
+
+            deep([root])
+            return root
+        };
+
+        // 队列层序遍历
+        var connect2 = function (root) {
+            if (!root) return root
+            const queue = [root]
+            while (queue.length) {
+                const length = queue.length
+                for (let i = 0; i < length; i++) {
+                    const node = queue.shift()
+                    if (i < length - 1) {
+                        node.next = queue[0]
+                    }
+                    node.left && queue.push(node.left)
+                    node.right && queue.push(node.right)
+                }
+            }
+            return root
+        };
+    </script>
+</body>
+
+</html>

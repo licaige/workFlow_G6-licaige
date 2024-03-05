@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 简化路径
+        //https://leetcode.cn/problems/simplify-path/?envType=study-plan-v2&id=top-interview-150
+
+
+        // "/a/./b/../../c/"
+
+        var simplifyPath = function (path) {
+            const names = path.split("/"); // 通过/进行拆分
+            const stack = [];
+            for (const name of names) {
+                if (name === "..") {
+                    if (stack.length) {
+                        stack.pop();
+                    }
+                } else if (name.length && name !== ".") {
+                    stack.push(name);
+
+                }
+            }
+
+            return "/" + stack.join("/");
+        };
+
+
+        let p = "/..."
+        console.log(simplifyPath(p));
+    </script>
+</body>
+
+</html>

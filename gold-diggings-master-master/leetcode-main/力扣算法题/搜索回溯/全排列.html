@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
+
+        var permute = function (nums) {
+
+            const result = []
+
+            const deep = (res, leftNums) => {
+                if (leftNums.length === 0) {
+                    result.push(res)
+                    return
+                }
+
+                for (let i = 0; i < leftNums.length; i++) {
+                    let nextRes = [...res]
+                    let nextNums = [...leftNums]
+                    nextNums.splice(i, 1)
+                    nextRes.push(leftNums[i])
+
+                    deep(nextRes, nextNums)
+                }
+            }
+
+            deep([], nums)
+
+            return result
+        };
+
+        permute([1, 2, 3])
+    </script>
+</body>
+
+</html>

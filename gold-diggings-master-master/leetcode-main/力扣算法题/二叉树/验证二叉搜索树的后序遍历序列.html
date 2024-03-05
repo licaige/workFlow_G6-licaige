@@ -1,0 +1,110 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-10-25 11:08:11
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-10-26 10:33:59
+ * @Description:
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 判断数组postorder是否为是否为二叉搜索树的后序遍历结果
+
+        // 对于序列 [4,6,5,9,8]
+        // 8为根节点  然后找到第一个大于8的元素=9
+        // 拆分为左右两个子数序列[4 6 5] [9]  判断是否为合法搜索树
+        // 判断所有子树是否都大于,小于root
+        // 寻找第一个大于根节点的元素i  i左边是左子树  i右边是右子树
+
+
+        var verifyTreeOrder = function (postorder) {
+
+            let root = postorder.pop()
+            let res = true
+
+            const deep = (root, postorder) => {
+
+                if (!res) return
+                if (!postorder.length) return // 叶子节点
+                if (postorder.length == 1) return // 只有一个子节点
+                // 找到第一个大于root的值
+                let firstBiggerIdx = -1
+
+                for (let i = 0; i < postorder.length; i++) {
+                    if (postorder[i] > root) {
+                        firstBiggerIdx = i
+                        break
+                    }
+                }
+
+                // 划分为左右子数两个区间
+                let left, right
+
+                if (firstBiggerIdx == -1) {
+                    left = postorder
+                    right = []
+                } else {
+                    left = postorder.slice(0, firstBiggerIdx)
+                    right = postorder.slice(firstBiggerIdx)
+                }
+
+                // 检查左子树所有节点
+                if (left.length) {
+                    const isValid = left.every(num => num <= root)
+                    if (!isValid) return res = false
+
+                    let leftNode = left.pop()
+                    deep(leftNode, left)
+                }
+
+                // 检查右子树所有节点
+                if (right.length) {
+                    const isValid = right.every(num => num >= root)
+                    if (!isValid) return res = false
+
+                    let rightNode = right.pop()
+                    deep(rightNode, right)
+                }
+
+            }
+
+            deep(root, postorder)
+            return res
+        };
+
+        // verifyTreeOrder([4, 6, 5, 9, 8])// true
+        // verifyTreeOrder([4, 9, 6, 9, 8])// false
+        console.log(verifyTreeOrder([4, 6, 12, 8, 16, 14, 10]));// false
+
+
+
+        //-----------辅助栈算法------------------
+        var verifyTreeOrder = function (postorder) {
+            // 后续遍历的顺序是左右根   反向遍历 那就是右根左--大致
+            let stack = [];
+            let root = Number.MAX_SAFE_INTEGER;
+            for (let i = postorder.length - 1; i >= 0; i--) {
+                // 如果后面的元素还比根节点大了  那肯定不是正确的顺序
+                if (postorder[i] > root) return false;
+                // 如果栈内有值并且栈顶元素比当前元素大，比当前元素大的都弹出来，最后一个弹出来的一定是后面元素（左子树）的根节点
+                while (stack.length && stack[stack.length - 1] > postorder[i]) {
+                    root = stack.pop();
+                }
+                stack.push(postorder[i]);
+            }
+            return true;
+        };
+
+    </script>
+</body>
+
+</html>

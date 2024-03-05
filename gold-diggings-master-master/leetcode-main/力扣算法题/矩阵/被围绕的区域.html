@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 433. 最小基因变化
+        // https://leetcode.cn/problems/minimum-genetic-mutation/description/
+
+
+        // 方案  广度优先搜索
+        // 生成基因树    AACCGGTT   每个节点都有6种变化, 也就是6叉树
+
+        // - 使用队列对基因树进行广度优先搜索 
+        // - 记录已经生成过的结果, 下次遇到直接退出
+
+        // 替换第i个字符
+        function replaceChar(str, i, char) {
+            if (str.length <= i) return str;
+            return str.substr(0, i) + char + str.substr(i + 1, str.length - 1);
+        }
+
+        var minMutation = function (startGene, endGene, bank) {
+            // 数组进行广度优先搜索,记录深度
+            // 记录已经生成过的结果, 下次遇到直接退出
+            const genePart = ['A', 'C', 'G', 'T']
+            const geneSet = new Set()
+            const geneBank = new Set(bank)
+
+            let res = -1
+
+            const deep = (list, depth) => {
+                const nextList = []
+
+                for (let i = 0; i < list.length; i++) {
+                    let before = list[i]
+                    for (let i = 0; i < 8; i++) {
+                        for (let j = 0; j < 4; j++) {
+                            const after = replaceChar(before, i, genePart[j])
+                            // 判断变化的基因是否合法
+                            if (!geneBank.has(after)) continue
+                            // 判断基因是否生成过
+                            if (geneSet.has(after)) continue
+                            // 如果符合结果,记录结果
+                            if (after == endGene) {
+                                res = depth
+                                return res
+                            }
+                            // 添加到下层结果, 并添加到set中
+                            nextList.push(after)
+                            geneSet.add(after)
+                        }
+                    }
+                }
+
+                if (res == -1 && nextList.length > 0) {
+                    deep(nextList, depth + 1)
+                }
+            }
+
+            deep([startGene], 1)
+            debugger
+            return res
+        };
+
+
+
+        let start = "AACCGGTT",
+            end = "AAACGGTA",
+            bank = ["AACCGGTA", "AACCGCTA", "AAACGGTA"]
+
+        minMutation(start, end, bank)
+    </script>
+</body>
+
+</html>

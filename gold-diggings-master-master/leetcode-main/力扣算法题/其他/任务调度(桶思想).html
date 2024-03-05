@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 两个 相同种类 的任务连续执行需要冷却时间n
+        // 每个任务执行时间花费1
+        // 求最短执行完毕任务的时间
+
+        // 输入：tasks = ["A", "A", "A", "B", "B", "B"], n = 2
+        // 输出：8
+        // 解释：A -> B -> (待命) -> A -> B -> (待命) -> A -> B
+        // 在本示例中，两个相同类型任务之间必须间隔长度为 n = 2 的冷却时间
+        //  而执行一个任务只需要一个单位时间，所以中间出现了（待命）状态。
+
+
+        // 先找到最多的任务,构建一个桶(表格),逐渐填充表格即可
+
+        
+        var leastInterval = function (tasks, n) {
+            // 先创建map记录各任务数量
+            let taskMap = {}
+            tasks.forEach(v => {
+                if (!taskMap[v]) {
+                    taskMap[v] = 0
+                }
+                taskMap[v]++
+            })
+
+            // 找到最大的任务数量
+            let maxCount = 0
+            for (let v in taskMap) {
+                if (taskMap[v] > maxCount) {
+                    maxCount = taskMap[v]
+                }
+            }
+            // 找到最大的任务
+            let maxTasks = []
+            for (let v in taskMap) {
+                if (taskMap[v] === maxCount) {
+                    maxTasks.push({ task: v, count: maxCount })
+                }
+            }
+
+            // 使用最多的任务们构建任务表格(桶子)
+            let taskCross = []
+            let taskGroup = new Array(n + 1).fill(undefined)
+            maxTasks.forEach((t, i) => {
+                taskGroup[i] = t.task
+                taskMap[t.task] = 0
+            })
+
+            for (let i = 0; i < maxCount; i++) {
+                taskCross.push([...taskGroup])
+            }
+
+            // 依次将任务map中的任务插入桶子
+            let group = 0
+            let index = maxTasks.length
+            const insert = (task) => {
+                // 切换列
+                if (tasks.length - 1 > (n + 1) * (taskCross.length - 1)) {
+                    if (group >= taskCross.length) {
+                        group = 0
+                        index++
+                    }
+                } else {
+                    if (group >= taskCross.length - 1) {
+                        group = 0
+                        index++
+                    }
+                }
+
+                // 插入到表格
+                taskCross[group][index] = task
+
+                taskMap[task]--;
+                group++
+            }
+
+            for (let v in taskMap) {
+                while (taskMap[v] > 0) {
+                    insert(v)
+                }
+            }
+
+
+            // 删去最后一行的undefined
+            taskCross[taskCross.length - 1] = taskCross[taskCross.length - 1].filter(v => v !== undefined)
+
+            // 计算长度
+            let time = 0
+            for (let i = 0; i < taskCross.length; i++) {
+                time += taskCross[i].length
+            }
+
+            console.log(taskCross);
+            console.log(time);
+            return time
+        };
+
+        leastInterval(["A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "D", "E"], 2)
+    </script>
+</body>
+
+</html>

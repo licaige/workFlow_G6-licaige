@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //不同的二叉树
+
+        // 给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。
+
+        // n=1  res = 1
+        // n=2  res = 2
+        // n=3  res = 5
+        // n=4  res = 14
+
+        // 卡特兰数求和
+
+        // 准备两个数字  
+        // 1. G(n)     (无固定节点)  长度为n的序列能构成的二叉树个数  
+        // 2. F(i,n)   以i为根节点   长度为n的序列能构成的二叉树个数  
+
+        // G(n)是对遍历所有 i 的 F(i,n)之和  (每个节点都做一次root)
+        // G(n) =   F(1,n)+F(2,n)+F(3,n)...+F(n,n) 
+
+
+
+        // 边界条件
+        // G(0) = 1 ;  G(1) = 1 
+
+
+        // 比如序列 1 2 3 4 5 6  
+        // 取4为root  左边构建左子树 1 2 3  右边构建右子树5 6
+        // 可得 F(4,6) = G(3)*G(2)
+        // 公式为: F(i,n)=G(i−1)⋅G(n−i)
+
+        // 可得两个公式:
+        // G(n) =   F(1,n)+F(2,n)+F(3,n)...+F(n,n) 
+        // F(i,n)=G(i−1)⋅G(n−i)
+
+        // 结合可得
+        // G(n) = ∑ G(i−1)⋅G(n−i)  (n>=i>=1) 遍历相加
+
+        var numTrees = function (n) {
+            const G = new Array(n + 1).fill(0);
+            G[0] = 1;
+            G[1] = 1;
+
+            for (let i = 2; i <= n; ++i) {
+                for (let j = 1; j <= i; ++j) {
+                    G[i] += G[j - 1] * G[i - j];
+                }
+            }
+            return G[n];
+        };
+
+
+    </script>
+</body>
+
+</html>

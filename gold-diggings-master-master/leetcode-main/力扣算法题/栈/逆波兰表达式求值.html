@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 逆波兰表达式
+        // ["2","1","+","3","*"]    = ((2 + 1) * 3) = 9
+
+        // 运算符放在两个操作数的后面    比如21+  = 2+1
+
+        // ["2","1","+","3","*"]
+        // ["3","3","*"]
+        // ["9"]
+
+        // 计算方式   准备一个栈,存放操作数, 遇到操作符则计算栈顶两个元素
+        // [2，1]  遇到+ 计算
+        // [3]     结果
+        // [3,3]   继续入栈3 遇到* 计算
+        // [9]     结果
+
+
+        /**
+         * 向零截断结果
+        */
+        const toZero = (num) => {
+            if (num >= 0) return Math.floor(num)
+            else if (num < 0) return Math.ceil(num)
+        }
+
+        
+        var evalRPN = function (tokens) {
+            let num = []
+            let isOpration = s => ["+", "-", "*", "/"].indexOf(s) !== -1
+
+
+            for (let i = 0; i < tokens.length; i++) {
+                let s = tokens[i]
+                // 操作符  取出栈顶两个元素进行计算
+                if (isOpration(tokens[i])) {
+                    let b = num.pop()
+                    let a = num.pop()
+
+                    if (s == '+') { num.push(a + b) }
+                    else if (s == '-') { num.push(a - b) }
+                    else if (s == '*') { num.push(a * b) }
+                    else if (s == '/') { num.push(toZero(a / b)) }
+                }
+                // 数字情况  直接推入
+                else {
+                    num.push(parseInt(s))
+                }
+            }
+
+            return num[0]
+        };
+
+
+
+
+
+        evalRPN(["4", "13", "5", "/", "+"])
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //硬币总和
+
+        // 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
+        // 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
+        // 你可以认为每种硬币的数量是无限的。
+
+        // 输入：coins = [1, 2, 5], amount = 11
+        // 输出：3 
+        // 解释：11 = 5 + 5 + 1
+
+
+        // 记忆化搜索
+        // 构建一棵树  root = 11 
+        // 可分为3(coins)个分支, 11-1  11-2  11-5
+        // 下一层也可分成3个分支  ..... 当分支结果为0时,即为结果
+
+
+        //                          11
+
+
+        //          11-1           11-2            11-5  
+
+
+        // 11-1-1  11-1-2  11-1-5      
+
+
+
+        var coinChange = function (coins, amount) {
+            // 特殊处理
+            if (amount === 0) return 0
+
+            // 记录已经计算过的节点
+            let resMap = {}
+            let resList = []
+            let c = 0
+
+
+            const deep = (rest) => {
+
+                if (rest === 0) return 1
+                else if (rest < 0) return 0
+
+
+                let res = 0
+
+                if (rest > 0) {
+                    coins.forEach(v => {
+                        let r = deep(rest - v)
+                        if (res === 0) {
+                            res = res + r
+                        }
+                    })
+                }
+
+                if (!resMap[rest]) {
+                    resMap[rest] = res
+                }
+                return res
+            }
+
+
+
+
+            deep(amount, 0)
+
+            console.log(resMap, c);
+            // return res
+        };
+
+        console.log(coinChange([2, 1], 3));
+        // console.log(coinChange([83, 186, 408, 419], 6249));
+        // console.log(coinChange([83, 143, 230, 408], 6249));
+
+
+
+        // 方法二  ----------------动态规划(完全背包问题)----------------
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+         // 转换数组的形式[1, 2, 3, [4, 5]]要变为这样的对象：
+      {
+          children:[
+               {value:1},
+               {value:2},
+               {value:3},
+               {children:[
+                    {value:4},
+                    {value:5}
+               ]}
+          ]
+      }
+        // 测试数组
+        var arr1 = [1, 2, 3, [4, 5]];
+
+        // --------------------转换函数(写法1)--------------------
+        function convert(arr){
+            //准备一个结果数组
+            var result = []
+            for(let i = 0; i<arr.length;i++){
+                //遍历这个数组   如果遍历到的项是数字  那么直接给数组添加一个value对象
+                if(typeof arr[i]=='number'){
+                    result.push( {value:arr[i]} )
+
+                }else if(Array.isArray(arr[i])){
+                    //如果遍历到的项是数组   给结果数组添加一个children对象 
+                    //里面传入这个数组    再次循环此数组 进行递归
+                    result.push( {children:convert(arr[i])} )
+                }
+                
+            }
+            //返回结果数组
+            return result
+        }
+
+        //--------------------转换函数(写法2)--------------------------------
+         // 转换函数写法2，参数不是arr这个词语，而是item，意味着现在item可能是数组，也可能是数字
+        // 即，写法1的递归次数要大大小于写法2。因为写法2中，遇见什么东西都要递归一下。  
+    
+        //思路  每一项都递归   如果是数字  那么就直接返回value
+        function convert(item) {
+            if (typeof item == 'number') {
+                // 如果传进来的参数是数字
+                return {
+                    value: item
+                };
+            } else if (Array.isArray(item)) {
+                // 如果传进来的参数是数组
+                return { //使用.map映射上去  映射的每一个项再进行递归  
+                    // 实际上再map方法里是有循环的   但是这样写更简洁
+                    children: item.map(_item => convert(_item))
+                };
+            }
+        }
+
+        console.log(convert(arr1));
+    </script>
+</body>
+</html>

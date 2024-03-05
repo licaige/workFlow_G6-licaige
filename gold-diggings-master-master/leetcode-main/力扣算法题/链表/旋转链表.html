@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给你一个链表的头节点 head ，旋转链表，将链表每个节点向右移动 k 个位置。
+        // https://leetcode.cn/problems/rotate-list/description/?favorite=ex0k24j
+
+        // 0 1 2  
+        // 2 0 1 旋转一位
+        // 1 2 0 旋转二位
+        // 0 1 2 旋转三位
+        // 2 0 1
+
+        // 其实就是k%3 = 1
+        // 然后将最后1位转移到头部即可
+
+        // 方案: 找到需要旋转的节点, 取余拼接即可
+
+        var rotateRight = function (head, k) {
+
+            if (!head || !head.next) return head
+
+            // 先计算链表长度,获取末尾节点
+            let length = 1
+            let end = head
+
+            while (end.next) {
+                length++
+                end = end.next
+            }
+
+            // 计算实际需要旋转的次数(长度)
+            let roTime = k % length
+            let keepedNodes = length - roTime
+            // 截取旋转的部分,拼接到head即可
+            debugger
+            let count = 1
+            let cur = head
+
+            while (count <= keepedNodes) {
+                if (count == keepedNodes) {
+                    end.next = head
+                    head = cur.next  // 新的头部
+                    cur.next = null  // 新的尾部
+                    break
+                }
+                count++
+                cur = cur.next
+            }
+
+            return head
+        };
+
+        rotateRight(head, 4)
+    </script>
+</body>
+
+</html>

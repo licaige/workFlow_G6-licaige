@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //打家劫舍3
+
+        // 动态规划最优子结构: 
+        // 二叉树中, 最多有1个爷爷  2个爸爸  4个儿子
+        // 比较 爷爷+4儿子的钱  和  2爸爸的钱   即是单结构偷的最多的钱
+
+        var rob = function (root) {
+
+            // 使用hash表记录每个节点的计算结果 key为节点hash
+            let hashMap = new Map()
+            // 递归, 比较单个最优子结构的钱,返回
+            const deep = (root) => {
+                if (!root) return 0
+                if (hashMap.has(root)) return hashMap.get(root)// 从记录中获取结果
+
+                let money1 = root.val + deep(root?.left?.left) + deep(root?.left?.right) + deep(root?.right?.left) + deep(root?.right?.right)
+                let money2 = deep(root?.left) + deep(root?.right)
+                let maxMoney = Math.max(money1, money2)
+
+                hashMap.set(root, maxMoney) // 记录结果到hash表
+
+                return maxMoney
+            }
+
+
+            let res = deep(root)
+
+            return res
+        };
+
+        rob()
+    </script>
+</body>
+
+</html>

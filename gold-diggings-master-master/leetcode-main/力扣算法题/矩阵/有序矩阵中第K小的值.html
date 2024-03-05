@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给出一个矩阵
+        // 矩阵的每行都递增   每列都递增
+
+
+        // 方案一,
+        // 直接获取矩阵中所有元素, 排序即可
+
+
+        // 方案二: 
+        // 二分查找   见notion的笔记(二分查找有序矩阵)
+
+
+        // 计算矩阵中小于midVal的数量
+        const countInMatrix = (matrix, midVal) => {
+            const n = matrix.length;            // 这题是方阵 n行n列
+            let count = 0;
+            let row = 0;                        // 第一行
+            let col = n - 1;                    // 最后一列
+            while (row < n && col >= 0) {
+                if (midVal >= matrix[row][col]) { // 大于等于当前行的最右
+                    count += col + 1;               // 不大于它的数增加col + 1个
+                    row++;                          // 比较下一行
+                } else {                          // 干不过当前行的最右元素
+                    col--;                          // 留在当前行，比较左边一个
+                }
+            }
+            return count;
+        };
+
+        // 二分法查找第k大的值   (每次/2后  删去一边)
+        const kthSmallest = (matrix, k) => {
+            const n = matrix.length;
+            let low = matrix[0][0];
+            let high = matrix[n - 1][n - 1];
+
+
+            while (low <= high) {
+                let midVal = low + ((high - low) >>> 1);   // 获取中间值
+                let count = countInMatrix(matrix, midVal); // 矩阵中小于等于它的个数
+                if (count < k) {
+                    low = midVal + 1;
+                } else {
+                    high = midVal - 1;
+                }
+            }
+            return low;
+        };
+
+
+        // 方案三: 
+        // 从上查找每行末尾, 排除小于target的行
+        // 从下查找每行头部, 排除大于target的行
+        // 其余行进行二分查找
+
+        var searchMatrix = function (matrix, target) {
+
+            let n = matrix.length - 1
+            if (n == -1) return false
+            let m = matrix[0].length - 1
+            if (m == -1) return false
+
+            let res = false
+            let start = 0
+            let end = n
+            // 查找开头行
+            while (start < n) {
+                if (matrix[start][m] == target) {
+                    res = true
+                    break
+                }
+                if (matrix[start][m] > target) {
+                    break
+                }
+                start++
+            }
+            while (end > 0) {
+                if (matrix[end][0] == target) {
+                    res = true
+                    break
+                }
+                if (matrix[end][0] < target) {
+                    break
+                }
+                end--
+            }
+            if (res) return res
+
+
+            // 第二次缩小范围
+            // [2, 5, 8, 12, 19],
+            // [3, 6, 9, 16, 22],
+            // [10, 13, 14, "17", 24],
+
+            let s = 0
+            let e = m
+            while (s < m) {
+                if (matrix[end][s] == target) {
+                    res = true
+                    break
+                }
+                if (matrix[end][s] > target) {
+                    break
+                }
+                s++
+            }
+            while (e > 0) {
+                if (matrix[start][e] == target) {
+                    res = true
+                    break
+                }
+                if (matrix[start][e] < target) {
+                    break
+                }
+                e--
+            }
+            if (res) return res
+
+            // 此时获得矩阵 y=[start,end]  x=[s,e] ,进行查找
+            for (let y = start; y <= end; y++) {
+                for (let x = s; x <= e; x++) {
+                    if (matrix[y][x] == target) {
+                        res = true
+                        break
+                    }
+                }
+            }
+
+            return res
+        };
+
+        const m = [
+            [1, 4, 7, 11, 15],
+            [2, 5, 8, 12, 19],
+            [3, 6, 9, 16, 22],
+            [10, 13, 14, 17, 24],
+            [18, 21, 23, 26, 30]
+        ]
+
+        searchMatrix(m, 16)
+
+
+        // 方案四:
+        // 直接进行二分查找
+
+        var searchMatrix = function (matrix, target) {
+            let n = matrix.length - 1
+            if (n == -1) return false
+
+            let res = false
+
+            for (let i = 0; i <= n; i++) {
+                if (search(matrix[i], target) !== -1) {
+                    res = true
+                    break
+                }
+            }
+
+            return res
+        }
+
+        const search = (nums, target) => {
+            let low = 0, high = nums.length - 1;
+            while (low <= high) {
+                const mid = Math.floor((high - low) / 2) + low;
+                const num = nums[mid];
+                if (num === target) {
+                    return mid;
+                } else if (num > target) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+            return -1;
+        }
+
+    </script>
+</body>
+
+</html>

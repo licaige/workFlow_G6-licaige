@@ -1,0 +1,28 @@
+
+
+1. defineElement 定义micro-app组件(load方法)
+2. patchSetAttribute() 解析属性  获取options
+3. 组件append添加到document后先执行connectedCallback
+4. 如果组件还没有url和name  会执行 attributeChanged  在这里handleInitialNameAndUrl 再进行handleConnected链接
+5. 最终会进入handleConnected链接
+
+
+
+mount流程
+1. handleConnected 链接
+2. handleCreateApp 创建app new CreateApp() 创建app
+3. loadSourceCode() 加载资源 new SandBox()沙箱等  然后执行run方法
+4. run => successCb=> extractSourceDom打包css,js,html资源 =>  app.onLoad 执行onLoad
+
+app.onLoad流程
+5. 执行getRootContainer().mount()  或者处理preLoad
+6. getRootContainer返回target 也就是shadowRoot或者HTMLelement
+6. 执行target.mount(或者html.mount)=>实际上就是app.mount  => dispatch生命周期事件=>改变状态 =>启动沙箱=>
+
+
+// 这里调用HTMLElement.mount()方法  次方法是通过修改了HTMLElement的interface挂载上去的
+// 挂载了HTMLElement和reload方法
+
+
+app.mount
+// 调用脚本 execScripts

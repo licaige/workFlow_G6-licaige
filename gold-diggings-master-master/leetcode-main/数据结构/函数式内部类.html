@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        
+
+// 需求: Person类中有很多方法需要new Cell类
+function Person(name){
+    this.name = name
+    this.age = age
+    this.cell = new Cell(name)
+    // 内部类
+    function Cell(name){
+        this.cellName = name
+    }
+    // 使用函数式可以访问到Cell类
+    Person.prototype.creatNewCell = function(){
+        let newCell = new Cell('张三')
+    }
+}
+
+
+
+//-------------------------------
+class Person{
+    constructor(){
+        this.name = name
+        // 在构造函数里创建Cell类
+        class Cell{
+            constructor(){}
+        }
+    }
+
+    creatNewCell(){
+        // 挂载的方法中无法访问Cell 
+        let newCell = new Cell()
+    }
+}
+
+
+
+class List{
+    constructor(name){
+         // 在构造函数里写class不能用
+         class Node{
+            constructor(name){
+                this.name = name
+            }
+        }
+        //想在List类里面使用new Node创建一个新类
+        // this.newNode = new Node(name)
+       
+    }
+
+    creatNewNode(){
+        let newNode = new Node(name) // 访问不到Node类
+    }
+}
+
+
+let list1 = new List('张三')
+console.log(list1);
+    </script>
+</body>
+</html>

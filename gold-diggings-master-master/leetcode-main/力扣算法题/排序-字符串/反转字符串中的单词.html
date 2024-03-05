@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //反转字符串中的单词
+
+        // 输入：s = "the sky is blue"
+        // 输出："blue is sky the"
+
+        // 反转后的字符串中不能存在前导空格和尾随空格。
+        // 返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。
+
+        // JS需要使用原地算法
+
+        // 方案: 从字符串末尾开始扫描,遇到空格记录word,
+        // 给字符串开头添加一个终止符,遇到终止符停止扫描
+        var reverseWords = function (s) {
+            // replace方法删除多余空格
+            s = s.replace(/\s+/g, " ").trim()
+            // 给字符添加一个结束标记|
+            s = "|" + s
+            // 遍历扫描记录单词
+            let word = ""
+            let insertIndex = 0 // 插入单词的位置
+            for (let i = s.length - 1; i >= 0; i--) {
+
+                // 遇到结束标记
+                if (s[s.length - 1] == "|") {
+                    s = s.substring(0, s.length - 1) + word
+                    break
+                }
+                // 遇到空格,拼接word
+                if (s[s.length - 1] == " ") {
+                    let c = word + " "
+                    s = s.substring(0, insertIndex) + c + s.substring(insertIndex);
+                    word = ""
+                    insertIndex += c.length
+                }
+                // 移动最后一位字符
+                else {
+                    word = s[s.length - 1] + word
+                }
+
+                s = s.substring(0, s.length - 1)
+            }
+            debugger
+            return s
+        };
+
+        reverseWords("hellow word")
+    </script>
+</body>
+
+</html>

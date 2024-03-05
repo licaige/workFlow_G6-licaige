@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。
+
+        // 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+        // 9宫格按键输入
+        // 输入：digits = "23"
+        // 输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
+
+
+        var letterCombinations = function (digits) {
+            if (digits.length == 0) return []
+
+            let numberMap = {
+                2: ['a', 'b', 'c'],
+                3: ['d', 'e', 'f'],
+                4: ['g', 'h', 'i'],
+                5: ['j', 'k', 'l'],
+                6: ['m', 'n', 'o'],
+                7: ['p', 'q', 'r', 's'],
+                8: ['t', 'u', 'v'],
+                9: ['w', 'x', 'y', 'z'],
+            }
+            // 树状结构  递归
+            let resList = []
+            let treeCount = digits.length - 1 // 记录递归层数
+            let rootRes = ''   // 初始结果
+
+            function deep(prevRes, curCount) {
+                let number = digits[curCount]
+
+                // 遍历该次数字的字母
+                numberMap[number].forEach((l) => {
+                    let newRes = prevRes + l // 拼接生成新结果
+
+                    if (curCount < treeCount) { // 未到层数继续递归
+                        deep(newRes, curCount + 1)
+                    }
+                    if (curCount === treeCount) { // 达到层数记录结果
+                        resList.push(newRes)
+                    }
+                })
+
+            }
+
+            deep(rootRes, 0)
+
+            return resList
+        };
+
+        letterCombinations('23')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //零钱兑换
+
+        //  给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
+
+        // 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
+
+        // 你可以认为每种硬币的数量是无限的。
+
+        // 输入：coins = [1, 2, 5], amount = 11
+        // 输出：3 
+        // 解释：11 = 5 + 5 + 1
+
+
+
+        // 凑成6有三种情况
+        //  dp[6] =  dp[6-5] +1  使用5的硬币(凑成1)
+        // dp[6] =  dp[6-2] +1   使用2的硬币
+        // dp[6] =  dp[6-1] +1    使用1的硬币
+
+
+        const coinChange = (coins, amount) => {
+
+
+
+            // 初始化dp
+            let dp = Array(amount + 1).fill(Infinity)
+
+            // 构建dp
+            dp[0] = 0
+            for (let i = 1; i < dp.length; i++) {
+                // 遍历coins,解释见上面(凑成6有三种情况)
+                for (let j = coins.length - 1; j >= 0; j--) {
+                    if (i - coins[j] < 0) continue
+                    dp[i] = Math.min(dp[i - coins[j]] + 1, dp[i])
+                }
+            }
+
+            return dp[amount] === Infinity ? -1 : dp[amount]
+        }
+
+
+
+        coinChange([1, 2, 5], 11)
+
+
+
+    </script>
+</body>
+
+</html>

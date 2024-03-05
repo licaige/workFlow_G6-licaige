@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // h值数
+        // 总共有h篇论文置少被引用h次,并且其他的论文引用次数少于h
+        // https://leetcode.cn/problems/h-index/?envType=study-plan-v2&id=top-interview-150
+
+
+        // 方案  排序后进行查找
+        // [6,5,3,1,0]
+
+        // 每个论文的引用次数和符合条件的论文数依次为：
+        // 1 2 3 4 5
+        // 6 5 3 1 0
+        // 其中6>1  5>2 3>=3 有三个符合的
+
+        var hIndex = function (citations) {
+            // 论文排序
+            citations = citations.sort((a, b) => b - a)
+
+            let h = 0
+
+            for (let i = 0; i < citations.length; i++) {
+                let refCount = citations[i]
+                let citCount = i + 1
+
+                if (refCount >= citCount) {
+                    h++
+                } else {
+                    break
+                }
+            }
+
+            return h
+        };
+
+        console.log(hIndex([1, 3, 1]));
+    </script>
+</body>
+
+</html>

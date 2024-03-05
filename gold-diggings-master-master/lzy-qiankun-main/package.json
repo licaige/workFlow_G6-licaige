@@ -1,0 +1,17 @@
+{
+  "name": "lzy-qiankun",
+  "version": "1.0.0",
+  "description": "简易版qiankun微前端框架实现",
+  "main": "./out/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}

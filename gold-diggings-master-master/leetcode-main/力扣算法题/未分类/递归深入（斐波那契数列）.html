@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   
+  
+
+
+   // 使用递归计算斐波那契数列 
+   // 第n项= 第n-1项  +  第n-2项
+
+   
+   function fib(n){
+       // 当n=1且n=2时   fib(n)=1
+       if( n==1|| n==2){
+           return 1
+       }else {
+        //当n>2时       fib(n)=fib(n-1)+fib(n-2)
+        return result=fib(n-1)+fib(n-2)
+       }
+   }
+   
+
+
+   // 写成三元运算符）(速度会变快一点点  计算量越大越不明显)
+   function fib2(n){
+        return n==1|| n==2? 1:fib(n-1)+fib(n-2)
+   }
+
+
+//    **缓存思想**
+// 使用递归计算斐波那契数列的时候   会执行很多重复的计算  比如多次计算第二项 第三项
+// 我们可以把已经计算过的fib2 =1+1    放入缓存中   
+
+// 当下一次需要计算fib2的时候进行判断  如果计算过了   就直接从缓存中拿出来用 
+
+// 下图左边为计算过的fib项    需要使用的时候拿出来用结构即可
+
+// 缓存对象法
+
+var cache={}
+
+function fib3(n){
+  
+        // 判断对象中有没有这个值  如果有  直接使用
+        //obj.hasOwnProperty('属性名')方法   返回布尔值  判断对象中是否有这个属性
+        if(cache.hasOwnProperty(n)){
+            // console.log('命中缓存,不用计算');
+            return cache[n]// 直接用数字变量做下标时  读取需要使用方括号而不是点
+        }
+
+
+
+        // 缓存对象没有这个值   算出缓存对象  并写入
+        var value=n==1|| n==2? 1:fib3(n-1)+fib3(n-2)
+        cache[n]=value
+        return value
+   }
+
+
+
+
+
+   // 使用缓存法后速度大幅提升  减少了很多不必要的计算
+   console.time('不使用缓存')
+   console.log(fib(4));
+   console.timeEnd('不使用缓存')
+
+
+   console.time('使用缓存')
+  console.log(fib3(800)); 
+   console.timeEnd('使用缓存')
+
+
+
+   // 总结 :: 在递归的时候   需要使用缓存思想去处理数据   
+
+    </script>
+</body>
+</html>

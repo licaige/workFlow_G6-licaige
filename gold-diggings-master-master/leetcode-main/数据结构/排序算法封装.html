@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装一个列表类 
+        function ArrayList() {
+            this.array = [3, 4, 1, 7, 6, 5, 2, 0, -3]
+
+
+            // 封装方法    添加列表元素
+            ArrayList.prototype.add = function (item) {
+                this.array.push(item)
+            }
+            // 通过序号交换两个元素位置
+            ArrayList.prototype.swap = function (a, b) {
+                let temp = this.array[a]
+                this.array[a] = this.array[b]
+                this.array[b] = temp
+            }
+            // 冒泡排序次队列
+            Array.prototype.bubblesort = function () {
+
+            }
+            // -------------------选择排序--------------------------
+            ArrayList.prototype.selectSort = function () {
+                let length = this.array.length
+                for (let j = 0; j < length - 1; j++) {
+                    // 选出最小的一项并交换
+                    // minIndex是已经排号的最小值指针
+                    let minIndex = j
+                    for (let i = minIndex + 1; i < length; i++) {
+                        if (this.array[minIndex] > this.array[i]) { // 如果大于则记录下最小值的index
+                            minIndex = i
+                        }
+                    }
+                    // 第一层for循环结束  选出最小的一项为arr[minIndex]  与第一位进行交换
+                    // 之后重复步骤  
+                    this.swap(minIndex, j)
+                }
+
+                // 打印结果
+                console.log(this.array);
+            }
+        
+            //--------------------插入排序----------------------------
+            ArrayList.prototype.insertSort = function(){
+                let length = this.array.length
+                // 外层循环 从index=1获取数据 向前有序部分进行插入
+                for(let i=1;i<length;i++){
+                    // 内层循环 获取i位置的元素  跟前面的元素进行比较插入
+                    // 因为不确定内层循环需要几次  所以用while循环
+                    let temp = this.array[i]
+                    let j = i
+                    while(this.array[j-1]>temp && j>0){
+                        this.array[j] = this.array[j-1]  // 将j元素前移  空出j的位置
+                        j--
+                    }
+                    // 循环结束  找到空出的位置j 放置temp
+                    this.array[j]=temp
+                }
+            }
+        
+        
+        
+        
+        }
+
+
+        let ary1 = new ArrayList()
+        ary1.selectSort()
+    </script>
+</body>
+
+</html>

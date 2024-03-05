@@ -1,0 +1,55 @@
+<!--
+ * @Author: Luzy
+ * @Date: 2023-04-25 23:49:02
+ * @LastEditors: Luzy
+ * @LastEditTime: 2023-10-27 10:23:00
+ * @Description:
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 实现一个幂函数
+        //----------------快速幂算法---------------------
+
+        // 当n为偶数时  4为8/2 向下取整
+        // 2^8  = (2^4) * (2^4)
+
+        // 当n为奇数时   3为7/2 向下取整
+        // 2^7  = (2^3) * (2^3) * 2
+
+        // 故有 y = x^(Math.floor(n/2))
+        // x^n = y*y          // n为偶数
+        // x^n = y*y * x      // n为奇数
+
+        // 递归拆解此方法可以将事件复杂度降低到O log(n)
+
+
+        var myPow = function (x, n) {
+
+            if (n == 1) return x
+            if (n == 0) return 1
+            if (n < 0) return 1 / myPow(x, Math.abs(n))
+
+            let y = myPow(x, Math.floor(n / 2))
+            // 奇数n
+            if (n % 2 === 1) return y * y * x
+            // 偶数n
+            else return y * y
+        };
+
+
+        console.log(myPow(2, -2));
+    </script>
+</body>
+
+</html>

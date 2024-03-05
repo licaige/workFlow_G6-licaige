@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // ---------------------封装双向链表----------------------------
+        class DoubleLinkedList {
+            constructor() {
+                this.header = null
+                this.tail = null
+                this.length = 0
+                // 封装内部类
+                this.Node = class {
+                    constructor(data) {
+                        this.data = data
+                        this.prev = null
+                        this.next = null
+                    }
+                }
+            }
+
+            // -------------append向列表尾部添加新的项--------------------
+            append(data) {
+                let newNode = new this.Node(data)
+                if (this.length == 0) {
+                    this.header = newNode
+                    this.tail = newNode
+                    // 直接设置newNode为链表尾端
+                } else {
+                    this.tail.next = newNode
+                    newNode.prev = this.tail
+                    this.tail = newNode
+                }
+                this.length += 1
+            }
+            // --------------prevAppend向头部添加新的项--------------------
+            prevAppend(data) {
+                let newNode = new this.Node(data)
+                if (this.length == 0) {
+                    this.header = newNode
+                    this.tail = newNode
+                    // 直接设置newNode为链表头部
+                } else {
+                    this.header.prev = newNode
+                    newNode.next = this.header
+                    this.header = newNode
+                }
+                this.length += 1
+            }
+            //--------------- 02 toString方法--------------------------
+            toString() {
+                // 思路 将每个节点的data都取出来
+                let current = this.header
+                let listStr = ''
+                while (current) {
+                    listStr += current.data + ' '
+                    current = current.next
+                }
+                return listStr
+            }
+            // ------------封装链表的insert方法----------------
+            insert(position, data) {
+                // 边界判断
+                if (position < 0 || position > this.length) return false
+                // ----------当插入元素到头部或尾部的时候---------------
+                let newNode = new this.Node(data)
+                if (position == 0) {
+                    this.prevAppend(data)
+                    this.length += 1
+                    return true
+                }
+                // 需要对插入位置进行判断  判断从前查找还是从后查找
+                let mid = parseInt(this.length / 2)
+                // -----------从后查找
+                if (position > mid) {
+                    let index = this.length
+                    let current = this.tail
+                    while (position < index) {
+                        current = current.prev
+                        index -= 1
+                    }
+                    // 将newNode插入当前位置 
+                    let prevItem = current.prev
+                    prevItem.next = newNode
+                    newNode.prev = prevItem
+                    newNode.next = current
+                    // -----------从前查找
+                } else {
+                    let index = 0
+                    let current = this.header
+                    while (position > index) {
+                        current = current.next
+                        index += 1
+                    }
+                    // 将newNode插入当前位置 
+                    let prevItem = current.prev
+                    prevItem.next = newNode
+                    newNode.prev = prevItem
+                    newNode.next = current
+                }
+
+                this.length += 1
+            }
+
+            //-----------封装链表的get方法-----------------
+            get(position) {
+                if (position < 0 || position >= this.length) return null
+                // 获取元素 
+                // 注意 获取元素的时候可以通过判断position的位置,选择从头或者从尾部进行遍历获取
+                var current = this.header
+                var index = 0
+                while (index++ < position) {
+                    current = current.next
+                }
+                // 返回元素数据
+                return current.data
+            }
+
+            // ---------------indexOf方法----------------------
+            indexOf(data) {
+                let current = this.header
+                let index = 0
+                // 查找和data相同的节点
+                while (current) {
+                    if (current.data = data) {
+                        return index
+                    }
+                    current = current.next
+                    index += 1
+                }
+                // 如果找不到返回-1
+                return -1
+            }
+
+
+            // ----------------removeAt方法---------------------
+            removeAt(position) {
+                if (position < 0 || position >= this.length) return null
+                // 选取current节点 保存
+                let current = this.header
+                // 如果链表只有一项的时候
+                if (this.length == 1) {
+                    this.header = null
+                    this.tail = null
+                } else {
+                    // 其他情况 
+                    if (position == 0) { // 如果删除第一个节点
+                        this.header.next.prev = null
+                        tihs.header = this.header.next
+                    } else if (position == this.length - 1) { // 如果删除最后一个节点
+                        this.tail.prev.next = null
+                        this.tail = this.tail.prev
+                    } else { // 找到position处的节点  删除这个节点 改变指针
+                        let index = 0
+                        while (index++ < position) {
+                            current = current.next
+                        }
+                        current.prev.next = current.next
+                        current.next.prev = current.prev
+                    }
+                }
+
+                // 链表长度减一  返回对应删除的数据
+                this.length -= 1
+                return current.data
+
+            }
+
+
+
+        }
+
+
+        // 链表方法测试 
+        let doubleList1 = new DoubleLinkedList()
+        doubleList1.append('元素0')
+        doubleList1.append('元素1')
+        doubleList1.append('元素2')
+        doubleList1.append('元素3')
+        doubleList1.insert(4, '插入')
+        console.log(doubleList1.toString());
+    </script>
+</body>
+
+</html>

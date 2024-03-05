@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+
+        // 设这里有五张牌   判断是否能组成同花顺
+        // 如 12345 可组成  0为大小王  可替代任何一张牌
+
+        // https://leetcode.cn/leetbook/read/illustration-of-algorithm/lxpcsi/
+        // 文物朝代判断
+
+
+        // 方案一: 选出牌内最大最小的两张
+        // 如果 max - min > 5 则不能组成同花顺
+        // 如果 max - min < 5 则依次检查五张牌, 看是否能组成
+
+        // 贪心思想:  如果 牌都不重复  且最大值减去最小值<5  则可构成顺子  12345
+
+        var isStraight = function (nums) {
+            let set = new Set();
+            let max = 0,
+                min = 14;
+            for (let a of nums) {
+                // 跳过大小王;
+                if (a == 0) continue;
+                max = Math.max(a, max);
+                min = Math.min(a, min);
+                // 若有重复，提前返回 false
+                if (set.has(a)) return false;
+                set.add(a);
+            }
+            // 最大牌 - 最小牌 < 5 则可构成顺子
+            return max - min < 5;
+        };
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给你一个整数数组 nums ，请你找出数组中乘积最大的非空连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。
+
+        // 测试用例的答案是一个 32-位 整数。
+
+        // 子数组 是数组的连续子序列。
+
+        // 输入: nums = [2,3,-2,4]
+        // 输出: 6
+        // 解释: 子数组 [2,3] 有最大乘积 6。
+
+
+        var maxProduct = function (nums) {
+            // 先找到最大的子值
+            let maxRes = Math.max(...nums)
+
+            // 递归找到子数组, 计算乘积并记录
+            // 构建乘积树
+            const deep = (res, i) => {
+                if (i > nums.length - 1) return
+
+                let nextRes = res * nums[i]
+
+                if (nextRes > maxRes) {
+                    maxRes = nextRes
+                }
+
+                deep(nextRes, i + 1)
+            }
+
+            for (let i = 0; i < nums.length; i++) {
+                deep(nums[i], i + 1)
+            }
+
+            // 找到最大乘积
+            return maxRes
+        };
+
+
+        // [0,2]
+        // [2,3,-2,4]
+
+    </script>
+</body>
+
+</html>

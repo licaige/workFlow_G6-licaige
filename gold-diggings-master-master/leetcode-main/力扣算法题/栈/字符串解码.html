@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 辅助栈法进行字符串解码
+
+        // 输入：s = "3[a]2[bc]"
+        // 输出："aaabcbc"
+
+        // 输入：s = "3[a2[c]]"
+        // 输出："accaccacc"
+
+
+
+        // 辅助栈方法, 遇到[  入栈, 清空记录
+        // 遇到] 出栈,计算结果
+        // 下次遇到[时, 将上次计算的结果一并入栈,进行保留
+        
+        var decodeString = function (s) {
+            let stack = []
+
+            let res = ''
+            let num = ''
+            // 扫描s
+            for (let i = 0; i < s.length; i++) {
+                // 左括号, 字母和num入栈,清空临时记录
+                // 构建字串后, res不清空, 这里push到stack中的str保留了上次出栈计算的str
+                if (s[i] === '[') {
+                    stack.push({ num: num, str: res })
+                    res = ''
+                    num = ''
+                }
+                // 右括号, 节点出栈,计算res
+                else if (s[i] === ']') {
+                    let node = stack.pop()
+                    res = node.str + res.repeat(node.num); // 构建子串
+                }
+                // 其他情况
+                else {
+                    if (parseInt(s[i]) >= 0) { num += s[i] } //数字
+                    else { res += s[i] }  //字母
+                }
+            }
+
+            console.log(res);
+            return res
+        };
+
+
+        decodeString("3[a2[c]]")
+
+        decodeString("3[a]2[bc]")
+    </script>
+</body>
+
+</html>

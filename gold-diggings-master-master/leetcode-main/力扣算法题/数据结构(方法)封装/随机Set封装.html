@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // https://leetcode.cn/problems/insert-delete-getrandom-o1/?favorite=2ckc81c
+
+        var RandomizedSet = function () {
+            this._set = new Set()
+        };
+
+        /**
+         * 获取0-n中随机整数
+        */
+        function getRandomInt(n) {
+            return Math.floor(Math.random() * (n + 1));
+        }
+
+        /**
+         * 插入
+        */
+        RandomizedSet.prototype.insert = function (val) {
+            if (this._set.has(val)) return false
+            
+            this._set.add(val)
+            return true
+        };
+
+        /**
+         * 移除
+        */
+        RandomizedSet.prototype.remove = function (val) {
+            if (this._set.has(val)) {
+                this._set.delete(val)
+                return true
+            }
+            return false
+        };
+
+        /**
+         * 获取随机元素
+        */
+        RandomizedSet.prototype.getRandom = function () {
+            const index = getRandomInt(this._set.size - 1)
+            return Array.from(this._set)[index]
+        };
+
+        /**
+         * Your RandomizedSet object will be instantiated and called as such:
+         * var obj = new RandomizedSet()
+         * var param_1 = obj.insert(val)
+         * var param_2 = obj.remove(val)
+         * var param_3 = obj.getRandom()
+         */
+
+        var obj = new RandomizedSet()
+        console.log(obj.insert(2));
+        console.log(obj.getRandom());
+    </script>
+</body>
+
+</html>

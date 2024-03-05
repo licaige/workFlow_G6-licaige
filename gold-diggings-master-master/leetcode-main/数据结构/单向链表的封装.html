@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // 封装链表类 
+        class LinkedList {
+            constructor() {
+                // ---------构建内部类(用于创建链表元素)------------
+
+                // ----------给链表创建链表头部和长度-------------------
+                this.header = null
+                this.length = 0
+            }
+
+            // -------------创建节点函数--------------------
+            creatNode(data) {
+                class Node {
+                    constructor(data) {
+                        this.data = data //链表元素的数据
+                        this.next = null // 链表元素的下一个指向
+                    }
+                }
+                return new Node(data)
+            }
+            // -------------创建节点函数--------------------
+            creatNode(data) {
+                class Node {
+                    constructor(data) {
+                        this.data = data
+                        this.next = null 
+                    }
+                }
+                return new Node(data)
+            }
+            // --------------01 追加方法 ---------------------
+            append(data) {
+                // 如果是第一个节点 ,创建节点,让此节点成为header
+                if (this.length == 0) {
+                    let newNode = this.creatNode(data)
+                    this.header = newNode
+                    // 如果不是第一个节点,创建节点,让最后一个节点的next指向这个节点
+                } else {
+                    let newNode = this.creatNode(data)
+                    // 刚开始指向第一个节点header
+                    // 如果当前节点的next有值,那么就让当前节点往后移一位
+                    // 只有当next为空的时候 current就是最后一个节点
+                    let current = this.header
+                    while (current.next) {
+                        current = current.next
+                    }
+                    // 将最后一个节点的next指向新节点
+                    current.next = newNode
+                }
+                // 将链表长度加一
+                this.length += 1
+            }
+
+            //--------------- 02 toString方法--------------------------
+            toString() {
+                // 思路 将每个节点的data都取出来
+                let current = this.header
+                let listStr = ''
+                // 当current有东西的时候 将data取出推进listStr
+                while (current) {
+                    listStr += current.data + ' '
+                    current = current.next
+                }
+                // 返回结果
+                return listStr
+            }
+
+            // ---------------03 insert插入方法----------------------
+            insert(position, data) {
+                // 进行插入位置边界判断
+                if (position < 0 || position > this.length) return false
+                // 基本思路: 根据data创建newNode
+                let newNode = this.creatNode(data)
+                // 拆离position为0的情况
+                if (position == 0) {
+                    newNode.next = this.header
+                    this.header = newNode
+                } else {
+                    // 循环postion次 找到position处的元素current(创建临时变量存放之前的元素)
+                    let current = this.header
+                    let previous = null
+                    for (let i = 0; i < position; i++) {
+                        previous = current
+                        current = current.next
+                    }
+                    newNode.next = current
+                    previous.next = newNode
+                }
+
+                // 长度加一
+                this.length += 1
+            }
+
+            // --------------04 indexOf方法返回索引---------------
+            indexOf(data){
+                let index = -1
+                let current = this.header
+                //思路  一直往后查询  每次查询结束index+1
+                //匹配上将结果赋值为i 退出循环
+                for(let i=0;i<this.length;i++){
+                    if(current.data!=data){
+                        current = current.next
+                    }else{
+                        index = i
+                        break
+                    }
+                }
+                return index
+            }
+            indexOf2(){
+                let index = 0
+                let current = this.header
+                while(current){
+                    if(current.data == data){
+                        return index
+                    }
+                    current = current.next
+                    index+=1
+                }
+                // 最后没找到返回-1
+                return -1
+            }
+            // ------------------移除某个元素-------------------------
+            removeAt(position){
+                //1. 越界判断
+                if(position<0||position>=this.length) return null
+
+                // 两种情况  删除第一个节点和后续节点
+                let current = this.header
+                if(position == 0){
+                    this.header = this.header.next
+                }else{
+                    // 找到positioon处的节点 和之前的节点previous
+                    let index = 0
+                    // let current = this.header
+                    let previous = null
+                    while(index<position){
+                        previous = current
+                        current = current.next
+                    }
+                    // 前一个节点的next指向current的next即可
+                    previous.next = current.next
+
+                    // 长度-1 返回数据  如果没有直接返回null
+                    this.length -=1 
+                    return current.data
+                }
+            }
+        }
+
+        [0, 1, 2, 3, 4, 5]
+        let linkList1 = new LinkedList()
+        linkList1.append('0号元素')
+        linkList1.append('1号元素')
+        linkList1.append('2号元素')
+        linkList1.append('3号元素')
+        console.log(linkList1.indexOf('4号元素'));
+    </script>
+</body>
+
+</html>

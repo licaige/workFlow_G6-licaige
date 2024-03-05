@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 层序遍历后指向
+        var connect = function (root) {
+
+            //层序遍历 保存上一层的所有节点,进行遍历
+            // const res = []
+
+            const deep = (curNodeList) => {
+
+                // let curRes = []
+                let nextNodeList = []
+
+
+                for (let i = 0; i < curNodeList.length; i++) {
+                    let node = curNodeList[i]
+                    let next = curNodeList[i + 1]
+                    // 每层进行指向
+                    if (node) {
+                        node.next = typeof next === 'undefined' ? null : next
+                    }
+
+                    // typeof node?.val == 'number' && curRes.push(node.val)
+                    node?.left && nextNodeList.push(node.left)
+                    node?.right && nextNodeList.push(node.right)
+                }
+
+                // curRes.length > 0 && res.push(curRes)
+                nextNodeList.length > 0 && deep(nextNodeList)
+            }
+
+            deep([root])
+
+            return root
+        };
+
+
+    </script>
+</body>
+
+</html>

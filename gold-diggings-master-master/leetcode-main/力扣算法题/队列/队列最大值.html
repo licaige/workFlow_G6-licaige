@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 队列最大值
+        // https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/?envType=study-plan-v2&envId=coding-interviews
+
+        // 单独使用一个双端队列, 其内部元素递增, push和pop时此向量同步变更
+        // 由于队列的push  pop都是O(1) 故可以实现平均O(1)
+
+        var MaxQueue = function () {
+            this._queue = []
+            this._sortedQueue = []
+        };
+
+        /**
+         * @return {number}
+         */
+        MaxQueue.prototype.max_value = function () {
+            let max = this._sortedQueue[this._sortedQueue.length - 1]
+
+            return typeof max == "number"
+                ? max
+                : -1
+        };
+
+        // 双队列同步更新
+        MaxQueue.prototype.push_back = function (value) {
+            this._queue.push(value)
+
+
+            if (this._sortedQueue.length == 0) {
+                return this._sortedQueue.push(value)
+            }
+
+            let cur = -Infinity
+            let popedVals = []
+
+            while (true) {
+                let first = this._sortedQueue[0]
+
+                if (first < value) {
+                    cur = this._sortedQueue.shift()
+                    popedVals.push(cur)
+                } else {
+                    break
+                }
+            }
+
+            this._sortedQueue.unshift(value)
+
+            this._sortedQueue = popedVals.concat(this._sortedQueue)
+        };
+
+        /**
+         * @return {number}
+         */
+        MaxQueue.prototype.pop_front = function () {
+            const value = this._queue.shift()
+
+            if (this._sortedQueue.length == 0) {
+                return -1
+            }
+
+            if (this._sortedQueue.length == 1) {
+                return this._sortedQueue.pop()
+            }
+
+
+            let i = this._sortedQueue.indexOf(value)
+            if (i == -1) return -1
+
+            const firstPart = this._sortedQueue.slice(0, i)
+            const secondPart = this._sortedQueue.slice(i + 1)
+
+            this._sortedQueue = firstPart.concat(secondPart)
+
+            return typeof value == "number"
+                ? value
+                : -1
+        };
+
+
+
+        let q = new MaxQueue()
+
+
+        q.push_back(9)
+        q.push_back(3)
+        q.push_back(7)
+        q.push_back(4)
+
+
+        q.pop_front()
+        q.pop_front()
+    </script>
+</body>
+
+</html>

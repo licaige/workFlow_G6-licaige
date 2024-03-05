@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
+        // 输入：s = "3+2*2"
+        // 输出：7
+
+        // 输入：s = " 3/2 "
+        // 输出：1
+
+        // 双栈法, 一个栈记录nums  一个栈记录操作 + - * / 
+
+        // 因为这个基本计算器不需要括号,所以可以先计算出所有的*和/运算,再执行普通运算
+
+
+
+        var calculate = function (s) {
+
+            let ops = []
+            let nums = []
+
+            let opList = ['+', '-', '*', '/']
+            // 给表达式填充括号
+
+            // 扫描字符串,入库
+            let num = ''
+
+            let isOp = (cur) => opList.indexOf(cur) !== -1
+
+            let pushNum = () => {
+                nums.push(num)
+                num = ''
+                // 检查是否需要提前进行计算
+                let op = ops[ops.length - 1]
+                if (op == "*" || op == "/") {
+                    let op = ops.pop()
+                    let b = nums.pop() - 0
+                    let a = nums.pop() - 0
+                    let res = calculate(a, b, op)
+                    nums.push(res)
+                }
+            }
+
+            // 单次计算
+            let calculate = (a, b, op) => {
+
+                if (op == "*") return a * b
+                else if (op == "/") return Math.floor(a / b)
+                else if (op == "+") return a + b
+                else if (op == "-") return a - b
+            }
+
+            // 启动扫描
+            for (let i = 0; i < s.length; i++) {
+
+                let cur = s[i]
+
+                if (isOp(cur)) {
+                    pushNum()
+                    ops.push(cur)
+                } else {
+                    num += cur
+                }
+
+                if (i === s.length - 1) {
+                    pushNum()
+                }
+            }
+
+            // 最终计算
+            debugger
+            let res = 0
+            for (let j = 0; j < nums.length; j++) {
+                if (j === 0) { res += nums[j] - 0 }
+
+                else {
+                    let a = res
+                    let b = nums[j] - 0
+                    let op = ops[j - 1]
+                    res = calculate(a, b, op)
+                }
+            }
+
+            return res
+        };
+
+
+
+        let s = "1-1+1"
+        console.log(calculate(s));
+    </script>
+</body>
+
+</html>

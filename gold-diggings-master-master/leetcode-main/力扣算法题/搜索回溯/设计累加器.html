@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要求 只能使用加法
+        // 不能使用循环 if等高级语句
+
+
+        // 思路 使用递归进行累加 并使用 || && 语句进行终止
+        // 当n>0时 执行递归  否则直接返回0
+        function sum(n) {
+
+            let s = n && n + sum(n - 1)
+
+            return s
+        }
+
+
+        sum(3)
+
+    </script>
+</body>
+
+</html>
