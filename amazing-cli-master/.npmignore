@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+
+# 忽略指定文件
+.gitignore
+.npmignore
+.npmrc
+pnpm-lock.yaml
+publish.sh

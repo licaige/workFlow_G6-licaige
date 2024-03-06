@@ -1,0 +1,35 @@
+{
+  "name": "amazing-cli",
+  "version": "1.0.9",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "amazing-cli": "bin/cli.js"
+  },
+  "scripts": {
+    "pub": "sh publish.sh"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0",
+    "figlet": "^1.6.0",
+    "fs-extra": "^11.1.1",
+    "git-pull-or-clone": "^2.0.2",
+    "inquirer": "^8.2.6",
+    "ora": "^7.0.1"
+  },
+  "description": "An amazing front-end project scaffolding tool.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themusecatcher/amazing-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/themusecatcher/amazing-cli/issues"
+  },
+  "keywords": [
+    "amazing",
+    "cli"
+  ],
+  "author": "theMuseCatcher",
+  "license": "MIT"
+}
