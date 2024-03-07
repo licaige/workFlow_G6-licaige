@@ -3,19 +3,16 @@ console.log("app 01 mounted");
 </script>
 
 <template>
-  <h3>App 01</h3>
-
+  <h3>微应用01</h3>
   <aside>
-    <div>Page List:</div>
+    <div>随意内容</div>
     <RouterLink to="page01">Page 01</RouterLink>
     <RouterLink to="page02">Page 02</RouterLink>
   </aside>
-
   <main>
     <RouterView />
   </main>
 </template>
-
 <style scoped>
 aside {
   display: flex;
