@@ -1,0 +1,34 @@
+# by weilan in 2020.01.25 
+
+services:
+  # 服务端配置
+  wl-mfe.server:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-server
+    container_name: wl-mfe.server
+    restart: always
+    ports:
+      - '3700:3700'
+  wl-mfe.web:
+    image: nginx
+    restart: always
+    container_name: nginx
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      # nginx端口与宿主机端口映射
+      - "8080:80"
+      - "80:80"
+      - "443:443"
+      # 下面是各个微前端的端口映射
+      - "2750:2750"
+      - "2751:2751"
+      - "2752:2752"
+      - "2753:2753"
+    volumes:
+      # 挂载nginx配置
+      - ./_docker/nginx/default.conf:/etc/nginx/nginx.conf
+      # 挂载各个微前端静态资源
+      - ./master/dist/:/usr/local/web/master/
+      - ./subapp-blog/dist/:/usr/local/web/subapp-blog/
+      - ./subapp-login/dist/:/usr/local/web/subapp-login/
+      - ./subapp-ui/dist/:/usr/local/web/subapp-ui/
