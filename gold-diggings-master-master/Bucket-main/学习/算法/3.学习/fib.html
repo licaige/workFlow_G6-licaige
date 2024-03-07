@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 递归
+        // 0 1 1 2 3 5
+        /**
+         * @param {number} n
+         * @return {number}
+         */
+        // 递归深度过大，会导致栈溢出
+        // 动态规划
+        // 规律和套路
+        // var fib = function (n) {
+        //     let n1 = 0, n2 = 1, sum;
+        //     for (var i = 0; i < n; i++) {
+        //         sum = (n1 + n2) % 1000000007;
+        //         n1 = n2;
+        //         n2 = sum;
+        //     }
+        //     return n1;
+        // };
+        // 递归
+        var fib = function (n) {
+            if (n === 0) return 0;
+            if (n === 1) return 1;
+            return fib(n - 1) + fib(n - 2)
+        };
+        console.log(fib(10));
+    </script>
+</body>
+
+</html>

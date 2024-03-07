@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="box" style="display:none;width: 72px;opacity: 0.5;background: #071224;border-radius: 8px;">
+        <ul id="content" style="width: 45px;padding-bottom: 6px;"></ul>
+    </div>
+    <button id="but" onclick="a()">按钮1</button>
+    <button id="but1" onclick="a1()">按钮2</button>
+    <script>
+        const objColorLegend = [
+            { key: '建筑1', value: '#ff0000' },
+            { key: '建筑2', value: '#ff9900' },
+            { key: '建筑3', value: '#ffff00' },
+        ];
+        objColorLegend.forEach(item => {
+            const html = `<li style="width: 48px;margin-left: -30px;list-style: none;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            <div style="width: 10px;height: 10px;display: inline-block;border-radius: 2px;background: ${item.value};"></div>
+                            <span style="font-size: 12px;font-family: PingFang SC;font-weight: 400;color: #ffffff;">${item.key}</span>
+                          </li>`;
+            document.getElementById('content').innerHTML += html;
+        })
+        console.log(document.getElementById('content11'));
+        document.body.innerHTML += `<div>1458</div>`;
+        function a() {
+            document.getElementById('box').style.display = 'block';
+        }
+        function a1() {
+            document.getElementById('box').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

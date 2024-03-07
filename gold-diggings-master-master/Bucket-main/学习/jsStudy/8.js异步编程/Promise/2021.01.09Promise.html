@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.首先 Promise 有三个状态,初始状态为pending
+        // 2.当 Promise 为 fulFilled 或 rejected状态时，不能转变成其它状态
+        // 3.当 Promise 为 fulFilled 或 rejected状态时，
+        // 必须有一个值（fulFilled是value,rejected是reason）
+        // 4.Promise 接收一个回调函数
+        const PENDING = 'pending';
+        const FULFILLED = 'fulFilled';
+        const REJECTED = 'rejected';
+        function MyPromise(exector) {
+            const that = this;
+            that.status = PENDING;
+
+            function resolve(value) {
+                // 这里判断的原因就是Promise状态改为FULFILLED，不能再进行改变
+                if (that.status === PENDING) {
+                    that.status = FULFILLED;
+                    that.value = value;
+                }
+            }
+
+            function reject(reason) {
+                // 这里判断的原因跟上面一样
+                if (that.status === PENDING) {
+                    that.status = REJECTED;
+                    that.value = reason;
+                }
+            }
+            try {
+                exector(resolve, reject);
+            } catch (error) {
+                reject(error);
+            }
+        }
+
+        // 1.then方法是Promise原型上的方法
+        // 2.then方法接收回调函数参数
+        // 3.这两个参数是可选的，如果不是函数则会被忽略
+        // 4. onFulfilled和onRejected都是一个函数
+        // 必须在Promise状态为fulFilled和rejected时调用它
+        // 并且最多只能被调用一次
+        // 5.onFulfilled和onRejected需要异步执行
+        // 6.then需要返回一个Promise
+        MyPromise.prototype.then = function (onFulfilled, onRejected) {
+            if (typeof onFulfilled !== 'function') {
+                onFulfilled = value => value
+            }
+            if (typeof onRejected !== 'function') {
+                onRejected = reason => reason
+            }
+            const that = this;
+            let promise;
+            if (that.status === FULFILLED) {
+                promise = new MyPromise((resolve, reject) => {
+                    setTimeout(_ => {
+                        try {
+                            let x = onFulfilled(that.value)
+
+                        } catch (error) {
+
+                        }
+                    })
+                })
+            }
+        }
+
+        // let p = new MyPromise((resolve, rejrect) => {
+        //     reject('拒绝');
+        //     resolve('解决');
+        // })
+        // console.log(p);
+    </script>
+</body>
+
+</html>

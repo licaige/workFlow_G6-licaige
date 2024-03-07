@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.dir(Function.prototype.bind);
+
+        // console.dir(Function);
+        // console.dir(Function.bind());
+        // console.dir(Function.call());
+
+        // let obj = {
+        //     name: '小丽',
+        // }
+        // let name = '小花';
+        // function fn(name) {
+        //     name = '小王';
+        //     return this.name;
+        // }
+        // let res1 = fn.bind(obj, name);
+        // let res2 = fn.call(obj, name);
+        // let res3 = fn.apply(obj, [name]);
+        // console.log(res1);
+        // console.log(res2);
+        // console.log(res3);
+        let thisVar;
+        function Person(name, age) {
+            thisVar = this;
+            let temp = 10;
+            this.job = 'Software Engineer';
+        }
+        // 1.创建一个对象
+        let person = new Person();
+        // 2.将新创建的对象的原型设置为构造函数的prototype 
+        console.log(person.__proto__ === Person.prototype);
+        // 3.将构造函数的内部this指向新对象
+        console.log(thisVar);
+        // 4.执行函数，给person添加属性
+        console.log(person.job);
+        // 5.函数如果返回非空对象，那么返回该非空对象，否则，返回新对象
+
+    </script>
+</body>
+
+</html>

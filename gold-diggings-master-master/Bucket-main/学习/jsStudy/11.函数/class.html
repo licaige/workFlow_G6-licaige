@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const People = class People {
+            constructor(firstName, lastName) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+            }
+            run(who) {
+                console.log(who);
+            }
+            static say(content) {
+                console.log('说话内容' + content);
+            }
+        }
+        console.dir(People);
+        People.say('你好');
+        const p = new People();
+        p.run('小王');
+    </script>
+</body>
+
+</html>

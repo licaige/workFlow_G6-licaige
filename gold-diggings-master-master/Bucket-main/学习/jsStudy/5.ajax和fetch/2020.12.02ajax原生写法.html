@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 为什么能直接请求到，且不跨域
+        // var xmlhttp;
+        // window.XMLHttpRequest ? xmlhttp = new XMLHttpRequest : xmlhttp = new ActiveXObject("Mocrosoft.XMLHTTP");
+        // xmlhttp.onreadystatechange = callback;
+        // xmlhttp.open('GET','https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user',true);
+        // xmlhttp.send();
+
+        // function callback() {
+        //     if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+        //         var message = xmlhttp.responseText;
+        //         console.log(message);
+        //     }
+        // }
+        // xmlhttp.open('Post','https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/jiekou',true);
+        // xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        // xmlhttp.send()
+        // function callback() {
+        //     if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+        //         var message = xmlhttp.responseText;
+        //         console.log(message);
+        //     }
+        // }
+        console.dir(XMLHttpRequest);
+    </script>
+</body>
+</html>

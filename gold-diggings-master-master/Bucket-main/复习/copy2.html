@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const a = {};
+        const obj = {
+            age: 20,
+            a: a,
+            name: {
+                firstName: '小红',
+                lastName: '李'
+            }
+        }
+        a.b = obj;
+        function copy(obj, map = new Map()) {
+            const res = Array.isArray(obj) ? [] : {};
+            if (map.get(obj)) {
+                return map.get(obj);
+            }
+            map.set(obj, res);
+            for (const key in obj) {
+                if (typeof obj[key] === 'object' && obj[key] !== null) {
+                    res[key] = copy(obj[key], map);
+                } else {
+                    res[key] = obj[key];
+                }
+            }
+            return map.get(obj);
+        }
+        const obj2 = copy(obj);
+        obj2.name.lastName = '王';
+        console.log(obj);
+        console.log(obj2);
+    </script>
+</body>
+
+</html>

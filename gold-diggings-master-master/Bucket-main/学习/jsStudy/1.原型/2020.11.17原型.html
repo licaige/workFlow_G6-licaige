@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let a = {};
+        // let b  = {};
+        // // console.log(Object.getPrototypeOf(a) === Object.getPrototypeOf(b));//true
+        // console.log(Object.getPrototypeOf(a));
+
+        // let c = Object.create(null, {
+        //     name: {
+        //         value: 'hello'
+        //     }
+        // })
+        // console.log(c);
+        // console.log(Object.getPrototypeOf(c));
+
+        // let obj = {
+        //     show() {
+        //         console.log('本身');
+        //     }
+        // };
+        // obj.__proto__.read = function() {
+        //     console.log('baba');
+        // }
+        // obj.show();
+        // obj.read();
+        // console.log(obj);
+
+        // function User() {};
+        // User.__proto__.show = function() {
+        //     console.log('函数对象');
+        // }
+        // console.dir(User);
+        // User.show();
+        // let hd = new User();
+        // console.log(User.prototype === hd.__proto__);
+        // console.dir(Object);
+        // Object.prototype.show = function() {
+        //     console.log('object-prototype');
+        // }
+        // Object.__proto__.read = function() {
+        //     console.log('object-__proto__');
+        // }
+        // let a = {};
+        // a.show();
+        // a.read();
+
+        // let hd = {};
+        // console.log(hd.__proto__ === Object.prototype);
+
+        // let arr = [];
+        // console.log(arr.__proto__ === Array.prototype);
+
+        // let str = "";
+        // console.log(str.__proto__ === String.prototype);
+
+        // let hd = {name: 'hd'};
+        // let parent = {name: 'parent',show(){
+        //     console.log(this.name);
+        // }}
+        // Object.setPrototypeOf(hd,parent);
+        // console.dir(Object.getPrototypeOf(hd));
+
+        // function A() {};
+        // let a = new A();
+        // function B() {};
+        // let b = new B();
+        // A.prototype = b;
+        
+        // console.log(a instanceof B);
+
+        // let array = [1,5,10,2,3,19];
+        // let obj = {
+        //     js: 10,
+        //     php: 50,
+        //     go: 100
+        // }
+        // console.log(Math.max(...Object.values(obj)));
+
+        // console.log(Math.max(...array));
+        // console.log(Math.max.apply(null,array));
+        // console.log(Math.max.call(null,...array));
+
+        // let obj = {};
+        // Object.setPrototypeOf(obj,null);
+        // obj.__proto__ = 99;
+        // console.log(obj.__proto__);
+        // Object.create(a);
+        // console.log(a);
+        // let a = {};
+        // let arr = [20,5,10,9];
+        // Object.setPrototypeOf(a,Math)
+        // console.log(a.max(...arr));
+
+        // let c = {
+        //     js: 50,
+        //     php: 40,
+        //     go: 100
+        // }
+        // c.__proto__.java = 120;
+        // for(var key in c){
+        //     if(c.hasOwnProperty(key)){
+        //         console.log(key);
+        //     }
+        // }
+        // console.log("------");
+        // for(var key in c){
+        //     console.log(key);
+        // }
+
+        function Hd() {
+            
+        };
+        let a = new Hd;
+        console.log(a.name);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

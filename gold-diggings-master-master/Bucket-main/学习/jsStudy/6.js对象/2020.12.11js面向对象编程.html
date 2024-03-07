@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let obj = {
+        //     person: 'Nicholas',
+        //     sayName() {
+        //         console.log(this.firstName);
+        //     }
+        // }
+        // let firstName = {
+        //     firstName: '王'
+        // };
+        // obj.sayName.call(firstName);
+        // obj.sayName.apply();
+        // obj.sayName.bind()();
+
+        // function sayName() {
+        //     console.log(firstName);
+        // }
+        // sayName()
+
+        // 1.创建一个被继承的构造函数1
+        // function SuperType() {
+        //     this.property = true;
+        // };
+        // // 2.给这个构造函数1添加一个方法
+        // SuperType.prototype.getSuperValue = function () {
+        //     return this.property
+        // };
+        // // 3.又创建一个将要继承上面构造函数1的构造函数2
+        // function SubType() {
+        //     this.subproperty = false;
+        // }
+        // // 4.构造函数2的原型指向构造函数1
+        // SubType.prototype = new SuperType();
+        // // 5.给构造函数2添加一个新的方法
+        // SubType.prototype.getSubValue = function () {
+        //     return this.subproperty;
+        // }
+        // console.log(SubType.prototype.__proto__ === SuperType.prototype);
+        // console.dir(SubType);
+        // console.dir(SuperType);
+        // let instance = new SubType();
+        // console.log(instance.getSuperValue());
+
+        // console.log(instance instanceof Object);
+        // console.log(instance instanceof SubType);
+        // console.log(instance instanceof SuperType);
+        // console.log(SubType.prototype instanceof SuperType);
+        // console.log(SuperType instanceof SubType);
+
+        // console.log(Object.prototype.isPrototypeOf(instance));
+        // console.log(SuperType.prototype.isPrototypeOf(instance));
+        // console.log(SubType.prototype.isPrototypeOf(instance));
+        // function fn() { };
+        // console.dir(fn);
+        // let obj = {
+        //     firstName: '王'
+        // }
+        // function fn() {
+        //     return 1
+        // }
+        // console.dir(fn.valueOf());
+
+        // console.dir(Object);
+
+        // instanceof与isPrototypeOf的区别
+
+        // 1.instanceof检测构造函数的prototype属性是否出现在某个实例对象的原型链上
+        // function A() { };
+        // function B() { };
+        // const b = new B();
+        // A.prototype = b;
+        // const a = new A();
+        // console.dir(a instanceof A); // true
+
+        // let obj = {};
+        // let str = "";
+        // let num = 123;
+        // console.log(Object.prototype.toString.call(obj)); // [object Object]
+        // console.log(Object.prototype.toString.call(str)); // [object String]
+        // console.log(Object.prototype.toString.call(num)); // [object Number]
+        // console.log(typeof Object.prototype.toString.call(obj)); // string
+
+        function A() { };
+        function B() { };
+        const b = new B();
+        A.prototype = b;
+        const a = new A();
+        console.log(a.__proto__ =   = b);
+        console.dir(a instanceof A); // false
+
+    </script>
+</body>
+
+</html>

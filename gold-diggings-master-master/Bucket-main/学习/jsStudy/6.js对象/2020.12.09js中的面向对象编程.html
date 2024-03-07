@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="root">
+        <div class="triangle"></div>
+        <div class="fullScreen">
+            <header></header>
+            <main></main>
+            <footer></footer>
+        </div>
+    </div> -->
+    <script>
+        // const o = {
+        //     foo: 'bar',
+        //     baz: 1,
+        //     qux: {},
+        // }
+        // console.log(Object.values(o));
+        // console.log(Object.entries(o));
+
+        // const o = {
+        //     qux: {}
+        // }
+        // console.log(Object.values(o)[0] === o.qux);
+        // console.log(Object.entries(o)[0][1] === o.qux);
+
+        // const sym = Symbol();
+        // const o = {
+        //     [sym]: 'foo'
+        // }
+        // console.log(Object.values(o));
+        // console.log(Object.entries(o));
+
+        // function Person() { };
+        // Person.prototype = {
+        //     name: 'Nickolas',
+        //     age: 29,
+        //     job: 'Software Engineer',
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+
+        // console.dir(Person.prototype.__proto__.constructor === Object);
+
+        // function Person() { };
+        // Person.prototype = {
+        //     constructor: Person,
+        //     name: 'Nickolas',
+        //     age: 29,
+        //     job: 'Software Engineer',
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let friend = new Person();
+        // // console.log(friend instanceof Object);
+        // // console.log(friend instanceof Person);
+        // console.log(friend.constructor == Person);
+        // console.log(friend.constructor == Object);
+
+        // function Person() { };
+        // Person.prototype = {
+        //     name: 'Nicholas',
+        //     age: 29,
+        //     job: 'Software Engineer',
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // Object.defineProperty(Person.prototype, 'constructor', {
+        //     enumerable: false,
+        //     value: Person
+        // })
+        // let friend = new Person();
+        // console.log(friend instanceof Object);
+        // console.log(friend instanceof Person);
+        // console.log(friend.constructor == Person);
+        // console.log(friend.constructor == Object);
+        // function Person() { };
+        // let friend = new Person();
+        // Person.prototype.sayHi = function () {
+        //     console.log('hi');
+        // }
+        // friend.sayHi();
+
+        // function Person() { };
+        // let friend = new Person();
+        // Person.prototype = {
+        //     constructor: Person,
+        //     name: 'Nicholas',
+        //     age: 29,
+        //     job: 'Software Engineer',
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // friend.sayName();
+
+        // console.dir(Array);
+        // console.log([]);
+
+        // console.log(typeof Array.prototype.sort);
+        // console.log(typeof String.prototype.substring);
+
+        // let msg = 'Hello world';
+
+        // String.prototype.startsWitha = function (text) {
+        //     return this.indexOf(text) === 0;
+        // }
+        // console.log(msg.startsWitha('Hello'));
+
+        // function Person() { }
+        // Person.prototype = {
+        //     constructor: Person,
+        //     name: 'Nickolas',
+        //     age: 29,
+        //     job: 'Software Engineer',
+        //     friends: ['Shelby', 'Count'],
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let person1 = new Person();
+        // let person2 = new Person();
+        // person1.friends.push('Van');
+        // console.log(person1.friends);
+        // console.log(person2.friends);
+        // console.log(person1.friends === person2.friends);
+
+        // for (var i = 0; i < 5; i++) {
+        //     console.log(i);
+        // }
+
+        // let arr = new Array(1000000);
+        // let arr1 = Array.of(1000000);
+        // arr.fill('Hello World!')
+        // console.log(arr);
+        // console.log(arr1);
+        // let arr = [];
+        // let obj = {};
+        // console.log(Array.isArray(obj));
+
+        // console.log(Object.prototype.toString.call('Hello'));
+        // console.log(typeof 'Hello');
+        // console.log(Object.prototype.toString.call(10));
+        // console.log(typeof 10);
+        // console.log(Object.prototype.toString.call(true));
+        // console.log(typeof true);
+        // console.log(Object.prototype.toString.call(null));
+        // console.log(typeof null);
+        // console.log(Object.prototype.toString.call(undefined));
+        // console.log(typeof undefined);
+        // console.log(Object.prototype.toString.call(Symbol));
+        // console.log(typeof Symbol);
+        // console.log(Object.prototype.toString.call(Symbol()));
+        // console.log(typeof Symbol());
+        // console.log(Object.prototype.toString.call(NaN));
+        // console.log(typeof NaN);
+        // console.log(Object.prototype.toString.call({}));
+        // console.log(typeof {});
+        // console.log(Object.prototype.toString.call([]));
+        // console.log(typeof []);
+
+        // let a = { n: 1 };
+        // let b = a;
+        // a.x = {
+        //     n: 2
+        // }
+        // a = {
+        //     n: 2
+        // }
+        // console.log(a);
+        // console.log(b);
+        // console.log(a.x);
+        console.log(!0 == []);
+        console.log(null == undefined);
+        console.log(0 == [1]);
+        console.log(0 === []);
+        console.log(null === undefined);
+    </script>
+</body>
+
+</html>

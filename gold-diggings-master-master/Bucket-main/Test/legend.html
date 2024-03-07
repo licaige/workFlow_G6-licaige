@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #thremal-lengend {
+            width: 248px;
+            height: 74px;
+            opacity: 0.5;
+            background: #071224;
+            border-radius: 8px;
+            user-select: none;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        .thremal-unit {
+            width: 56px;
+            height: 14px;
+            opacity: 1;
+            font-size: 14px;
+            font-family: PingFang SC Regular, PingFang SC Regular-Regular;
+            font-weight: 400;
+            text-align: left;
+            color: #ffffff;
+            line-height: 14px;
+            padding-top: 15px;
+            padding-left: 14px;
+        }
+
+        #thremal-progress {
+            width: 214px;
+            height: 8px;
+            opacity: 1;
+            margin-top: 9px;
+            margin-left: 14px;
+            display: flex;
+        }
+
+        .bar {
+            width: 50px;
+            height: 8px;
+            margin-left: 2px;
+        }
+
+        .thremal-font {
+            width: 11px;
+            height: 9px;
+            opacity: 1;
+            font-size: 12px;
+            font-family: DINPro Regular, DINPro Regular-Regular;
+            font-weight: 400;
+            text-align: left;
+            color: #ffffff;
+            line-height: 30px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const num = [20, 50, 70];
+        const color = ['red', 'yellow', 'green'];
+        let htmlBox = document.createElement('div');
+        htmlBox.id = 'thremal-lengend';
+        document.body.appendChild(htmlBox);
+        const unitHtml = `<div class="thremal-unit">单位：℃</div><div id="thremal-progress"></div>`;
+        document.getElementById('thremal-lengend').innerHTML += unitHtml;
+        num.forEach((item, i) => {
+            const html = `<div class="bar bar${i}}" style="width:${214 / num.length}px;background:${color[i]}"><span class="thremal-font">${item}</span></div>`
+            document.getElementById('thremal-progress').innerHTML += html
+        })
+        //元素鼠标按下事件   
+        //当鼠标在这个元素身上按下的时候 就会触发回调函数  
+        const box = document.getElementById('thremal-lengend');
+        box.onmousedown = function (event) {
+            event = event || window.event;
+            // 获取元素起始位置
+            var eleX = box.offsetLeft;
+            var eleY = box.offsetTop;
+            // 鼠标按下的坐标
+            var startX = event.clientX;
+            var startY = event.clientY;
+            //鼠标抬起事件
+            document.onmousemove = function (event) {
+                console.log('移动');
+                event = event || window.event;
+                // 获取鼠标移动后的位置
+                var endX = event.clientX;
+                var endY = event.clientY;
+                // 鼠标距离差 = 鼠标移动后位置 - 鼠标按下的位置
+                var disX = endX - startX;
+                var disY = endY - startY;
+                // 元素最终的位置 = 元素初始位置 + 鼠标距离差
+                var lastX = eleX + disX;
+                var lastY = eleY + disY;
+                // 设置元素移动位置
+                box.style.left = lastX + 'px';
+                box.style.top = lastY + 'px';
+            };
+
+            //鼠标抬起事件
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            };
+            return false;
+        };
+    </script>
+</body>
+
+</html>

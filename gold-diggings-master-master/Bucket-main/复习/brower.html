@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function foo() {
+            var a = 1;
+            var b = a;
+            a = 2;
+            console.log(a); // 2
+            console.log(b); // 1
+        }
+        foo();
+        function foo1() {
+            var a = { name: '极客时间' };
+            var b = a;
+            a.name = '极客邦';
+            console.log(a); // { name: '极客邦' };
+            console.log(b); // { name: '极客邦' };
+        }
+        foo1();
+        function foo2() {
+            var a = '极客时间';
+            var b = a;
+            var c = { name: '极客时间' };
+            var d = c;
+            console.log(d === c);
+        }
+        foo2();
+    </script>
+</body>
+
+</html>

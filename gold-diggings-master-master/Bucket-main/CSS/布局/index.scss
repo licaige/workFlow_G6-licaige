@@ -1,0 +1,17 @@
+.two-column-layout {
+  display: flex;
+  width: 400px;
+  height: 400px;
+  .left {
+    width: 100px;
+    background-color: hotpink;
+  }
+  .center {
+    flex: 1;
+    background-color: blueviolet;
+  }
+  .right {
+    width: 100px;
+    background-color: aquamarine;
+  }
+}

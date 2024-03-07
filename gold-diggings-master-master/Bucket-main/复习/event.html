@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="list">
+        <li class="li1">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        document.getElementById('list').addEventListener('click', function (event = window.event) {
+            event.stopPropagation();
+            event.preventDefault();
+            // const target = event.target;
+            // console.log(target);
+            // console.log(event.currentTarget);
+            // if (target.matches('li.li1')) {
+            //     console.log(target.innerHTML);
+            // }
+        })
+    </script>
+</body>
+
+</html>

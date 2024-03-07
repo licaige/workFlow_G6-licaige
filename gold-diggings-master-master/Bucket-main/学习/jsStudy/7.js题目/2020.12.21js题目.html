@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Object.prototype.a = { b: 1 };
+        // Object.prototype.c = 2;
+        // let test = new Object();
+        // test.a.b = { b: 'ssss' };
+        // // test.d = {};
+        // // test.d.e = 2222;
+        // test.c = 555;
+        // console.log(test.e);
+
+        // let obj = {
+        //     age: 18
+        // }
+        // function getInfo(job, name) {
+        //     console.log(job);
+        //     console.log(name);
+        //     console.log(this.age);
+        // }
+
+        // obj.bind(obj, 'student', '小绵')();
+        // getInfo.bind(obj, 'student', '小绵')
+
+        // console.log(a);
+        // let obj = {
+        //     age: 18
+        // }
+        // function getInfo(job, name) {
+        //     console.log(job);
+        //     console.log(name);
+        //     console.log(this.age);
+        // }
+        // Function.prototype.myBind = function (context) {
+        //     if (typeof this !== 'function') {
+        //         throw new Error('调用myBind必须是函数')
+        //     }
+        //     let _this = this;
+        //     let args = [...arguments].slice(1);
+        //     return function F() {
+        //         return _this.apply(context, args.concat(...arguments))
+        //     };
+        // }
+        // getInfo.myBind(obj, 'student', '小绵')();
+
+        // getInfo.myBind(obj, 'student', '小绵')();
+
+        // getInfo.call(obj, 'student');
+        // Function.prototype.myCall = function (context) {
+        //     context = context || window;
+        //     context.fn = this;
+        //     let result;
+        //     if (arguments[1]) {
+        //         result = context.fn(...[...arguments].slice(1));
+        //     } else {
+        //         result = context.fn();
+        //     }
+        //     delete context.fn;
+        //     return result;
+        // }
+        // getInfo.myCall(obj, 'student', '小王');
+
+        // Function.prototype.myApply = function (context) {
+        //     context = context || window;
+        //     context.fn = this;
+        //     let result;
+        //     if (arguments[1]) {
+        //         if (Array.isArray(arguments[1])) {
+        //             result = context.fn(...arguments[1]);
+        //         } else {
+        //             console.error('第二个参数类型错误，需传数组类型');
+        //         }
+        //     } else {
+        //         result = context.fn();
+        //     }
+        //     delete context.fn;
+        //     return result
+        // }
+        // getInfo.myApply(obj, 'student');
+        // getInfo.apply(obj, 'student');
+
+        // function Demo() { }
+        // let obj = new Demo();
+        // Demo.prototype.read = function () {
+        //     console.log("read");
+        // }
+        // Demo.__proto__.show = function () {
+        //     console.log("show");
+        // }
+        // obj.read(); // read
+        // obj.show(); // obj.show is not a function
+
+        // function A() { }
+        // function B() { }
+        // function C() { }
+        // C.prototype.show = function () {
+        //     console.log('C构造函数');
+        // }
+        // B.prototype = new C();
+        // A.prototype = new B();
+        // let a = new A();
+        // a.show(); // C构造函数
+
+        // let obj = {
+        //     age: 20
+        // }
+        // let arr = [15, 20, 25];
+        // console.log(Object.prototype.toString.call(obj)); // [object Object]
+        // console.log(Object.prototype.toString.call(arr)); // [object Array]
+
+        // var age = 10;
+        // let obj = {
+        //     age: 20,
+        //     say: () => {
+        //         console.log(arguments);
+        //         return this.age;
+        //     }
+        // }
+        // console.log(obj.say()); // 10
+        // let obj1 = {
+        //     age: 30
+        // }
+        // obj1 = Object.create(obj);
+        // obj1.age = 30;
+        // console.log(obj1.say()); // 10
+
+        // function getName() {
+        //     let say = () => {
+        //         console.log(this.age);
+        //     }
+        //     say();
+        // }
+        // let obj = {
+        //     age: 20,
+        //     getName: getName
+        // }
+        // obj.getName(); // 20
+
+
+        // let arr = Array('he', 'hh');
+        // console.log(arr);
+
+        // function A(name, age) {
+        //     console.log(name);
+        //     console.log(age);
+        // }
+        // let a = A('1', 'po');
+        // console.log(a);
+
+        // let obj = {
+        //     name: '小王'
+        // }
+        // function getInfo(job) {
+        //     console.log(this.name);
+        //     console.log(job);
+        // }
+        // getInfo.apply();
+        // Function.prototype.myApply = function (context) {
+        //     context = context || window;
+        //     context.fn = this;
+        //     let result;
+        //     if (arguments[1]) {
+        //         if (Array.isArray(arguments[1])) {
+        //             result = context.fn(...arguments[1]);
+        //         } else {
+        //             console.error('Uncaught TypeError: CreateListFromArrayLike called on non-object');
+        //         }
+
+        //     } else {
+        //         result = context.fn()
+        //     }
+        //     delete context.fn;
+        //     return result;
+        // }
+        // getInfo.myApply(obj);
+
+        // function getAge() {
+        //     console.log(this.age)
+        // }
+        // var age = 1
+        // getAge()
+
+        // var obj = {
+        //     age: 2,
+        //     getAge: getAge
+        // }
+        // obj.getAge()
+
+        // function A() {
+        //     console.log(this.age);
+        // }
+        // A.prototype.show = function () {
+        //     console.log(this.age);
+        // }
+        // let a = new A();
+        // a.age = 100;
+        // a.show();
+
+        // var a = 0;
+        // var b = async () => {
+        //     a = a + await 10;
+        //     console.log('2', a);
+        //     a = (await 10) + a;
+        //     console.log('3', a);
+        // }
+        // b();
+        // a++;
+        // console.log('1', a);
+
+        // function* test() {
+        //     let a = 1 + 2;
+        //     yield 2;
+        //     yield 3;
+        // }
+        // let b = test();
+        // console.log(b.next());
+        // console.log(b.next());
+        // console.log(b.next());
+
+        // console.log([] == ![]);
+        // console.log(NaN !== NaN);
+
+
+    </script>
+</body>
+
+</html>

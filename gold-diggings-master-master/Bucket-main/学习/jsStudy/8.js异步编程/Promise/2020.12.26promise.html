@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.dir(Promise);
+        // let sayHello = function (name, callback) {
+        //     setTimeout(function () {
+        //         console.log(name);
+        //         callback();
+        //     }, 1000);
+        // }
+        // sayHello('first', function () {
+        //     sayHello('second', function () {
+        //         sayHello('third', function () {
+        //             console.log('end');
+        //         });
+        //     });
+        // })
+
+        // console.log(123);
+        // setTimeout(() => {
+        //     console.log(125);
+        // }, 2)
+        // setTimeout(() => {
+        //     console.log(128);
+        // }, 0)
+        // console.log(5555);
+
+        // function doSomething(msg, callback) {
+        //     alert(msg);
+        //     if (typeof callback === 'function') {
+        //         callback();
+        //     }
+        // }
+        // doSomething('回调函数', function () {
+        //     alert('匿名函数实现回调');
+        // });
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onload = () => {
+
+        // }
+        // xhr.open();
+        // xhr.send();
+
+        // 同步回调
+        // function getNodes(param, callback) {
+        //     let list = JSON.stringify(param);
+        //     if (typeof callback === 'function') {
+        //         callback(list)
+        //     }
+        // }
+        // getNodes('[1,2,3]', function (nodes) {
+        //     console.log(nodes);
+        // });
+        // //ajax回调
+        // $.get('ajax/test.html', function (data) {
+        //     $('box').html(data);
+        // })
+
+        // // 点击事件回调 
+        // $('#myBtn').click(function () {
+        //     alert('click myBtn!');
+        // })
+
+        // let clientData = {
+        //     id: 096545,
+        //     fullName: "Not Set",
+        //     setUserName: function (firstName, lastName) {
+        //         this.fullName = firstName + " " + lastName;
+        //     }
+        // }
+        // function getUserInput(firstName, lastName, callback) {
+        //     //调用回调函数存储，此时是window调用的这个传进来的函数
+        //     callback.call(clientData, firstName, lastName);
+        // }
+        // getUserInput("Barack", "Obama", clientData.setUserName);
+        // console.log(clientData.fullName);  //Barack Obama
+        // console.log(window.fullName);  //undefined
+        // console.log(Math.sqrt(2));
+
+        // Math.square = function (number) {
+        //     return number * number;
+        // }
+        // console.log(Math.square(2));
+        // function fn(url, callback) {
+        //     let httpRequest;　　　　//创建XHR
+        //     httpRequest = window.XMLHttpRequest ? new XMLHttpRequest() :　　　//针对IE进行功能性检测
+        //         window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : undefined;
+
+        //     httpRequest.onreadystatechange = function () {
+        //         if (httpRequest.readystate === 4 && httpRequest.status === 200) {　　//状态判断
+        //             callback.call(httpRequest.responseXML);
+        //         }
+        //     };
+        //     httpRequest.open("GET", url);
+        //     httpRequest.send();
+        // }
+
+        // fn("text.xml", function () {　　　　//调用函数
+        //     console.log(this); / /此语句后输出
+        // });
+
+        // console.log("this will run before the above callback.");　　//此语句先输出
+
+        // function A(param) {
+        //     return param
+        // }
+        // console.log(A(20));
+
+        // function A(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     return this;
+        // }
+        // A.prototype.create = function () {
+        //     return new A('XKHM1', 251);
+        // }
+        // let a = new A('XKHM', 25);
+        // console.log(a.create().name);
+
+        // function add(num) {
+        //     let sum = 0;
+        //     sum += num;
+        //     return function (a) {
+        //         sum += a;
+        //         return function (b) {
+        //             sum += b;
+        //             return function (c) {
+        //                 sum += c;
+        //                 return sum;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // console.log(add(10)(20)(30)(40));
+
+        // let currying = function (fn) {
+        //     // fn 指官员消化老婆的手段
+        //     // let a = [...arguments].slice(1);
+        //     // let a = Array.from(arguments).slice(1);
+        //     // console.log(a);
+        //     let args = [...arguments].slice(1);
+        //     // args 指的是那个合法老婆
+        //     return function () {
+        //         // 已经有的老婆和新搞定的老婆们合成一体，方便控制
+        //         let newArgs = args.concat([...arguments]);
+        //         // 这些老婆们用 fn 这个手段消化利用，完成韦小宝前辈的壮举并返回
+        //         return fn.apply(null, newArgs);
+        //     };
+        // };
+        // currying('a', 'b', 'c', 'd');
+        // 下为官员如何搞定7个老婆的测试
+        // 获得合法老婆
+        // let getWife = currying(function () {
+        //     let allWife = [].slice.call(arguments);
+        //     // allwife 就是所有的老婆的，包括暗渡陈仓进来的老婆
+        //     console.log(allWife.join(";"));
+        // }, "合法老婆");
+
+        // // 获得其他6个老婆
+        // getWife("大老婆", "小老婆", "俏老婆", "刁蛮老婆", "乖老婆", "送上门老婆");
+
+        // // 换一批老婆
+        // getWife("超越韦小宝的老婆");
+
+        // const fn = function () {
+        //     console.log(1564);
+        // }
+        // var a = 1;
+        // var a = 2;
+        // var a = 3;
+        // console.log(a == 1);
+        // console.log(a == 2);
+        // console.log(a == 3);
+        // if (a == 1 && a == 2 && ﾠa == 3) {
+        //     console.log("Hi Eno!");
+        // }
+    </script>
+</body>
+
+</html>

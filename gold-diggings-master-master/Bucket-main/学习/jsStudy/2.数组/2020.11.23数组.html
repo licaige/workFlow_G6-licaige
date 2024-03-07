@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let arr = [1,5,8,9,7];
+        // console.log(arr.indexOf(8,2)); // 2
+        // console.log(arr.indexOf(7)); // 4
+        //console.log(arr.lastIndexOf(5)); //5
+
+        // let arr = [1,5,8,9,7,5];
+        // console.log(arr.includes(8)); // true
+        // console.log(arr.includes(2)); // false
+
+        // let arr = [1,5,8,9,7,5];
+        // function includes(arr,find){
+        //     for (const value of arr) {
+        //         if(value === find) return true
+        //     }
+        //     return false
+        // }
+        // console.log(includes(arr,9)); // true
+        // console.log(includes(arr,99)); // false
+
+        // let arr = [1,4,8,5,2,4];
+        // let res = arr.find(item => {
+        //     return item === 500
+        // });
+        // console.log(res); // 5 如果有这个数就将值返回回来
+
+        // let program = [{'name':'js'},{'name':'go'},{'name':'node.js'}];
+        // console.log(program.includes({'name':'go'})); // false 此时返回false，因为查找的是引用类型，程序会认为他们的内存地址不一样，所以会返回false
+        // let res = program.find(item => {
+        //     return item.name = 'css'
+        // })
+        // console.log(res); // {name: "css"} 此时就可以用find方法进行查找
+
+        // let program = [{'name':'js'},{'name':'go'},{'name':'node.js'}];
+        // let res = program.findIndex(item => {
+        //     return item.name === 'css';
+        // })
+        // console.log(res); // -1 此时就可以用findIndex方法进行查找
+
+        // let program = [{'name':'js'},{'name':'go'},{'name':'node.js'}];
+        // console.log(program.includes({'name':'go'})); // false 此时返回false，因为查找的是引用类型，程序会认为他们的内存地址不一样，所以会返回false
+        // let res = program.find(item => {
+        //     return item.name === 'go'
+        // })
+        // console.log(res); // {name: "go"} 此时就可以用find方法进行查找
+
+        // function find(array,callback) {
+        //     for (const value of array) {
+        //         if(callback(value)) return value
+        //     }
+        //     return undefined
+        // }
+        // let arr = [1,2,3,5];
+        // console.log(find(arr,item => {
+        //     return item === 5
+        // })); // 5
+
+        // Array.prototype.findValue = function(callback) {
+        //     for (const value of this) {
+        //         if(callback(value)) return value
+        //     }
+        //     return undefined;
+        // };
+        // let arr = [1,2,5,48,3];
+        // let res  = arr.findValue(item => {
+        //     return item ===48
+        // });
+        // console.log(res);
+        // let arr = [5,8,0,2,36,4,5,7];
+        // arr.sort(function(a,b){
+        //     return a-b; // a-b为从小到大，b-a为从大到小
+        // });
+        // console.log(arr); // [0, 2, 4, 5, 5, 7, 8, 36]
+
+        // let array = [
+        //     {'name':'js','grade':80},
+        //     {'name':'java','grade':50},
+        //     {'name':'go','grade':100},
+        // ]
+        // array.sort(function(a,b) {
+        //     return b.grade - a.grade;
+        // })
+        // console.log(array);
+        // [{'name':'go','grade':100},{'name':'js','grade':80},{'name':'java','grade':50}]
+
+        // function sort(array,callback) {
+        //     for (const n in array) {
+        //         for (const m in array) {
+        //             if(callback(array[n],array[m]) < 0){
+        //                 const temp = array[n];
+        //                 array[n] = array[m];
+        //                 array[m] = temp;
+        //             }
+        //         }
+        //     }
+        //     return array;
+        // };
+        // let arr = [10,52,2,3,7];
+        // sort(arr,function(a,b){
+        //     return b - a
+        // })
+        // console.log(arr);
+
+        // let array = [
+        //     {'name':'js','grade':80},
+        //     {'name':'java','grade':50},
+        //     {'name':'go','grade':100},
+        // ];
+        // for (const value of array) {
+        //     value.name = `编程语言：${value.name}`
+        // }
+        // console.log(array);
+        //[{'name':'编程语言：js','grade':80},{'name':'编程语言：java','grade':50},{'name':'编程语言：go','grade':100}]
+
+        // let array = [1,5,3];
+        // for (let value of array) {
+        //     value += 5;
+        // }
+        // console.log(array); // [1, 5, 3] 当原数组为引用类型的时候，for of不会改变原数组
+
+        // let array = [
+        //     {'name':'js','grade':80},
+        //     {'name':'java','grade':50},
+        //     {'name':'go','grade':100},
+        // ];
+        // for (const key in array) {
+        //     array[key].name = `语言：${array[key].name}`
+        // }
+        // console.log(array);
+        //[{'name':'语言：js','grade':80},{'name':'语言：java','grade':50},{'name':'语言：go','grade':100}]
+        let arr = [1,10,2,5,8];
+        for (const key in arr) {
+            arr[key] += 20;
+        }
+        console.log(arr);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

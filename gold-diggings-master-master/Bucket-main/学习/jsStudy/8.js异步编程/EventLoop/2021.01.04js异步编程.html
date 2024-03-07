@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        new Promise(resolve => {
+            resolve();
+        })
+            .then(() => {
+                new Promise(resolve => {
+                    resolve();
+                })
+                    .then(() => { console.log(111); }) // mi1
+                    .then(() => { console.log(222); }); // mi2
+            })
+            .then(() => {
+                new Promise((resolve => {
+                    resolve()
+                }))
+                    .then(() => {
+                        new Promise((resolve) => {
+                            resolve()
+                        })
+                            .then(() => { console.log(333) }) //mi4
+                            .then(() => { console.log(444) }) // mi5
+                    }).then(() => {
+                        console.log(555); //
+                    })
+            }).then(() => {
+                console.log(666); //mi3
+            })
+    </script>
+</body>
+
+</html>

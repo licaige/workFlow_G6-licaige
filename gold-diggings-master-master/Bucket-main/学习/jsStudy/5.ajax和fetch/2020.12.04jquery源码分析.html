@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log(Object.getPrototypeOf);
+
+        // let arr = [1,2,3,[5,6,8,[2,5,6,4]]];
+        // let arrRes = arr.concat.call([],arr);
+        // console.log(arrRes);
+        // console.log([].flat.call(arr));
+
+        // window = {};
+        // window.a = '122'
+        // console.log(window);
+
+        // (function(){
+        //     let b = 100;
+        //     window.b = b;
+        // })(window)
+        // console.log(b);
+
+        // let $ = {};
+        // $.prototype.say = function() {
+        //     console.log('说话方法');            
+        // }
+        // console.dir($);
+        // $.say();
+
+        // function Admin() {}
+        // Admin.prototype.say = function(){
+        //     console.log(2589);
+        // }
+        // Admin.say();
+
+        // function Admin() {};
+        // Admin.prototype.show = function() {
+        //     console.log(123);
+        // }
+        // let obj = Admin();
+        // obj.show();
+
+        function Person(age){
+            this.age = age;
+            // console.log(this);
+            return age;
+        }
+        Person.prototype.say = function(){
+            console.log(156);
+        };
+        let person1 = new Person({});
+        console.log(person1.__proto__ === Person.prototype);
+        // let person2 = Person({});
+        // console.dir(person1);
+        // console.dir(Person);
+        // console.dir(person2);
+        // console.log(person1.__proto__ === Person.prototype.__proto__);
+        // console.log(person2.__proto__ === Person.prototype.__proto__);
+        // person1.say();
+        // person2.say();
+    </script>
+</body>
+</html>

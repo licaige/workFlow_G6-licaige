@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  let colors = ['red','green'];
+        //  for (const [index,item] of colors.entries()) {
+        //      console.log(index);
+        //      console.log(item);
+        //  }
+        // for (const [index,value] in colors.entries()) {
+        //     console.log(index);
+        //     console.log(value);
+        // }
+
+        // let zeroes = [0,0,0,0,0];
+        // zeroes.fill(5);
+        // console.log(zeroes); // [5, 5, 5, 5, 5]
+        // zeroes.fill(0);
+        // console.log(zeroes); // [0, 0, 0, 0, 0]
+        // zeroes.fill(3,1);
+        // console.log(zeroes); // [0, 3, 3, 3, 3]
+        // zeroes.fill(10,6);
+        // console.log(zeroes);  // [0, 3, 3, 3, 3]
+        // zeroes.fill(0);
+        // console.log(zeroes); // [0, 0, 0, 0, 0]
+        // zeroes.fill(8,-4,-1);
+        // console.log(zeroes); // [0,8,8,8,0]
+        // zeroes.fill(1,-10,-6);
+        // console.log(zeroes); // [0,8,8,8,0]
+        // zeroes.fill(1,10,15);
+        // console.log(zeroes); // [0,8,8,8,0]
+        // zeroes.fill(1,3,1);
+        // console.log(zeroes); // [0,8,8,8,0]
+        // zeroes.fill(1,3,10);
+        // console.log(zeroes); // [0, 8, 8, 1, 1]
+
+        let ints;
+        reset = () => ints = [0,1,2,3,4,5,6,7,8,9];
+        reset();
+        ints.copyWithin(5);
+        console.log(ints); // [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
+        // reset();
+        // console.log(ints);
+        // ints.copyWithin(0,5);
+        // console.log(ints); // [5, 6, 7, 8, 9, 5, 6, 7, 8, 9]
+        // ints.copyWithin(9,1);
+        // console.log(ints); //  [0, 1, 2, 3, 4, 5, 6, 7, 8, 1]
+        // ints.copyWithin(1,2,4);
+        // console.log(ints); //  [0,2,3,3,4,5,6,7,8,9]
+
+        // ints.copyWithin(4,0,3);
+        // console.log(ints); // [0,1,2,3,0,1,2,7,8,9]
+
+        // ints.copyWithin(2,0,6);
+        // console.log(ints); // [0,1,0,1,2,3,4,5,8,9]
+
+        // ints.copyWithin(-4,-7,-3);
+        // console.log(ints); // [0,1,2,3,4,5,3,4,5,6]
+        // ints.copyWithin(1,-15,-12);
+        // console.log(ints); // [0,1,2,3,4,5,6,7,8,9]
+        // ints.copyWithin(1,12,15);
+        // console.log(ints); // [0,1,2,3,4,5,6,7,8,9]
+
+        // ints.copyWithin(1,8,1);
+        // console.log(ints); // [0,1,2,3,4,5,6,7,8,9]
+
+        // ints.copyWithin(1,8,12);
+        // console.log(ints); // [0,8,9,3,4,5,6,7,8,9]
+
+        // let array = [{
+        //     id: 2,
+        //     lable: 'two',
+        //     url: '2xxx',
+        //     child: [
+        //         {
+        //             id:20,
+        //             lable: 'two',
+        //             url: '20xxx',
+        //         },
+        //         {
+        //             id:21,
+        //             lable: 'two',
+        //             url: '21xxx',
+        //             child: [
+        //                 {
+        //                     id:68,
+        //                     lable: 'two',
+        //                     url: '68xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61111xxx',
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }];
+        // let fn = (id,array) => {
+        //     for (const item of array) {
+        //         if(item.id === 61){
+        //             console.log(item.url);
+        //             return item.url; 
+        //         }
+        //         if(item.hasOwnProperty('child')){
+        //             fn(id,item.child);
+        //         }
+        //     }
+        // };
+        // console.log(fn(61,array)); // 为什么返回undefined
+
+        // let colors = ['red','green','black'];
+        // alert(colors.toString()); // red,green,black
+        // // console.log(colors.toLocaleString()); // red,green,black
+        // alert(colors.valueOf()); // ["red", "green", "black"]
+        // alert(colors);
+
+        // let a = [1,5];
+        // alert(a.toString());
+        
+        // let colors = ['red','green'];
+        // console.log(colors.toString()); // red,green
+        // console.log(colors.toLocaleString()); // red,green
+        // console.log(colors.valueOf()); //  ["red", "green"]
+        // console.log(colors); // ["red", "green"]
+
+        // let obj1 = {
+        //     toLocaleString() {
+        //         return 'obj1调用toLocaleString'
+        //     },
+        //     toString() {
+        //         return 'obj1调用toString'
+        //     }
+        // }
+        // let obj2 = {
+        //     toLocaleString() {
+        //         return 'obj2调用toLocaleString'
+        //     },
+        //     toString() {
+        //         return 'obj2调用toString'
+        //     }
+        // };
+        // let obj = [obj1,obj2];
+        // alert(obj);
+        // alert(obj.toString());
+        // alert(obj.toLocaleString());
+
+        // let colors = ['red','green','blue'];
+        // console.log(colors.join(','));
+        // console.log(colors.join('||'));
+        // console.log(colors.join());
+        // console.log(colors.join(undefined));
+        // console.log(colors.join());
+
+        // console.log(Boolean().toString());
+
+        // let num = 155555587;
+        // console.log(num.valueOf());
+        // console.log(num.toString());
+        // console.log(num.toLocaleString());
+
+        // let array = new Array();
+        // console.log(array.push('red','green')); // 2
+        // console.log(array); // ["red", "green"]
+        // console.log(array.pop()); // green
+        // console.log(array); // ["red"]
+
+        // let arr = ['red','green'];
+        // console.log(arr.push('blue')); // 3
+        // console.log(arr); // ["red", "green", "blue"]
+        // arr[5] = 'white';
+        // console.log(arr); // ["red", "green", "blue", empty × 2, "white"]
+        // console.log(arr.pop()); // white
+        // console.log(arr); //  ["red", "green", "blue", empty × 2]
+        // console.log(arr.pop()); // undefined
+        // console.log(arr); //  ["red", "green", "blue", empty]
+
+        // let arr = ['red','green','black'];
+        // arr.length = arr.length - 1;
+        // console.log(arr);
+
+        // let colors = new Array();
+        // colors.push('red','black');
+        // colors.push('white');
+        // console.log(colors.shift()); // red
+        // console.log(colors); // ["black", "white"]
+
+        // let colors = new Array();
+        // console.log(colors.unshift('red','blue')); // 2
+        // console.log(colors.unshift('green','yellow')); // 4
+        // console.log(colors); // ["green", "yellow", "red", "blue"]
+        // console.log(colors.pop()); // blue
+        // console.log(colors); // ["green", "yellow", "red"]
+
+        // let value = [1,2,3,4,5,6];
+        // console.log(value.reverse()); // [6, 5, 4, 3, 2, 1]
+        // console.log(value); // [6, 5, 4, 3, 2, 1]
+
+        // let value = [1,2,3,5,8,9,10,16,20,50];
+        // console.log(value.sort()); //  [1, 10, 16, 2, 20, 3, 5, 50, 8, 9]
+        
+        // let value = [1,2,50,10,0];
+        // function compare(a,b) {
+        //     if(a < b) return -1
+        //     else if(a > b) return 1
+        //     else return 0;
+        // }
+        // value.sort(compare);
+        // console.log(value); //  [0, 1, 2, 10, 50]
+
+        // let value = [1,2,50,10,0];
+        // function compare(a,b) {
+        //     if(a < b) return 1
+        //     else if(a > b) return -1
+        //     else return 0;
+        // }
+        // value.sort(compare);
+        // console.log(value); // [50, 10, 2, 1, 0]
+
+        // let value = [1,2,50,10,0];
+        // console.log(value.sort((a,b) => a<b ? -1: a>b ? 1:0));
+        // console.log(value); // [0, 1, 2, 10, 50]
+        // console.log(value.sort((a,b) => a<b ? -1: a>b ? 1:0) === value);
+
+        // let value = [1,2,50,10,0];
+        // value.sort((a,b) => {
+        //     return a-b
+        // });
+        // console.log(value); // [0, 1, 2, 10, 50]
+
+        // let value = ['aa','bc','bb','az'];
+        // function compare(a,b) {
+        //     if(a < b) return -1
+        //     else if(a > b) return 1
+        //     else return 0;
+        // }
+        // value.sort(compare);
+        // console.log(value);
+
+        // let colors = ['red'];
+        // console.log(colors.concat('green','blue')); // ["red", "green", "blue"]
+        // console.log(colors); // ["red"]
+
+        // let colors = ['red'];
+        // console.log(colors.concat('blue',['white','brown'])); // ["red", "blue", "white", "brown"]
+        // console.log(colors); // ["red"]
+
+        // let colors = ['red','green'];
+        // let newColors = ['brown','blue'];
+        // let moreNewColors = {
+        //     [Symbol.isConcatSpreadable]: true,
+        //     length: 2,
+        //     0: 'pink',
+        //     1: 'cyan'
+        // };
+        // newColors[Symbol.isConcatSpreadable] = false;
+        // let colors2 = colors.concat('yellow',newColors);
+        // console.log(colors2); // ["red", "green", "yellow", Array(2)]
+        // let colors3 = colors.concat(moreNewColors);
+        // console.log(colors3); // ["red", "green", "pink", "cyan"]
+
+        // let colors = ['red'];
+        // let newColors = {
+        //     1: 'blue',
+        //     2: 'black',
+        //     length: 3
+        // };
+        // let colors2 = colors.concat(newColors);
+        // console.log(colors2); // ["red", {…}]
+        // newColors[Symbol.isConcatSpreadable] = true;
+        // let colors3 = colors.concat(newColors);
+        // console.log(colors3); // ["red", empty, "blue", "black"]
+
+        // let colors = ['red','blue'];
+        // let colors2 = colors.slice();
+        // let colors3 = colors.slice(1);
+        // let colors4 = colors.slice(0,1);
+        // console.log(colors); //  ["red", "blue"]
+        // console.log(colors2); // ["red", "blue"]
+        // console.log(colors3); // ["blue"]
+        // console.log(colors4); // ["red"]
+
+        // let nums = [1,2,3,4,5,6,7,8,9,10];
+        // console.log(nums.splice(0,2)); // [1, 2]
+        // console.log(nums); // [3, 4, 5, 6, 7, 8, 9, 10]
+
+        // let colors = ['red','green'];
+        // console.log(colors.splice(0,1,'black','white')); // ["red"]
+        // console.log(colors); // ["black", "white", "green"]
+
+        // let numbers = [1,2,3,4,5,4,3,2,1];
+        // console.log(numbers.indexOf(4)); // 3
+        // console.log(numbers.lastIndexOf(4)); // 5
+        // console.log(numbers.includes(4)); // true
+        // console.log(numbers.indexOf(4,4)); // 5
+        // console.log(numbers.lastIndexOf(4,4)); // 3
+        // console.log(numbers.includes(4,7)); // false
+
+        // let person = {
+        //     name: '小明'
+        // };
+        // let people = [{
+        //     name: '小明'
+        //    }
+        // ]
+        // let morePeople = [person];
+        // console.log(people.indexOf(person)); // -1
+        // console.log(people.includes(person)); // false
+        // console.log(morePeople.indexOf(person)); // 0
+        // console.log(morePeople.includes(person)); // true
+
+        // const people = [
+        //     {
+        //         name: 'Matt',
+        //         age: 27
+        //     },
+        //     {
+        //         name: 'xiaoming',
+        //         age: 29
+        //     }
+        // ];
+        // console.log(people.find((element, index, array) => element.age > 28)); // {name: "xiaoming", age: 29}
+        // console.log(people.findIndex((element, index, array) => element.age > 28)); // 1
+
+        // const evens = [2,4,6];
+        // let res = evens.find((element,index,array) => {
+        //     // console.log(array);
+        //     // console.log(index);
+        //     // console.log(element);
+        //     return element > 2;
+        // });
+        // let res1 = evens.find((element,index,array) => {
+        //     return element > 4;
+        // });
+        // console.log(res1);
+        // console.log(res);
+
+        // let res2 = evens.find((element,index,array) => element > 4);
+        // console.log(res2);
+
+        // let array = [{
+        //     id: 2,
+        //     lable: 'two',
+        //     url: '2xxx',
+        //     child: [
+        //         {
+        //             id:20,
+        //             lable: 'two',
+        //             url: '20xxx',
+        //         },
+        //         {
+        //             id:21,
+        //             lable: 'two',
+        //             url: '21xxx',
+        //             child: [
+        //                 {
+        //                     id:68,
+        //                     lable: 'two',
+        //                     url: '68xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61111xxx',
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }];
+
+        // let fn = (num,array) => {
+        //     return array.find((element,index,array) => {
+        //         if(element.id === 61){
+        //             console.log(element.url);
+        //             return element.url;
+        //         }
+        //         if(element.hasOwnProperty('child')) {
+        //             fn(num,element.child);
+        //         }
+        //     })
+        // }
+        // console.log(fn(61,array));
+
+        // let numbers = [1,2,3,4,5,4,3,2,1];
+        // let everyResult = numbers.every((item,index,numbers) => item > 2);
+        // console.log(everyResult); // false
+        // let someResult = numbers.some((item,index,numbers) => item > 2);
+        // console.log(someResult); // true
+
+        // let numbers = [1,2,3,4,5,4,3,2,1];
+        // let filterResult = numbers.filter((item,index,numbers) => item > 2);
+        // console.log(filterResult); // [3, 4, 5, 4, 3]
+
+        // let arrayObj = [
+        //     { name: '小王',
+        //       value: 100
+        //     },
+        //     { name: '小李',
+        //       value: 50
+        //     },
+        //     { name: '小花',
+        //       value: 30
+        //     },
+        //     { name: '小丽',
+        //       value: 150
+        //     }];
+        // let res = arrayObj.filter((item,index,arrayObj) => {
+        //     return item.value > 50
+        // });
+        // console.log(res);
+
+        // let array = [{
+        //     id: 2,
+        //     lable: 'two',
+        //     url: '2xxx',
+        //     child: [
+        //         {
+        //             id:20,
+        //             lable: 'two',
+        //             url: '20xxx',
+        //         },
+        //         {
+        //             id:21,
+        //             lable: 'two',
+        //             url: '21xxx',
+        //             child: [
+        //                 {
+        //                     id:68,
+        //                     lable: 'two',
+        //                     url: '68xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61111xxx',
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }];
+
+        // let fn = (num,array) => {
+        //     array.filter((item,index,array) => {
+        //         if(item.hasOwnProperty('child')) {
+        //             fn(num,item.child);
+        //         };
+        //         return item.id === 61;
+        //     })
+        // }
+        // console.log(fn(61,array)); // undefined 为什么
+
+        // let numbers = [1,2,3,4,5,4,3,2,1];
+        // let mapResult = numbers.map((item,index,number) => item*2);
+        // console.log(mapResult); //  [2, 4, 6, 8, 10, 8, 6, 4, 2]
+
+        // let numbers = [1,2,3,4,5,4,3,2,1];
+        // let forEachResult = numbers.forEach((item,index,numbers) => {
+        //     return item*5
+        // });
+        // console.log(numbers);
+        // console.log(forEachResult);
+
+        // let numbers = [1,2,3,2,1];
+        // let sum = numbers.reduce((prev,cur,index,array) => prev + cur);
+        // console.log(numbers);
+        // console.log(sum);
+
+        // let numbers = [1,2,3,4,5];
+        // let sum = numbers.reduceRight((prev,cur,index,array) => prev + cur);
+        // console.log(numbers);
+        // console.log(sum);
+
+        // let numbers = [];
+        // console.log(numbers.valueOf());
+        // console.dir(numbers);
+
+        // let array = [{
+        //     id: 2,
+        //     lable: 'two',
+        //     url: '2xxx',
+        //     child: [
+        //         {
+        //             id:20,
+        //             lable: 'two',
+        //             url: '20xxx',
+        //         },
+        //         {
+        //             id:21,
+        //             lable: 'two',
+        //             url: '21xxx',
+        //             child: [
+        //                 {
+        //                     id:68,
+        //                     lable: 'two',
+        //                     url: '68xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61xxx',
+        //                 },
+        //                 {
+        //                     id:61,
+        //                     lable: 'two',
+        //                     url: '61111xxx',
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }];
+        // let mapResult = (id,array) => array.flatMap((item) => {
+        //     if(item.id === id){
+        //         console.log(item.url);
+        //         return item.url;
+        //     }
+        //     if(item.hasOwnProperty('child')){
+        //         mapResult(id,item.child)
+        //     }
+        // })
+        // console.log(mapResult(61,array));
+        // console.log([]);
+
+        // let a = new Array();
+        // let b = Array();
+        // console.log(a == b);
+        // let res = delete window.name;
+        // console.log(res);
+        // let numbers = [{name: 'xiaming'}];
+        // let name = 'xiali';
+        // console.log(window);
+        // numbers.forEach(function(element) {
+        //     console.log(this.name);
+        // },{
+        //     name: '小明'
+        // });
+        // numbers.forEach(function(element) {
+        //     console.log(this);
+        //     console.log(this.name);
+        // });
+
+        console.log([]);
+    </script>
+</body>
+</html>

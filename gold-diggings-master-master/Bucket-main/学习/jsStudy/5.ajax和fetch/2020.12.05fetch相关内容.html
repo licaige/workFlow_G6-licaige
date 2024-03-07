@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log(window);
+        // Object.prototype
+
+        // let r = new Response();
+        // console.log(r);
+
+        // let r = new Response('foobar',{
+        //     status: 418,
+        //     statusText: 'I\'m a teapot'
+        // });
+        // console.log(r);
+
+        let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user';
+        // fetch(url).then((response) => response.text()).then((data) => console.log(data))
+
+        // console.log(Response.redirect('http://foo.com',200));
+        
+        // console.log(Response.error());
+
+        // fetch(url).then(console.log)
+
+        // let r1 = new Response();
+        // let r2 = r1.clone();
+        // console.log(r1.bodyUsed);
+        // console.log(r2.bodyUsed);
+
+        // let r = new Response('foobar');
+        // r.clone();
+        // r.text();
+        // r.clone();
+
+        // let r = new Response('foobar');
+        // r.text().then(console.log);
+        // r.text().then(console.log);
+        // r.clone().text().then(console.log);
+        // r.clone().text().then(console.log);
+        // r.text().then(console.log);
+
+        // let r1 = new Response('foobar');
+        // let r2 = new Response(r1.body);
+        // console.log(r1.bodyUsed);
+        // console.log(r2.bodyUsed);
+        // r2.text().then(console.log);
+        // r1.text().then(console.log)
+
+        // fetch(url).then((response) => response.text()).then(console.log)
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onload = function(){
+        //     if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+        //         console.log(xhr.responseText);
+        //     }else{
+        //         console.log(xhr.status);
+        //     }
+        // }
+        // xhr.open('get',url,true);
+        // xhr.send();
+
+        // let request = new Request('http://text.com',{
+        //     method: 'POST',
+        //     body: 'barFoo'
+        // })
+        // request.text().then(console.log)
+
+        // fetch(url).then((response) => response.json()).then(console.log)
+
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         bar: 'baz'
+        //     })
+        // });
+        // request.json().then(console.log)
+
+        // request.text().then(console.log)
+
+        // let myFormData = new FormData();
+        // myFormData.append('foo','baz');
+        // console.log(Array.of(...myFormData));
+
+        // fetch(url).then((response) => response.formData())
+        //     .then((formData) => console.log(formData.get('data')))
+
+        // let myFormData = new FormData();
+        // myFormData.append('foo','bar');
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: myFormData
+        // });
+        // request.formData().then((formData) => console.log(formData.get('foo')));
+
+        // fetch(url).then((response) => response.arrayBuffer()).then(console.log)
+
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: 'abcdef'
+        // })
+        // request.arrayBuffer().then((buf) => console.log(Array.from(new Int8Array(buf))))
+
+        // fetch(url).then((response) => response.blob()).then(console.log)
+
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: 'absdes'
+        // });
+        // request.blob().then(console.log)
+
+        // fetch(url).then((response) => response.blob().then(() => response.blob()));
+
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: 'abcdef'
+        // });
+        
+        // request.blob().then(() => request.blob())
+
+        // fetch(url).then((response) => {
+        //     response.blob();
+        //     response.blob();
+        // })
+
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: 'abcdef'
+        // });
+        // request.blob();
+        // request.blob();
+
+        // let request = new Request(url,{
+        //     method: 'POST',
+        //     body: 'abcd'
+        // })
+        // let response = new Response('abc');
+
+        // console.log(request.bodyUsed);
+        // console.log(response.bodyUsed);
+        // request.text().then(console.log);
+        // response.text().then(console.log);
+        // console.log(request.bodyUsed);
+        // console.log(response.bodyUsed);
+
+        // fetch(url).then((response) => response.body)    
+        //     .then((body) => {
+        //         let reader = body.getReader();
+        //         console.log(reader);
+        //         reader.read().then(console.log)
+        //     })
+        // fetch(url).then((response) => response.body)
+        //     .then((body) => {
+        //         let reader = body.getReader();
+        //         function processNextChunk({value,done}){
+        //             if(done){
+        //                 return;
+        //             }
+        //             console.log(value);
+
+        //             return reader.read().then(processNextChunk);
+        //         }
+        //         return reader.read().then(processNextChunk);
+        //     })
+
+        // fetch(url).then((response) => response.body)
+        //     .then(async function(body){
+        //         let reader = body.getReader();
+        //         while(true) {
+        //             let {value,done} = await reader.read();
+        //             if(done) break;
+        //             console.log(value);
+        //         }
+        //     })
+
+        // fetch(url).then((response) => response.body)
+        //     .then(async function(body){
+        //         let reader = body.getReader();
+        //         let asyncIterable = {
+        //             [Symbol.asyncIterator](){
+        //                 return {
+        //                     next(){
+        //                         return reader.read();
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         for await (chunk of asyncIterable){
+        //             console.log(chunk);
+        //         }
+        //     })
+
+        // let decoder = new TextDecoder();
+        // async function* streamGenerator(stream){
+        //     const reader = stream.getReader();
+        //     try {
+        //         while (true) {
+        //             const {value,done} = await reader.read();
+        //             if(done) break;
+        //             yield value;
+        //         }
+        //     } finally {
+        //         reader.releaseLock();
+        //     }
+        // }
+        // fetch(url).then((response) => response.body)
+        // .then(async function(body){
+        //     for await (chunk of streamGenerator(body)) {
+        //         console.log(decoder.decode(chunk,{stream:true}));
+        //     }
+        // });
+
+        // fetch(url).then((response) => response.body)
+        // .then((body) => {
+        //     const reader = body.getReader();
+        //     return new ReadableStream({
+        //         async start(controller) {
+        //             try {
+        //                 while(true) {
+        //                     const {value,done} = await reader.read();
+        //                     if(done) break;
+        //                     controller.enqueue(value);
+        //                 }
+        //             } finally {
+        //                 controller.close();
+        //                 reader.releaseLock();
+        //             }
+        //         }
+        //     })
+        // })
+        // .then((secondaryStream) => new Response(secondaryStream))
+        // .then(response => response.text())
+        // .then(console.log)
+
+        // navigator.sendBeacon(url,'{foo: "bar"}');
+
+        let socket = new WebSocket('ws://localhost:3000');
+        // let stringData = 'Hello World';
+        // let arrayBufferData = Uint8Array.from(['f','o','o']);
+        // let blobData = new Blob(['f','o','o']);
+        // socket.send(stringData);
+        // socket.send(arrayBufferData);
+        // socket.send(blobData);
+        // socket.close();
+        // console.log(socket.readyState);
+        // socket.onmessage = function(event) {
+        //     let data = event.data;
+        //     console.log(data);
+        // }
+        socket.close();
+        socket.onopen = function() {
+            alert('连接建立成功！')
+        }
+        socket.onerror = function() {
+            alert('发生错误，连接无法存续！')
+        }
+        
+        socket.onclose = function(event) {
+            alerrt('连接已被关闭！')
+            console.log(`as clean? ${event.wasClean} Code=${event.code}
+            Reason= ${event.reason}
+            `);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // new Promise((resolve, reject) => {
+        //     resolve('成功')
+        // }).then(value => {
+        //     console.log(value);
+        // })
+        // console.log(456);
+
+        let obj = {
+            a: {
+                firstName: 100,
+                lastName: 200
+            }
+        }
+        function copyObj(obj) {
+            let obj1 = Array.isArray(obj) ? [] : {};
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    if (typeof obj[key] === 'object') {
+                        obj1[key] = copyObj(obj[key])
+                    } else {
+                        obj1[key] = obj[key]
+                    }
+                }
+            }
+            return obj1;
+        }
+        let obj2 = copyObj(obj);
+        console.log(obj);
+        console.log(obj2);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #legendBox {
+            width: 248px;
+            height: 74px;
+            opacity: 0.5;
+            background: #071224;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #process {
+            width: 214px;
+            height: 8px;
+            font-size: 12px;
+            margin-top: -13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="legendBox" style="">
+        <div id="process" style=""></div>
+    </div>
+    <script>
+        // const array = [
+        //     { color: 'blue', value: 20 },
+        //     { color: 'red', value: 10 },
+        //     { color: 'yellow', value: 30 }
+        // ];
+        const grid = ["red", "yellow", "blue", "green", "purple"];
+        const gridNumber = [160, 200, 240, 280];
+
+        // const gridArray = [];
+        // gridNumber.map((item, index) => {
+        //     if (index > 0) {
+        //         gridArray[index] = item - gridNumber[index - 1];
+        //     } else {
+        //         gridArray[0] = item;
+        //     }
+        //     return gridArray;
+        // });
+        // gridArray.push(gridArray[0])
+        // console.log(gridArray);
+        // 给数据里的value值排序
+        // function compare(property) {
+        //     return function (obj1, obj2) {
+        //         var value1 = obj1[property];
+        //         var value2 = obj2[property];
+        //         return value1 - value2;     // 升序
+        //     }
+        // }
+        // let sortObj = array.sort(compare("value"));
+        // 数组对象求和的方法
+        // function arrSum(arr) {
+        //     return sortObj.reduce((acc, cur) => {
+        //         return acc + cur.value
+        //     }, 0)
+        // }
+        // const valueSum = arrSum(sortObj);
+        // console.log(valueSum);
+        // 数组求和
+        // function sum(arr) {
+        //     return arr.reduce((acc, cur) => {
+        //         return acc += cur;
+        //     }, 0)
+        // }
+        // const arrSum = sum(gridArray);
+        // console.log(arrSum);
+        gridNumber.forEach((item, index) => {
+            const html = `<div style="position:relative;display:inline-block;width:${(214 - 2 * (gridNumber.length - 1)) / grid.length}px;height:8px;margin-left:2px;background:${grid[index]}">
+                            <span style="float:right;margin-top:10px;color: #ffffff;">${gridNumber[index]}</span>
+                          </div>`;
+            document.getElementById('process').innerHTML += html;
+        })
+    </script>
+</body>
+
+</html>

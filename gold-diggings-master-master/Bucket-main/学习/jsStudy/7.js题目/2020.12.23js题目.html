@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.log(new Date().getTime());
+        // console.log(new Date().getSeconds());
+        // console.log(new Date().getMilliseconds());
+        // function getInfo(age) {
+        //     console.log(new Date().getSeconds());
+        //     console.log(new Date().getMilliseconds());
+        // }
+        // setTimeout(function () {
+        //     console.log(new Date().getSeconds());
+        //     console.log(new Date().getMilliseconds());
+        // }, 3000);
+        // getInfo(15);
+
+        // let period = 60 * 1000 * 60 * 2,  // 2小时
+        //     startTime = new Date().getTime(), // 当前时间距1970年1月1日毫秒数
+        //     count = 0,
+        //     end = new Date().getTime() + period,
+        //     interval = 1000,
+        //     currentInterval = interval;
+        // function loop() {
+        //     count++;
+        //     let offset = new Date().getTime() - (startTime + count * interval),
+        //         diff = end - new Date().getTime(),
+        //         h = Math.floor(diff / (60 * 1000 * 60)),
+        //         hdiff = diff % (60 * 1000 * 60),
+        //         m = Math.floor(hdiff / (60 * 1000)),
+        //         mdiff = hdiff % (60 * 1000),
+        //         s = mdiff / (1000),
+        //         sCeil = Math.ceil(s),
+        //         sFloor = Math.floor(s),
+        //         currentInterval = interval - offset;
+        //     console.log('时：' + h, '分：' + m, '毫秒：' + s,
+        //         '秒向上取整：' + sCeil, '代码执行时间：' + offset,
+        //         '下次循环间隔' + currentInterval)
+        //     // 打印 时 分 秒 代码执行时间 下次循环间隔
+        //     setTimeout(loop, currentInterval)
+        // }
+        // loop();
+
+        // console.log(Date());
+        // setTimeout(() => {
+        //     console.log('我是定时器！');
+        //     console.log(Date());
+        // }, 3000);
+        // for (let i = 0; i < 10000000000; i++) { }
+        // console.log(Date());
+
+        // let arr = [50, 20, [50, 10, [1, [5, [20]]]]],
+        //     arr1 = arr.flat(Infinity);
+        // console.log(arr); // [50, 20, Array(3)]
+        // console.log(arr1); //  [50, 20, 50, 10, 1, 5, 20]
+
+        // let arr = [50, 20, [50, 10, [1, [5, [20]]]]],
+        //     resArray = [];
+        // function flatten(array) {
+        //     if (Array.isArray(array) === false) {
+        //         throw new TypeError('参数类型错误');
+        //     }
+        //     array.forEach(item => {
+        //         if (Array.isArray(item)) {
+        //             flatten(item);
+        //         } else {
+        //             resArray.push(item)
+        //         }
+        //     })
+        //     return resArray;
+        // }
+        // console.log(arr); // [50, 20, Array(3)]
+        // console.log(flatten(arr)); // [50, 20, 50, 10, 1, 5, 20]
+
+        // let arr = [50, 20, [50, 10, [1, [5, [20]]]]];
+        // console.log([].concat(...arr));
+
+        // var obj = {
+        //     age: 25
+        // }
+        // function getInfo(job, height) {
+        //     console.log(this); // getInfo {}
+        // }
+        // var b = new getInfo('Software Engineer');
+        // console.log(b);
+
+        // var a = getInfo.bind(obj, 'Software Engineer');
+        // var b = new a();
+
+        // function A() {
+        //     this.a = 100;
+        //     // console.log(this);
+        //     return function () {
+        //         return 20
+        //     }
+        // }
+        // let b = new A();
+        // console.dir(Function.prototype.bind());
+        // let c = new b();
+        // console.log(b); // {a: 100}
+        // console.log(c);
+
+        var obj = {
+            age: 25
+        }
+        function getInfo(job, height) {
+            console.log(this);
+            this.d = 50;
+        }
+        Function.prototype.myBind = function () {
+            if (typeof this !== 'function') {
+                throw new TypeError('调用者必须是函数')
+            }
+            var arg = arguments[0],
+                slice = Array.prototype.slice,
+                args = slice.call(arguments, 1),
+                _that = this;
+            var fn1 = {};
+            fn1 = new getInfo();
+            return function () {
+                if (new.target) {
+                    return fn1
+                } else {
+                    return _that.apply(arg, args.concat(slice.call(arguments)));
+                }
+            }
+        }
+        var c = getInfo.myBind(obj, 'Software Engineer');
+        var d = new c();
+        console.log(d);
+    </script>
+</body>
+
+</html>

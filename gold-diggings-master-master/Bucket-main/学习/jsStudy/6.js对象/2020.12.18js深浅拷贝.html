@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let obj = {
+        //     name: '小明',
+        //     age: 20,
+        //     job: 'Software Engineer',
+        //     friends: ['小花', '小丽']
+        // }
+        // let obj1 = Object.assign({}, obj);
+        // console.log(obj1 === obj); // false
+        // obj1.friends[1] = '小萌';
+        // console.log(obj.friends); // ["小花", "小萌"]
+        // console.log(obj1.friends); // ["小花", "小萌"]
+
+        // let obj = {
+        //     name: '小明',
+        //     age: 20,
+        //     job: 'Software Engineer',
+        //     friends: ['小花', '小丽']
+        // }
+        // let obj1 = { ...obj };
+        // console.log(obj1 === obj);
+        // obj1.age = 10;
+        // obj.friends[0] = '小美';
+        // console.log(obj.age); // 20
+        // console.log(obj1.age); // 10
+        // console.log(obj.friends); // ["小美", "小丽"]
+        // console.log(obj1.friends); // ["小美", "小丽"]
+
+        let obj = {
+            name: '小明',
+            age: 20,
+            job: 'Software Engineer',
+            friends: ['小花', '小丽']
+        }
+        let obj1 = {};
+        for (const item of Object.entries(obj)) {
+            obj1[item[0]] = item[1];
+        }
+        console.log(obj1 === obj);
+        obj1.age = 10;
+        obj.friends[0] = '小美';
+        console.log(obj.age); // 20
+        console.log(obj1.age); // 10
+        console.log(obj.friends); // ["小美", "小丽"]
+        console.log(obj1.friends); // ["小美", "小丽"]
+    </script>
+</body>
+
+</html>

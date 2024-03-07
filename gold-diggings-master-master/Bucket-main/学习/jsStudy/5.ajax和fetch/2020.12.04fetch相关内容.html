@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="">
+        <input type="file">
+        <input type="multiple">
+        
+    </form> -->
+    <div>
+        <img src="" alt="" width="100px" height="100px">
+    </div>
+    <script>
+        // console.log(window);
+        // let r = fetch('https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user');
+        // console.log(r);
+
+        let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user';
+        // let url1 = '/aa';
+        // fetch(url).then((response) => {
+        //     response.text().then((data) => {
+        //         console.log(data);
+        //     });
+        // })
+
+        // fetch(url)
+        //           .then((response) => response.text())
+        //           .then((data) => console.log(data))
+
+        // fetch(url).then((response) => {
+        //     console.log(response.status);
+        //     console.log(response.statusText);
+        //     console.log(response.redirected);
+        // })
+
+        // fetch(url).then((response) => {
+        //     console.log(response.status);
+        //     console.log(response.ok);
+        // })
+
+        // fetch('https://www.baidu.com/').then((response) => {
+        //     console.log(response.status);
+        //     console.log(response.ok);
+        // });
+
+        // fetch('https://www.baidu.com/').then((response) => {
+        //     console.log(response);
+        // },(err) => {
+        //     console.log(err);
+        // })
+
+        // console.log(window.location.href);
+
+        // fetch(url).then((response) => {
+        //     console.log(response);
+        //     console.log(response.url);
+        // })
+
+        // let payload = JSON.stringify({
+        //     foo: 'bar'
+        // });
+        // let jsonHeaders = new Headers({
+        //     'Content-Type': 'application/json'
+        // });
+        // fetch(url,{
+        //     method: 'POST',
+        //     body: payload,
+        //     headers: jsonHeaders
+        // }).then((response) => response.text()).then((data) => console.log(data));
+
+
+        // let payload = 'foo=bar&baz=qux';
+        // let paramHeaders = new Headers({
+        //     'Content-Type': 'application/x-www-form'
+        // });
+        // fetch(url,{
+        //     method: 'POST',
+        //     body: payload,
+        //     headers: paramHeaders,
+        // }).then((response) => response.text()).then((data) => console.log(JSON.parse(data).data));
+
+        // let imageFormData = new FormData();
+        // let imageInput = document.querySelector('input[type="file"]');
+        // imageFormData.append('image',imageInput.files[0]);
+        // fetch(url,{
+        //     method: 'POST',
+        //     body: 'imageFormData'
+        // });
+
+        // let imageFormData = new FormData();
+        // let imageInput = document.querySelector('input[type="multiple"]');
+        // console.dir(imageInput);
+        // for (let i = 0; i < imageInput.files.length; i += 1) {
+            
+        // }
+
+        // const imageElement = document.querySelector('img');
+        // const url2 = 'https://note.youdao.com/yws/api/image/normal/1533047991223?userId=qq43DD9FBABC3567E274F8019CE9FA2F42';
+        // fetch(url2,{
+        //     method: 'GET',
+        //     mode: 'no-cors',
+        // }).then((response) => response.blob()).then((blob) => {
+        //     imageElement.src = URL.createObjectURL(blob);
+        // })
+
+        // let abortController = new AbortController();
+        // fetch(url,{signal: abortController.signal})
+        //     .catch(() => console.log('aborted'));
+        // setTimeout(() => abortController.abort(),200)
+
+        // let h = new Headers();
+        // let m = new Map();
+        // h.set('foo','bar');
+        // m.set('foo','bar');
+        // console.log(h);
+        // console.log(m);
+        // console.log(h.has('foo'));
+        // console.log(m.has('foo'));
+        // console.log(h.has('qux'));
+        // console.log(m.has('qux'));
+        // console.log(h.get('foo'));
+        // console.log(m.get('foo'));
+        // h.set('foo','baz');
+        // m.set('foo','baz');
+        // console.log(h.get('foo'));
+        // console.log(m.get('foo'));
+        // h.delete('foo');
+        // m.delete('foo');
+        // console.log(h.get('foo'));
+        // console.log(m.get('foo'));
+
+        // let seed = [['foo', 'bar']];
+        // let h = new Headers(seed);
+        // let m = new Map(seed);
+        // console.log(h.get('foo'));
+        // console.log(m.get('foo'));
+
+        // let seed = [['foo','bar'],['baz', 'qux']];
+        // let h = new Headers(seed);
+        // let m = new Map(seed);
+        // console.log(...h.keys());
+        // console.log(...m.keys());
+        // console.log(...h.values());
+        // console.log(...m.values());
+        // console.log(...m.entries());
+        // console.log(...h.entries());
+
+        // let seed = {foo: 'bar'};
+        // let h = new Headers(seed);
+        // console.log(h.get('foo'));
+        // let m = new Map(seed);
+        
+        // console.log(window);
+        // let h = new Headers();
+        // h.append('foo','baz');
+        // console.log(h.get('foo'));
+        // h.append('foo','bax');
+        // console.log(h.get('foo'));
+
+        // let r = new Request(url);
+        // console.log(r);
+
+        // let r1 = new Request(url);
+        // let r2 = new Request(r1);
+        // let r3 = {};
+        // console.log(r1.__proto__ === r2.__proto__);
+        // console.log(r2.url);
+        // let r3= new Request(r1,{method: 'POST',body: 'foo'});
+        // console.log(r1.method);
+        // console.log(r3.method);
+        // console.log(r1.__proto__ === r3.__proto__);
+        // console.log(r1.bodyUsed);
+        // console.log(r3.bodyUsed);
+
+        // let r1 = new Request(url,{method: 'POST',body: 'foobar'});
+        // let r2 = r1.clone();
+        // console.log(r1);
+        // console.log(r2);
+        // console.log(r1 === r2);
+        // console.log(r1.url);
+        // console.log(r2.url);
+        // console.log(r1.bodyUsed);
+        // console.log(r2.bodyUsed);
+
+        // let r = new Request(url);
+        // r.clone();
+        // new Request(r);
+        // r.text();
+        // r.clone;
+        // new Request(r);
+
+        // let r = new Request(url);
+        // r.text();
+        // fetch(r,{methid});
+        // fetch(r,{method: 'POST'});
+
+        // let r = new Request(url);
+        // fetch(r);
+        // fetch(r);
+
+        // let r = new Request(url);
+        // fetch(r.clone());
+        // fetch(r.clone());
+        // fetch(r);
+    </script>
+</body>
+</html>

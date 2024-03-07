@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// let colors = ['red','blue'];
+			// let colors2 = colors.slice();
+			// let colors3 = colors.slice(1);
+			// let colors4 = colors.slice(0,1);
+			// console.log(colors); //  ["red", "blue"]
+			// console.log(colors2); // ["red", "blue"]
+			// console.log(colors3); // ["blue"]
+			// console.log(colors4); // ["red"]
+
+			// let colors = ['red','blue','green'];
+			// // 这个数组的长度为3，所以colors.slice(-3,-1) 相当于 colors.slice(0,2)
+			// console.log(colors.slice(-3,-1)); //  ["red", "blue"]
+			// console.log(colors.slice(0,2)); //  ["red", "blue"]
+
+			// // 因为colors.slice(-6,-4) 加上数组长度分别为 -3，-1，所以返回空值
+			// // 但是colors.slice(-6,-4) 结果并不等于 colors.slice(-3,-1)的结果
+			// // 因为 colors.slice(-3,-1) 相当于 colors.slice(0,2)
+			// console.log(colors.slice(-6,-4)); // []
+			// console.log(colors.slice(-3,-1)); // ["red", "blue"]
+
+			// // colors.slice(-8,-1) 加上数组长度分别为 -5，2，有一部分是在数组索引范围内的
+			// // 所以这部分是生效的
+			// console.log(colors.slice(-8,-1)); // ["red", "blue"]
+
+			// // colors.slice(-5,2) 加上数组长度为 -2，2
+			// // 但是 colors.slice(-2,2) 加上数组长度为 1，2
+			// // 所以他们结果是不同的
+			// console.log(colors.slice(-5,2)); // ["red", "blue"]
+			// console.log(colors.slice(-2,2)); // ["blue"]
+
+			// let colors = ['red','green'];
+			// let newColors = ['brown','blue'];
+			// console.log(colors.concat(newColors)); // ["red", "green", "brown", "blue"]
+			// console.log(colors.concat(['yellow'],newColors)); // ["red", "green", "yellow", "brown", "blue"]
+			// console.log(colors.concat('white',newColors)); // ["red", "green", "white", "brown", "blue"]
+
+			// let colors = ['red'];
+			// console.log(colors.concat('green','blue')); // ["red", "green", "blue"]
+			// console.log(colors); // ["red"]
+
+			// let newColors = ['red'];
+			// console.log(colors.push('green','blue')); // 3
+			// console.log(colors); // ["red", "green", "blue"]
+
+			// let colors = ['red','green','blue']; // red,green,blue
+			// console.log(colors.join()); // red,green,blue
+			// console.log(colors.join(',')); // red,green,blue
+			// console.log(colors.join('||')); // red||green||blue
+			// console.log(colors.join(undefined)); // red,green,blue
+			// console.log(colors.join(null)); // rednullgreennullblue
+
+			// let colors = ['red','green','blue'];
+			// console.log(colors.join(undefined)); // red,green,blue
+			// let colors1 = ['red',null,undefined,'blue'];
+			// console.log(colors1.join()); // red,,,blue
+
+			// let numbers = [1,2,3,4,5,4,3,2,1];
+			// let everyResult = numbers.every((item,index,numbers) => item > 2);
+			// console.log(everyResult); // false
+
+			// let numbers = [];
+			// let everyResult = numbers.every((item,index,numbers) => item > 5);
+			// console.log(everyResult); // true
+
+			// let numbers = [1,2,3,4,5,4,3,2,1];
+			// let everyResult = numbers.every((item,index,numbers) => item > 2);
+			// console.log(everyResult); // false
+			// let someResult = numbers.some((item,index,numbers) => item > 2);
+			// console.log(someResult); // true
+
+			// let numbers1 = [1,2,3,4,5,4,3,2,1];
+			// let filterResult = numbers1.filter((item,index,numbers1) => item * 2);
+			// console.log(filterResult); // [3, 4, 5, 4, 3]
+
+			// let numbers = [1,2,3,4,5,4,3,2,1];
+			// let filterResult = numbers.filter((item,index,number) => item * 2);
+			// let mapResult = numbers.map((item,index,number) => item * 2);
+			// let filterResult1 = numbers.filter((item,index,number) => item > 2);
+			// let mapResult1 = numbers.map((item,index,number) => item > 2);
+			// console.log(filterResult); //  [1, 2, 3, 4, 5, 4, 3, 2, 1]
+			// console.log(mapResult); // [2, 4, 6, 8, 10, 8, 6, 4, 2]
+			// console.log(filterResult1); //  [3, 4, 5, 4, 3]
+			// console.log(mapResult1); //  [false, false, true, true, true, true, true, false, false]
+			// console.log(numbers); //  [1, 2, 3, 4, 5, 4, 3, 2, 1]
+
+			// let numbers = [1,2,3,4,5,4,3,2,1];
+			// let forEachResult = numbers.forEach((item,index,numbers) => {
+			//     return item*5
+			// });
+			// console.log(forEachResult); // undefined
+			// console.log(numbers); // [1, 2, 3, 4, 5, 4, 3, 2, 1]
+
+			// console.log(colors.keys()); // Array Iterator {}
+			// console.log(Array.from(colors.keys())); // [0, 1]
+			// console.log(Array.of(...colors.keys())); // [0, 1]
+			// console.log(colors.values()); // Array Iterator {}
+			// console.log(Array.from(colors.values())); //  ["red", "green"]
+			// console.log(Array.of(...colors.values())); //  ["red", "green"]
+
+			// let colors = ['red','green'];
+			// console.log(colors.entries(colors)); // Array Iterator {}
+			// console.log(Array.from(colors.entries())); // [Array(2), Array(2)]
+			// console.log(Array.of(...colors.entries())); // [Array(2), Array(2)]
+
+			// let numbers = [1,2,3,2,1];
+			// let sum = numbers.reduce((prev,cur,index,array) => prev + cur);
+			// console.log(sum); // 9
+			// console.log(numbers); //  [1, 2, 3, 2, 1]
+			// console.log(typeof sum);
+
+			// let numbers = [1,2,3,4,5];
+			// let sum = numbers.reduceRight((prev,cur,index,array) => prev + cur);
+			// console.log(sum); // 15
+			// console.log(numbers); // [1, 2, 3, 4, 5]
+
+			// let numbers = [1,2,3,4,5];
+			// console.log(numbers.indexOf(4)); // 3
+			// console.log(numbers.indexOf(4,3)); // 3
+			// // 如果没找到就返回 -1
+			// console.log(numbers.indexOf(40)); // -1
+
+			// let numbers = [1,2,3,4,5,4,3,2,1];
+			// console.log(numbers.lastIndexOf(4)); // 5
+			// console.log(numbers.lastIndexOf(4,4)); // 3
+			// // 如果没找到就返回 -1
+			// console.log(numbers.lastIndexOf(40)); // -1
+
+			// let numbers = [1,2,3,4,5,4,3,2,1];
+			// console.log(numbers.includes(4)); // true
+			// console.log(numbers.includes(4,7)); // false
+			// console.log(numbers.includes(40)); // false
+
+			// const people = [
+			//     {
+			//         name: 'Matt',
+			//         age: 27
+			//     },
+			//     {
+			//         name: 'xiaoming',
+			//         age: 29
+			//     }
+			// ];
+			// console.log(people.findIndex((element, index, array) => element.age > 28)); // 1
+
+			// let numbers = [15000000];
+			// let stringNumbers = numbers.toLocaleString();
+			// console.log(stringNumbers); // 15,000,000
+
+			// let numbers = [1,2,3,4,500];
+			// let stringNumbers = numbers.toString();
+			// console.log(stringNumbers); // 1,2,3,4,5
+
+			// let array = [1,5,9,8];
+			// let flatMapRes = array.flatMap((item,index,array) => item * 3);
+			// console.log(flatMapRes); // [3, 15, 27, 24]
+			const data = [
+				{
+					key: "name",
+					value: "豆皮",
+				},
+				{
+					key: "age",
+					value: 1,
+				},
+				{
+					key: "from",
+					value: "数据平台",
+				},
+			];
+			// 1
+			// processData = data => {
+			//     const obj = {}
+			//     data.forEach(item => {
+			//         obj[item.key] = item.value
+			//     });
+			//     return obj
+			// }
+
+			// 2.解构赋值
+			// processData = data => {
+			//     const obj = {}
+			//     data.forEach(item => {
+			//         const {key,value} = item
+			//         obj[key] = value
+			//     });
+			//     return obj
+			// }
+
+			// 3.for..of
+			// processData = data => {
+			//     const obj = {}
+			//     for (const {key,value} of data) {
+			//         obj[key] = value
+			//     }
+			//     return obj
+			// }
+
+			// 4.Object.assign
+			// processData = data => {
+			//     const obj = {}
+			//     for (const {key,value} of data) {
+			//         Object.assign(obj,{[key]:value})
+			//     }
+			//     return obj
+			// }
+
+			// 5.展开语法
+			// processData = data => {
+			//     const obj = {}
+			//     for (const {key,value} of data) {
+			//         obj = {...obj,[key]:value}
+			//     }
+			//     return obj
+			// }
+			console.log(123);
+			// 6.reduce
+			processData = (data) =>
+				data.reduce(
+					(obj, { key, value }) => ({ ...obj, [key]: value }),
+					{}
+				);
+			console.log(processData(data));
+		</script>
+	</body>
+</html>

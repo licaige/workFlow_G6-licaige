@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [
+            {
+                name: 'dashboard',
+                node_id: 1001
+            },
+            {
+                name: 'goods',
+                node_id: 1101,
+                children: [
+                    {
+                        name: 'kind',
+                        node_id: 1102,
+                    }
+                ]
+            },
+            {
+                name: 'content',
+                node_id: 1201,
+                children: [
+                    {
+                        name: 'banner',
+                        node_id: 1202,
+                    },
+                    {
+                        name: 'TkChoose',
+                        node_id: 1203,
+                        children: [
+                            {
+                                name: 'childChoose',
+                                node_id: 1204
+                            },
+                        ]
+                    },
+                    {
+                        name: 'EditGoods',
+                        node_id: 1205,
+                    },
+                ]
+            },
+
+        ]
+        let list = [1201, 1203];
+        console.log(data);
+        function filterData(tree, list, arr = []) {
+            if (!Array.isArray(tree)) throw new TypeError('传进来的参数不是数组类型')
+            for (const item of tree) {
+                if (list.includes(item.node_id)) continue
+                let node = { ...item, children: [] }
+                arr.push(node);
+                if (item.children && item.children.length) filterData(item.children, list)
+            }
+        }
+        console.log(filterData(data, list));
+    </script>
+</body>
+
+</html>

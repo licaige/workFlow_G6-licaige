@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let obj = new Object();
+        // console.log(obj);
+
+        // let obj = null;
+        // console.dir(obj.__proto__);
+
+        // let array = new Array(2);
+        // console.log(array.length); //2
+        // console.log(array); //[empty × 2]
+        // console.log(array[0]); //undefined'
+
+        //   let array = Array.of(2);
+        // console.log(array.length);
+        // console.log(array);
+        // console.log(array[0]);
+        // console.log(Array.isArray({}));
+
+        // console.log([1,5,6,3].toString());
+
+        // console.log(String([1,5,6,3]));
+        // let array = [1,2,3,5].join('-');
+        // console.log(array);
+        // console.log(str.split(','));
+        // let sysData = [];
+        // let numLen = 11;
+        // sysData.length = numLen;
+        // for (let i = 0; i < numLen; i += 1) {
+        //     sysData[i] = [];
+        // }
+
+        // console.log(sysData);
+
+        // let arr = new Array(11);
+        // arr = Array.from(arr,item => {
+        //     return item = []
+        // })
+        // console.log(arr);
+
+        // let str = 'demo';
+        // let a = Array.from(str,function(item){
+        //     return  item = '1'
+        // });
+        // console.log(a);
+        // let arr = ['js','css'];
+        // let array = ['html'];
+        // arr = [...arr, ...array];
+        // console.log(arr);
+
+        // function sum(...args){
+        //     return args.reduce((s,v) => {
+        //         return (s += v);
+        //     })
+        // }
+        // console.log(sum(1,2));
+
+        // let array = ['阿来', '尘埃落定'];
+        // let [name,book] = array;
+        // console.log(`作者：${name},书籍：${book}`);
+
+        let str = 'demo';
+        let arr = [...str];
+        console.log(arr);
+    </script>
+</head>
+<body>
+    <!-- <div>js</div>
+    <div>css</div>
+    <div>go</div>
+    <script>
+        let dom = document.querySelectorAll('div');
+        console.log(Array.isArray(dom)); //false
+        //此时dom并不是一个数组，而是一个类数组对象，需要转换成数组
+        [...dom].map(item => {
+            console.log(item);
+        })
+
+        Array.from(dom).map(item => {
+            console.log(item);
+        })
+
+        Array.prototype.map.call(dom,item => {
+            console.log(item);
+        })
+    </script> -->
+</body>
+</html>

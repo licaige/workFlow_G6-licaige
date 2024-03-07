@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let str = 'Hello';
+        // let num = 123;
+        // let obj = {
+        //     name: '小丽'
+        // };
+        // console.log(typeof str.valueOf());
+        // console.log(typeof num.valueOf());
+        // console.log(obj.valueOf());
+        // console.log(typeof obj.valueOf());
+
+        // function SuperType() {
+        //     this.property = true;
+        // }
+        // SuperType.prototype.getSuperValue = function () {
+        //     return true;
+        // }
+        // function SubType() {
+        //     this.property = false;
+        // }
+
+        // SubType.prototype = new SuperType();
+
+        // SubType.prototype.getSubValue = function () {
+        //     return this.subproperty
+        // }
+        // SubType.prototype.getSuperValue = function () {
+        //     return false
+        // }
+        // let instance = new SubType();
+        // console.log(instance.getSuperValue());
+
+        // function SuperType() {
+        //     this.property = true;
+        // }
+        // SuperType.prototype.getSuperValue = function () {
+        //     return this.property;
+        // }
+        // function innnerType() {
+        //     this.innerProperty = false;
+        // }
+
+        // innnerType.prototype = new SuperType();
+        // innnerType.prototype = {
+        //     getInnerValue() {
+        //         return this.innerProperty;
+        //     },
+        //     someOtherMethod() {
+        //         return false;
+        //     }
+        // };
+        // console.dir(innnerType);
+        // let instance = new innnerType();
+        // console.log(instance.getSuperValue());
+
+        // function SuperType() {
+        //     this.colors = ['red']
+        // }
+        // function innerType() { }
+        // innerType.prototype = new SuperType();
+        // let instance1 = new innerType();
+        // instance1.colors.push('black');
+        // console.log(instance1.colors);
+        // let instance2 = new innerType();
+        // console.log(instance2.colors);
+
+        // function A() {
+        //     this.colors = ['red'];
+        // }
+        // function B() {
+        //     A.call(this)
+        // }
+        // let instance1 = new B();
+        // instance1.colors.push('black');
+        // console.log(instance1.colors);
+        // let instance2 = new B();
+        // console.log(instance2.colors);
+
+        // function A(name) {
+        //     this.name = name;
+        // }
+        // function B() {
+        //     A.call(this, 'Nicholas');
+        //     this.age = 29;
+        // }
+        // let instance = new B();
+        // console.log(instance.name);
+        // console.log(instance.age);
+
+        // function A(name) {
+        //     this.name = name;
+        //     this.colors = ['red'];
+        // }
+        // A.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // function B(name, age) {
+        //     A.call(this, name);
+        //     this.age = age;
+        // }
+        // B.prototype = new A();
+        // B.prototype.sayAge = function () {
+        //     console.log(this.age);
+        // }
+        // let instance1 = new B('Nicholas', 29);
+        // instance1.colors.push('black');
+        // console.log(instance1.colors);
+        // instance1.sayName();
+        // instance1.sayAge();
+        // let instance2 = new B('Greg', 27);
+        // console.log(instance2.colors);
+        // instance2.sayName();
+        // instance2.sayAge();
+
+        // function object(o) {
+        //     function F() { }
+        //     F.prototype = o;
+        //     console.log((new F()).__proto__ === o)
+        //     return new F();
+        // }
+
+        // let obj = {
+        //     name: '阿星帅哥',
+        //     value: 'js',
+        // }
+        // let obj2 = obj;
+        // console.log(obj2 === obj);
+        // let obj3 = obj.name;
+        // console.log(obj2.value);
+        // console.log(obj3);
+
+        // obj2.value = 'CSS';
+        // obj3 = 'HTML';
+        // console.log(obj.value);
+        // console.log(obj.name);
+        // console.log(obj2 === obj);
+
+        // let obj = {
+        //     name: '阿星',
+        //     age: 25,
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let obj2 = JSON.parse(JSON.stringify(obj));
+        // console.log(obj == obj2);
+        // console.log(obj === obj2);
+        // console.log(obj);
+        // console.log(obj2);
+
+        // for(; ){
+
+        // }
+
+        // let arr = [1, 2, 5, 4];
+        // let arr1 = arr.copyWithin();
+        // console.log(arr1 == arr);
+        // console.log(arr1 === arr);
+        // let arr = [1, 2, 5, 4];
+        // let arr1 = [...arr];
+        // arr1[0] = 10;
+        // console.log(arr);
+        // console.log(arr1);
+        // console.log(arr == arr1);
+
+        // let arr = [1, 5, 6, 4];
+        // let arr1 = arr;
+        // arr1[0] = 100;
+        // console.log(arr);
+        // console.log(arr1);
+        // console.log(arr == arr1);
+
+        // 深拷贝
+        // let obj = {
+        //     name: '小星',
+        //     age: 25,
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let obj1 = {};
+        // Object.keys(obj).map((item, index) => {
+        //     obj1[item] = Object.values(obj)[index]
+        // })
+        // obj1.name = '小丽';
+        // console.log(obj);
+        // console.log(obj1);
+        // console.log(obj === obj1);
+
+        // let arr = [1, 2, 3, 5, [2, 5, 8, 9, [5, 2, 3, [5, 8, 6]]]];
+        // let arr1 = ['小星'];
+        // let arr2 = [].concat(arr, arr1);
+        // console.log(arr);
+        // console.log(arr1);
+        // console.log(arr2);
+
+        // const arr = [{
+        //     name: '小星',
+        //     age: 25
+        // }, {
+        //     name: '小丽',
+        //     age: 24
+        // }];
+        // const arr1 = [...arr];
+        // arr1[0].name = '小王';
+        // console.log(arr);
+        // console.log(arr1);
+        // console.log(arr === arr1);
+
+        // let obj = {
+        //     name: '小星',
+        //     age: 25,
+        // }
+        // let obj1 = { ...obj };
+        // obj1.name = '小王';
+        // console.log(obj);
+        // console.log(obj1);
+        // console.log(obj == obj1);
+
+        // let obj = {
+        //     name: '小星',
+        //     age: 25,
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let obj2 = Object.assign({}, obj);
+        // obj2.name = '小王';
+        // console.log(obj);
+        // console.log(obj2);
+        // console.log(obj == obj2);
+
+        // 深拷贝
+        // let obj = {
+        //     name: {
+        //         firstName: '小',
+        //         lastName: '星',
+        //     },
+        //     age: 25,
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let obj1 = JSON.parse(JSON.stringify(obj));
+        // obj1.name.firstName = '王';
+        // console.log(obj);
+        // console.log(obj1);
+        // console.log(obj == obj1);
+
+        // let obj = {
+        //     name: {
+        //         firstName: '小',
+        //         lastName: '星',
+        //     },
+        //     age: 25,
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // }
+
+        // function copyObj(obj) {
+        //     let obj1 = obj.constructor ? [] : {};
+        //     if (typeof obj !== 'object') {
+        //         return
+        //     }
+        //     for (const key in obj) {
+        //         obj1[key] = typeof obj[key] === 'object' ?
+        //             copyObj(obj[key]) : obj[key]
+        //     }
+        //     return obj1;
+        // }
+        // let obj2 = copyObj(obj);
+        // obj2.name.firstName = '王';
+        // console.log(obj);
+        // console.log(obj2);
+
+        // let obj = {
+        //     0: '小王',
+        //     1: 15,
+        //     length: 2
+        // }
+        // for (const iterator of obj) {
+
+        // }
+
+        // function recursivelyCheckEqual(x, ...rest) {
+        //     return Object.is(x, rest[0]) && (rest.length < 2 || recursivelyCheckEqual(...rest))
+        // }
+        // let arr = [5, 5, 5, 5, 5];
+        // console.log(recursivelyCheckEqual(...arr));
+
+        // function object(o) {
+        //     function F() { };
+        //     F.prototype = o;
+        //     return new F();
+        // }
+
+        // let person = {
+        //     name: 'Nicholas',
+        //     friends: ['Shelby']
+        // }
+        // let anotherPerson = object(person);
+        // anotherPerson.name = 'Greg';
+        // anotherPerson.friends.push('Rob');
+        // console.log(anotherPerson);
+        // let yetPerson = object(person);
+        // yetPerson.name = 'Linda';
+        // yetPerson.friends.push('阿星');
+        // console.log(yetPerson);
+        // console.log(person);
+        // console.log(person.friends);
+
+        // let person = {
+        //     name: 'Nicholas',
+        //     friends: ['小星 ']
+        // }
+        // let otherPerson = Object.create(person);
+        // otherPerson.name = 'Greg';
+        // otherPerson.friends.push('小明');
+        // let yetPerson = Object.create(person);
+        // yetPerson.name = 'Linda';
+        // yetPerson.friends.push('小丽');
+        // console.log(person);
+        // console.log(otherPerson);
+        // console.log(yetPerson);
+
+        // let person = {
+        //     name: 'Nicholas',
+        //     friends: ['Shelby']
+        // }
+        // let otherPerson = Object.create(person, {
+        //     name: {
+        //         value: 'Greg'
+        //     }
+        // });
+        // console.log(person);
+        // console.log(otherPerson);
+        // console.log(otherPerson.name);
+
+        // function object(o) {
+        //     function F() { };
+        //     F.prototype = o;
+        //     return new F();
+        // }
+
+        // function createAnother(original) {
+        //     let clone = object(original);
+        //     clone.sayHi = function () {
+        //         console.log('Hi');
+        //     }
+        //     return clone;
+        // }
+        // function createPer(obj) {
+        //     obj.sayName = function () {
+        //         console.log('Hello');
+        //     }
+        //     return obj;
+        // }
+        // let person = {
+        //     name: 'Nicholas',
+        //     friends: ['Greg']
+        // }
+        // let person1 = {
+        //     name: 'Nicholas',
+        //     friends: ['Greg']
+        // }
+        // let anotherPerson = createAnother(person);
+        // let yetPerson = createPer(person1);
+        // anotherPerson.sayHi();
+        // yetPerson.sayName();
+        // console.log(person);
+        // console.log(person1);
+
+        // function A(name) {
+        //     this.name = name;
+        //     this.colors = ['red'];
+        // }
+        // A.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // function B(name, age) {
+        //     A.call(this, name);
+        //     this.age = age;
+        // }
+        // B.prototype = new A();
+        // B.prototype.constructor = B;
+        // B.prototype.sayAge = function () {
+        //     console.log(this.age);
+        // }
+        // let instance = new B('小明', 25);
+        // instance.sayAge();
+        // instance.sayName();
+
+        // function inher(A, B) {
+        //     let prototype = Object.create(A.prototype);
+        //     prototype.constructor = B;
+        //     B.prototype = prototype;
+        // }
+        // inher(A, B);
+        // B.prototype.sayAge = function () {
+        //     console.log(this.age);
+        // }
+
+        // function A(name) {
+        //     this.name = name;
+        //     this.colors = ['red'];
+        // }
+
+        // function B(name, age) {
+        //     A.call(this, name);
+        //     this.age = age;
+        // }
+
+        // A.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // B.prototype = new A();
+        // B.prototype.sayAge = function () {
+        //     console.log(this.age);
+        // }
+
+        // let instance1 = new B('Nicholas', 15);
+        // instance1.colors.push('yellow');
+        // console.log(instance1);
+        // console.log(instance1.colors);
+        // instance1.sayName();
+        // instance1.sayAge();
+
+        // class Person { }
+
+        // let Animal = class { }
+        // console.log(FunctionExpression);
+        // var FunctionExpression = function () { };
+        // console.log(FunctionExpression);
+        // console.log(A);
+        // function A() { };
+        // console.log(A);
+        // console.log(ClassA);
+        // var ClassA = class { };
+        // console.log(ClassA);
+        // console.log(A);
+        // class A { };
+        // console.log(A);
+
+
+        // {
+        //     function A() { };
+        //     class ClassB { };
+        // }
+        // console.log(A);
+        // console.log(ClassB);
+
+        // class Foo { }
+
+        // class Bar {
+        //     constructor() { }
+        // }
+
+        // class Baz {
+        //     get myBaz() { }
+        // }
+        // class Qux {
+        //     static myQux() { }
+        // }
+
+        // let Person = class PersonName {
+        //     identify() {
+        //         console.log(Person.name, PersonName.name);
+        //     }
+        // }
+        // let p = new Person();
+        // p.identify();
+        // console.log(Person.name);
+        // console.log(PersonName);
+
+        // class Animal { }
+        // class Person {
+        //     constructor() {
+        //         console.log('person ctor');
+        //     }
+        // }
+        // class Vegetbale {
+        //     constructor() {
+        //         this.color = 'orange';
+        //     }
+        // }
+        // function B() { };
+        // let b = new B();
+        // console.log(b);
+        // let a = new Animal();
+        // let p = new Person();
+        // let v = new Vegetbale();
+        // console.log(a);
+        // console.log(p);
+        // console.log(v);
+        // console.log(v.color);
+
+        // class Person {
+        //     constructor(name) {
+        //         console.log(arguments.length);
+        //         this.name = name || null;
+        //     }
+        // }
+        // let p1 = new Person;
+        // console.log(p1.name);
+        // let p2 = new Person();
+        // console.log(p2.name);
+        // let p3 = new Person('Jack');
+        // console.log(p3.name);
+
+        // class Person {
+        //     constructor(override) {
+        //         this.foo = 'foo';
+        //         if (override) {
+        //             return {
+        //                 bar: 'bar'
+        //             }
+        //         }
+        //     }
+        // }
+        // let p1 = new Person(),
+        //     p2 = new Person(true);
+        // console.log(p1);
+        // console.log(p2);
+        // console.log(p1 instanceof Person);
+        // console.log(p2 instanceof Person);
+
+        // function Person() { }
+        // class Animal { }
+        // let p = new Person();
+        // let a = Animal();
+
+        // class Person { };
+        // let p1 = new Person();
+        // p1.constructor();
+        // let p2 = new p1.constructor();
+
+        // class Person { }
+        // console.log(Person);
+        // console.log(typeof Person);
+        // console.log(Person instanceof Object);
+
+        // class Person { }
+        // console.log(Person.prototype);
+        // console.log(Person === Person.prototype.constructor);
+
+        // function A() { }
+        // console.dir(A);
+
+        // class Person { };
+        // let p = new Person();
+        // console.log(p instanceof Person);
+
+        // class Person { }
+        // let p1 = new Person();
+        // console.log(Person.constructor);
+        // console.log(Person.__proto__.constructor);
+        // console.log(Person.prototype.constructor);
+        // console.log(p1.constructor === Person);
+        // console.log(p1 instanceof Person);
+        // console.log(p1 instanceof Person.constructor);
+        // let p2 = new Person.constructor();
+        // let p3 = new Function();
+        // console.dir(p2);
+        // console.dir(Person.constructor);
+        // console.log(p2.constructor === Person);
+        // console.log(p2 instanceof Person);
+        // console.log(p2 instanceof Function);
+
+        // let classList = [
+        //     class {
+        //         constructor(id) {
+        //             this.id_ = id;
+        //             console.log(`instance ${this.id_}`);
+        //         }
+        //     }
+        // ]
+        // function createInstance(classDefinition, id) {
+        //     return new classDefinition(id)
+        // }
+        // let foo = createInstance(classList[0], 3141)
+
+        // let p = new class Foo {
+        //     constructor(x) {
+        //         console.log(x);
+        //     }
+        // }('bar')
+        // console.log(p);
+
+        // class A { }
+        // console.dir(A);
+
+        // class Person {
+        //     constructor() {
+        //         // this.name = new String('Jack');
+        //         this.name = 'Jack';
+        //         this.sayName = () => console.log(this.name);
+        //         this.nicknames = ['Jack', 'J-Dog']
+        //     }
+        // }
+        // let p1 = new Person(),
+        //     p2 = new Person();
+        // p1.sayName();
+        // p2.sayName();
+
+        // console.log(p1.name === p2.name);
+        // console.log(p1.sayName === p2.sayName);
+        // console.log(p1.nicknames === p2.nicknames);
+        // p1.name = p1.nicknames[0];
+        // p2.name = p2.nicknames[1];
+        // p1.name = '王'
+        // p1.sayName();
+        // p2.sayName();
+
+        // class Person {
+        //     constructor() {
+        //         this.locate = () => console.log('instance');
+        //     }
+        //     locate() {
+        //         console.log('prototype');
+        //     }
+        // }
+        // console.dir(Person);
+        // let p = new Person();
+        // p.locate();
+        // Person.prototype.locate();
+
+        // class Person {
+        //     name: 'Jack';
+        // }
+
+        // const symbolKey = Symbol('symbolKey');
+        // class Person {
+        //     stringKey() {
+        //         console.log('stringKey');
+        //     }
+        //     [symbolKey]() {
+        //         console.log('symbolKey');
+        //     }
+        //     ['computed' + 'Key']() {
+        //         console.log('computed');
+        //     }
+        // }
+        // let p = new Person();
+        // p.stringKey();
+        // p[symbolKey]();
+        // p.computedKey();
+
+        // class Person {
+        //     set name(newName) {
+        //         this.name_ = newName;
+        //     }
+        //     get name() {
+        //         return this.name_;
+        //     }
+        // }
+        // let p = new Person();
+        // p.name = 'Jack';
+        // console.log(p.name);
+
+        // class Person {
+        //     constructor() {
+        //         this.locate = () => console.log('instance', this);
+        //     }
+        //     locate() {
+        //         console.log('prototype', this);
+        //     }
+        //     static locate() {
+        //         console.log('class', this);
+        //     }
+        // }
+        // // console.dir(Person);
+        // let p = new Person();
+        // p.locate();
+        // Person.prototype.locate();
+        // Person.locate();
+
+        // class Person {
+        //     constructor(age) {
+        //         console.log(123);
+        //     }
+        //     sayAge() {
+        //         console.log(this.age_);
+        //     }
+        //     static create() {
+        //         return new Person(Math.floor(Math.radom() * 100))
+        //     }
+        // }
+        // let p = new Person();
+        // console.log(p);
+
+        // class Person {
+        //     sayName() {
+        //         console.log(`${Person.greeting} ${this.name}`);
+        //     }
+        // }
+        // Person.greeting = 'My name is';
+        // Person.prototype.name = 'Jack';
+        // let p = new Person();
+        // p.sayName();
+
+        // class Copy {
+        //     constructor(obj) {
+        //         return obj
+        //     }
+        // }
+        // let o = {
+        //     name: '小王'
+        // }
+        // let obj1 = new Copy(o);
+        // console.log(o === obj1);
+
+        // class Person {
+        //     *createNicknameIterator() {
+        //         yield 'Jack';
+        //         yield 'Jack';
+        //         yield 'J-Dog';
+        //     }
+        //     static *createJobIterator() {
+        //         yield 'Butcher';
+        //         yield 'Baker';
+        //         yield 'Candlestick marker';
+        //     }
+        // }
+        // let jobIter = Person.createJobIterator();
+        // console.log(jobIter.next().value);
+        // console.log(jobIter.next().value);
+        // console.log(jobIter.next().value);
+
+        // let p = new Person();
+        // let nick = p.createNicknameIterator();
+        // console.log(nick.next().value);
+        // console.log(nick.next().value);
+        // console.log(nick.next().value);
+
+        // class Person {
+        //     constructor() {
+        //         this.nick = ['Jack']
+        //     }
+
+        //     [Symbol.iterator]() {
+        //         return this.nick.entries();
+        //     }
+        // }
+        // let p = new Person();
+        // for (const [idx, nickname] of p) {
+        //     console.log(nickname);
+        // }
+
+        // console.log(0 || {});
+    </script>
+</body>
+
+</html>

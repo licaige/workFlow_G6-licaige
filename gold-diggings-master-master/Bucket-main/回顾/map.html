@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="logo">
+        你好
+    </div>
+    <script>
+        const myWeakmap = new WeakMap();
+        const dom = document.getElementById('logo');
+        domClick = () => {
+            const a = new Array(100000).fill(1);
+            const b = new Array(20000).fill(1);
+            console.log(a);
+            console.log(b);
+            arr.push(b);
+        }
+        myWeakmap.set(dom, domClick);
+        dom.addEventListener('click', myWeakmap.get(dom), false);
+
+        // const dom = document.getElementById('logo');
+        // const arr = [];
+        // dom.addEventListener('click', () => {
+        //     const a = new Array(100000).fill(1);
+        //     const b = new Array(20000).fill(1);
+        //     console.log(a);
+        //     console.log(b);
+        //     arr.push(b);
+        // });
+        // function fn1() {
+        //     var n = 1;
+        //     console.log(n);
+        //     function fn2() {
+        //         console.log(n);
+        //     }
+        //     return fn2;
+        // }
+        // setInterval(fn1, 1);
+    </script>
+</body>
+
+</html>

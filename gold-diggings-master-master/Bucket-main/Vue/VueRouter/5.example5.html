@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-view class="view one"></router-view>
+        <router-view class="view two" name="a"></router-view>
+        <router-view class="view three" name="b"></router-view>
+    </div>
+    <script>
+        const User = {
+            template: `
+                        <div class="user">
+                            <h1>11111111111你好</h1>
+                        </div>
+                      `,
+        }
+        const NotFound = {
+            template: `
+                        <div class="not_found">
+                            <h1>404</h1>
+                        </div>
+                      `,
+        }
+        const Name = {
+            template: `
+                        <div class="name">
+                            <h1>星空海绵1111</h1>
+                        </div>
+                      `,
+        }
+        const routes = [
+            {
+                name: 'user',
+                path: '/',
+                components: {
+                    default: User,
+                    a: Name,
+                    b: User
+                }
+            },
+            {
+                path: '*',
+                component: NotFound
+            }
+        ];
+        const router = new VueRouter({
+            routes
+        })
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+
+</html>

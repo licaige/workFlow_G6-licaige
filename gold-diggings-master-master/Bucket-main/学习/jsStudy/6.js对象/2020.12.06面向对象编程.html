@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const array = [0,-10,-5,1,9,5,1,4,7,10];
+        // function getIndex(arr){
+        //     let minValue = arr.filter(item => item > 0).sort((a,b) => a -b)[0]
+        //     return arr.indexOf(minValue)
+        // }
+        // console.log(getIndex(array));
+        // function getIndex1(arr){
+        //     return arr.findIndex(item => item === arr.filter(item => item > 0).sort((a,b) => a -b)[0]);
+        // }
+        // console.log(getIndex1(array));
+
+        // let arr = [1,23,5,4,5];
+        // let obj = {...arr};
+        // console.log(obj);
+        // console.log();
+
+        // let obj = {
+        //     name: '小明'
+        // }
+        // let obj1 = {...obj};
+        // console.log(obj == obj1);
+
+        // var name = '小王';
+        // var age = 17;
+        // var obj = {
+        //     name: '小张',
+        //     objAge: this.age,
+        //     myFun: function(){
+        //         console.log(this.name + '年龄' + this.age);
+        //     }
+        // }
+        // console.log(obj.objAge); // 17
+        // obj.myFun(); // 打印 小张年龄 undefined
+
+        // 因为此时是obj调用的myFun方法，所以myFun中的this指向obj，
+        // obj中没有age属性，所以 this.age 为undefined
+
+        // 当把上面var换成let后
+
+        // let name = '小王';
+        // let age = 17;
+
+        // let obj = {
+        //     name: '小张',
+        //     objAge: this.age,
+        //     myFun: function(){
+        //         console.log(this.name + '年龄' + this.age);
+        //     }
+        // }
+        // console.log(obj.objAge); // undefined
+        // obj.myFun(); // 打印 小张年龄 undefined
+
+        // 因为此时用let定义的age并没有挂在window下面，而是以一个块作用域的形式存在
+        // 而this指向window，此时window下面并没有age，所以第一个打印结果为 undefined
+        //第二个打印结果和上面var的解释一样
+
+
+        // var fav = '盲僧';
+        // function shows(){
+        //     console.log(this.fav);
+        // }
+        // shows();
+
+        // apply、call、bind的区别
+
+        // let name = '小王';
+        // let age = 17;
+        // let obj = {
+        //     name: '小张',
+        //     objAge: this.age,
+        //     myFun: function(){
+        //         console.log(this.name + '年龄' + this.age);
+        //     }
+        // }
+        // let db = {
+        //     name: '德玛',
+        //     age: 99
+        // }
+        // obj.myFun.call(db);
+        // obj.myFun.apply(db);
+        // obj.myFun.bind(db)();
+
+        // 1.改变函数调用时 this 的指向
+
+        // var person = {
+        //     fullName: function(){
+        //         return this.firstName + '姓' + this.lastName;
+        //     }
+        // }
+        // var person1 = {
+        //     firstName: 'Bill',
+        //     lastName: 'Gates',
+        // }
+        // console.log(person.fullName.apply(person1));
+
+        // var person = {
+        //     fullName: function(city,country){
+        //         return this.firstName + '' + this.lastName + ',' + city + ',' + country;
+        //     }
+        // }
+        // var person1 = {
+        //     firstName: 'John',
+        //     lastName: 'Doe',
+        // }
+        // console.log(person.fullName.call(person1,['Beijing','ChaoYang']));
+
+        // const numbers = [5,6,2,3,7];
+        // console.log(Math.max(...numbers));
+        // console.log(Math.max.apply(Math,numbers));
+        // console.log(Math.max.call(Math,...numbers));
+        // console.log(Math.max.bind(Math,...numbers)());
+        // console.log(Math.max.bind(Math,...numbers)());
+
+        // var array = ['a', 'b'];
+        // var elements = [0, 1, 2,[1,2,5]];
+        // array.push(...elements);
+        // let res2 = [...array,...elements];
+        // let res3 = array.push.apply(array,elements);
+        // let res4 = array.push.call(array,...elements);
+        // let res5 = array.push.bind(array,...elements)();
+        // let res6 = array.concat(elements)
+
+        // console.log(res6);
+        // console.log(res2);
+        // console.log(res3);
+        // console.log(res4);
+        // console.log(res5);
+
+        // var arr = [1,2,'1','2',1,'a','a']
+        // let a = arr.filter(function(v,i,a){
+        //     return a.indexOf(v) == i
+        // })
+        // console.log(a);
+        // [1,2,'1','2']
+
+        // let n = 1
+        // function a(){
+        //     let n = 2
+        //     return function b(){
+        //         console.log(n)
+        //     }
+        // }
+        // a()()
+
+        // console.log(window);
+        // console.log(typeof Infinity); // number
+        // console.log(typeof -Infinity); // number
+
+        // console.log(NaN == NaN);
+
+        // console.log(Number.isFinite(Infinity));
+        // console.log(Number.isFinite(0));
+
+        // console.log(Math.trunc(10.15));
+
+        // var numbers = [5,10,2,7,1];
+        // let maxValue= 0; 
+        // numbers.forEach((item,index) => {
+        //     console.log(numbers[index+1]);
+        //     if(numbers[index] > numbers[index+1]) {
+        //         [numbers[index],numbers[index+1]] = [numbers[index+1],numbers[index]]
+        //     }
+        //     maxValue = numbers[numbers.length-1]
+        // })
+        // console.log(maxValue);
+        // console.log(numbers);
+
+        // var numbers = [5,10,2,7,1];
+        // var max = Infinity;
+        // let min = -Infinity;
+        // numbers.forEach((item) => {
+        //     if(item < max) {
+        //         max = item;
+        //     }
+        // })
+        // console.log(max);
+
+        // function myFunction(a, b) {
+        //     return a+b;
+        // }
+        // var data = [1, 4];
+        // var result = myFunction.apply(myFunction,data);
+        // console.log(result);
+        // var res2 = myFunction(...data);
+        // console.log(res2);
+
+        // function myFunction(a, b) {
+        //     console.log(myFunction.length);
+        //     const args = Array.prototype.slice.call(arguments, myFunction.length);
+        //     console.log(args);
+        // }
+        // myFunction(1, 2, 3, 4, 5);
+
+        // function myFunction(...args,a) {
+        //     console.log(args); //Output "3, 4, 5"
+        // }
+        // myFunction(1, 2, 3, 4, 5);
+
+        // let person = new Object();
+        // person.name = 'Nicholas';
+        // person.age = 29;
+        // person.job = 'Software Engineer';
+        // person.sayName = function() {
+        //     console.log(this.name);
+        // }
+        // person.sayName();
+
+        // let person = {
+        //     name: 'Nicholas',
+        //     age: 29,
+        //     job: 'Software Engineer',
+        //     sayName: function(){
+        //         console.log(this.name);
+        //     }
+        // }
+        // person.sayName()
+
+        // let array = [10,5,6];
+        // for (const key in array) {
+        //     console.log(key);
+        // }
+        // for (const item of array) {
+        //     console.log(item);
+        // }
+
+        // let array = [{
+        //     id: 2,
+        //     lable: 'two',
+        //     url: '2xxx',
+        //     child: [
+        //         {
+        //             id: 20,
+        //             lable: 'two',
+        //             url: '20xxx',
+        //         },
+        //         {
+        //             id: 21,
+        //             lable: 'two',
+        //             url: '21xxx',
+        //             child: [
+        //                 {
+        //                     id: 68,
+        //                     lable: 'two',
+        //                     url: '68xxx',
+        //                 },
+        //                 {
+        //                     id: 61,
+        //                     lable: 'two',
+        //                     url: '61xxx',
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }];
+        // let fn = (id, array) => {
+        //     for (const item of array) {
+        //         if (item.id === 61) {
+        //             return item.url;
+        //         }
+        //         if (item.hasOwnProperty('child')) {
+        //             fn(id, item.child);
+        //         }
+        //     }
+        // };
+        // console.log(fn(61, array)); // 为什么返回undefined
+
+        // let aa = (ab, a) => {
+        //     return 1
+        // }
+        // console.log(aa(15, {}));
+
+        // let person = {};
+        // console.dir(person);
+        // let obj = Object.create();
+        // obj.name = 'xiao';
+        // console.dir(obj);
+
+        // let person = {};
+        // Object.defineProperty(person, 'name', {
+        //     writable: false,
+        //     value: 'Nicholas',
+        // });
+        // console.log(person.name);
+        // person.name = 'Jack';
+        // console.log(person);
+        // console.log(person.name);
+
+        // let person = {};
+        // Object.defineProperty(person, 'name', {
+        //     configurable: false,
+        //     writable: true,
+        //     value: 'Nicholas',
+        // })
+        // console.log(person);
+        // console.log(person.name);
+        // person.name = 'Jack';
+        // delete person.name;
+        // console.log(person.name);
+        // 从这里我们就能理解为什么window下面的name属性删除不掉了
+        // 因为windows给这个属性设置了不可删除,但是可以修改
+        // 也就是configurable为false，writable为true
+
+        // let person = {};
+        // Object.defineProperty(person, 'name', {
+        //     configurable: true,
+        //     enumerable: true,
+        //     writable: true,
+        //     value: 'Nicholas',
+        // });
+        // console.log(person.name);
+
+        // let book = {
+        //     year_: 2017,
+        //     edition: 1,
+        // }
+        // console.log(book.year_);
+        // Object.defineProperty(book, 'year', {
+        //     get() {
+        //         return this.year_;
+        //     },
+        //     set(newValue) {
+        //         if (newValue > 2017) {
+        //             this.year_ = newValue;
+        //             this.edition += newValue - 2017;
+        //         }
+        //     }
+        // })
+        // book.year = 2019;
+        // console.log(book);
+        // console.log(book.edition);
+
+        // console.dir(Object);
+        // let a = {};
+        // Object.prototype.__defineGetter__(a, function () {
+        //     return 1;
+        // });
+
+        let book = {};
+        Object.defineProperties(book, {
+            year_: {
+                writable: true,
+                value: 2017,
+            },
+            age: {
+                writable: true,
+                value: 29,
+            },
+            year: {
+                get() {
+                    return this.year_;
+                },
+                set(newValue) {
+                    if (newValue > 2017) {
+                        this.year_ = newValue;
+                        this.age += newValue - 2017;
+                    }
+                }
+            }
+        })
+        book.year = 2019;
+        console.log(book);
+
+        // let obj = {
+        //     a() {
+        //         console.log(123);
+        //     }
+        // }
+        // console.log(obj);
+        // let obj1 = {
+        //     a: function () {
+        //         console.log(123);
+        //     }
+        // }
+        // console.log(obj1);
+    </script>
+</body>
+
+</html>

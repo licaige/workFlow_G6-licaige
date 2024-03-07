@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function A() {
+        //     let age = 10;
+        //     return function B() {
+        //         console.log(age);
+        //     }
+        // }
+        // A()();
+
+        // for (var i = 0; i < 4; i++) {
+        //     (function (j) {
+        //         setTimeout(function () {
+        //             console.log(j);
+        //         })
+        //     }
+        //     )(i)
+        // }
+
+        // let outer = function () {
+        //     let name = 'Jake';
+        //     return function () {
+        //         return name;
+        //     }
+        // }
+
+        // bind
+
+        // let obj = {
+        //     age: 18
+        // }
+        // function getInfo(job, height) {
+        //     console.log(job);
+        //     console.log(height);
+        //     console.log(this.age);
+        // }
+        // getInfo.bind(obj, 'student')(173);
+
+        // this.x = 9;
+        // var module = {
+        //     x: 81,
+        //     getX: function () {
+        //         return this.x;
+        //     }
+        // }
+        // module.getX();
+        // var retrieveX = module.getX;
+        // retrieveX();
+        // var boundGetX = retrieveX.bind(module);
+        // boundGetX();
+
+        // function Point(x, y) {
+        //     this.x = x;
+        //     this.y = y;
+        // }
+        // Point.prototype.toString = function () {
+        //     console.log('toString方法');
+        // }
+        // Function.prototype.myBind = function () {
+        //     if (typeof this !== 'function') {
+        //         throw new TypeError('调用者必须是函数')
+        //     }
+        //     var arg = arguments[0];
+        //     var slice = Array.prototype.slice
+        //     var args = slice.call(arguments, 1);
+        //     var _that = this;
+        //     return function () {
+        //         return _that.apply(arg, args.concat(slice.call(arguments)))
+        //     }
+        // }
+        // let YAxisPoint = Point.bind({}, 0);
+        // let axisPoint = new YAxisPoint(5);
+        // console.dir(axisPoint);
+        // axisPoint.toString();
+        // function getInfo(name, age) {
+        //     let slice = Array.prototype.slice;
+        //     let res = slice.call(arguments, 1);
+        //     console.log(res);
+        // }
+        // getInfo('星空海绵', '25');
+
+        // function getInfo(name, age) {
+        //     let unboundSlice = Array.prototype.slice;
+        //     let slice = Function.prototype.bind(unboundSlice)
+        //     console.log(slice());;
+        //     let res = slice(arguments, 1);
+        //     console.log(res);
+        // }
+        // getInfo('星空海绵', '25');
+
+        // if (!Function.prototype.bind) (function () {
+        //     var slice = Array.prototype.slice;
+        //     Function.prototype.bind = function () {
+        //         var thatFunc = this, thatArg = arguments[0];
+        //         var args = slice.call(arguments, 1);
+        //         if (typeof thatFunc !== 'function') {
+        //             throw new TypeError('Function.prototype.bind-' +
+        //                 'what is trying to be bound is not callable');
+        //         }
+        //         return function () {
+        //             var funcArgs = args.concat(slice.call(arguments));
+        //             return thatFunc.apply(thatArg, funcArgs);
+        //         }
+        //     }
+        // })()
+        // console.dir(Function);
+
+        // var obj = {
+        //     age: 25
+        // }
+        // function getInfo(name, job) {
+        //     // console.log(name);
+        //     // console.log(job);
+        //     // console.log(this.age);
+        // }
+        // getInfo.prototype.toString = function () {
+        //     // console.log('方法');
+        // }
+        // // getInfo.bind(obj, '星空海绵')('Software Engineer');
+        // Function.prototype.myBind = function () {
+        //     if (typeof this !== 'function') {
+        //         throw new TypeError('调用者必须是函数')
+        //     }
+        //     var arg = arguments[0];
+        //     var slice = Array.prototype.slice
+        //     var args = slice.call(arguments, 1);
+        //     var _that = this;
+        //     return function () {
+        //         return _that.apply(arg, args.concat(slice.call(arguments)))
+        //     }
+        // }
+        // let AFn = getInfo.myBind(obj, '星空海绵')
+        // let a = new AFn('Software Engineer');
+        // a.toString();
+
+        if (!Function.prototype.bind) (function () {
+            var ArrayPrototypeSlice = Array.prototype.slice;
+            Function.prototype.bind = function (otherThis) {
+                if (typeof this !== 'function') {
+                    throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+                }
+                var bas
+            }
+        })()
+    </script>
+</body>
+
+</html>

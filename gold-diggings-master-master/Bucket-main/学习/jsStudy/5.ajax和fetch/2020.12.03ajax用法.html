@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="user-info"></form>
+    <div id="status"></div>
+    <script>
+        // function Person(name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        
+        // let person = new Person('小王', 18);
+        // 1. 创建一个空对象
+        // 2. 让Person中的this指向person，并执行函数体
+        // 3. 设置原型链， person.__proto__ = Person.prototype
+        // 4. 判断返回类型，如果是值类型就返回person，如果是引用类型，就返回这个引用类型的对象
+
+        // let Person = function(name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+
+        // Person.prototype.sayName = function() {
+        //     console.log(this.name);
+        // }
+
+        // const person = new Person('小明', 19);
+        // person.sayName();
+
+        // let xhr = new XMLHttpRequest();
+        // // XHR可以设置同步或者异步，不是必须异步的
+        // xhr.open('get','https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user',false);
+        // xhr.send();
+        // console.log(156);
+        // if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
+        //     console.log(xhr.responseText);
+        //     console.log(xhr.responseXML);
+        //     console.log(xhr.status);
+        //     console.log(xhr.statusText);
+        // } else {
+        //     alert('Request was unsuccessful：' + xhr.status);
+        //     console.log(xhr.responseText);
+        //     console.log(xhr.responseXML);
+        //     console.log(xhr.status);
+        //     console.log(xhr.statusText);
+        // }
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function(){
+        //     console.log(xhr.readyState);
+        //     xhr.abort();
+        //     if(xhr.readyState === 4){
+        //         if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+        //             console.log(xhr.responseText);
+        //         } else {
+        //             console.log('unsuccessful：' + xhr.status);
+        //         }
+        //     }
+        // }
+        // xhr.open('get','https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user',true);
+        // xhr.send();
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function() {
+        //     console.log(xhr.readyState);
+        //     if(xhr.readyState === 4){
+        //         if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+        //             console.log(xhr.responseText);
+        //         } else {
+        //             console.log(xhr.status);
+        //         }
+        //     }
+        // }
+        // xhr.open('get', 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user?name=name1', true);
+        // xhr.setRequestHeader('Access-Control-Allow-Headers','X-TOKEN');
+        // // xhr.setRequestHeader('MyHead1','MyValue1');
+        // // let myHead = xhr.getResponseHeader('MyHead');
+        // // let allHead = xhr.getAllResponseHeaders();
+        // // console.log(myHead);
+        // // console.log(allHead);
+        // xhr.send();
+
+        // function addURLParam(url,name,value){
+        //     url += url.indexOf('?') === -1 ? '?':'&';
+        //     url += encodeURIComponent(name) + '=' + encodeURIComponent(value);
+        //     return url;
+        // }
+        // let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user';
+        // url = addURLParam(url,'小明','18');
+        // url = addURLParam(url,'小王','58');
+        // let xhr = new XMLHttpRequest();
+        // xhr.open('get',url,false);
+        // xhr.send();
+        // console.log([].indexOf('123'));
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function(){
+        //     if(this.readyState === 4 && this.status >= 200 && this.status < 300 || this.status === 304){
+        //         console.log(this.responseText);
+        //     } else {
+        //         console.log(this.status);
+        //     }
+        // }
+        // let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/jiekou';
+        // xhr.open('post',url,true);
+        // xhr.send();
+
+        // function submitData() {
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.onreadystatechange = function(){
+        //         if(this.readyState === 4){
+        //             if(this.status >= 200 && this.status < 300 || this.status === 304){
+        //                 console.log(this.responseText);
+        //             } else {
+        //                 console.log(this.status);
+        //             }
+        //         }
+        //     }
+        //     let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/jiekou';
+        //     xhr.open('post',url,true);
+        //     xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        //     let form = document.getElementById('user-info');
+        //     xhr.send(serialize(form))
+        
+        // };
+        // submitData();
+
+        // let data = new FormData();
+        // data.append('name','Nicholas');
+        // console.log(Array.from(data));
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function() {
+        //     if(this.readyState === 4){
+        //         if(this.status >= 200 && this.status < 300 || this.status === 304){
+        //             console.log(this.responseText);
+        //         } else {
+        //             console.log(this.status);
+        //         }
+        //     }
+        // }
+        // let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/jiekou';
+        // xhr.open('post',url,true);
+        // let form = document.getElementById('user-info');
+        // xhr.send(new FormData(form))
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function(){
+        //     if(this.readyState === 4){
+        //         try {
+        //             if(this.status >= 200 && this.status < 300 || this.status === 304){
+        //                 console.log(this.responseText);
+        //             } else {
+        //                 console.log(this.status);
+        //             }
+        //         } catch (error) {
+                    
+        //         }
+        //     }
+        // }
+        // let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user';
+        // xhr.open('get',url,true);
+        // xhr.timeout = 1000;
+        // xhr.ontimeout = function() {
+        //     console.log('连接已超时！');
+        // }
+        // xhr.overrideMimeType('text/xml');
+        // xhr.send();
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.onload = function() {
+        //     if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+        //         console.log(xhr.responseText);
+        //     } else {
+        //         console.log(xhr.status);
+        //     }
+        // }
+        // let url = 'https://www.fastmock.site/mock/cdf22a156eb8448944e9b57617f0af66/rtsp/api/user';
+        // xhr.onprogress = function(event) {
+        //     console.log(event);
+        //     let divStatus = document.getElementById('status')
+        //     if(event.lengthComputable){
+        //         divStatus.innerHTML  = '收到' + event.loaded + '个字节';
+        //     }
+        // }
+        // xhr.open('get',url,true);
+        // xhr.send();
+        // let img = new Image();
+        // img.onload = function(){
+        //     console.log('OK');
+        // }
+        // img.src = 'https://note.youdao.com/yws/api/image/normal/1533047991223?userId=qq43DD9FBABC3567E274F8019CE9FA2F42';
+        // console.log(img);
+        // let dom = document.getElementById('status');
+        // dom.appendChild(img);
+
+        // function handleResponse(response) {
+        //     console.log(`${response.ip},${response.city},${response.region_name}`);
+        // }
+        // let script = document.createElement('script');
+        // script.src = 'http://tsn.baidu.com/text2audio/?callback=handleResponse';
+        // document.body.insertBefore(script,document.body.firstChild);
+
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+                console.log(xhr.responseText);
+            }else{
+                console.log(xhr.status);
+            }
+        }
+        let url = 'http://tsn.baidu.com/text2audio';
+        xhr.open('post',url,true);
+        xhr.send('你好');
+    </script>
+</body>
+</html>

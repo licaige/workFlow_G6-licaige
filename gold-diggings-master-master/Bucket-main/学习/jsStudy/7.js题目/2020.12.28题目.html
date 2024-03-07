@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var obj = {
+        //     age: 25
+        // }
+        // function getInfo(name) {
+        //     console.log(name);
+        //     console.log(this.age);
+        // }
+        // Function.prototype.myApply = function (context = window) {
+        //     context.fn = this;
+        //     if (arguments[1]) {
+        //         if (Array.isArray(arguments[1])) {
+        //             return context.fn(...arguments[1])
+        //         } else {
+        //             throw new TypeError('type error')
+        //         }
+        //     } else {
+        //         return context.fn()
+        //     }
+        // }
+        // console.log(getInfo.myApply(obj));
+        // console.log(getInfo.apply(obj));
+        let a = () => {
+            console.log(100);
+            // console.log(arguments);
+        }
+        a(156);
+        console.dir(a);
+    </script>
+</body>
+
+</html>

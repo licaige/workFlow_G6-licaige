@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // new Promise((resolve, reject) => {
+        //     console.log('初始化');
+
+        //     resolve();
+        // })
+        //     .then(() => {
+        //         throw new Error('有哪里不对了');
+
+        //         console.log('执行「这个」”');
+        //     })
+        //     .catch(() => {
+        //         console.log('执行「那个」');
+        //     })
+        //     .then(() => {
+        //         console.log('执行「这个」，无论前面发生了什么');
+        //     });
+
+        // try {
+        //     new Promise((resolve, reject) => {
+        //         console.log('初始化');
+
+        //         resolve();
+        //     })
+        //         .then(() => {
+        //             return Promise.reject(1);
+
+        //             console.log('执行「这个」”');
+        //         })
+        //         .then(() => {
+        //             console.log('执行「这个」，无论前面发生了什么');
+        //         });
+        // } catch (error) {
+        //     console.error(error);
+        // }
+
+        // const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        // wait(10000).then(() => saySomething("10 seconds")).catch(failureCallback);
+
+        new Promise((resolve, reject) => {
+            console.log('start') // 1
+            resolve('data2')
+        }).then(rsp => {
+            console.log('success ' + rsp) // 3 mi1
+        }, error => {
+            console.log('error ' + error)
+        })
+        console.log('end') // 2
+    </script>
+</body>
+
+</html>

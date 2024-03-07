@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 浅拷贝
+        // let obj = {
+        //     name: 'XKHM',
+        //     age: 25,
+        //     job: 'Software Engineer'
+        // }
+        // let obj1 = Object.assign({}, obj);
+        // obj1.age = 28;
+        // console.log(obj1);
+        // console.log(obj);
+        // let obj3 = {
+        //     money: 50
+        // }
+        // let obj1 = {};
+        // Object.assign(obj1, obj, obj3)
+        // console.log(obj1);
+
+        // let obj1 = obj;
+        // console.log(obj1 === obj);
+
+        // let obj1 = Object.assign({}, obj);
+        // obj1.age = 28;
+        // console.log(obj1);
+        // console.log(obj);
+
+        // let obj1 = {
+        //     height: 178
+        // };
+        // Object.assign(obj, obj1);
+        // obj1.age = 28;
+        // console.log(obj1);
+        // console.log(obj);
+
+        // let obj = {
+        //     name: 'XKHM',
+        //     age: 25,
+        //     job: 'Software Engineer'
+        // }
+        // let obj1 = { ...obj };
+        // obj1.age = 28;
+        // console.log(obj1);
+        // console.log(obj);
+
+        let obj = {
+            name: {
+                firstName: '星空',
+                undefined: undefined
+            },
+            age: 25,
+            job: 'Software Engineer'
+        }
+        let obj1 = JSON.parse(JSON.stringify(obj));
+        obj1.name.firstName = '小小'
+        console.log(obj1);
+        console.log(obj);
+        // console.log(Object.keys(obj));
+        // console.log(Object.values(obj));
+        // console.log(Object.entries(obj));
+        // let obj1 = {};
+        // for (const key in obj) {
+        //     if (obj.hasOwnProperty(key)) {
+        //         obj1[key] = obj[key];
+        //     }
+        // }
+        // obj1.age = 28;
+        // console.log(obj1);
+        // console.log(obj);
+    </script>
+</body>
+
+</html>

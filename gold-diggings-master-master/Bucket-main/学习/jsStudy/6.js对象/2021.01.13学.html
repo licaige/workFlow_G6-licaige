@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function A() { }
+        // let a = new Object(A);
+        // console.log(a instanceof A);
+        // a.__proto__ === A.prototype ? true:false
+
+        // function Right() { }
+        // let left = new Object(Right);
+        // console.log(left instanceof Right);
+        // console.log(myInstanceof(left, Right));
+
+        // function myInstanceof(left, Right) {
+        //     left = left.__proto__;
+        //     Right = Right.prototype;
+        //     while (true) {
+        //         if (left === null) {
+        //             return false
+        //         }
+        //         if (left === Right) {
+        //             return true
+        //         }
+        //         left = left.__proto__;
+        //     }
+        // }
+
+        // function F() { }
+        // function O() { }
+
+        // var obj = new O();
+        // O.prototype = new F();
+
+        // obj.__proto__ = O.prototype
+        // O.prototype.__proto__ = F.prototype
+
+        // console.log();
+        // console.log(obj instanceof O);//false
+        // console.log(obj instanceof F);//false
+        // console.log(obj.__proto__ === O.prototype);//false
+        // console.log(obj.__proto__.__proto__ === F.prototype);//false
+
+        // 1.字面量的形式
+        // let obj = {};
+        // // 2.new Object构造函数
+        // let obj1 = new Object()
+        // // 3.调用Object.create()
+        // let obj2 = Object.create()
+
+        // function recursivelyCheckEqual(x, rest) {
+        //     console.log(Object.is(x, rest[0]));
+        //     return Object.is(x, rest[0]) && (rest.length < 2 || recursivelyCheckEqual(...rest));
+        // }
+        // let value = 10;
+        // let arr = [10, 10];
+        // let res = recursivelyCheckEqual(value, arr);
+        // console.log(res);
+
+        // function A(showName) {
+        //     this.showName = showName;
+        // }
+        // let instance = Object.create(A, {
+        //     showName: {
+        //         value: '星空'
+        //     }
+        // })
+        // let instance1 = Object.create(A, {
+        //     showName: {
+        //         value: '海绵'
+        //     }
+        // })
+        // console.log(instance.showName); // 星空
+        // console.log(instance1.showName); // 海绵
+
+        // function A(showName) {
+        //     this.showName = showName;
+        //     console.log('A方法');
+        // }
+        // A.prototype.getName = function () {
+        //     return this.showName
+        // }
+        // function B(name) {
+        //     A.call(this, name)
+        // }
+        // B.prototype = new A();
+        // let instance = new B('星空');
+        // let instance1 = new B('海绵');
+        // console.log(instance.getName()); // 星空
+        // console.log(instance1.getName()); // 海绵
+
+        // function object(o) {
+        //     function F() { };
+        //     F.prototype = o;
+        //     return new F();
+        // }
+
+        // function inheritPrototype(B, A) {
+        //     let prototype = object(A.prototype);
+        //     prototype.constructor = B;
+        //     B.prototype = prototype;
+        // }
+
+        // function A(name) {
+        //     this.name = name;
+        //     this.colors = ['red', 'blue', 'green'];
+        // }
+        // A.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // function B(name, age) {
+        //     A.call(this, name);
+        //     this.age = age;
+        // }
+        // inheritPrototype(B, A);
+        // B.prototype.sayAge = function () {
+        //     console.log(this.age);
+        // }
+
+        // function Dog() { };
+        // Dog.prototype = { name: '小黑' };
+        // let dog1 = new Dog();
+        // let dog2 = new Dog();
+        // dog1.name = '大黄';
+        // console.log(dog1.name); // 大黄
+        // console.log(dog2.name); // 小黑
+
+        // console.log(Math.random() * 10);
+        // console.log(Math.floor(Math.random() * 10));
+        // console.log(Math.floor(Math.random() * 10) === 0);
+
+        // 需要获取一只狗的信息，先只需要获取名字
+        // 又需要获取这个狗的种类 species
+        // 狗身上的全部颜色
+        // function Dog(name = '佚名', species = '犬科') {
+        //     this.name = name;
+        //     this.species = species;
+        //     this.color = ['red', 'white', 'black'];
+        // }
+        // let dog1 = new Dog('大黄');
+        // let dog2 = new Dog('小黑');
+        // let cat = new Dog('小花', '猫科');
+        // let dog3 = new Dog();
+        // dog1.color[0] = 'green';
+
+        // console.log(dog1);
+        // console.log(dog2);
+        // console.log(cat);
+        // console.log(dog3);
+
+        // function A() {
+        //     this.name = '星空海绵';
+        // }
+        // A.prototype.getInfo = function () {
+        //     return this.name
+        // }
+        // function B() {
+        //     this.age = 20;
+        // }
+        // B.prototype = new A();
+        // B.prototype.getAge = function () {
+        //     return this.age
+        // }
+        // let a = new B();
+        // console.log(a.name);
+        // console.log(a.age);
+        // console.log(a.getInfo());
+        // console.log(a.getAge());
+    </script>
+</body>
+
+</html>

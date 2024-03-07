@@ -1,0 +1,33 @@
+nav {
+    display: flex;
+    justify-content: center;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  li {
+    margin: 0 10px;
+    height: 24px;
+    background: #ff5c35;
+    border-radius: 5px;
+  }
+  
+  span {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  span:hover {
+    border-bottom: 2px solid #333;
+  }
+  

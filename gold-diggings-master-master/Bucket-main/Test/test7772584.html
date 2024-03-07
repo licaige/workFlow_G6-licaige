@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #thing-lengend {
+            width: 72px;
+            opacity: 0.5;
+            background: #071224;
+            border-radius: 8px;
+            padding-top: 4px;
+            padding-bottom: 5px;
+            margin-top: 90px;
+            margin-left: 100px;
+        }
+
+        .single-thing {
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .legend-icon {
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+            background: #3097cb;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .legend-font {
+            width: 40px;
+            opacity: 0.8;
+            font-size: 12px;
+            font-family: PingFang SC Regular, PingFang SC Regular-Regular;
+            font-weight: 400;
+            text-align: left;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-left: 9px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <button onClick="dis()">点击</button>
+    <script>
+        const array = ['照明', '空调', '配电柜aaaa', '1111', '22222', '33333'];
+        const color = ['red', 'yellow', 'green', 'red', 'yellow', 'green'];
+        let htmlBox = document.createElement('div');
+        htmlBox.id = 'thing-lengend';
+        document.body.appendChild(htmlBox)
+        array.forEach((item, i) => {
+            const html = `<div class="single-thing" title="${item}">
+                            <div class="legend-icon" style="background:${color[i]}"></div>
+                            <span class="legend-font" >${item}</span>
+                        </div>`
+            document.getElementById('thing-lengend').innerHTML += html
+        })
+        function dis() {
+            document.getElementById('thing-lengend').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

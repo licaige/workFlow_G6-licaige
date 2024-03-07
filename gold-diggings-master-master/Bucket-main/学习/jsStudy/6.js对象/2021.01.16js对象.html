@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.原型链继承
+        // function A(){}
+        // function B(){}
+        // B.prototype = new A();
+        // let a = new B();
+
+        // 2.盗用函数继承
+        // function A(params) { }
+        // function B() {
+        //     A.call(this, params)
+        // }
+        // let a = new B();
+
+        // 3.组合继承
+        // function A(params) { }
+        // function B() {
+        //     A.call(this, params)
+        // }
+        // B.prototype = new A();
+        // let a = new B();
+
+        // 4.原型式继承
+        // let obj = {
+        //     name: '星空海绵',
+        //     getName: function () {
+        //         return this.name
+        //     }
+        // }
+        // function object(o) {
+        //     function F() { }
+        //     F.prototype = o;
+        //     return new F();
+        // }
+        // let obj1 = object(obj);
+
+        // 5.寄生式继承
+        // let obj = {
+        //     name: '星空海绵'
+        // }
+        // function object(o) {
+        //     function F() { }
+        //     F.prototype = o;
+        //     return new F();
+        // }
+        // function A(o) {
+        //     let clone = object(o);
+        //     clone.getName = function () {
+        //         return this.name
+        //     }
+        //     return clone
+        // }
+        // let obj1 = A(obj);
+        // console.log(obj1.getName());
+
+        // 6.寄生式组合继承
+        // function object(o) {
+        //     function F() { }
+        //     F.prototype = o;
+        //     return new F();
+        // }
+        // function inheritPrototype(B, A) {
+        //     let prototype = object(A.prototype);
+        //     prototype.constructor = B;
+        //     B.prototype = prototype;
+        // }
+        // function A(params) { }
+        // function B() {
+        //     A.call(this, params)
+        // }
+        // inheritPrototype(B, A);
+
+        // 7.类继承
+
+        // function A() {
+        //     this.name = '星空海绵'
+        // }
+        // class B extends A { }
+        // let a = new B()
+
+        // let _default = 0;
+        // Object.defineProperty(window, 'a', {
+        //     get() {
+        //         return ++_default
+        //     }
+        // })
+        // if (a === 1 && a === 2 && a === 3) {
+        //     console.log('成功');
+        // }
+    </script>
+</body>
+
+</html>

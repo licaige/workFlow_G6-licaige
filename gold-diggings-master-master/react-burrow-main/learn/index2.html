@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type='text/babel'>
+
+        function Avatar(props) {
+            return (
+                <img className="Avatar" src={props.user.avatarUrl} alt={props.user.name} />
+            )
+        };
+
+        function UserInfo(props) {
+            return (
+                <div className="UserInfo">
+                    <Avatar user={props.user} />
+                    <div className="UserInfo-name">
+                        {props.user.name}
+                    </div>
+                </div>
+            )
+        }
+
+        function Comment(props) {
+            return (
+                <div className="Comment">
+                    <UserInfo user={props.author} />
+                    <div className="Comment-text">
+                        {props.text}
+                    </div>
+                    <div className="Comment-date">
+                        {formatDate(props.date)}
+                    </div>
+                </div>
+            )
+        }
+
+        function formatDate(date) {
+            return date + ':2020.08.03'
+        }
+
+        const comment = {
+            text: '文本',
+            date: '日期',
+            user: {
+                name: '小王',
+                avatarUrl: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+            }
+        }
+
+        ReactDOM.render(
+            <Comment author={comment.user} text={comment.text} date={comment.date} />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>

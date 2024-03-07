@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let book = {};
+        // Object.defineProperties(book, {
+        //     year_: {
+        //         value: 2017
+        //     },
+        //     edition: {
+        //         value: 1
+        //     },
+        //     year: {
+        //         get: function () {
+        //             return this.year_;
+        //         },
+        //         set: function (newValue) {
+        //             if (newValue > 2017) {
+        //                 this.year_ = newValue;
+        //                 this.edition += newValue - 2017;
+        //             }
+        //         }
+        //     }
+        // });
+        // let descriptor = Object.getOwnPropertyDescriptor(book, 'year_');
+        // console.log(descriptor.value);
+        // console.log(descriptor.configurable);
+        // console.log(typeof descriptor.get);
+        // let descriptor = Object.getOwnPropertyDescriptor(book, 'year');
+        // console.log(descriptor.value);
+        // console.log(descriptor.enumerable);
+        // console.log(typeof descriptor.get);
+
+        // let book = {};
+        // Object.defineProperties(book, {
+        //     year_: {
+        //         value: 2017
+        //     },
+        //     edition: {
+        //         value: 1
+        //     },
+        //     year: {
+        //         get: function () {
+        //             return this.year_;
+        //         },
+        //         set: function (newValue) {
+        //             if (newValue > 2017) {
+        //                 this.year_ = newValue;
+        //                 this.edition += newValue - 2017;
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(Object.getOwnPropertyDescriptors(book));
+
+        // let dest, src, result;
+        // dest = {};
+        // src = { id: 'src' };
+        // result = Object.assign(dest, src);
+        // console.log(result);
+        // console.log(dest);
+        // console.log(dest === src);
+        // console.log(dest === result);
+        // console.log(dest !== src);
+
+        // let dest, src, result;
+        // dest = {};
+        // result = Object.assign(dest, { a: 'foo' }, { b: 'bar' });
+        // console.log(result);
+        // console.log(dest);
+
+        // Object.assign方法会改变原对象
+
+        // let dest, src, result;
+        // dest = {
+        //     set a(val) {
+        //         console.log(`dest setter with param ${val}`);
+        //     }
+        // };
+        // src = {
+        //     get a() {
+        //         console.log('src getter');
+        //         return 'foo'
+        //     }
+        // }
+        // Object.assign(dest, src);
+        // console.log(dest);
+        // console.log(src);
+
+        // let obj, obj1, res;
+        // obj = {
+        //     value: 'obj1',
+        // }
+        // obj1 = {
+        //     name: 'obj2',
+        // }
+        // res = Object.assign(obj, obj1);
+        // console.log(obj);
+        // console.log(obj1);
+        // console.log(res);
+
+        // let dest, src, result;
+        // dest = {
+        //     id: 'dest'
+        // };
+        // result = Object.assign(dest, {
+        //     id: 'src1',
+        //     a: 'foo',
+        // }, {
+        //     id: 'src2',
+        //     b: 'bar',
+        // });
+        // console.log(result);
+
+        // let dest, src, result;
+        // dest = {
+        //     set id(x) {
+        //         console.log(x);
+        //     }
+        // };
+        // result = Object.assign(dest, {
+        //     id: 'first'
+        // }, { id: 'second' }, { id: 'thrid' });
+        // console.log(result);
+
+        // let dest, src, result;
+        // dest = {};
+        // src = { a: {} };
+        // result = Object.assign(dest, src);
+        // console.log(result);
+        // console.log(dest);
+        // console.log(src);
+        // console.log(dest.a === src.a);
+
+        // let dest, src, result;
+        // dest = {};
+        // src = {
+        //     a: 'foo',
+        //     get b() {
+        //         throw new Error();
+        //     },
+        //     c: 'bar',
+        // };
+        // try {
+        //     Object.assign(dest, src);
+        // } catch (e) { };
+        // console.log(dest);
+
+        // console.log(true === 1);
+        // console.log({} === {});
+        // console.log('2' === 2);
+
+        // console.log(+0 === 0);
+        // console.log(+0 === -0);
+        // console.log(-0 === 0);
+        // console.log(0 === 0);
+
+        // console.log(NaN === NaN);
+        // console.log(isNaN(NaN));
+
+        // console.log(Object.is(true, 1));
+        // console.log(Object.is({}, {}));
+        // console.log(Object.is('2', 2));
+
+        // console.log(Object.is(+0, 0));
+        // console.log(Object.is(+0, -0));
+        // console.log(Object.is(+0, +0));
+        // console.log(Object.is(-0, 0));
+        // console.log(Object.is(0, 0));
+
+        // console.log(Object.is(NaN, NaN));
+
+        // function recursivelyCheckEqual(x, ...rest) {
+        //     return Object.is(x, rest[0]) && (rest.length < 2 || recursivelyCheckEqual(...rest));
+        // }
+        // let res = recursivelyCheckEqual(5, 5, 5, 5, 5, 4, 2, 6, 54, 10, 2, 5);
+        // console.log(res);
+
+        // function recursivelyCheckEqual(x, ...rest) {
+        //     return Object.is(x, rest[0]) &&
+        //         (rest.length > 2 || recursivelyCheckEqual(...rest));
+        // }
+        // let res = recursivelyCheckEqual(5, 5, 5, 5, 5, 5);
+        // console.log(res);
+
+        // function recursivelyCheckEqual(x, ...rest) {
+        //     return Object.is(x, rest[0]) &&
+        //         (rest.length < 2 || recursivelyCheckEqual(...rest))
+        // }
+        // let res = recursivelyCheckEqual(5, 5, 5, 5, 5);
+        // console.log(res);
+
+        // let name = 'Matt';
+        // let person = {
+        //     name: name
+        // };
+        // console.log(person);
+
+        // let name = 'Matt';
+        // let person = { name };
+        // console.log(person);
+
+        // function makePerson(name) {
+        //     return {
+        //         name
+        //     };
+        // }
+        // let person = makePerson('Matt');
+        // console.log(person.name);
+
+        // function makePerson(a) {
+        //     return {
+        //         name: a
+        //     }
+        // }
+        // var person = makePerson('Matt');
+        // console.log(person.name);
+
+        // const nameKey = 'name';
+        // const ageKey = 'age';
+        // const jobKey = 'job';
+        // let person = {
+        //     nameKey: 'Matt',
+        //     ageKey: 27,
+        //     jobKey: 'Software Engineer',
+        // }
+        // console.log(person);
+        // let person = {};
+        // person[nameKey] = 'Matt';
+        // person[ageKey] = 27;
+        // person[jobKey] = 'Software Engineer';
+        // console.log(person);
+
+        // const nameKey = 'name';
+        // const ageKey = 'age';
+        // const jobKey = 'job';
+
+        // let person = {
+        //     [nameKey]: 'Matt',
+        //     [ageKey]: '27',
+        //     [jobKey]: 'Software Engineer',
+        // }
+        // console.log(person);
+
+        // const nameKey = 'name';
+        // const ageKey = 'age';
+        // const jobKey = 'job';
+        // let uniqueToken = 0;
+        // function getUniqueKey(key) {
+        //     return `${key}_${uniqueToken++}`;
+        // }
+        // let person = {
+        //     [getUniqueKey(nameKey)]: 'Matt',
+        //     [getUniqueKey(ageKey)]: 27,
+        //     [getUniqueKey(jobKey)]: 'Software Engineer',
+        // }
+        // console.log(person);
+
+        // let person = {
+        //     sayName: function (name) {
+        //         console.log(`my name is ${name}`);
+        //     }
+        // }
+        // person.sayName('Matt');
+
+        // let person = {
+        //     sayName(name) {
+        //         console.log(`My name is ${name}`);
+        //     }
+        // }
+        // person.sayName('Matt1');
+
+        // let person = {
+        //     name_: '',
+        //     get name() {
+        //         return this.name_;
+        //     },
+        //     set name(name) {
+        //         this.name_ = name;
+        //     },
+        //     sayName() {
+        //         console.log(`My name is ${this.name_}`);
+        //     }
+        // }
+        // person.name = 'Matt';
+        // person.sayName();
+
+        // const methodKey = 'sayName';
+        // let person = {
+        //     [methodKey](name) {
+        //         console.log(`My name is ${name}`);
+        //     }
+        // }
+        // person.sayName('小丽');
+
+        // let person = {
+        //     name: '小丽',
+        //     age: 27,
+        // }
+        // let personName = person.name,
+        //     personAge = person.age;
+        // console.log(personName);
+        // console.log(personAge);
+
+        // let person = {
+        //     personName: '小丽',
+        //     personAge: 27,
+        // }
+        // let { personName, personAge } = person;
+        // console.log(personName);
+        // console.log(personAge);
+
+        // let person = {
+        //     name: 'Ma11',
+        //     age: 27,
+        // }
+        // let { name, job } = person;
+        // console.log(name);
+        // console.log(job);
+
+        // let person = {
+        //     name: '小丽',
+        //     age: 27,
+        // }
+        // let { name, job = 'Software Engineer' } = person;
+        // console.log(name);
+        // console.log(job);
+        // console.log(person);
+
+        // let { length } = 'foobar';
+        // console.log(length);
+        // let { constructor: c } = 4;
+        // console.dir(typeof c);
+        // console.log(c === Number);
+        // let { _ } = null;
+        // let { _ } = undefined;
+
+        // let personName, personAge;
+        // let person = {
+        //     name: 'Matt',
+        //     age: 27
+        // };
+        // ({ name: personName, age: personAge } = person);
+        // console.log(personName, personAge);
+
+        // let person = {
+        //     name: '小丽',
+        //     age: 27,
+        //     job: {
+        //         title: 'Software engineer'
+        //     }
+        // }
+        // let personCopy = {};
+        // ({
+        //     name: personCopy.name,
+        //     age: personCopy.age,
+        //     job: personCopy.job,
+        // } = person);
+        // person.job.title = 'Hacker';
+        // console.log(person);
+        // console.log(personCopy);
+
+        // let person = {
+        //     name: '小丽',
+        //     age: 27,
+        //     job: {
+        //         title: 'Software engineer'
+        //     }
+        // }
+        // let { job: { title } } = person;
+        // console.log(title);
+
+        // let person = {
+        //     job: {
+        //         title: 'Software engineer'
+        //     }
+        // }
+        // let personCopy = {};
+        // // ({
+        // //     foo: {
+        // //         bar: personCopy.bar
+        // //     }
+        // // } = person);
+
+        // ({
+        //     job: {
+        //         title: personCopy.job.title
+        //     }
+        // } = person)
+
+        // let person = {
+        //     name: '小丽',
+        //     age: 27,
+        // }
+        // let personName, personBar, personAge;
+        // try {
+        //     ({ name: personName, foo: { bar: personBar }, age: personAge } = person)
+        // } catch (e) {
+
+        // }
+        // console.log(personName);
+        // console.log(personBar);
+        // console.log(personAge);
+
+        // let person = {
+        //     name: '小丽',
+        //     age: 27
+        // };
+        // function printPerson(foo, { name, age }, bar) {
+        //     console.log(arguments);
+        //     console.log(name, age);
+        // }
+        // function printPerson2(foo, { name: personName, age: personAge }, bar) {
+        //     console.log(arguments);
+        //     console.log(personName, personAge);
+        // }
+        // printPerson('1st', person, '2nd');
+        // printPerson2('1st', person, '2nd')
+
+        // function createPerson(name, age, job) {
+        //     let o = new Object();
+        //     o.name = name;
+        //     o.age = age;
+        //     o.job = job;
+        //     o.sayName = function () {
+        //         console.log(this.name);
+        //     }
+        //     return o;
+        // }
+        // let person1 = createPerson('小丽', 29, 'Software engineer');
+        // let person2 = createPerson('小王', 30, 'Hacker');
+        // console.log(person1);
+        // console.log(person2);
+
+        // function Person(name, age, job) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+        //     this.sayName = function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let person1 = new Person('小丽', 18, 'Software engineer');
+        // let person2 = new Person('小王', 28, 'Hacker');
+        // console.log(person1);
+        // console.log(person2);
+        // person1.sayName();
+        // person2.sayName();
+
+        // console.log(person1.constructor === Person);
+        // console.log(person2.constructor === Person);
+
+        // console.log(person1 instanceof Object);
+        // console.log(person2 instanceof Object);
+        // console.log(person1 instanceof Person);
+        // console.log(person2 instanceof Person);
+
+        // let Person = function (name, age, job) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+        //     this.sayName = function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let person1 = new Person('小丽', 29, 'Software engineer');
+        // let person2 = new Person('小王', 35, 'Hacker');
+        // person1.sayName();
+        // person2.sayName();
+        // console.log(person1 instanceof Object);
+        // console.log(person2 instanceof Object);
+        // console.log(person1 instanceof Person);
+        // console.log(person2 instanceof Person);
+
+        // function Person() {
+        //     this.name = 'Jack';
+        //     this.sayName = function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let person1 = new Person();
+        // let person2 = new Person;
+        // person1.sayName();
+        // person2.sayName();
+        // console.log(person1 instanceof Object);
+        // console.log(person2 instanceof Object);
+        // console.log(person1 instanceof Person);
+        // console.log(person2 instanceof Person);
+
+        // let a = new Object;
+        // console.log(a);
+
+        // function Person(name, age, job) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+        //     this.sayName = new Function('console.log(this.name)')
+        // }
+        // let person = new Person('小丹', 20, 'Software engineer');
+        // person.sayName();
+        // Person('小王', 22, 'Hacker');
+        // console.log(name);
+        // console.log(age);
+        // console.log(job);
+        // sayName();
+        // console.log(window);
+        // window.sayName();
+
+        // let o = new Object();
+        // Person.call(o, '小霞', 25, 'beauful');
+        // o.sayName();
+
+        // let person1 = new Person('小丹', 20, 'Software engineer');
+        // let person2 = new Person('小丹', 20, 'Software engineer');
+        // console.log(person1.sayName == person2.sayName);
+
+        // function Person(name, age, job) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+        //     this.sayName = sayName;
+        // }
+        // function sayName() {
+        //     console.log(this.name);
+        // }
+        // let person1 = new Person('小丹', 20, 'Software engineer');
+        // let person2 = new Person('小丹', 20, 'Software engineer');
+        // console.log(person1.sayName == person2.sayName);
+    </script>
+</body>
+
+</html>

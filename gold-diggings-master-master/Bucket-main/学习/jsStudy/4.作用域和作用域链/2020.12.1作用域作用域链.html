@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="some_element"></div>
+    <script>
+        //var let 块级作用域区分
+
+        // for循环
+        // console.log(i); // undefined
+        // for (var i = 0; i < 10; i += 1) {}
+        // console.log(i); // 10
+
+        // if语句
+        // console.log(str); // undefined
+        // if (5 === 5) {
+        //     var str = 'Hello';
+        // }
+        // console.log(str); // Hello
+
+        // 函数中
+        // function fn() {
+        //     var bool  = true;
+        // }
+        // console.log(bool); // bool is not defined
+
+        // function problem() {
+        //     let objectA = new Object();
+        //     let objectB = new Object();
+        //     objectA.someOtherObject = objectB;
+        //     objectB.anotherObject = objectA;
+        //     console.log(objectA);
+        //     console.log(objectB);
+        // }
+        // problem();
+
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // };
+
+        // Person.prototype.say = function() {
+        //     console.log(this.name + 'say a message');
+        // };
+
+        // var person = new Person('tom',18);
+        // person.say();
+
+        // console.log(person.__proto__ === Person.prototype);
+        // console.log(person.constructor ===  Person);
+        // console.log(Person.prototype.constructor === Person);
+
+        // function _new(fn) {
+        //     var args = [].slice.call(arguments);
+        //     args.shift(args);
+        //     var obj = {};
+        //     obj.__proto__ = fn.prototype;
+        //     var ret = fn.apply(obj,args);
+        //     return Object.prototype.toString.call(ret) === '[object object]' ? ret : obj;
+        // }
+
+        // console.log(element);
+        // let element = document.getElementById('some_element');
+        // let myObject = new Object();
+        // myObject.element = element;
+        // element.someObject = myObject;
+        // console.log(myObject);
+        // console.dir(element);
+
+        // let a = 100;
+        // window.gc();
+        // console.log(a);
+        // function createPerson(name) {
+        //     let localPerson = new Object();
+        //     localPerson.name = name;
+        //     return localPerson;
+        // }
+        // let globalPerson = createPerson("Nicholas");
+        // console.log(globalPerson);
+        // globalPerson = null;
+        // console.log(globalPerson);
+
+        // function Article() {
+        //     this.title = 'Kazoo Band';
+        // }
+        // let a1 = new Article();
+        // let a2 = new Article();
+        // a2.author = 'Jack';
+        // console.log(a1);
+        // console.log(a2);
+        // console.log(a1 === a2);
+
+        // function Article(opt_author) {
+        //     this.title = 'Kazoo Band';
+        //     this.author = opt_author;
+        // }
+        // let a1 = new Article();
+        // let a2 = new Article('Jack');
+        // console.log(a1);
+        // console.log(a2);
+        // console.log(a1 === a2);
+
+        // function Article() {
+        //     this.title = 'Kazoo Band';
+        //     this.author = 'Jack';
+        // }
+        // let a1 = new Article();
+        // let a2 = new Article();
+        // console.log(a1);
+        // console.log(a2);
+        // delete a1.author;
+        // console.log(a1);
+        // console.log(a2);
+
+        // function Article() {
+        //     this.title = 'Kazoo Band';
+        //     this.author = 'Jack';
+        // }
+        // let a1 = new Article();
+        // let a2 = new Article();
+        // console.log(a1);
+        // console.log(a2);
+        // a1.author = null;
+        // console.log(a1);
+        // console.log(a2);
+        // setName();
+        // console.log(window);
+        // delete window.name1;
+        // console.log(window);
+        // function setName() {
+        //     name1 = 'Jack';
+        // }
+        
+        // let name = 'Jack';
+        // setInterval(() => {
+        //     console.log(name);
+        // },2000)
+
+        // let outer = function() {
+        //     let name = 'Jack';
+        //     return function() {
+        //         return name;
+        //     }
+        // }
+        // console.log(outer());
+        // console.log(outer()());
+
+        // function addVector(a, b, resultant){
+        //     // let resultant = new Vector();
+        //     resultant.x = a.x + b.x;
+        //     resultant.y = a.y + b.y;
+        //     return resultant;
+        // }
+        // console.log(addVector(10,20));
+
+        // let v1 = vectorPool.allocate();
+        // let v2 = vectorPool.allocate();
+        // let v3 = vectorPool.allocate();
+
+        // v1.x = 10;
+        // v1.y = 5;
+        // v2.x = -3;
+        // v2.y = -6;
+
+        // addVector(v1,v2,v3);
+
+        // function Vector(){};
+        // let vectorList = new Array(100);
+        // let vector = new Vector();
+        // vectorList.push(vector);
+        // console.log(vectorList);
+        // problem();
+        // function problem() {
+        //     console.log(name1);
+        // }
+        // let name1 = 10;
+
+        // let a = 'Hello World!';
+
+        // function first() {
+        // console.log('Inside first function'); // 1
+        // second();
+        // console.log('Again inside first function'); // 3
+        // }
+
+        // function second() {
+        //     console.log('Inside second function'); // 2
+        // }
+
+        // first();
+        // console.log('Inside Global Execution Context'); // 4
+
+        // let foo = {
+        //     baz: function() {
+        //         console.log(this);
+        //     }
+        // }
+        // foo.baz(); // foo
+
+        // let bar = foo.baz;
+ 
+        // bar(); // window
+
+        // var scope = "global scope";
+        // function checkscope(){
+        //     var scope = "local scope";
+        //     function f(){
+        //         return scope;
+        //     }
+        //     return f();
+        // }
+        // console.log(checkscope()());
+        // var scope = "global scope";
+        // function checkscope(){
+        //     var scope = "local scope";
+        //     function f(){
+        //         return scope;
+        //     }
+        //     return f;
+        // }
+        // console.log(checkscope()());
+
+        // function setFirstName(firstName){
+
+        // return function(lastName){
+        //     return firstName+" "+lastName;
+        // }
+        // }
+
+        // var setLastName = setFirstName("kuitos");
+        // var name = setLastName("lau");
+        // console.log(name);
+
+        // console.log(a);
+        // {
+        //     function a() {};
+        //     a = 50;
+        // }
+        // console.log(a);
+        
+        // {
+        //     b = function() {}
+        //     b = 50;
+        //     console.log(b);
+        // }
+        // console.log(b);
+
+        // console.log(new Date);
+
+        // for (var i = 0; i < 5; i += 1) {
+        //     (function(i){
+        //         setTimeout(function() {
+        //             console.log(new Date,i);
+        //         },1000*i)
+        //     })(i)
+        // }
+        // setTimeout(function(){
+        //     console.log(new Date,i);
+        // },5000)
+
+        let obj = {};
+        console.log(obj.__proto__ === Object.prototype);
+        
+        console.log(obj instanceof Object);
+    </script>
+</body>
+</html>

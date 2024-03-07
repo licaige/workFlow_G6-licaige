@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app">
+		<span>{{ message }}</span>
+		<span>{{ message }}</span>
+	</div>
+	<script>
+		console.log(122);
+		// 问题
+		// 1.Vue是怎么通过id将data中的数据与dom连接起来的
+		// 2.数据与dom间连接是怎么处理的
+		let vm = new Vue({
+			el: "#app",
+			data: {
+				message: "Hello World!!",
+			},
+		});
+		function goods() {
+			console.log(1235);
+		}
+		() => {
+			console.log(158);
+		}
+		_ => {
+			console.log(158);
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 思路：首先，1.找到每个字母出现的对应的次数
+        // 2.从这些字母中找到出现次数最多的那个字母
+        function searchStr(str) {
+            const obj = {};
+            const strArray = str.split('');
+            // 1.计算字符串中字母出现的次数
+            for (let i = 0; i < strArray.length; i++) {
+                if (obj[strArray[i]]) {
+                    obj[strArray[i]]++;
+                } else {
+                    obj[strArray[i]] = 1;
+                }
+            }
+            // 2.找出字符串中出现字母次数最多的那个
+            let maxLetter = '', levelNumber = 0;
+            for (const key in obj) {
+                if (obj[key] > levelNumber) {
+                    levelNumber = obj[key];
+                    maxLetter = key;
+                }
+            }
+            console.log('出现次数最多的字母：' + maxLetter + ',出现的次数：' + levelNumber);
+            return maxLetter;
+        }
+
+        // 测试
+        console.log(searchStr('aaaabbbbbbbbcc'));
+    </script>
+</body>
+
+</html>

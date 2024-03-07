@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button {
+            display: inline-block;
+            border-radius: 3px;
+            padding: 7px 12px;
+            border: 1px solid #d5d5d5;
+            background-image: linear-gradient(#EEE, #DDD);
+            font: 700 13px/18px Helvetica, arial;
+            cursor: pointer;
+        }
+
+        .button-state-success {
+            color: #FFF;
+            background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
+            border-color: #4A993E;
+        }
+
+        .button--state-danger {
+            color: #900;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="button">
+        Normal button
+    </button>
+    <button class="button button-state-success">
+        Success button
+    </button>
+    <button class="button button-state-danger">
+        Danger button
+    </button>
+</body>
+
+</html>

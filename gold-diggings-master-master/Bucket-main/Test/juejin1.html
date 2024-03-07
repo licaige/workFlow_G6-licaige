@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [
+            {
+                name: 'dashboard',
+                node_id: 1001
+            },
+            {
+                name: 'goods',
+                node_id: 1101,
+                children: [
+                    {
+                        name: 'kind',
+                        node_id: 1102,
+                    }
+                ]
+            },
+            {
+                name: 'content',
+                node_id: 1201,
+                children: [
+                    {
+                        name: 'banner',
+                        node_id: 1202,
+                    },
+                    {
+                        name: 'TkChoose',
+                        node_id: 1203,
+                        children: [
+                            {
+                                name: 'childChoose',
+                                node_id: 1204
+                            },
+                        ]
+                    },
+                    {
+                        name: 'EditGoods',
+                        node_id: 1205,
+                    },
+                ]
+            },
+
+        ]
+        let list = [1001, 1102,1201,1203,1204];
+        console.log(data);
+        function filterData(objArray, list) {
+            return objArray.reduce((acc, { name, node_id, children }, index) => {
+                if (list.includes(node_id)) {
+                    if (children && children.length > 0) {
+                        acc.push({
+                            name,
+                            node_id,
+                            children: filterData(children, list)
+                        })
+                    } else {
+                        acc.push({
+                            name,
+                            node_id
+                        })
+                    }
+                }
+                return acc
+            }, [])
+        }
+        console.log(filterData(data, list));
+    </script>
+</body>
+
+</html>

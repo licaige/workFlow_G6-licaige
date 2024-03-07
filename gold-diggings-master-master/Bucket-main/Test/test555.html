@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.fn = () => {
+            console.log(14526);
+        }
+        window.fn.age = 50;
+        window.obj = {
+            a: 1,
+            fn,
+            c: 10
+        }
+
+        console.log(obj);
+        c = THING.App.current.query('A1')[0].children;
+        c.forEach(item => {
+            if (item._type === 'Floor') {
+                item.children.forEach(it => {
+                    if (it.roof) {
+                        console.log(it);
+                    }
+                })
+            }
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

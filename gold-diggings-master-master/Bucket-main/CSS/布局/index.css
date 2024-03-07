@@ -1,0 +1,25 @@
+.two-column-layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 400px;
+  height: 400px;
+}
+
+.two-column-layout .left {
+  width: 100px;
+  background-color: hotpink;
+}
+
+.two-column-layout .center {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: blueviolet;
+}
+
+.two-column-layout .right {
+  width: 100px;
+  background-color: aquamarine;
+}
+/*# sourceMappingURL=index.css.map */

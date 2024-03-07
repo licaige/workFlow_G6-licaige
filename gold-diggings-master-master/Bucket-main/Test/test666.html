@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const layersName = ['激活操作集', '显示配饰', '盲区分析', '温场图', '温度云图', '孪生体变色', '组态图', '逻辑线'];
+        const businessesName = ['园区概览', '高级搜索', '智慧空调', '智慧安防', '智慧电梯', '智慧停车', '智慧消防', '智慧电力', '智慧照明'];
+        const layers = layersName.reduce((acc, cur, index) => {
+            Object.assign(acc, { [cur]: '00208010000000' + (index + 1) });
+            return acc;
+        }, {});
+        const businesses = businessesName.reduce((acc, cur, index) => {
+            Object.assign(acc, { [cur]: '00204010000000' + (index + 1) });
+            return acc;
+        }, {});
+        const objUuid = {
+            ...layers,
+            ...businesses
+        };
+        let uuid;
+        let name = '激活操作集';
+        Object.keys(objUuid).forEach(item => {
+            if (name === item) {
+                uuid = objUuid[item];
+            }
+        });
+        console.log(uuid);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

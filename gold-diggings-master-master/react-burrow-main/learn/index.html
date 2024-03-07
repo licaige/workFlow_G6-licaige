@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type='text/babel'>
+        function Hello(props) {
+            return <h1>Hello,{props.name}</h1>;
+        };
+
+        class Welcome extends React.Component {
+            render() {
+                return <h1>Welcome,{this.props.name}</h1>
+            }
+        };
+
+        function App() {
+            return (
+                <div>
+                    <Hello name="React" />
+                    <Hello name="Vue" />
+                    <Welcome name="月影" />
+                    <Welcome name="大圣" />
+                </div>
+            )
+        };
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>

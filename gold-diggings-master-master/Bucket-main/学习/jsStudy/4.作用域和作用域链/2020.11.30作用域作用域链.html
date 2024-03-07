@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let str = new String('Hello');
+        // console.log(typeof str);
+
+        // let person = new Object();
+        // person.name = '小明';
+        // console.log(person.name);
+
+        // let name = '小明';
+        // name.age = 18;
+        // console.dir(name); // undefined
+
+        // let name1 = 'xiao';
+        // let name2 = new String('da');
+        // name1.age = 18;
+        // name2.age = 19;
+        // console.log(name1);
+        // console.log(name2);
+        // console.log(typeof name1);
+        // console.log(typeof name2);
+
+        // let num1 = 5;
+        // let num2 = num1;
+        // console.log(num1 === num2); // true
+        // num2 = 10;
+        // console.log(num1);
+        // console.log(num2);
+
+        // let obj = {
+        //     name: 'xiao'
+        // };
+        // let obj1 = obj;
+        // obj1.name = 'da'
+        // console.log(obj);
+        // console.log(obj1);
+
+        // function addTen(num) {
+        //     num += 10;
+        //     return num;
+        // }
+        // let count = 20;
+        // let res = addTen(count);
+        // console.log(count);
+        // console.log(res);
+
+        // function setName(obj) {
+        //     obj.name = 'Nicholas';
+        //     obj = new Object();
+        //     obj.name = 'Greg';
+        // }
+        // let person = new Object();
+        // setName(person);
+        // console.log(person); // {name: "Nicholas"}
+
+        // let s = 'Nicholas';
+        // let b = true;
+        // let i = 22;
+        // let u;
+        // let n = null;
+        // let o = new Object();
+        // console.log(typeof s); // string
+        // console.log(typeof b); // boolean
+        // console.log(typeof i); // number
+        // console.log(typeof u); // undefined
+        // console.log(typeof n); // object
+        // console.log(typeof o); // object
+        // console.log(Object.prototype.toString.call(n));
+        // console.log(Object.prototype.toString.call(o));
+
+        // console.log(person instanceof Object);
+
+        // let a = new RegExp();
+        // let b = function(){};
+        // console.log(typeof );
+
+        // function fn(){
+        //     console.log(Array.from(arguments));
+        // }
+        // fn();
+
+        // var color = 'blue';
+        // function changeColor() {
+        //     if(color === 'blue'){
+        //         color = 'red';
+        //     } else {
+        //         color = 'blue';
+        //     }
+        // }
+        // changeColor();
+        // console.log(color);
+
+        // var color = 'blue';
+        // let a = '10'
+        // function changeColor() {
+        //     let anotherColor = 'red';
+        //     function swapColors() {
+        //         let tempColor = anotherColor;
+        //         anotherColor = color;
+        //         color = tempColor;
+        //     }
+        //     swapColors();
+        //     console.log(a);
+        //     console.log(anotherColor);
+        // }
+        // changeColor();
+
+        // function a(){
+        //     var b = 'Hello'
+        // }
+        // console.log(b);
+
+        // function buildUrl() {
+        //     let qs = '?debug=true';
+        //     with(location) {
+        //         console.log(location.href);
+        //         let url = href + qs;
+        //     }
+        //     return url
+        // }
+        // console.log(buildUrl());
+
+        // function add(num1,num2){
+        //     var sum = num1 + num2;
+        //     return sum;
+        // }
+        // console.log(window);
+        // let res = add(10,20);
+        // console.log(sum);
+
+        // name = 'Jack';
+        // var name;
+        // console.log(name);
+
+        // function fn1(){
+        //     var name = 'Jack';
+        //     return name;
+        // }
+        // function fn2(){
+        //     var name;
+        //     name = 'Jack';
+        //     return name;
+        // }
+        // console.log(fn1());
+        // console.log(fn2());
+
+        // console.log(name);
+        // var name = 'Grep';
+        // console.log(window);
+
+        // function fn() {
+        //     console.log(name);
+        //     var name = 'Jack';
+        // }
+        // fn();
+
+        // if(true){
+        //     let a;
+        // }
+        // console.log(a);
+
+        // while(true){
+        //     let b;
+        // }
+        // console.log(b);
+
+        // function foo() {
+        //     let c;
+        // }
+        // console.log(c);
+
+        // {
+        //     let d;
+        // }
+        // console.log(d);
+
+        // var a = 1;
+        // var a = 2;
+        // console.log(a);
+
+        // let b = 1;
+        // let b = 2;
+
+        // let arr = [1,2];
+        // for (let i = 0; i < arr.length; i += 1) {
+        //     var a = 100;
+        // }
+        // console.log(a);
+
+        // for (var i = 0; i < 10; i += 1) {};
+        // console.log(i);
+
+        // for (let j = 0; j < 10; j += 1) {};
+        // console.log(j);
+
+        // const b = {};
+        // b.name = 10;
+        // console.log(b);
+
+        // if (true) {
+        //     const a = 10;
+        // }
+        // console.log(a);
+
+        // while(true) {
+        //     const b = 1
+        // }
+        // console.log(b);
+
+        // function foo() {
+        //     const c = 2;
+        // }
+        // console.log(c);
+
+        // {
+        //     const d = 3;
+        // }
+        // console.log(d);
+
+        // const a = {};
+        // a = new Object();
+        // console.log(a);
+
+        // const o1 = {};
+        // o1 = {};
+        // console.log(o1);
+
+        // const o2 = {};
+        // o2.name = 'Jack';
+        // console.log(o2.name);
+
+        // const o3 = Object.freeze({});
+        // o3.name = 'Jack';
+        // console.log(o3.name);
+
+        // var color = 'blue';
+        // function getColor(){
+        //     let color = 'red'
+        //     return color;
+        // }
+        // console.log(getColor());
+        // console.log(color);
+
+        var color = 'blue';
+        function getColor() {
+            let color = 'red';
+            {
+                let color = 'green';
+                return color;
+            }
+        }
+        console.log(getColor());
+        console.log(color);
+    </script>
+</body>
+</html>

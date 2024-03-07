@@ -4,7 +4,7 @@ import "./style.css";
 import App from "./App.vue";
 
 createApp(App).mount("#app");
-
+// 开发模式时，entry的值为子应用的开发演示环境的地址
 if ("development" === import.meta.env.MODE) {
   registerMicroApps([
     {
@@ -21,6 +21,7 @@ if ("development" === import.meta.env.MODE) {
     },
   ]);
 } else {
+  // 生产环境时，entry的路径为app在部署时的真实路径
   registerMicroApps([
     {
       name: "app_01",

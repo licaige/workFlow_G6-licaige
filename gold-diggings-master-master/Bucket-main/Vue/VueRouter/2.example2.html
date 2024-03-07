@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p to="/user/my">
+            <router-link to="/user/XK">XK</router-link>
+            <router-link to="/user/HM">HM</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: '<div>User {{ $route.params.pathMatch }}</div></div>',
+            // beforeRouteUpdate(to, from, next) {
+            //     console.log(this.$route.params.id);
+            // }
+        }
+        const router = new VueRouter({
+            routes: [
+                { path: '*', component: User }
+            ]
+        })
+
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  background-color: #282c34;
+}
+
+.App-logo {
+  display: block;
+  margin: 0 auto;
+}
+
+.App-title {
+  color: #ffffff;
+}
+
+.App-link {
+  display: block;
+  color: #61dafb;
+  margin-top: 20px;
+  text-decoration: none;
+}

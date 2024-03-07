@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var closures = [];
+        // for (let i = 0; i < 2; i++) {
+        //     closures.push(function () { console.log(i); })
+        // }
+        // closures[0]()
+        // closures[0]()
+        // 浅拷贝
+        // 1.Object.assign 2.{...obj} 3.Object.keys()
+
+        // 深拷贝
+        // JSON.parse(JSON.stringify(obj)) 
+        //缺点：不能处理funtion，Symbol，undefined，会直接忽略
+        // jquery $extend() lodash _.defaultsDeep()
+
+        // 深拷贝 递归
+
+        // let obj = {
+        //     a: {
+        //         d: 100
+        //     },
+        //     c: {
+
+        //     }
+        // }
+        // // 循环引用
+        // obj.c.e = obj.a;
+        // function deepObject(obj) {
+        //     let obj1 = Array.isArray(obj) ? [] : {};
+        //     for (const key of Object.keys(obj)) {
+        //         if (typeof obj[key] === 'object' &&
+        //             obj[key] !== null && obj[key] !== obj) {
+        //             obj1[key] = deepObject(obj[key]);
+        //         } else {
+        //             obj1[key] = obj[key];
+        //         }
+        //     }
+        //     return obj1;
+        // }
+        // // 测试
+        // let obj2 = deepObject(obj);
+        // console.log(obj2);
+        // console.log(obj);
+        // obj2.arr[0] = 100;
+        // obj2.arr[3][0] = 50;
+        // console.log(obj2);
+        // console.log(obj);
+
+        // let arr = [1, 2, 3, [456, 789]];
+        // let [...arr1] = arr;
+        // arr1[0] = 50;
+        // arr1[3][0] = 158;
+        // console.log(arr1);
+        // console.log(arr);
+
+        // new
+        // 手写一个new
+
+        // 1.创建一个新对象{}
+        // 2.将新对象obj的constructor设置为构造函数的constructor
+        // 3.将构造函数的this指向新对象
+        // 4.如果有返回值就返回此返回值，否则，返回this
+
+        // function A() {
+        //     this.name = '星空海绵'
+        // }
+        // function myNew() {
+        //     let arg = arguments[0],
+        //         args = [...arguments].slice(1);
+        //     let obj = Object.create(arg.prototype);
+        //     let res = arg.apply(obj, args);
+        //     return res instanceof Object ? res : obj;
+        // }
+        // // 测试
+        // let a = new A('145');
+        // console.log(a);
+        // let a1 = myNew(A, '145');
+        // console.log(a1);
+
+        // function setName(obj) {
+        //     obj.name = 'Nichols';
+        //     obj = new Object();
+        //     obj.name = 'Greg';
+        // }
+        // let person = new Object();
+        // setName(person);
+        // console.log(person.name);
+
+        // function myInstanceof(left, rightFn) {
+        //     left = left.__proto__;
+        //     rightFn = rightFn.prototype;
+        //     while (true) {
+        //         if (left === null) {
+        //             return false
+        //         }
+        //         if (left === rightFn) {
+        //             return true
+        //         }
+        //         left = left.__proto__
+        //     }
+        // }
+        // function A() { }
+        // const a = {};
+        // const b = new A();
+        // console.log(myInstanceof(a, A));
+        // console.log(myInstanceof(b, A));
+
+        // function F() { }
+        // function O() { }
+
+        // var obj = new O(); // obj.__proto__ = O.prototype
+        // O.prototype = new F();// O.prototype.__proto__ = F.prototype
+
+        // console.log(obj instanceof O);//false
+        // console.log(obj instanceof F);//false
+        // console.log(obj.__proto__ === O.prototype);//false
+        // console.log(obj.__proto__.__proto__ === F.prototype);//false
+    </script>
+</body>
+
+</html>

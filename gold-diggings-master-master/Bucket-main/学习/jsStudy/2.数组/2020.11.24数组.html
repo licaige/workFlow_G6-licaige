@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let person = new Object();
+        // person.name = 'Nicholas';
+        // person.age = 29;
+        // console.log(person);
+
+        // let person = {
+        //     name: 'Nicholas',
+        //     2: 29
+        // };
+        // console.log(typeof Object.keys(person)[0]);
+
+        // Object.prototype.show = function(){
+        //     console.log('显示方法');
+        // };
+        // let read = function() {
+        //     console.log('read');
+        // }
+        // read.show();
+        // let person = {};
+        // person.show();
+
+        // let person = new Object();
+        // person[2] = 10;
+        // window[2] = 15;
+        // console.log(person);
+
+        // function displayInfo(){
+        //     console.log([...arguments].map(item => {
+        //         return item
+        //     }));
+        // };
+        // displayInfo('Hello',589);
+
+    //     function displayInfo(args){
+    //         let output = '';
+    //         if (typeof args.name === "string") {
+    //             output += 'Name：' + args.name + '\n'
+    //         }
+
+    //         if (typeof args.age === "number") {
+    //             output += 'Age：' + args.age + '\n'
+    //         }
+
+    //         console.log(output);
+    //     }
+    //     displayInfo({
+    //         name: 'Nicholas',
+    //         age: 20
+    //     });
+    //     displayInfo({
+    //         name: 'Greg'
+    //     });
+
+    // let person = {};
+    // person.name = '马老师';
+    // const tempVar = 'name';
+    // console.log(person.tempVar); // undefined
+    // console.log(person[tempVar]); // 马老师
+
+    // let colors = new Array(10);
+    // console.log(colors);
+
+    // let values = [1,2,];
+    // console.log(values);
+
+    // let colors = new Array();
+    // console.log(colors);
+
+    // function Person(){
+    //     console.log(this);
+    //     let [name,age,height] = [...arguments];
+    //     this.name = name;
+    //     this.age = age;
+    //     this.height = height;
+    //     console.log(this.name);
+    //     console.log(this.age);
+    //     console.log(this.height);
+    // }
+    // let person = new Person('马老师',28,170); // 这个内部的this指向Person
+    // let person = Person(); // 这个内部的this指向window
+
+    // let obj = {
+    //     1: 'techerM',
+    //     2: 15,
+    //     length: 2
+    // };
+    // console.log(Array.from(obj));
+
+    // console.log(Array.from('小明，小李，小花')); // ["小", "明", "，", "小", "李", "，", "小", "花"]
+    // 注意，此时并不是拆成小明，小李，小花，此时是按字符串拆，一个字符就是数组中的一位
+
+    // const m = new Map().set(1,2)
+    //                    .set(3,4);
+    // // console.log(Object.prototype.toString.call(m));
+    // console.log(Array.from(m));
+
+    // console.dir(Array);
+    // let array = new Array();
+    // array[0] = 10;
+    // array[2] = 100;
+    // array.from(array); // array.from is not a function
+    //注意 Array.from()是Array的私有方法，并不是在prototype下面的
+
+    // let s = new Set().add(1)
+    //                  .add(2)
+    //                  .add(1)
+    //                  .add(4);
+    // console.log(Array.from(s)); // [1, 2, 4]
+
+    // let arr = [1,'Hello',true,null,undefined,Symbol];
+    // let array = Array.from(arr);
+    // console.log(array);
+    // console.log(arr == array); // 这就证明array是一个新的数组，所以可以利用Array.from()方法进行数组的浅复制
+
+    // const iter = {
+    //     *[Symbol.iterator] () {
+    //         yield 1;
+    //         yield 2;
+    //         yield 3;
+    //         yield 5;
+    //     }
+    // }
+    // console.log(Array.from(iter)); // [1, 2, 3, 5]
+
+    // let object = {
+    //     0:'马老师',
+    //     1: 20,
+    //     length: 2
+    // }
+    // console.log(Array.from(object));
+
+    // function getData(){
+    //     console.log(Array.from(arguments));
+    // }
+    // getData(1,'Hello',true); //  [1, "Hello", true]
+
+    // let object = {
+    //     0:'马老师',
+    //     1: 20,
+    //     length: 2
+    // };
+    // function Person() {};
+    // let person = new Person();
+    // console.log(Array.from(object,function(item){
+    //     return item = `你好${item}`;
+    // }));
+    // console.log(object);
+
+    //数组对象的去重和排序
+    // let obj = [
+    //     {name:'小王', value: 50},
+    //     {name:'小花', value: 100},
+    //     {name:'小李', value: 20},
+    //     {name:'小明', value: 10},
+    //     {name:'小刚', value: 0},
+    //     {name:'小虎', value: 90},
+    //     {name:'小王', value: 100},
+    //     {name:'小刚', value: 50},
+    //     {name:'小虎', value: 50},
+    // ];
+    // obj.sort(function(a,b){
+    //     return b.value - a.value;
+    // });
+    // console.log(obj);
+    // let objTemp = {};
+    // let arrTemp = [];
+    // for (const item of obj) {
+    //     objTemp[item.name] = item
+    // }
+    // for (const key in objTemp) {
+    //     arrTemp.push(objTemp[key])
+    // }
+    // console.log(arrTemp);
+    // arrTemp.sort(function(a,b){
+    //     return a.value - b.value;
+    // });
+    // console.log(arrTemp); 
+
+    // const a1 = [1,2,3,4];
+    // const a2 = Array.from(a1,item => {
+    //     return item = item * 3; 
+    // })
+    // const a3 = Array.from(a1,function(item){
+    //     return item**this.exponent
+    // },{exponent: 2})
+    // console.log(a2);
+    // console.log(a3);
+
+    // function temp(){
+    //     console.log(Array.of(...arguments));
+    //     console.log(Object.prototype.toString.call(Array.of(...arguments)));
+    //     console.log(Array.from(arguments));
+    // }
+    // temp(10,50,100,2,0,4,80)
+    // Array.of不能直接将arguments转成数组，而from可以
+    // Array.of需要采用展开语法的方式处理一下arguments
+
+    // console.dir(Array);
+
+    // console.log(Array.of(1,2,3,5,4));
+    // console.log(Array.of(undefined));
+    // console.log(Array.of(null));
+
+    // let options = [,1,,,2,,,];
+    // console.log(options.length);
+    // console.log(options);
+    // console.table(options);
+
+    // for (const item of options) {
+    //     console.log(item === undefined);
+    // }
+    
+    // let a1 = Array.from([,,,,]);
+    // let a2 = Array.of(...[,,,,])
+    // for (const item of a1) {
+    //     console.log(item === undefined);
+    // }
+    // for (const item of a2) {
+    //     console.log(item === undefined);
+    // }
+    //注意from方法和of方法的区别，from传的第一个参数是数组，而of方法传的参数类似于给函数传参的形式
+
+    // let options = [,1,,,2];
+    // console.log(Object.prototype.toString.call(options.entries()));
+    // for (const [index,value] of options.entries()) {
+    //     // console.log(index);
+    //     console.log(value);
+    // }
+    // console.log(options.map(() => 6));
+    // map方法会跳过空位置
+    // console.log(options.join('-'));
+    // join方法会把空位当成空字符串处理，需要注意
+    </script>
+</head>
+<body>
+    <div>Hello World!</div>
+    <script>
+        // function color() {
+        //     return 'red'
+        // }
+        // console.log(color());
+        // let dom = document.querySelectorAll('div');
+        // console.log(dom);
+        // dom[0].style.cssText  = `color:${color()}`;
+        // let data = [
+        //     {name:'安徽省',value:12},
+        //     {name:'山东省',value:2},
+        //     {name:'江宁',value:2},
+        //     {name:'溧水',value:9},
+        //     {name:'无锡市',value:1},
+        //     {name:'镇江市',value:4},
+        //     {name:'南通市',value:1},
+        //     {name:'常州市',value:16},
+        //     {name:'淮安市',value:2},
+        //     {name:'盐城市',value:1},
+        // ];
+        // data.sort(function(a,b){
+        //     return b.value - a.value;
+        // })
+        // console.log(data);
+
+        let a = undefined;
+        let a2 = a+1;
+        console.log(a2);
+    </script>
+</body>
+</html>

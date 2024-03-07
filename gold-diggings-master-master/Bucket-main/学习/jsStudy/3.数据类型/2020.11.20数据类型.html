@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = new Object(null);
+        let arr = [1, 2, 3];
+        let c = function () { };
+        console.log(typeof c);
+        arr instanceof
+            console.log(Array.prototype.isPrototypeOf(a));
+        let arr = [];
+        let obj = {};
+        console.log(typeof arr); //object
+        console.log(typeof obj); //object
+        console.log(arr instanceof Array); //true
+        console.log(arr instanceof Object); //true
+        console.log(obj instanceof Array); //false
+        console.log(obj instanceof Object); //true
+        console.log(Object.prototype.isPrototypeOf(arr));//true
+        console.log(Object.prototype.isPrototypeOf(obj));//true
+
+        // let str = new String('123');
+        // console.log(str.toString());
+        // let a = '123'
+        // let obj = new Object(a);
+        // console.log(obj === a);
+        // let str = "he\nllo"
+        // console.log(str);
+        // let name = "值班人数";
+        // let value = 3;
+        // console.log(demo`${name}`);
+        // function demo(s,a){
+        //     console.log(s);
+        //     console.log(a);
+        //     console.log(arguments);
+        // }
+        // let lessons = [
+        //     {title: '语文', author: '王老师' },
+        //     {title: '数学', author: '张老师' },
+        //     {title: '英语', author: '邹帅哥' },
+        // ]
+
+        // //vue中可能用的就是这个原理
+        // function template() {
+        //     return  `<ul>
+        //     ${lessons.map(item => links`<li>老师：${item.author},课程：${item.title}</li>`
+        //         ).join('')}</ul>`
+        // }
+        // console.log(template());
+
+        // function links(strings, ...args) {
+        //     return strings.map((str,key) => {
+        //         return str + (
+        //             args[key] ? args[key].replace('老师',`<a href="http://www.baidu.com">美女</a>`) : ''
+        //         )
+        //     })
+        // };
+        // document.body.innerHTML += template();
+        // console.log(typeof {});
+        // console.log(typeof true);
+        // let a = '1';
+        // console.dir(a);
+        // console.log(Object.prototype.isPrototypeOf(null));
+        // console.log(Object.prototype.toString.call(''));
+        // console.log(Object.prototype.toString.call(1));
+        // console.log(Object.prototype.toString.call({}));
+        // console.log(Object.prototype.toString.call([]));
+        // console.log(Object.prototype.toString.call(new Function()));
+        // console.log(Object.prototype.toString.call(new Date()));
+        // console.log(Object.prototype.toString.call(new RegExp()));
+
+        // console.log(typeof []); //object
+        // console.log([] instanceof Array); //true
+
+
+        // let a = {};
+        // let b = new Object(a);
+        // b.value = 10;
+        // a.name = 1;
+        // console.log(b.name);
+        // console.log(a.value);
+        // console.log(a === b);
+        // let a = [1,5,6];
+        // console.table(a);
+
+        // let array = [1,8,9,10,15];
+        // let hd = array;
+        // hd[1] = 'demo';
+        // console.log(hd);
+        // console.log(array);
+
+        // let a = 1;
+        // let b = a;
+        // b = 99;
+        // console.log(a);
+        // console.log(b);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

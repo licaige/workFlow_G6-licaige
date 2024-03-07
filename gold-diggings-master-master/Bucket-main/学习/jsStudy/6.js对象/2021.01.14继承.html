@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 原型链继承
+        function A() { }
+        function B() { }
+        B.prototype = new A();
+        let a = new B();
+
+        // 2. 经典继承
+
+        function A() { }
+        function B() {
+            A.call(this)
+        }
+        let a = new B();
+
+        // 3.组合继承
+        function A() { }
+        function B() {
+            A.call(this)
+        }
+        B.prototype = new A();
+        let a = new B()
+
+        // 4.原型式继承
+        function object(o) {
+            function F() { }
+            F.prototype = o;
+            return new F();
+        }
+        
+        let a = object(A)
+        console.log(a.age);
+        // 组合继承就跟它的名字一样
+        // 就是将原型链继承和经典继承组合起来
+
+        // function A(name) {
+        //     this.name = name;
+        // }
+        // A.prototype.getName = function () {
+        //     return this.name
+        // }
+        // function B(name) {
+        //     this.age = 15;
+        //     A.call(this, name)
+        // }
+        // let a = new B('星空海绵');
+        // a.getName()
+        // console.log(a);
+    </script>
+</body>
+
+</html>

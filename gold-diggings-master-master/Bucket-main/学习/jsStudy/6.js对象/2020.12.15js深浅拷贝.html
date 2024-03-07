@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.什么是深拷贝
+
+
+        let a = new String('fly');
+        // a[0] = 'm';
+        console.log(a);
+        console.log(Object.getOwnPropertyDescriptors(a));
+        Object.defineProperty(a, a[0], {
+            writeable: true,
+            configurable: true,
+            value: 'm',
+        })
+        a[0] = 'k';
+        console.log(a);
+    </script>
+</body>
+
+</html>

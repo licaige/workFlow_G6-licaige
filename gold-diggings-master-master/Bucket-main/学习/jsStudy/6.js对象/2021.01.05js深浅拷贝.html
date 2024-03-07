@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let obj = {
+        //     name: {
+        //         firstName: '海绵',
+        //         lastName: '星空'
+        //     },
+        //     age: 25,
+        //     job: 'Software Engineer'
+        // }
+        // let obj1 = {};
+        // function copyObj(obj) {
+        //     for (const key in obj) {
+        //         if (obj.hasOwnProperty(key)) {
+        //             if (typeof obj[key] !== 'object') {
+        //                 obj1[key] = obj[key]
+        //             } else {
+        //                 copyObj(obj[key])
+        //             }
+        //         }
+        //     }
+        //     return obj1;
+        // }
+        // console.log(copyObj(obj));
+
+
+        // a();
+        // a.bind(obj)();
+
+        Function.prototype.myBind = function (context) {
+            let _that = this;
+            let args = [...arguments].splice(0, 1);
+            return function () {
+                if (new.target) {
+                    let obj = {};
+                    obj.__proto__.constructor = _that.prototype.constructor;
+                    return _that.apply(obj, args.concat([...arguments]));
+                } else {
+                    return _that.apply(context, args.concat([...arguments]));
+                }
+            }
+        }
+        let name = '小明';
+        let obj = {
+            name: 'xkhm'
+        }
+        function a() {
+            console.log(this.name);
+        }
+        let one = a.myBind(obj);
+        let b = new one();
+        console.log(b);
+
+        let c = a.bind(obj);
+        let d = new c();
+        console.log(d);
+    </script>
+</body>
+
+</html>

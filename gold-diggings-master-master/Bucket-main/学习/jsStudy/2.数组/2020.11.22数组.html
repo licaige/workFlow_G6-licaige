@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let a = Array(5);
+        // console.log(a);
+        
+        // let obj = Object({
+        //     name: 1
+        // })
+        // console.log(obj);
+
+        // let obj1 = new Object({
+        //     name: 1
+        // })
+        // 用new创建和不使用new创建，创建的对象的内部this指向不同
+
+        // let arr = new Array(11).fill([]);
+        // console.log(arr);
+
+
+        // let arr = ['js','css','html'];
+        // arr[arr.length] = 'go';
+        // arr[arr.length] = 'nodejs';
+        // console.log(arr);  // ["js", "css", "html", "go", "nodejs"]
+
+        // let arr = ['js','css','html'];
+        // let array = ['go','nodejs'];
+        // arr = [...arr,...array];
+        // console.log(arr); // ["js", "css", "html", "go", "nodejs"]
+
+        // let arr = ['js','css','html'];
+        // arr.push('go','node.js');
+        // console.log(arr); //  ["js", "css", "html", "go", "node.js"]
+
+        // let arr = ['js','css','html'];
+        // let array = ['go','node.js'];
+        // arr.push(...array);
+        // console.log(arr); // ["js", "css", "html", "go", "node.js"]
+        // let array = [1,5,9,8,[1,5],[1,2,7,[1,7,9,[1,3,7,8,[1,9,2,5]]]]];
+        // array = Array.from((array.toString().split(',')),item => {
+        //     item = parseFloat(item)
+        //     return item;
+        // }) ;
+        // console.log(array);
+
+        // let array = [1,5,9,8,[1,5],[1,2,7,[1,7,9,[1,3,7,8,[1,9,2,5]]]]];
+        // console.log(array.flat(Infinity)); // [1, 5, 9, 8, 1, 5, 1, 2, 7, 1, 7, 9, 1, 3, 7, 8, 1, 9, 2, 5]
+        // let arr = ['js','html','css'];
+        // arr.pop();
+        // console.log(arr); // ["js", "html"]
+
+        // let arr = ['js','html','css'];
+        // arr.fill('go');
+        // console.log(arr); // ["html", "css"]
+
+        // let arr = new Array(5).fill('go');
+        // console.log(arr); //  ["go", "go", "go", "go", "go"]
+
+        // let arr = ['js','html','css'];
+        // console.log(arr.fill('go',1,2));
+        
+        // console.log(arr); // ["js", "go", "css"]
+
+        // let arr = ['js','html','css','go','node.js'];
+        // console.log(arr.slice(1,3)); // ["html", "css"]
+        // console.log(arr.slice(-2, -1)); // ["go"]
+        // console.log(arr.slice()); // ['js','html','css','go','node.js']
+        // console.log(arr.slice(1)); // ['html','css','go','node.js']
+        // console.log(arr); // ['js','html','css','go','node.js']
+        
+        // let arr = ['js','html','css','go','node.js'];
+        // console.log(arr.splice(0,0,'java')); // ["html", "css"]
+        // console.log(arr); //   ["js", "java", "go", "node.js"]
+
+        // let array = ['js','html','css','go','node.js'];
+        // let arr = [...array] //复制一个数组可以采用这种方式
+        // let arr1 = array; //采用这种方式会改变原数组
+        // arr1[0] = 2; 
+        // console.log(arr1); // [2, "html", "css", "go", "node.js"]
+        // console.log(array); // [2, "html", "css", "go", "node.js"]
+
+        // let array = ['js','html','css','go','node.js'];
+        // array = []; //方法1，直接将数组赋值为空
+        // array.length = 0; //方法2，将数组长度设置为0，那么数组也会变成空
+        // array.splice(0); //方法3，使用splice方法
+        // while(array.pop()) {}; //方法4，使用pop方法加循环的方式
+        // while(array.shift()) {}; //方法4，使用shift方法加循环的方式
+        // console.log(array);
+
+        // let array = ['js','html','css','go','node.js'];
+        // let arr = array;
+        // array = [];
+        // console.log(array); // []
+        // console.log(arr); // ["js", "html", "css", "go", "node.js"]
+
+        // let array = ['js','html','css','go','node.js'];
+        // let arr = array;
+        // array.length = 0;
+        // console.log(array); // []
+        // console.log(arr); // []
+
+        // let str = "js,html,go";
+        // let arr = str.split(','); // 字符串拆分成数组
+        // console.log(arr.join('-')); //数组变成字符串
+        // console.log(arr);
+
+        // let array = ['js','html','css'];
+        // let arr = ['go','node.js'];
+        // array = array.concat(arr); // 合并两个数组
+        // console.log(array); // ["js", "html", "css", "go", "node.js"]
+
+        // let array = ['js','html','css'];
+        // console.log(array.copyWithin(1,0)); //  ["js", "js", "css"]
+
+        let temp = 10;
+
+        //方法1
+        // if(temp === 1){
+        //     console.log('temp：1');
+        // }else if(temp === 2) {
+        //     console.log('temp：2');
+        // }else {
+        //     console.log('temp：3');
+        // }
+        
+        //方法2
+        // switch (temp) {
+        //     case 1:
+        //         console.log('temp：1');
+        //         break;
+        //     case 2:
+        //         console.log('temp：1');
+        //         break;
+        //     default:
+        //         console.log('temp：3');
+        //         break;
+        // }
+
+        //方法3
+        const obj = {
+            '1': ['temp：1'],
+            '2': ['temp：1'],
+            'default': ['temp：3'],
+        }
+
+        let o = obj[temp] || obj['default'];
+        let value = o[0];
+        console.log(value);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

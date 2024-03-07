@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [
+            { name: 'book', number: 10 },
+            { name: 'paper', number: 10 },
+            { name: 'ruber', number: 10 },
+            { name: 'book', number: 20 },
+            { name: 'paper', number: 40 },
+            { name: 'ruber', number: 50 },
+            { name: 'book', number: 70 },
+            { name: 'paper', number: 80 },
+            { name: 'ruber', number: 90 },
+        ];
+        // function filterData(array) {
+        //     const obj = array.reduce((acc, { name, number }) => {
+        //         if (!acc[name]) {
+        //             acc[name] = []
+        //         }
+        //         acc[name].push(number);
+        //         return acc
+        //     }, {});
+        //     const arr = [];
+        //     Object.keys(obj).forEach(item => {
+        //         arr.push({
+        //             name: item,
+        //             value: obj[item]
+        //         })
+        //     })
+        //     return arr
+        // }
+        // console.log(filterData(arr));
+        // function filterData(array) {
+        //     const ret = array.reduce((acc, { name, number }) => {
+        //         if (!acc[name]) {
+        //             acc[name] = {
+        //                 name: name,
+        //                 value: [number]
+        //             }
+        //         } else {
+        //             acc[name].value.push(number);
+        //         }
+        //         return acc
+        //     }, {});
+        //     return [...Object.values(ret)]
+        // }
+        // console.log(filterData(arr));
+        function filterData(array) {
+            const ret = array.reduce((acc, { name, number }) => {
+                (acc[name] = acc[name] || {
+                    name: name,
+                    value: []
+                }).value.push(number);
+                return acc
+            }, {});
+            return [...Object.values(ret)]
+        }
+        console.log(filterData(arr));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // class Person {
+        //     constructor() {
+        //         this.name = name;
+        //         this.sayName = () => console.log(123);
+        //     }
+        //     sayName() {
+        //         console.log('prototype');
+        //     }
+        //     static sayName() {
+        //         console.log('staic');
+        //     }
+        // }
+        // // Person.sayName();
+        // let p = new Person();
+        // p.sayName();
+        // let arr = [5, 5, 5, 1, 1, 1];
+        // console.log(arr.every(item => item === arr[0]));
+
+        // function revursivelyCheckEqual(x, ...rest) {
+        //     return Object.is(x, rest[0]) &&
+        //         (rest.length < 2 || revursivelyCheckEqual(...rest))
+        // }
+        // let arr = [5, 5, 5, 5, 5];
+        // console.log(revursivelyCheckEqual(...arr));
+
+        // 继承
+        // function A() {
+        //     this.firstName = '王';
+        //     this.name = {
+        //         job: 'Software Engineer',
+        //         obj: {
+        //             name: 50
+        //         }
+        //     }
+        // };
+        // function B() {
+        //     this.age = 25;
+        // };
+        // B.prototype = new A();
+        // let b = new B();
+        // b.name.job = 'Teacher';
+        // b.name.obj.name = 10;
+        // b.firstName = '李';
+        // let c = new B();
+        // console.log(c.firstName);
+
+        // class A { }
+        // class B extends A { }
+        // let b = new B();
+        // console.log(b instanceof A);
+        // console.log(b instanceof B);
+
+        // function Person() { }
+        // class Engineer extends Person { }
+        // let e = new Engineer();
+        // console.log(e instanceof Engineer);
+        // console.log(e instanceof Person);
+
+        // class A {
+        //     identifyPrototype(id) {
+        //         console.log(id, this);
+        //     }
+        //     static identifyClass(id) {
+        //         console.log(id, this);
+        //     }
+        // }
+        // class B extends A { }
+        // let a = new A();
+        // let b = new B();
+        // // b.identifyPrototype('bId');
+        // // a.identifyPrototype('aId');
+        // // B.identifyClass('bStaicId');
+        // A.identifyClass('aStaicId');
+
+        // class Foo { }
+
+        // let Bar = class extends Foo { };
+
+        // class A {
+        //     constructor() {
+        //         this.hasEngine = true;
+        //     }
+        // }
+        // class B extends A {
+        //     constructor() {
+        //         super();
+        //         console.log(this instanceof A);
+        //         console.log(this);
+        //     }
+        // }
+        // new B();
+
+        // class A {
+        //     static sayName() {
+        //         console.log('小王');
+        //     }
+        // }
+        // class B extends A {
+        //     static sayName() {
+        //         super.sayName();
+        //     }
+        // }
+        // B.sayName();
+
+        // class A {
+        //     constructor() { }
+        // }
+        // class B extends A {
+        //     constructor() {
+        //         console.log(super);
+        //     }
+        // }
+
+        // class A { };
+        // class B extends A {
+        //     constructor() {
+        //         super();
+        //         console.log(this instanceof A);
+        //     }
+        // }
+        // new B();
+
+        // class A {
+        //     constructor(licensePlate) {
+        //         this.licensePlate = licensePlate;
+        //     }
+        // }
+        // class B extends A {
+        //     constructor(licensePlate) {
+        //         super(licensePlate)
+        //     }
+        // }
+        // console.log(new B('1337H4x'));
+
+        // class A {
+        //     constructor(licensePlate) {
+        //         this.licensePlate = licensePlate;
+        //     }
+        // }
+        // class B extends A {
+
+        // }
+        // console.log(new B('1337'));
+
+        // class A {
+
+        // }
+        // class B extends A {
+        //     constructor() {
+        //         this.name = name;
+        //     }
+        // }
+        // new B();
+
+        // class A {
+
+        // }
+        // class Car extends A {
+
+        // }
+        // class B extends A {
+        //     constructor() {
+        //         super();
+        //     }
+        // }
+        // class D extends A {
+        //     constructor() {
+        //         return {}
+        //     }
+        // }
+        // console.log(new Car());
+        // console.log(new B());
+        // console.log(new D());
+
+        // class A {
+        //     constructor() {
+        //         console.log(new.target);
+        //         if (new.target === A) {
+        //             throw new Error('A 不能被实例化')
+        //         }
+        //     }
+        // }
+        // class B extends A { }
+        // new B();
+        // new A();
+
+        // class A {
+        //     constructor() {
+        //         if (new.target === A) {
+        //             throw new Error('A是一个抽象基类不能被实例化');
+        //         }
+        //         if (!this.foo) {
+        //             throw new Error('子类必须定义foo方法')
+        //         }
+        //         console.log('success');
+        //     }
+        // }
+        // class B extends A {
+        //     foo() { };
+        // };
+        // class D extends A { }
+        // new B();
+        // new D();
+
+        // class sonArray extends Array {
+        //     shuffle() {
+        //         for (let i = this.length - 1; i > 0; i--) {
+        //             const j = Math.floor(Math.random() * (i + 1));
+        //             [this[i], this[j]] = [this[j], [this[i]]];
+        //         }
+        //     }
+        // }
+        // let a = new sonArray(1, 2, 3, 4, 5);
+        // console.log(a instanceof sonArray);
+        // console.log(a instanceof Array);
+        // console.log(a);
+        // a.shuffle();
+        // console.log(a);
+
+        // console.log(Math);
+
+        // console.log(typeof !NaN);
+
+        // class sonArray extends Array { }
+        // let a1 = new sonArray(1, 2, 3, 4, 5);
+        // let a2 = a1.filter(x => !!(x % 2));
+        // console.log(a1);
+        // console.log(a2);
+        // console.log(a1 instanceof sonArray);
+        // console.log(a2 instanceof sonArray);
+
+        // class sonArray extends Array {
+        //     static get [Symbol.species]() {
+        //         return Array
+        //     }
+        // }
+        // let a1 = new sonArray(1, 2, 3, 4, 5);
+        // let a2 = a1.filter(x => !!(x % 2))
+        // console.log(a1);
+        // console.log(a2);
+        // console.log(a1 instanceof sonArray);
+        // console.log(a2 instanceof sonArray);
+
+        // class A{
+
+        // }
+        // function getClass(){
+        //     console.log('evaluated');
+        //     return A;
+        // }
+        // class B extends getClass(){}
+
+        // class A { }
+        // let FooMixin = (B) => class extends B {
+        //     foo() {
+        //         console.log('foo');
+        //     }
+        // }
+        // let BarMixin = (B) => class extends B {
+        //     bar() {
+        //         console.log('bar');
+        //     }
+        // }
+        // let BazMixin = (B) => class extends B {
+        //     baz() {
+        //         console.log('baz');
+        //     }
+        // }
+        // class C extends FooMixin(BarMixin(BazMixin(A))) { };
+        // let c = new C();
+        // c.foo();
+        // c.bar();
+        // c.baz();
+
+        // class A { }
+        // let FooMixin = (B) => class extends B {
+        //     foo() {
+        //         console.log('foo');
+        //     }
+        // }
+        // let BarMixin = (B) => class extends B {
+        //     bar() {
+        //         console.log('bar');
+        //     }
+        // }
+        // let BazMixin = (B) => class extends B {
+        //     baz() {
+        //         console.log('baz');
+        //     }
+        // }
+        // function mix(BaseClass, ...Mixins) {
+        //     // 注意这个箭头函数内容的写法
+        //     return Mixins.reduce((accumlator, current) => current(accumlator), BaseClass)
+        // }
+        // class C extends mix(A, FooMixin, BarMixin, BazMixin) { };
+        // let c = new C();
+        // c.foo();
+        // c.bar();
+        // c.baz();
+
+        // let arr = [FooMixin, BarMixin, BazMixin];
+        // let obj = {};
+        // function D() {
+        //     return 1, 2
+        // }
+        // console.log(D());
+    </script>
+</body>
+
+</html>

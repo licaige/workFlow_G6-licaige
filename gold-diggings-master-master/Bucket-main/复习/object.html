@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.dir(Function);
+        // console.log(Function.prototype === Function.__proto__);
+        // console.log(Fn.prototype.__proto__ === Object.prototype);
+        function Fn() { };
+        // Fn是函数Function的实例,所有函数都是Function的实例
+        // 函数实例与构造函数之间的关系是：实例.__proto__ === 构造函数.prototype
+        // console.log(Fn.__proto__ === Function.prototype); // true
+        // console.log(Fn.__proto__ === Object.prototype); // false
+        // f是构造函数Fn的实例
+        const f = new Fn();
+        // console.log(f.__proto__ === Fn.prototype); // true
+        // console.log(Fn.prototype.__proto__ === Object.prototype); // true
+        // 上面一行等价于
+        // console.log(f.__proto__.__proto__ === Object.prototype); // true
+
+        //Fn.prototype.__proto__与Function.prototype有关系的前提是Fn是Function的实例，而Fn在作为实例时原型是__proto__，也就是说只有Fn.__proto__与Function有关系，Fn.prototype与Function是没有关系的,既然是这样Fn.prototype.__proto__ 和Function.prototype也不存在有关系。没有直接跳过，你可以好好理解一下原型链那张经典的图
+        // 而const f = new Fn();这样用的时候Fn的原型才是prototype，而这样用f时一个对象，这个地方可以看下new的执行过程，而对象都可以看作是通过new Object()创建的。所以
+        const o = new Object();
+        console.log(f.__proto__ === Object.prototype);
+    </script>
+</body>
+
+</html>

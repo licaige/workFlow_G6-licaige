@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Function.prototype.before = function (beforefn) {
+        //     var __self = this;
+        //     return function () {
+        //         beforefn.apply(this, arguments);
+        //         return __self.apply(this, arguments);
+        //     }
+        // }
+        // Function.prototype.after = function (afterfn) {
+        //     var __self = this;
+        //     return function () {
+        //         var ret = __self.apply(this, arguments);
+        //         afterfn.apply(this, arguments);
+        //         return ret;
+        //     }
+        // }
+        // var cs = function (cs) {
+        //     console.log(cs);
+        // }
+        // var css = function (css) {
+        //     console.log(css);
+        // }
+
+        // cs.before(() => { css('耀哥') }).after(() => { css('SB') }).after(() => { css('啊') })('确实');
+
+        // const abc = 'hello world';
+        // console.log(Object.getOwnPropertyDescriptors(abc));
+        // abc.substr(0, 5) === 'hello';
+        // abc[0] = 'x';
+        // abc.x = 'y';
+        // console.log(abc[0], abc.x);
+        // console.log(Object.getOwnPropertyDescriptors(abc));
+
+        // var Person = function () { };
+        // Person.prototype.set = function (age) {
+        //     this.age = 10;
+        //     return this;
+        // }
+        // Person.prototype.get = function () {
+        //     var age = this.age;
+        //     if (age < 6) {
+        //         return '我还是个宝宝';
+        //     } else if (age < 18) {
+        //         return '我还是个少年';
+        //     } else {
+        //         return '老人';
+        //     }
+        // }
+        // var person = new Person();
+        // console.log(person.set(10).get());
+
+        // let Person = function () {
+        //     Person.prototype.name = 'Nicholas';
+        //     Person.prototype.age = 29;
+        //     Person.prototype.job = 'Software Engineer';
+        //     Person.prototype.sayName = function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // let person1 = new Person();
+        // person1.sayName();
+        // let person2 = new Person();
+        // person2.sayName();
+        // console.log(person1.sayName() === person2.sayName());
+
+        // function Person() { }
+        // // let Person = function(){};
+        // console.log(typeof Person.prototype);
+        // console.log(Person.prototype);
+        // console.log(Person.prototype.constructor === Person);
+
+        // console.dir(Object.prototype.__proto__);
+
+        // function Person() { }
+        // console.log(Person.prototype.__proto__ === Object.prototype);
+        // console.log(Person.prototype.__proto__.constructor === Object);
+        // console.log(Person.prototype.__proto__.__proto__ === null);
+        // console.log(Person.prototype.__proto__);
+
+        // let person1 = new Person(),
+        //     person2 = new Person();
+        // console.log(person1 !== Person);
+        // console.log(person1 !== Person.prototype);
+        // console.log(Person.prototype !== Person);
+        // console.log(Person.prototype.constructor === Person);
+        // console.log(person1.__proto__ === Person.prototype);
+        // console.log(person1.__proto__ === person2.__proto__);
+
+        // console.log(person1 instanceof Person);
+        // console.log(person2 instanceof Person);
+        // console.log(Person.prototype instanceof Object);
+        // console.log(person1 instanceof person2);
+        // console.log(person1.isPrototypeOf(person2));
+        // console.log(person2.isPrototypeOf(person1));
+
+        // function Person() { };
+        // let person1 = new Person(),
+        //     person2 = new Person();
+        // console.log(Person.prototype.isPrototypeOf(person1));
+        // console.log(Person.prototype.isPrototypeOf(person2));
+        // console.log(Object.getPrototypeOf(person1) === Person.prototype);
+        // console.log(Object.getPrototypeOf(person1).name);
+
+        // let biped = {
+        //     numLegs: 2
+        // };
+        // let person = {
+        //     name: 'Matt'
+        // };
+        // Object.setPrototypeOf(person, biped);
+        // console.log(person.name);
+        // console.log(person.numLegs);
+        // console.log(Object.getPrototypeOf(person) === biped);
+
+        // let biped = {
+        //     numLegs: 2
+        // };
+        // let person = Object.create(biped);
+        // person.name = 'Matt';
+        // console.log(person.name);
+        // console.log(person.numLegs);
+        // console.log(person.constructor);
+        // console.log(Object.getPrototypeOf(person) === biped);
+
+        // function Person() { };
+        // Person.prototype.name = 'Nicholas';
+        // Person.prototype.age = 29;
+        // Person.prototype.job = 'Software Engineer';
+        // Person.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // let person1 = new Person();
+        // let person2 = new Person();
+        // person1.name = 'Greg';
+        // // console.log(person1.name);
+        // // console.log(person2.name);
+        // delete person1.name;
+        // console.log(person1.name);
+
+        // function Person() { };
+        // Person.prototype.name = 'Nicholas';
+        // Person.prototype.age = 29;
+        // Person.prototype.job = 'Software Engineer';
+        // Person.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // let person1 = new Person();
+        // let person2 = new Person();
+        // console.log(person1.hasOwnProperty('name'));
+        // person1.name = 'Grep';
+        // console.log(person1.name);
+        // console.log(person1.hasOwnProperty('name'));
+        // console.log(person2.name);
+        // console.log(person2.hasOwnProperty('name'));
+        // delete person1.name;
+        // console.log(person1.name);
+        // console.log(person1.hasOwnProperty('name'));
+
+        // function Person() { };
+        // Person.prototype.name = 'Nicholas';
+        // Person.prototype.age = 29;
+        // Person.prototype.job = 'Software Engineer';
+        // Person.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // let person1 = new Person();
+        // let person2 = new Person();
+        // console.log(person1.hasOwnProperty('name'));
+        // console.log('name' in person1);
+        // person1.name = 'Grep';
+        // console.log(person1.name);
+        // console.log(person1.hasOwnProperty('name'));
+        // console.log('name' in person1);
+
+        // console.log(person2.name);
+        // console.log(person2.hasOwnProperty('name'));
+        // console.log('name' in person2);
+
+        // delete person1.name;
+        // console.dir(person1);
+        // console.log(person1.hasOwnProperty('name'));
+        // console.log('name' in person1);
+
+        // function hasPrototypeProperty(object, name) {
+        //     return !object.hasOwnProperty(name) && (name in object);
+        // }
+        // // console.log(hasPrototypeProperty(person1, "name"));
+        // person1.name = 'Greg';
+        // console.log(hasPrototypeProperty(person1, 'name'));
+
+        // console.log(typeof Object);
+
+        function Person() { };
+        Person.prototype.name = 'Nicholas';
+        Person.prototype.age = 29;
+        Person.prototype.job = 'Software Engineer';
+        Person.prototype.sayName = function () {
+            console.log(this.name);
+        }
+        // let keys = Object.keys(Person.prototype);
+        // console.log(keys);
+        // let p1 = new Person();
+        // p1.name = 'Rob';
+        // p1.age = 31;
+        // let p1keys = Object.keys(p1);
+        // console.log(p1keys);
+        // let p1 = new Person();
+        // p1.sex = 'man';
+        // let keys = Object.getOwnPropertyNames(p1);
+        // console.log(keys);
+
+        // let k1 = Symbol('k1'),
+        //     k2 = Symbol('k2');
+        // let o = {
+        //     1: 1,
+        //     first: 'first',
+        //     [k1]: 'sym1',
+        //     second: 'second',
+        //     0: 0
+        // }
+        // o[k2] = 'sym2';
+        // o[3] = 3;
+        // o.third = 'third';
+        // o[2] = 2;
+        // console.log(Object.getOwnPropertyNames(o));
+        // console.log(Object.getOwnPropertySymbols(o));
+        // console.log(Object.keys(o));
+        // console.log(Object.getOwnPropertySymbols(o));
+
+        // function test(a, b) {
+        //     arguments[0] = 2;
+        //     console.log(arguments[1]);
+        //     arguments[1] = 3;
+        //     console.log(a, b);
+        // }
+        // test(1);
+
+        // function setName(obj) {
+        //     obj.name = 'Nicholas';
+        //     obj = new Object();
+        //     console.log(arguments[0] === obj);
+        //     obj.name = 'Greg';
+        // }
+        // let person = new Object();
+        // setName(person);
+        // console.log(person.name);
+
+        // function set(a) {
+        //     console.log(a);
+        //     var a;
+        //     console.log(a);
+        //     a.name = 'nical';
+        //     a = new Object();
+        //     a.name = 'NICK'
+        // }
+        // let person = {};
+        // set(person);
+        // console.log(person.name);
+
+        // function recursivelyCheckEqual(x, ...rest) {
+        //     return Object.is(x, rest[0]) && (rest.length < 2 || recursivelyCheckEqual(...rest));
+        // }
+        // let res = recursivelyCheckEqual(50, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5);
+        // console.log(res);
+
+        // let a;
+        // function temp(obj) {
+        //     obj.name = 'Greg';
+        //     console.log(obj);
+        //     a = obj;
+        //     console.log(a === obj);
+        //     obj = new Object();
+        //     obj.name = 'Hick';
+        //     console.log(obj);
+        //     console.log(a);
+        //     console.log(a === obj);
+        // }
+        // let person = {};
+        // temp(person);
+        // console.log(person);
+
+        // Function.prototype.mybind = function (context) {
+        //     let that = this;
+        //     let args2 = Array.from(arguments).shift();
+        //     let args1 = Array.prototype.slice.call(arguments, 1);
+        //     console.log(args2);
+        //     console.log(args1);
+        //     let bindFn = function () {
+        //         let args2 = Array.prototype.slice.call(arguments);
+        //         return that.apply(this instanceof bindFn ? this : context, args1.concat(args2));
+        //     }
+        //     let Fn = function () { };
+        //     Fn.prototype = this.prototype;
+        //     bindFn.prototype = new Fn();
+        //     return bindFn;
+        // }
+
+        // function person() {
+        //     let name2 = '小丽';
+        //     console.log(this.name2);
+        // }
+        // let obj = {
+        //     name2: '小王'
+        // }
+        // person.mybind(obj)();
+
+        // const math = require('math');
+
+        // function add(num) {
+        //     var count = num;
+        //     var _b = function (l) {
+        //         count += l;
+        //         return _b
+        //     }
+        //     _b.valueOf = function () {
+        //         return count
+        //     }
+        //     return _b
+        // }
+        // var c = add(1)(2)(3);
+        // console.log(c)    //6
+    </script>
+</body>
+
+</html>
