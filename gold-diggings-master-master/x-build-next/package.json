@@ -1,0 +1,50 @@
+{
+  "name": "x-build",
+  "version": "6.3.1",
+  "description": "",
+  "main": "bin/x-build.js",
+  "bin": {
+    "x-build": "./bin/x-build.js",
+    "x": "./bin/x-build.js"
+  },
+  "scripts": {
+    "test": "npm uninstall -g x-build && rimraf bin && rimraf test && tsc --build && npm link && x-build create test",
+    "test:add": "rimraf bin && rimraf test && tsc --build && sudo npm link && x add",
+    "dev": "ts-node-dev --respawn --transpile-only src/x-build.ts",
+    "build": "tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codexu/x-build.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codexu/x-build/issues"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "ejs": "^3.1.6",
+    "eslint-config-airbnb": "^18.2.1",
+    "execa": "^5.1.1",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^8.1.1",
+    "prettier": "^2.3.2"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/ejs": "^3.0.6",
+    "@types/fs-extra": "^9.0.11",
+    "@types/inquirer": "^7.3.2",
+    "@types/node": "^18.11.9",
+    "@types/prettier": "^2.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.29.0",
+    "lerna": "^4.0.0",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.9.3"
+  }
+}
