@@ -1,0 +1,61 @@
+.uploadBox {
+    padding: 10px;
+}
+
+.uploadBox .card {
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 148px;
+    height: 148px;
+    background: #DDD;
+    overflow: hidden;
+}
+
+.uploadBox .card .mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+}
+
+.uploadBox .card img {
+    display: block;
+    width: 100%;
+}
+
+.uploadBox .card .progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, .3);
+}
+
+.uploadBox .card .progress .line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 0;
+    height: 100%;
+    background: #4798d6;
+    transition: width .3s;
+}
+
+.uploadBox .card.button {
+    cursor: pointer;
+    background: url('../images/jia.svg') no-repeat center center #DDD;
+    background-size: 30% 30%;
+}
+
+.uploadBox .card.button input {
+    display: none;
+}

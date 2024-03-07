@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "single-spa": "^5.9.4"
+  }
+}

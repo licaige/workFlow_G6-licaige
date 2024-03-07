@@ -1,0 +1,582 @@
+{
+  "config": {
+    "session": {
+      "maxAge": 86400000,
+      "key": "EGG_SESS",
+      "httpOnly": true,
+      "encrypt": true,
+      "logValue": true
+    },
+    "security": {
+      "domainWhiteList": [],
+      "protocolWhiteList": [],
+      "defaultMiddleware": "csrf,hsts,methodnoallow,noopen,nosniff,csp,xssProtection,xframe,dta",
+      "csrf": {
+        "enable": true,
+        "type": "ctoken",
+        "ignoreJSON": false,
+        "useSession": false,
+        "cookieName": "csrfToken",
+        "sessionName": "csrfToken",
+        "headerName": "x-csrf-token",
+        "bodyName": "_csrf",
+        "queryName": "_csrf",
+        "supportedRequests": [
+          {
+            "path": {},
+            "methods": [
+              "POST",
+              "PATCH",
+              "DELETE",
+              "PUT",
+              "CONNECT"
+            ]
+          }
+        ],
+        "refererWhiteList": []
+      },
+      "xframe": {
+        "enable": true,
+        "value": "SAMEORIGIN"
+      },
+      "hsts": {
+        "enable": false,
+        "maxAge": 31536000,
+        "includeSubdomains": false
+      },
+      "dta": {
+        "enable": true
+      },
+      "methodnoallow": {
+        "enable": true
+      },
+      "noopen": {
+        "enable": true
+      },
+      "nosniff": {
+        "enable": true
+      },
+      "referrerPolicy": {
+        "enable": false,
+        "value": "no-referrer-when-downgrade"
+      },
+      "xssProtection": {
+        "enable": true,
+        "value": "1; mode=block"
+      },
+      "csp": {
+        "enable": false,
+        "policy": {}
+      },
+      "ssrf": {
+        "ipBlackList": null,
+        "ipExceptionList": null,
+        "checkAddress": null
+      },
+      "_protocolWhiteListSet": "<Set>"
+    },
+    "helper": {
+      "shtml": {}
+    },
+    "jsonp": {
+      "limit": 50,
+      "callback": [
+        "_callback",
+        "callback"
+      ],
+      "csrf": false
+    },
+    "onerror": {
+      "errorPageUrl": "",
+      "appErrorFilter": null,
+      "templatePath": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-onerror\\lib\\onerror_page.mustache"
+    },
+    "i18n": {
+      "defaultLocale": "en-US",
+      "dirs": [],
+      "queryField": "locale",
+      "cookieField": "locale",
+      "cookieDomain": "",
+      "cookieMaxAge": "1y"
+    },
+    "watcher": {
+      "type": "default",
+      "eventSources": {
+        "default": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-watcher\\lib\\event-sources\\default",
+        "development": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-watcher\\lib\\event-sources\\development"
+      }
+    },
+    "customLogger": {
+      "scheduleLogger": {
+        "consoleLevel": "NONE",
+        "file": "egg-schedule.log"
+      }
+    },
+    "schedule": {
+      "directory": []
+    },
+    "multipart": {
+      "mode": "stream",
+      "autoFields": false,
+      "defaultCharset": "utf8",
+      "fieldNameSize": 100,
+      "fieldSize": "100kb",
+      "fields": 10,
+      "fileSize": "10mb",
+      "files": 10,
+      "fileExtensions": [],
+      "whitelist": null,
+      "allowArrayField": false,
+      "tmpdir": "C:\\Users\\ZHANGR\\x7e1\\AppData\\Local\\Temp\\egg-multipart-tmp\\11.egg",
+      "cleanSchedule": {
+        "cron": "0 30 4 * * *",
+        "disable": false
+      }
+    },
+    "logrotator": {
+      "filesRotateByHour": null,
+      "hourDelimiter": "-",
+      "filesRotateBySize": null,
+      "maxFileSize": 52428800,
+      "maxFiles": 10,
+      "rotateDuration": 60000,
+      "maxDays": 31
+    },
+    "static": {
+      "prefix": "/public/",
+      "dir": "C:\\aproject\\zhufengreact202205\\11.egg\\app\\public",
+      "dynamic": true,
+      "preload": false,
+      "buffer": false,
+      "maxFiles": 1000
+    },
+    "view": {
+      "root": "C:\\aproject\\zhufengreact202205\\11.egg\\app\\view",
+      "cache": true,
+      "defaultExtension": ".html",
+      "defaultViewEngine": "nunjucks",
+      "mapping": {
+        ".html": "nunjucks"
+      }
+    },
+    "nunjucks": {
+      "autoescape": true,
+      "throwOnUndefined": false,
+      "trimBlocks": false,
+      "lstripBlocks": false,
+      "cache": true
+    },
+    "mysql": {
+      "default": {
+        "database": null,
+        "connectionLimit": 5
+      },
+      "app": true,
+      "agent": false,
+      "client": {
+        "host": "localhost",
+        "port": "3306",
+        "user": "root",
+        "password": "<String len: 4>",
+        "database": "cms"
+      }
+    },
+    "sequelize": {
+      "dialect": "mysql",
+      "database": "cms-test",
+      "host": "localhost",
+      "port": "3306",
+      "username": "root",
+      "password": "<String len: 4>"
+    },
+    "env": "test",
+    "name": "11.egg",
+    "keys": "<String len: 7>",
+    "cookies": {},
+    "proxy": false,
+    "maxIpsCount": 0,
+    "maxProxyCount": 0,
+    "protocolHeaders": "x-forwarded-proto",
+    "ipHeaders": "x-forwarded-for",
+    "hostHeaders": "",
+    "pkg": {
+      "name": "11.egg",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "dev": "cross-env EGG_SERVER_ENV=local egg-bin dev",
+        "test": "cross-env EGG_SERVER_ENV=test egg-bin test",
+        "cov": "egg-bin cov"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "egg": "^2.36.0",
+        "egg-bin": "^5.1.1",
+        "egg-mock": "^4.2.1",
+        "egg-mysql": "^3.1.1",
+        "egg-sequelize": "^6.0.0",
+        "egg-view-nunjucks": "^2.3.0",
+        "express": "^4.18.1",
+        "mockjs": "^1.1.0",
+        "morgan": "^1.10.0",
+        "mysql2": "^2.3.3",
+        "sequelize": "^6.21.1",
+        "sequelize-cli": "^6.4.1"
+      },
+      "devDependencies": {
+        "cross-env": "^7.0.3",
+        "factory-girl": "^5.0.4"
+      }
+    },
+    "baseDir": "C:\\aproject\\zhufengreact202205\\11.egg",
+    "HOME": "C:\\Users\\zhangrenyang",
+    "rundir": "C:\\aproject\\zhufengreact202205\\11.egg\\run",
+    "dump": {
+      "ignore": "<Set>"
+    },
+    "confusedConfigurations": {
+      "bodyparser": "bodyParser",
+      "notFound": "notfound",
+      "sitefile": "siteFile",
+      "middlewares": "middleware",
+      "httpClient": "httpclient"
+    },
+    "notfound": {
+      "pageUrl": ""
+    },
+    "siteFile": {
+      "/favicon.ico": "<Buffer len: 6463>",
+      "cacheControl": "public, max-age=2592000"
+    },
+    "bodyParser": {
+      "enable": true,
+      "encoding": "utf8",
+      "formLimit": "1mb",
+      "jsonLimit": "1mb",
+      "textLimit": "1mb",
+      "strict": true,
+      "queryString": {
+        "arrayLimit": 100,
+        "depth": 5,
+        "parameterLimit": 1000
+      },
+      "onerror": "<Function onerror>"
+    },
+    "logger": {
+      "dir": "C:\\Users\\zhangrenyang\\logs\\11.egg",
+      "encoding": "utf8",
+      "env": "test",
+      "level": "INFO",
+      "consoleLevel": "INFO",
+      "disableConsoleAfterReady": true,
+      "outputJSON": false,
+      "buffer": true,
+      "appLogName": "11.egg-web.log",
+      "coreLogName": "egg-web.log",
+      "agentLogName": "egg-agent.log",
+      "errorLogName": "common-error.log",
+      "coreLogger": {},
+      "allowDebugAtProd": false,
+      "enablePerformanceTimer": false,
+      "type": "agent"
+    },
+    "httpclient": {
+      "enableDNSCache": false,
+      "dnsCacheLookupInterval": 10000,
+      "dnsCacheMaxLength": 1000,
+      "request": {
+        "timeout": 5000
+      },
+      "httpAgent": {
+        "keepAlive": true,
+        "freeSocketTimeout": 4000,
+        "maxSockets": 9007199254740991,
+        "maxFreeSockets": 256
+      },
+      "httpsAgent": {
+        "keepAlive": true,
+        "freeSocketTimeout": 4000,
+        "maxSockets": 9007199254740991,
+        "maxFreeSockets": 256
+      }
+    },
+    "meta": {
+      "enable": true,
+      "logging": false
+    },
+    "coreMiddleware": [
+      "meta",
+      "siteFile",
+      "notfound",
+      "bodyParser",
+      "overrideMethod"
+    ],
+    "workerStartTimeout": 600000,
+    "serverTimeout": null,
+    "cluster": {
+      "listen": {
+        "path": "",
+        "port": 7001,
+        "hostname": ""
+      }
+    },
+    "clusterClient": {
+      "maxWaitTime": 60000,
+      "responseTimeout": 60000
+    },
+    "onClientError": null,
+    "news": {
+      "pageNum": 1,
+      "pageSize": 10,
+      "newsUrl": "http://localhost:3000/news"
+    },
+    "cache": {
+      "refreshUrl": "http://localhost:3000/refresh"
+    },
+    "middleware": [
+      "robot"
+    ],
+    "robot": {
+      "uas": []
+    },
+    "coreMiddlewares": "~config~coreMiddleware",
+    "appMiddlewares": "~config~middleware",
+    "appMiddleware": "~config~middleware"
+  },
+  "plugins": {
+    "onerror": {
+      "enable": true,
+      "package": "egg-onerror",
+      "name": "onerror",
+      "dependencies": [],
+      "optionalDependencies": [
+        "jsonp"
+      ],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-onerror",
+      "version": "2.1.0"
+    },
+    "session": {
+      "enable": true,
+      "package": "egg-session",
+      "name": "session",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-session",
+      "version": "3.3.0"
+    },
+    "i18n": {
+      "enable": true,
+      "package": "egg-i18n",
+      "name": "i18n",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\plugin.js",
+      "defaultLocale": "zh-CN",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-i18n",
+      "version": "2.1.1"
+    },
+    "watcher": {
+      "enable": true,
+      "package": "egg-watcher",
+      "name": "watcher",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-watcher",
+      "version": "3.1.1"
+    },
+    "multipart": {
+      "enable": true,
+      "package": "egg-multipart",
+      "name": "multipart",
+      "dependencies": [],
+      "optionalDependencies": [
+        "schedule"
+      ],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart",
+      "version": "2.13.1"
+    },
+    "security": {
+      "enable": true,
+      "package": "egg-security",
+      "name": "security",
+      "dependencies": [],
+      "optionalDependencies": [
+        "session"
+      ],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security",
+      "version": "2.10.1"
+    },
+    "development": {
+      "enable": false,
+      "package": "egg-development",
+      "name": "development",
+      "dependencies": [
+        "watcher"
+      ],
+      "optionalDependencies": [],
+      "env": [
+        "local"
+      ],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-development",
+      "version": "2.7.0"
+    },
+    "logrotator": {
+      "enable": true,
+      "package": "egg-logrotator",
+      "name": "logrotator",
+      "dependencies": [
+        "schedule"
+      ],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator",
+      "version": "3.1.0"
+    },
+    "schedule": {
+      "enable": true,
+      "package": "egg-schedule",
+      "name": "schedule",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-schedule",
+      "version": "3.6.6"
+    },
+    "static": {
+      "enable": true,
+      "package": "egg-static",
+      "name": "static",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static",
+      "version": "2.2.0"
+    },
+    "jsonp": {
+      "enable": true,
+      "package": "egg-jsonp",
+      "name": "jsonp",
+      "dependencies": [],
+      "optionalDependencies": [
+        "security"
+      ],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-jsonp",
+      "version": "2.0.0"
+    },
+    "view": {
+      "enable": true,
+      "package": "egg-view",
+      "name": "view",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view",
+      "version": "2.1.3"
+    },
+    "nunjucks": {
+      "package": "egg-view-nunjucks",
+      "enable": true,
+      "name": "nunjucks",
+      "dependencies": [
+        "security",
+        "view"
+      ],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view-nunjucks",
+      "version": "2.3.0"
+    },
+    "mysql": {
+      "enable": true,
+      "package": "egg-mysql",
+      "name": "mysql",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-mysql",
+      "version": "3.1.1"
+    },
+    "sequelize": {
+      "enable": true,
+      "package": "egg-sequelize",
+      "name": "sequelize",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\plugin.js",
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-sequelize",
+      "version": "6.0.0"
+    },
+    "egg-mock": {
+      "enable": true,
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-mock",
+      "name": "egg-mock",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "version": "4.2.1"
+    }
+  },
+  "appInfo": {
+    "name": "11.egg",
+    "baseDir": "C:\\aproject\\zhufengreact202205\\11.egg",
+    "env": "test",
+    "HOME": "C:\\Users\\zhangrenyang",
+    "pkg": {
+      "name": "11.egg",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "dev": "cross-env EGG_SERVER_ENV=local egg-bin dev",
+        "test": "cross-env EGG_SERVER_ENV=test egg-bin test",
+        "cov": "egg-bin cov"
+      },
+      "keywords": "~config~pkg~keywords",
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "egg": "^2.36.0",
+        "egg-bin": "^5.1.1",
+        "egg-mock": "^4.2.1",
+        "egg-mysql": "^3.1.1",
+        "egg-sequelize": "^6.0.0",
+        "egg-view-nunjucks": "^2.3.0",
+        "express": "^4.18.1",
+        "mockjs": "^1.1.0",
+        "morgan": "^1.10.0",
+        "mysql2": "^2.3.3",
+        "sequelize": "^6.21.1",
+        "sequelize-cli": "^6.4.1"
+      },
+      "devDependencies": {
+        "cross-env": "^7.0.3",
+        "factory-girl": "^5.0.4"
+      }
+    },
+    "root": "C:\\Users\\zhangrenyang"
+  }
+}

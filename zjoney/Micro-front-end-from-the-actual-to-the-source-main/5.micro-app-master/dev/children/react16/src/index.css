@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --color-a: yellow;
+  --color-b: red;
+  --padding-50: 50px;
+}
+
+@keyframes mymove {
+  from { top: 0px; }
+  to { top: 200px; }
+}
+@media screen and (max-width: 300px) {
+  body {
+      background-color:lightblue;
+  }
+}
+
+@supports (display: grid) {
+  .test-grid {
+    display: grid;
+  }
+}
+@supports (display: -webkit-flex) or
+        (display: -moz-flex) or
+        (display: flex) {
+
+  .test-supports {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    float: none;
+  }
+}

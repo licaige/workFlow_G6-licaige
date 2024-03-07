@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珠峰在线Web高级</title>
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="uploadBox">
+        <div class="handle">
+            <input type="file" class="uploadInp" accept="image/*">
+            <a href="javascript:;" class="submit">上传文件</a>
+        </div>
+        <div class="detail">
+            您选取的文件 「<span>xxx.png</span>」 正在上传中
+            <i class="loading"></i>
+        </div>
+        <div class="abbre">
+            <img src="" alt="">
+        </div>
+    </div>
+
+    <!-- IMPORT JS -->
+    <script src="js/axios.min.js"></script>
+    <script src="js/qs.min.js"></script>
+    <script>
+        (function () {
+            let uploadBox = document.querySelector('.uploadBox'),
+                uploadInp = uploadBox.querySelector('.uploadInp'),
+                submit = uploadBox.querySelector('.submit'),
+                detail = uploadBox.querySelector('.detail'),
+                detailText = detail.querySelector('span'),
+                abbre = uploadBox.querySelector('.abbre'),
+                abbreImg = abbre.querySelector('img');
+
+            // axios post请求的封装
+            function postRequest(url, data, config) {
+                config = config || {};
+                return axios.post(`http://127.0.0.1:8888${url}`, data, config).then(response => {
+                    return response.data;
+                });
+            }
+
+            // 文件读取
+            function fileReader(file) {
+                return new Promise(resolve => {
+                    let reader = new FileReader;
+                    reader.readAsDataURL(file);
+                    reader.onload = ev => {
+                        resolve(ev.target.result);
+                    };
+                });
+            }
+
+            // 点击按钮调出选取窗口
+            submit.onclick = function () {
+                let self = this;
+                if (self.className.includes('disable')) return;
+                uploadInp.click();
+            };
+
+            // 选择图片后
+            uploadInp.onchange = async function () {
+                let self = this,
+                    file = self.files[0];
+                if (!file) return;
+                detailText.innerHTML = file.name;
+                detail.style.display = 'block';
+                submit.className = 'submit disable';
+
+                // 把选择的文件上传到服务器端
+                // 方案1：基于FORM-DATA
+                /* let formData = new FormData();
+                formData.append('file', file);
+                formData.append('filename', file.name);
+                let response = await postRequest('/single1', formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                });
+                if (response.code === 0) {
+                    // 成功
+                    abbreImg.src = response.path;
+                    detail.style.display = 'none';
+                    abbre.style.display = 'block';
+                    submit.className = 'submit';
+                } */
+
+                // 方案2：把选择的文件BASE64，把BASE64传递给服务器
+                let base64 = await fileReader(file),
+                    data = {
+                        chunk: base64,
+                        filename: file.name
+                    };
+                let response = await postRequest('/single2', Qs.stringify(data), {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    }
+                });
+                if (response.code === 0) {
+                    // 成功
+                    abbreImg.src = response.path;
+                    detail.style.display = 'none';
+                    abbre.style.display = 'block';
+                    submit.className = 'submit';
+                }
+            };
+
+        })();
+    </script>
+</body>
+
+</html>

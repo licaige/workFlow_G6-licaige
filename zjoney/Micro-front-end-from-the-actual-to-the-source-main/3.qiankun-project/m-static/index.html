@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态应用</title>
+</head>
+
+<body>
+    <div id="static"></div>
+    <script >
+        const app = document.getElementById('static');
+        // 最终导出接入协议即可
+        function render() {
+            app.innerHTML = 'static'
+        }
+        if (!window.__POWERED_BY_QIANKUN__) {
+            render()
+        }
+
+        window['m-static'] = {
+            bootstrap: async () => {
+                console.log('static bootstrap')
+            },
+            mount: async () => {
+                render()
+            },
+            unmount: async () => {
+                app.innerHTML = ''
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

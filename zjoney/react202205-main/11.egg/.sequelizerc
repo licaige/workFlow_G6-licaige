@@ -1,0 +1,7 @@
+const path = require('path');
+module.exports = {
+  "config": path.join(__dirname, "database/config.json"),//配置文件的路径 放着数据库的连接
+  "migrations-path": path.join(__dirname, "database/migrations"),//数据库迁移文件的路径
+  "seeders-path": path.join(__dirname, "database/seeders"),//种子文件，用来初始默认数据的
+  "models-path": path.join(__dirname, 'app/model')
+}

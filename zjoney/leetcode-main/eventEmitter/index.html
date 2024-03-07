@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./emit.js">
+
+  </script>
+  <script>
+    /*
+  * 手写实现发布订阅模式
+  */
+    let Event1 = new Event()
+
+    function user1(content) {
+      console.log('用户1订阅了:', content);
+    }
+
+    function user2(content) {
+      console.log('用户2订阅了:', content);
+    }
+
+    function user3(content) {
+      console.log('用户3订阅了:', content);
+    }
+
+    function user4(content) {
+      console.log('用户4订阅了:', content);
+    }
+
+    // 订阅
+    Event1.on('article1', user1);
+    Event1.on('article1', user2);
+    Event1.on('article1', user3);
+
+    // 取消user2方法的订阅
+    // Event1.off('article2', user2);
+
+    // Event1.once('article1', user4)
+
+    // 发布
+    Event1.emit('article1', 'Javascript 发布-订阅模式');
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <a href="#/a">a应用</a>
+    <a href="#/b">b应用</a> -->
+    
+    
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/single-spa/5.9.3/umd/single-spa.min.js"></script> -->
+    <script type="module">
+        // 微前端 就是可以加载不同的应用  基于路由的微前端
+
+        // 如何接入已经写好的应用 对于singlespa而言，我们需要改写子应用 （接入协议） bootstrap， mount， unmount
+        // /a  /b
+        import { registerApplication, start } from './single-spa/single-spa.js'
+        // let { registerApplication, start } = singleSpa
+        let app1 = {
+            bootstrap: [
+                async () => console.log('app1 bootstrap1'),
+                async () => console.log('app1 bootstrap2')
+            ],
+            mount: [
+                async (props) => {
+                    // new Vue().$mount()...
+                    console.log('app1 mount1', props)
+                },
+                async () => {
+                    // new Vue().$mount()...
+                    console.log('app1 mount2')
+                }
+            ],
+            unmount: async (props) => {
+                console.log('app1 unmount')
+            }
+        }
+        let app2 = {
+            bootstrap: async () => console.log('app2 bootstrap1'),
+            mount: [
+            async () => {
+                // new Vue().$mount()...
+                return new Promise((resolve,reejct)=>{
+                    setTimeout(()=>{
+                        console.log('app2 mount')
+                        resolve()
+                    },1000)
+                })
+            }
+            ],
+            unmount: async () => {
+                console.log('app2 unmount')
+            }
+        }
+        // 当路径是#/a 的时候就加载 a应用
+
+        // 所谓的注册应用 就是看一下路径是否匹配，如果匹配则“加载”对应的应用
+        registerApplication('a', async () => app1, location => location.hash.startsWith('#/a'), { a: 1 })
+        registerApplication('b', async () => app2, location => location.hash.startsWith('#/b'), { a: 1 })
+
+        // 开启路径的监控，路径切换的时候 可以调用对应的mount unmount
+        start()
+
+
+        // 这个监控操作 应该被延迟到 当应用挂挂载完毕后再行
+        window.addEventListener('hashchange', function () {
+            console.log(window.location.hash, 'p----')
+        })
+
+        // window.addEventListener('popstate',function(){
+        //     console.log(window.location.hash,'p----')
+        // })
+    </script>
+<a onclick="go('#/a')">a应用</a>
+<a onclick="go('#/b')">b应用</a>
+<script>
+    function go(url) { // 用户调用pushState replaceState 此方法不会触发逻辑reroute
+        history.pushState({}, null, url)
+    }
+</script>
+</body>
+
+</html>

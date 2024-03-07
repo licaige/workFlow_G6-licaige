@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport">
+    <title>Document</title>
+</head>
+
+<body>
+    主应用 - 基座 - 用来加载子应用的 webpack importMap
+
+    <div id="root"></div>
+    <script type="systemjs-importmap">
+        {
+            "imports":{
+                "react-dom":"https://cdn.bootcdn.net/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js",
+                "react":"https://cdn.bootcdn.net/ajax/libs/react/18.2.0/umd/react.development.js"
+            }
+        }
+    </script>
+    <script>
+        //  直接加载子应用, 导入打包后的包 来进行加载， 采用的规范 system规范
+        // 这个地方是自己实现systemjs  
+        // 1) systemjs 是如何定义的 先看打包后的结果 System.register(依赖列表,后调函数返回值一个setters，execute）
+        // 2) react , react-dom  加载后调用setters 将对应的结果赋予给webpack
+        // 3) 调用执行逻辑  执行页面渲染
+        // 模块规范 用来加载system模块的
+        const newMapUrl = {};
+        // 解析 importsMap
+        function processScripts() {
+            Array.from(document.querySelectorAll('script')).forEach(script => {
+                if (script.type === "systemjs-importmap") {
+                    const imports = JSON.parse(script.innerHTML).imports
+                    Object.entries(imports).forEach(([key, value]) => newMapUrl[key] = value)
+                }
+            })
+        }
+        // 加载资源
+        function load(id) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = newMapUrl[id] || id; // 支持cdn的查找
+                script.async = true;
+                document.head.appendChild(script);
+                // 此时会执行代码
+                script.addEventListener('load', function () {
+                    let _lastRegister = lastRegister;
+                    lastRegister = undefined
+                    resolve(_lastRegister);
+                })
+            })
+        }
+        let set = new Set(); // 1）先保存window上的属性
+        function saveGlobalProperty() {
+            for (let k in window) {
+                set.add(k);
+            }
+        }
+        saveGlobalProperty();
+        function getLastGlobalProperty() {  // 看下window上新增的属性
+            for (let k in window) {
+                if (set.has(k)) continue;
+
+                set.add(k);
+                return window[k]; // 我通过script新增的变量
+            }
+        }
+        let lastRegister;
+        class SystemJs {
+            import(id) { // 这个id原则上可以是一个第三方路径cdn
+                return Promise.resolve(processScripts()).then(() => {
+                    // 1）去当前路径查找 对应的资源 index.jsw
+                    const lastSepIndex = location.href.lastIndexOf('/');
+                    const baseURL = location.href.slice(0, lastSepIndex + 1);
+                    if (id.startsWith('./')) {
+                        return baseURL + id.slice(2);
+                    }
+                    // http  https
+                }).then((id) => {
+                    // 根据文件的路径 来加载资源
+                    let execute
+                    return load(id).then((register) => {
+                        let { setters, execute:exe } = register[1](() => { })
+                        execute = exe
+                        // execute 是真正执行的渲染逻辑 
+                        // setters 是用来保存加载后的资源，加载资源调用setters
+                        //    console.log(setters,execute)
+                        return [register[0], setters]
+                    }).then(([registeration, setters]) => {
+                        return Promise.all(registeration.map((dep, i) => {
+                            return load(dep).then(() => {
+                                const property = getLastGlobalProperty()
+                                // 加载完毕后，会在window上增添属性 window.React window.ReactDOM
+                                setters[i](property)
+                            })
+                            // 拿到的是函数，加载资源 将加载后的模块传递给这个setter
+                        }))
+                    }).then(() => {
+                        execute();
+                    })
+                })
+            }
+            register(deps, declare) {
+                // 将毁掉的结果保存起来
+                lastRegister = [deps, declare]
+            }
+        }
+        const System = new SystemJs()
+        System.import('./index.js').then(() => {
+            console.log('模块加载完毕')
+        })
+
+
+     
+
+        // 本质就是先加载依赖列表 再去加载真正的逻辑 
+        // (内部通过script脚本加载资源 ， 给window拍照保存先后状态)
+        // JSONP
+
+
+        // single-spa 如何借助了 这个system 来实现了模块的加载
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+@use 'mixins/mixins.scss' as *;
+
+// bem 规范  
+@include b(upload) {
+  display: inline-flex;
+  input{
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "doc:dev": "pnpm -C docs dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zi-shui/components": "workspace:*",
+    "@zi-shui/theme-chalk": "workspace:*",
+    "@zi-shui/utils": "workspace:*",
+    "typescript": "^4.7.4",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "@vitejs/plugin-vue-jsx": "^1.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "eslint": "^8.19.0",
+    "eslint-plugin-vue": "^9.2.0",
+    "sass": "^1.53.0",
+    "unplugin-vue-define-options": "^0.6.2"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "nandit-vue-vant",
+  "version": "0.1.2",
+  "private": false,
+  "description": "基于vue3+vant的前端组件库",
+  "main": "lib/index.min.js",
+  "module": "lib/index.esm.js",
+  "typings": "lib/index.d.ts",
+  "keyword": "vue3 vant",
+  "license": "MIT",
+  "author": {
+    "name": "jiuage",
+    "email": "nandit@126.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/jiuage/nandit-vue-vant.git"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "build": "yarn build:clean && yarn build:lib && yarn build:esm-bundle && rimraf lib/demo.html",
+    "build:clean": "rimraf lib",
+    "build:lib": "vue-cli-service build --target lib --name index --dest lib packages/index.ts",
+    "build:esm-bundle": "rollup --config ./build/rollup.config.js"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "rollup": "^2.58.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "typescript": "~4.1.5"
+  }
+}

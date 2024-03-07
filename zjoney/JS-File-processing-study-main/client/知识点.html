@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珠峰在线Web高级</title>
+</head>
+
+<body>
+    <!-- 
+    「input file的属性」
+        https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file
+            + accept [əkˈsept] 可选择的文件类型  例如：“image/*”
+            + multiple [ˈmʌltɪpl] 允许用户选择多个文件
+        
+    「选取的文件集合」
+        FileList
+            0:File
+                name: "1.png"
+                size: 994567
+                type: "image/png"
+            length:1
+
+    「文件读取类」
+        https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
+            + FileReader.readAsDataURL
+            + FileReader.readAsArrayBuffer
+            + FileReader.readAsText
+            + FileReader.onload
+            + ...
+     -->
+    <input type="file" multiple id="uploadInp">
+    <img src="" alt="" id="abbreImg" width="300">
+
+    <script>
+        let uploadInp = document.querySelector('#uploadInp'),
+            abbreImg = document.getElementById('abbreImg');
+        uploadInp.onchange = function () {
+            // FileList 文件集合「类数组」
+            // 每一项就是选择的文件 File
+            //   + name
+            //   + size
+            //   + type
+            let file = this.files[0];
+            if (!file) return;
+
+            /* if (file.size > 1024) {
+                alert('上传的图片必须在1KB以内');
+                return;
+            } */
+
+            /* if (!/(jpg|jpeg|gif|png)/i.test(file.type)) {
+                alert('必须上传PNG/JPG/GIF格式的图片！')
+                return;
+            } */
+
+            // FileReader 文件读取类（异步读取）
+            let reader = new FileReader;
+            reader.readAsDataURL(file);
+            reader.onload = function (ev) {
+                // ev.target.result 读取出来的BASE64
+                abbreImg.src = ev.target.result;
+            };
+        };
+    </script>
+</body>
+
+</html>

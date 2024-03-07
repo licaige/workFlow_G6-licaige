@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>resize</title>
+</head>
+
+<body>
+  <img id="logo" />
+  <script>
+    let logo = document.getElementById('logo');
+    console.log('old', logo.offsetHeight);
+    const resizeObserver = new ResizeObserver(entries => {
+      console.log('resize', logo.offsetHeight);
+    });
+    resizeObserver.observe(logo);
+    setTimeout(() => {
+      logo.src = 'https://gw.alipayobjects.com/zos/rmsportal/FpKOqFadwoFFIZFExjaf.png'
+    }, 1000);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getTagCount() {
+      const tags = document.getElementsByTagName('*');
+      const tagNames = [];
+      for (let val of tags) {
+        tagNames.push(val.tagName.toLocaleLowerCase())
+      }
+      const res = {};
+      for (let val of tagNames) {
+        if (!res[val]) {
+          res[val] = 1
+        } else {
+          res[val]++
+        }
+      }
+      return res
+    }
+    console.log(getTagCount())
+    /**
+     * body: 1
+head: 1
+html: 1
+meta: 3
+script: 1
+title: 1
+     * /
+  </script>
+</body>
+
+</html>

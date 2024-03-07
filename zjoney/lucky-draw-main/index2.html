@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抽奖2</title>
+  <style>
+    #contaner {
+      width: 606px;
+      height: 606px;
+      border: 1px solid #cccccc;
+      margin: 40px auto;
+    }
+
+    #contaner div {
+      width: 200px;
+      height: 200px;
+      background: #09f;
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 200px;
+      float: left;
+      border: 1px solid #cccccc;
+    }
+
+    #contaner #five {
+      transition: all 0.5s ease-in-out 0s;
+    }
+
+    #contaner #five:hover {
+      cursor: pointer;
+      font-size: 25px;
+      transform: scale(1.2) rotate(360deg);
+      background: #fff;
+      color: #09f;
+    }
+
+    .ys {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 200px red inset;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="contaner">
+    <div id="one">一块钱</div>
+    <div id="two">谢谢惠顾</div>
+    <div id="three">下去写作业</div>
+    <div id="four">一局游戏</div>
+    <div id="five">点击抽奖</div>
+    <div id="six">两块钱</div>
+    <div id="seven">下去写作业</div>
+    <div id="eight">谢谢惠顾</div>
+    <div id="nigth">两局游戏</div>
+  </div>
+  <!-- javascript -->
+  <script>
+    window.onload = function () {
+      var $ = function (id) {
+        return document.getElementById(id);
+      }
+      var contaner = $('contaner');
+      var divs = contaner.getElementsByTagName('div');
+      var one = $('one');
+      var two = $('two');
+      var three = $('three');
+      var four = $('four');
+      var five = $('five');
+      var six = $('six');
+      var seven = $('seven');
+      var eight = $('eight');
+      var night = $('night');
+      var k = 0;
+      var flag = true;
+      five.onclick = function () {
+        if (flag) {
+          var l = Math.ceil(Math.random() * 10000);
+          clearInterval(time);
+          var time = setInterval(function () {
+            for (var i = 0; i < divs.length; i++) {
+              divs[i].className = '';
+            }
+            divs[k].className = 'ys';
+            switch (k) {
+              case 0:
+              case 1:
+                k++;
+                break;
+              case 2:
+              case 5:
+                k += 3;
+                break;
+              case 8:
+              case 7:
+                k--;
+                break;
+              case 6:
+              case 3:
+                k -= 3;
+                break;
+            }
+          }, 100)
+          flag = false;
+          var jc = setTimeout(function () {
+            clearInterval(time);
+            flag = true;
+          }, l)
+        }
+      }
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+{
+  "keys": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+  "view": {
+    "defaultExtension": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "defaultViewEngine": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "mapping": {
+      ".html": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js"
+    },
+    "root": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view\\config\\config.default.js",
+    "cache": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view\\config\\config.default.js"
+  },
+  "news": {
+    "pageNum": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "pageSize": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "newsUrl": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js"
+  },
+  "cache": {
+    "refreshUrl": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js"
+  },
+  "mysql": {
+    "client": {
+      "host": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+      "port": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+      "user": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+      "password": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+      "database": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js"
+    },
+    "app": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "agent": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "default": {
+      "database": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-mysql\\config\\config.default.js",
+      "connectionLimit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-mysql\\config\\config.default.js"
+    }
+  },
+  "sequelize": {
+    "dialect": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.test.js",
+    "host": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.test.js",
+    "port": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.test.js",
+    "username": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.test.js",
+    "password": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.test.js",
+    "database": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.test.js"
+  },
+  "i18n": {
+    "defaultLocale": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+    "dirs": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-i18n\\config\\config.default.js",
+    "queryField": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-i18n\\config\\config.default.js",
+    "cookieField": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-i18n\\config\\config.default.js",
+    "cookieDomain": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-i18n\\config\\config.default.js",
+    "cookieMaxAge": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-i18n\\config\\config.default.js"
+  },
+  "middleware": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js",
+  "robot": {
+    "uas": "C:\\aproject\\zhufengreact202205\\11.egg\\config\\config.default.js"
+  },
+  "session": {
+    "maxAge": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-session\\config\\config.default.js",
+    "key": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-session\\config\\config.default.js",
+    "httpOnly": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-session\\config\\config.default.js",
+    "encrypt": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-session\\config\\config.default.js",
+    "logValue": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-session\\config\\config.default.js"
+  },
+  "security": {
+    "domainWhiteList": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+    "protocolWhiteList": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+    "defaultMiddleware": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+    "csrf": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "type": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "ignoreJSON": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "useSession": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "cookieName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "sessionName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "headerName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "bodyName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "queryName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "supportedRequests": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "refererWhiteList": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "xframe": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "value": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "hsts": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "maxAge": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "includeSubdomains": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "dta": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "methodnoallow": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "noopen": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "nosniff": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "referrerPolicy": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "value": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "xssProtection": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "value": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "csp": {
+      "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "policy": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "ssrf": {
+      "ipBlackList": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "ipExceptionList": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js",
+      "checkAddress": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+    }
+  },
+  "helper": {
+    "shtml": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-security\\config\\config.default.js"
+  },
+  "jsonp": {
+    "limit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-jsonp\\config\\config.default.js",
+    "callback": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-jsonp\\config\\config.default.js",
+    "csrf": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-jsonp\\config\\config.default.js"
+  },
+  "onerror": {
+    "errorPageUrl": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-onerror\\config\\config.default.js",
+    "appErrorFilter": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-onerror\\config\\config.default.js",
+    "templatePath": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-onerror\\config\\config.default.js"
+  },
+  "watcher": {
+    "type": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-watcher\\config\\config.default.js",
+    "eventSources": {
+      "default": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-watcher\\config\\config.default.js",
+      "development": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-watcher\\config\\config.default.js"
+    }
+  },
+  "customLogger": {
+    "scheduleLogger": {
+      "consoleLevel": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-schedule\\config\\config.default.js",
+      "file": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-schedule\\config\\config.default.js"
+    }
+  },
+  "schedule": {
+    "directory": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-schedule\\config\\config.default.js"
+  },
+  "multipart": {
+    "mode": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "autoFields": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "defaultCharset": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fieldNameSize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fieldSize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fields": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fileSize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "files": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fileExtensions": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "whitelist": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "allowArrayField": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "tmpdir": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+    "cleanSchedule": {
+      "cron": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js",
+      "disable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-multipart\\config\\config.default.js"
+    }
+  },
+  "logrotator": {
+    "filesRotateByHour": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "hourDelimiter": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "filesRotateBySize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "maxFileSize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "maxFiles": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "rotateDuration": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "maxDays": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-logrotator\\config\\config.default.js"
+  },
+  "static": {
+    "prefix": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static\\config\\config.default.js",
+    "dir": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static\\config\\config.default.js",
+    "dynamic": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static\\config\\config.default.js",
+    "preload": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static\\config\\config.default.js",
+    "buffer": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static\\config\\config.default.js",
+    "maxFiles": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-static\\config\\config.default.js"
+  },
+  "nunjucks": {
+    "autoescape": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "throwOnUndefined": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "trimBlocks": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "lstripBlocks": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "cache": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg-view-nunjucks\\config\\config.default.js"
+  },
+  "env": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "name": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "cookies": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "proxy": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "maxIpsCount": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "maxProxyCount": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "protocolHeaders": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "ipHeaders": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "hostHeaders": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "pkg": {
+    "name": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "version": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "description": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "main": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "scripts": {
+      "dev": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "test": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "cov": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    },
+    "keywords": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "author": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "license": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "dependencies": {
+      "egg": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "egg-bin": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "egg-mock": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "egg-mysql": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "egg-sequelize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "egg-view-nunjucks": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "express": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "mockjs": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "morgan": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "mysql2": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "sequelize": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "sequelize-cli": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    },
+    "devDependencies": {
+      "cross-env": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "factory-girl": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    }
+  },
+  "baseDir": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "HOME": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "rundir": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "dump": {
+    "ignore": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "confusedConfigurations": {
+    "bodyparser": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "notFound": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "sitefile": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "middlewares": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "httpClient": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "notfound": {
+    "pageUrl": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "siteFile": {
+    "/favicon.ico": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "cacheControl": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "bodyParser": {
+    "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "encoding": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "formLimit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "jsonLimit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "textLimit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "strict": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "queryString": {
+      "arrayLimit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "depth": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "parameterLimit": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    },
+    "onerror": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "logger": {
+    "dir": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "encoding": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "env": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "level": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "consoleLevel": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "disableConsoleAfterReady": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "outputJSON": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "buffer": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "appLogName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "coreLogName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "agentLogName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "errorLogName": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "coreLogger": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "allowDebugAtProd": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "enablePerformanceTimer": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "httpclient": {
+    "enableDNSCache": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "dnsCacheLookupInterval": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "dnsCacheMaxLength": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "request": {
+      "timeout": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    },
+    "httpAgent": {
+      "keepAlive": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "freeSocketTimeout": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "maxSockets": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "maxFreeSockets": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    },
+    "httpsAgent": {
+      "keepAlive": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "freeSocketTimeout": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "maxSockets": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "maxFreeSockets": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    }
+  },
+  "meta": {
+    "enable": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "logging": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "coreMiddleware": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "workerStartTimeout": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "serverTimeout": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+  "cluster": {
+    "listen": {
+      "path": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "port": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+      "hostname": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+    }
+  },
+  "clusterClient": {
+    "maxWaitTime": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js",
+    "responseTimeout": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+  },
+  "onClientError": "C:\\aproject\\zhufengreact202205\\11.egg\\node_modules\\egg\\config\\config.default.js"
+}

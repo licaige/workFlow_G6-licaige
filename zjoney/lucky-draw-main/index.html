@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抽奖活动</title>
+  <style>
+    .bodydom {
+      width: 600px;
+      height: 600px;
+      border: 1px solid;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #F56C6C;
+      border-radius: 10px;
+    }
+
+    .block {
+      width: 25%;
+      height: 25%;
+      border: 1px solid black;
+      text-align: center;
+      font-size: 20px;
+      margin: 4%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: pink;
+    }
+
+    .block5 {
+      background-color: #409EFF;
+      cursor: pointer;
+    }
+
+    .frequency {
+      font-size: 15px
+    }
+
+    .prize {
+      font-size: 25px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bodydom">
+    <div class="block">鸿蒙紫气*1</div>
+    <div class="block">现金百万*1</div>
+    <div class="block">复活戒指*1</div>
+    <div class="block">谢谢参与</div>
+    <div class="block5 block">
+      <div>
+        <div>开始抽奖</div>
+        <div class='frequency'>剩余<span id='numbers'>3</span>次</div>
+      </div>
+    </div>
+    <div class="block">九阳真经*1</div>
+    <div class="block">宇宙战舰*1</div>
+    <div class="block">世界树*1</div>
+    <div class="block">神秘大奖</div>
+  </div>
+  <div id='prize'></div>
+  <!-- js -->
+  <script>
+    let blocks = document.getElementsByClassName("block");
+    //list存放数组的下标，i为下标值，默认从下标为0的开始，也就是左上角的高档洋房一套，count用于判断是否与随机数相等每次加一
+    let list = [0, 1, 2, 5, 8, 7, 6, 3], i = 0, count = 0, stopTimer;
+    let randomn = Math.floor(Math.random() * 8 + 50); // 创建随机数随机数 
+    let timing = function () {
+      // 将其他盒子都变为粉色
+      for (let j = 0; j < list.length; j++) {
+        blocks[list[j]].style.background = "pink";
+      }
+      blocks[list[i]].style.background = "white";
+      i++;
+      // 重制i的值
+      if (i === list.length) {
+        i = 0;
+      }
+
+      //randomn的值最大为58，最小为50
+      count++; // 根据count的值调整速度
+      // 下面的4个if根据count的值来关闭计时器和重启计时器 改变计时器的时间间隔
+      if (count === 5 || count === 45) {
+        clearInterval(stopTimer);
+        stopTimer = setInterval(timing, 200);
+      }
+      if (count === 10 || count === 35) {
+        clearInterval(stopTimer);
+        stopTimer = setInterval(timing, 100);
+      }
+      if (count === 15) {
+        clearInterval(stopTimer);
+        stopTimer = setInterval(timing, 50);
+      }
+      // 当等于上面的随机数时，停止计时器
+      if (count === randomn) {
+        clearInterval(stopTimer);
+        var tips = blocks[list[i - 1]].innerText
+        if (i - 1 != 6) {
+          document.getElementById("prize").innerHTML = '恭喜您获得' + tips
+        } else {
+          document.getElementById("prize").innerHTML = '不要灰心，再接再厉！'
+        }
+        count = 0  //重置count 的值
+        let randomn = Math.floor(Math.random() * 8 + 50); // 重新获取随机数
+        blocks[4].addEventListener("click", start);//重新绑定点击事件
+      }
+
+    }
+    // 点击开始按钮后 点击后执行 timing 
+    let start = function () {
+      blocks[4].removeEventListener("click", start); // 当点击了开始按钮后 移除点击事件 防止用户重复点击
+      var numbers = document.getElementById("numbers").innerHTML
+      if (numbers == 0) {
+        alert('抱歉，您没有抽奖次数！')
+      } else {
+        numbers--
+        document.getElementById("numbers").innerHTML = numbers
+        stopTimer = setInterval(timing, 300);
+      }
+      console.log(numbers)
+
+    }
+    blocks[4].addEventListener("click", start);  //下标为4的绑定点击事件，也就是开始抽奖
+  </script>
+
+</body>
+
+</html>

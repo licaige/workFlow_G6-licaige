@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        1.custorm elements:允许用户自定义一个元素  随便起名字
+        2.shadow DOM 样式隔离是webcomponent一部分
+        3.可以支持组件的特点 模板 、 插槽、 生命周期 、 属性 都是组件的特点
+     -->
+    <my-button type="primary"></my-button>
+    <!-- template是浏览器内容的，默认不会显示出来 -->
+    <template id="btn">
+        <button class="my-button"><slot>按钮</slot></button>
+    </template>
+
+    <button class="my-button"></button>
+
+    <script>
+        // 思想：iframe webcomponent  路由劫持 （通信） 隔离（js 隔离 css隔离）
+        // 缺点是： 没有统一方案；
+
+        // micro-app 核心是将你的应用 变成自定义元素，插入到基座中
+        // webComponent兼容性不好 2010年就出现了，兼容性不好
+        class MyButton extends HTMLElement{
+            connectedCallback(){ // vue组件中的mounted
+                // 元素挂载完成后，我们需要获取传入的属性，并且使用对应的模板来渲染
+                this.shadow = this.attachShadow({mode:'open'})
+                let btn =  document.getElementById('btn');// => 获取远程html
+                const btnType = this.getAttribute('type') || 'default';
+                this.types = {
+                    'primary':{
+                        background:'blue',
+                    },
+                    'default':{
+                        background:'#a1a1a1'
+                    }
+                }
+                let types = this.types
+                let style = document.createElement('style')
+                style.innerHTML =`
+                    .my-button{
+                        background:${types[btnType].background};
+                        color:#fff;
+                        padding:10px 20px
+                    }
+                `
+                let tpl = btn.content.cloneNode(true);
+                this.shadow.appendChild(style) // 样式隔离
+                this.shadow.appendChild(tpl) // dom隔离
+                this.dispatchEvent(new CustomEvent('mounted1')); // 自定义发射的事件
+            }
+            static get observedAttributes(){
+                return ['type']
+            }
+            attributeChangedCallback(name,oldVal,newVal){
+                if(this.shadow){
+                   const btn =  this.shadow.querySelector('.my-button');
+                   btn.style.background =  this.types[newVal].background;
+                   this.dispatchEvent(new CustomEvent('update1'))
+                }
+            }
+            disconnectedCallback(){
+            } // 组件卸载触发
+            adoptedCallback(){} // 移动到其他地方会触发
+        }
+        const customBtn = document.querySelector('my-button')
+        customBtn.addEventListener('mounted1',function(){
+            console.log('mounted')
+        })
+        customBtn.addEventListener('update1',function(){
+            console.log('update')
+        })
+        window.customElements.define('my-button',MyButton);
+        // customBtn.parentNode.removeChild(customBtn)
+        
+        // setTimeout(()=>{
+        //     customBtn.setAttribute('type','default')
+        // },1000)
+    </script>
+</body>
+</html>

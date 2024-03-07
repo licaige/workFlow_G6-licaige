@@ -1,0 +1,346 @@
+$headSize: 60px;
+$menuSize: 275px;
+$operatorSize: 275px;
+
+$ibc: #dcdfe6;
+$ibl: #ebeef5;
+$itc: #314659;
+$icc: rgba(0, 0, 0, 0.45);
+$boxShadowColor: #f0f1f2;
+$primary: #409EFF;
+
+.react-visual-editor {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+
+  &:before {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(black, 0.1);
+    content: '';
+  }
+
+  .react-visual-editor-head,
+  .react-visual-editor-body,
+  .react-visual-editor-menu,
+  .react-visual-editor-operator {
+    position: absolute;
+
+    //自动移滚动条样式
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 1em;
+      background-color: rgba(black, 0.15);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 1em;
+      background-color: transparent;
+    }
+  }
+
+  .react-visual-editor-menu {
+    left: 0;
+    width: $menuSize;
+    top: 0;
+    bottom: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+
+    .react-visual-editor-menu-component {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      padding: 20px 16px;
+      position: relative;
+      border: solid 2px $ibc;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      &:hover {
+        border-color: $primary;
+        cursor: move;
+      }
+    }
+
+    .react-visual-editor-menu-component-name {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      padding: 2px 16px;
+      background-color: $primary;
+      color: white;
+      font-size: 12px;
+    }
+  }
+
+  .react-visual-editor-operator {
+    right: 0;
+    width: $operatorSize;
+    top: 0;
+    bottom: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+
+    & > div:first-child {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .react-visual-editor-body {
+    left: $menuSize;
+    right: $operatorSize;
+    top: 0;
+    bottom: 0;
+    padding-top: $headSize + 20px;
+    padding-bottom: 300px;
+    background-color: $ibl;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+
+    .react-visual-editor-container {
+      .react-visual-editor-block {
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          cursor: move;
+        }
+
+        &.react-visual-editor-block-focus {
+          &:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: dashed 1px $primary;
+          }
+        }
+      }
+
+      .react-visual-editor-mark-line-y {
+        position: absolute;
+        left: 0;
+        right: 0;
+        border-top: dashed 1px $primary;
+      }
+
+      .react-visual-editor-mark-line-x {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        border-left: dashed 1px $primary;
+      }
+    }
+  }
+
+  .react-visual-editor-head {
+    left: $menuSize;
+    right: $operatorSize;
+    top: 0;
+    height: $headSize;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+
+    .react-visual-editor-head-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(black, 0.3);
+      color: white;
+      height: 60px;
+      width: 60px;
+      cursor: pointer;
+      transition: all 300ms linear;
+      position: relative;
+      user-select: none;
+
+      & + .visual-editor-head-button {
+        margin-left: 1px;
+      }
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      &:hover {
+        background-color: white;
+        color: $primary;
+      }
+
+      &:not(:first-child) {
+        &:after {
+          position: absolute;
+          left: -0.5px;
+          width: 1px;
+          top: 0;
+          bottom: 0;
+          background-color: #ccc;
+          content: '';
+        }
+      }
+
+      i {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &.react-visual-editor-preview {
+    .react-visual-editor-container {
+      .react-visual-editor-block {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &:not(.react-visual-editor-preview) {
+    .react-visual-editor-container {
+      .react-visual-editor-block {
+        & > * {
+          transition: none;
+        }
+      }
+    }
+  }
+}
+
+.react-visual-editor-container {
+  background-color: white;
+  position: relative;
+
+  .react-visual-editor-block {
+    position: absolute;
+  }
+}
+
+.react-visual-container-edit-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: dashed 1px $primary;
+  color: $itc;
+  padding: 5px 12px;
+  cursor: pointer;
+
+  .iconfont {
+    color: $icc;
+  }
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+
+}
+
+.block-resize {
+  $space: 6px;
+  $size: 6px;
+
+  position: absolute;
+  top: -$space;
+  left: -$space;
+  right: -$space;
+  bottom: -$space;
+  width: $size;
+  height: $size;
+  background-color: $primary;
+  z-index: 99;
+  user-select: none;
+
+  &.block-resize-top {
+    left: calc(50% - #{$size / 2});
+    right: initial;
+    bottom: initial;
+    cursor: n-resize;
+  }
+
+  &.block-resize-bottom {
+    left: calc(50% - #{$size / 2});
+    right: initial;
+    top: initial;
+    cursor: s-resize;
+  }
+
+  &.block-resize-left {
+    top: calc(50% - #{$size / 2});
+    bottom: initial;
+    right: initial;
+    cursor: w-resize;
+  }
+
+  &.block-resize-right {
+    top: calc(50% - #{$size / 2});
+    bottom: initial;
+    left: initial;
+    cursor: e-resize;
+  }
+
+  &.block-resize-top-left {
+    right: initial;
+    bottom: initial;
+    cursor: nw-resize;
+  }
+
+  &.block-resize-top-right {
+    left: initial;
+    bottom: initial;
+    cursor: ne-resize;
+  }
+
+  &.block-resize-bottom-left {
+    top: initial;
+    right: initial;
+    cursor: sw-resize;
+  }
+
+  &.block-resize-bottom-right {
+    top: initial;
+    left: initial;
+    cursor: se-resize;
+  }
+}

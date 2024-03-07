@@ -1,0 +1,20 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/jw/Desktop/Vue3-component 3"
+  },
+  "1 error pnpm": {
+    "errno": 1,
+    "code": "ELIFECYCLE",
+    "pkgid": "play@0.0.0",
+    "stage": "dev",
+    "script": "vite",
+    "pkgname": "play",
+    "err": {
+      "name": "pnpm",
+      "message": "play@0.0.0 dev: `vite`\nExit status 1",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: play@0.0.0 dev: `vite`\nExit status 1\n    at EventEmitter.<anonymous> (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:108610:20)\n    at EventEmitter.emit (node:events:527:28)\n    at ChildProcess.<anonymous> (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:95176:18)\n    at ChildProcess.emit (node:events:527:28)\n    at maybeClose (node:internal/child_process:1092:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:302:5)"
+    }
+  }
+}

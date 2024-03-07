@@ -1,0 +1,55 @@
+.uploadBox {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 300px;
+}
+
+.uploadBox .handle {}
+
+.uploadBox .handle input {
+    display: none;
+}
+
+.uploadBox .handle .submit {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: darkcyan;
+    color: #FFF;
+    font-size: 14px;
+}
+
+.uploadBox .handle .submit.disable {
+    background: gainsboro;
+    color: #999;
+}
+
+.uploadBox .detail {
+    height: 40px;
+    line-height: 40px;
+}
+
+.uploadBox .detail .loading {
+    vertical-align: middle;
+    display: inline-block;
+    width: 41px;
+    height: 29px;
+    background: url('../images/loading.gif') no-repeat;
+    background-size: 100% 100%;
+}
+
+.uploadBox .abbre {
+    padding: 10px 0;
+}
+
+.uploadBox .abbre img {
+    display: block;
+    width: 100%;
+}
+
+.uploadBox .detail,
+.uploadBox .abbre {
+    display: none;
+}

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+我是用户列表模板
+<ul>
+  {% for user in users%}
+  {% include "user.html" %}
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+.table-props-editor {
+  display: block;
+
+  & > * + * {
+    margin-left: 8px;
+  }
+
+  .ant-tag {
+    cursor: pointer;
+  }
+}
+
+.table-prop-editor-dialog-buttons {
+  margin-bottom: 12px;
+}
+
+.table-prop-editor-dialog-table {
+  max-height: 500px;
+  overflow: auto;
+}

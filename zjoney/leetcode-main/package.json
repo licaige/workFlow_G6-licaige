@@ -1,0 +1,28 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "日常练习leetcode",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjoney/leetcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zjoney/leetcode/issues"
+  },
+  "homepage": "https://github.com/zjoney/leetcode#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  }
+}

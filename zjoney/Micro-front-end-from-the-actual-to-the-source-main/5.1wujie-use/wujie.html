@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>基座的代码，不被子应用的样式所污染</div>
+
+    <!-- 加载子应用的div -->
+    <div id="container"></div>
+    <!-- 
+        以前我们的js都是放到沙箱（自己实现的）中跑的  -> iframe
+        我们的css隔离 （scopedCSS） -> webComponent(shadowRoot)
+        渲染采用webComponent （拉取html模板 生成自定义组件插入到指定的dom种）
+     -->
+
+     <script>
+        const strTmpWithCSS = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <div id="inner">hello jw</div>
+            <style>
+                div{background:red;color:#fff}
+             </style>
+        </body>
+        </html>
+        `
+        const strScript = `
+            window.a = 100; // 此属性不会影响父应用
+            console.log(window.a); // 100
+            const ele = document.querySelector('#inner')
+            console.log(ele);
+        `
+
+        function createIframe(){
+            const iframe = document.createElement('iframe');
+            iframe.src = 'about:blank'
+            document.body.appendChild(iframe);
+            return iframe
+        }
+
+        function createSandbox(){
+            const sandbox = {
+                iframe:createIframe(), // 创建了一个iframe沙箱
+                shadowRoot:null
+            }
+            return sandbox
+        }
+        function injectTemplate(sandbox,template){
+            const wrapper =  document.createElement('div');
+            wrapper.innerHTML = template;
+            sandbox.shadowRoot.appendChild(wrapper)
+        }
+        
+        function runScirptInSandbox(sandbox,script){
+            const iframeWindow = sandbox.iframe.contentWindow;
+            const scriptElement = iframeWindow.document.createElement('script');
+
+            // 获取head 将script插入进去
+            const headElement = iframeWindow.document.querySelector('head');
+
+
+            // 我们希望在脚本执行之前，有些方法用的是父应用的
+            // document.querySelector 应该用的不是iframe中的 -》 shadowRoot 去弄
+            // 添加弹框的时候 document.createElement().appendChild() -> 代理到全局的window上去
+
+            // iframe中的路由管理  history.pushState -> 将一些常用方法进行同步到主应用
+            // ......
+            Object.defineProperty(iframeWindow.Document.prototype, 'querySelector',{
+                get(){
+                   // 加载的脚本内部调用了querySelector
+                   // document.querySeletor('abc')  -> sandbox.shadowRoot['querySelector']
+                   return new Proxy(sandbox.shadowRoot['querySelector'],{
+                        apply(target,thisArgs,args){
+                            return thisArgs.querySelector.apply(sandbox.shadowRoot,args)
+                        }
+                   })
+                }
+            })
+            scriptElement.textContent = script;
+            headElement.appendChild(scriptElement)
+        }
+        function createCustomElement(){
+            class WujieApp extends HTMLElement{
+                connectedCallback(){
+                    // 1)创建沙箱
+                    const sandbox = createSandbox();
+                    // 2)创建shadowdDOM
+                    sandbox.shadowRoot = this.attachShadow({mode:'open'})
+                    // 3)将html、css放入到shadowdDOM
+                    injectTemplate(sandbox,strTmpWithCSS)
+                    // 4)将js放入沙箱执行
+                    runScirptInSandbox(sandbox,strScript)
+                }
+            }
+            window.customElements.define('wujie-app',WujieApp);
+            container.appendChild(document.createElement('wujie-app'))
+        }
+        // 定义一个组件来使用
+        createCustomElement()
+      
+
+
+     </script>
+
+</body>
+</html>

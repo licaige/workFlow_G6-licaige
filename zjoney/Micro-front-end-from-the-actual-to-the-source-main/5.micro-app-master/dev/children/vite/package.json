@@ -1,0 +1,19 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.1.4",
+    "vue-router": "^4.0.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^1.4.3",
+    "@vitejs/plugin-vue": "^1.2.4",
+    "@vue/compiler-sfc": "^3.1.4",
+    "vite": "^2.6.13"
+  }
+}

@@ -1,0 +1,13 @@
+.number-range {
+  display: inline-flex;
+  align-items: center;
+
+  & > input {
+    width: calc(50% - 1em);
+  }
+
+  & > i {
+    text-align: center;
+    width: 2em;
+  }
+}

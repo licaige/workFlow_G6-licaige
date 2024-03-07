@@ -1,0 +1,21 @@
+html,
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  margin: 0;
+}
+.parent {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.parent .explainer {
+  padding: 20px;
+  max-width: 70%;
+}
+
+.parent .item {
+  position: absolute;
+  user-select: none;
+}

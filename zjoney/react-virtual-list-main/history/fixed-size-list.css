@@ -1,0 +1,18 @@
+.List {
+  border: 1px solid gray;
+}
+
+.ListItemOdd,
+.ListItemEven {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ListItemOdd {
+  background-color: lightcoral;
+}
+
+.ListItemEven {
+  background-color: lightgreen;
+}

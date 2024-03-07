@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珠峰在线Web高级</title>
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="css/reset.min.css">
+    <style>
+        .uploadBox {
+            box-sizing: border-box;
+            margin: 30px auto;
+            width: 300px;
+            height: 200px;
+            background: url('./images/upload.svg') no-repeat center center #DDD;
+            background-size: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="uploadBox" contenteditable></div>
+
+    <script>
+        let uploadBox = document.querySelector('.uploadBox');
+        uploadBox.ondrop = function (ev) {
+            ev.preventDefault();
+            // 获取拖拽放置到盒子中的文件
+            console.log(ev.dataTransfer.files[0]);
+        };
+    </script>
+</body>
+
+</html>

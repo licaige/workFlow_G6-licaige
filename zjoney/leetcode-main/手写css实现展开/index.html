@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="./jquery-3.4.1.min.js"></script>
+  <style type="text/css">
+    .info-shrink-text {
+      height: 20px;
+      width: 1400px;
+      overflow: hidden;
+    }
+
+    .color {
+      color: white;
+    }
+
+    .more-text {
+      color: #00a5e0;
+      font-size: 14px;
+      line-height: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui-tab">
+    <!-- 具体消息内容 -->
+  </div>
+  <script type="text/javascript">
+    var more = "查看更多"
+    var information_lenght = []
+    //前端获取后台数据并呈现方法
+    function information_display() {
+      var data = [
+        { "content": "测试段落的展开与收起.落的展开与与收起试段落的开与收起试段落的展开与收起试段落的展开与开开与收起试段落的展开与开开与收起试段落的展开与开开与收起试段落的展开与开开与收起试段落的展开与开与收起试段落的展开与收起试段落的展开与收起试段落的的展开与开与收起试段落的展开与收起试段落的展开与收起试段落" },
+        { "content": "的展开与收起.落的展开与与收起试段落的开与收起试段落的展开与收起试段落的展开与开与收起试段落的展开与收起试" },
+        { "content": "的展开与收起.落的展开与与收起试段落的开与收起试段落的展开与收试段落的展开与收起试试段落的展开与收起试试段落的展开与收起试试段落的展开与收起试试段落的展开与收起试试段落的展开与收起试起试段落的展开与开与收起试段落的展开与收起试" },
+      ];
+      $(".ui-tab").empty()
+      information_lenght = []
+      $.each(data, function (index, n) {
+        var more_class = "more-text"
+        var infor_content = document.createElement("p");
+        infor_content.className = "info-shrink-text";
+        infor_content.id = "info-manager-content" + index
+        if (data[index].content.length < 75) {
+          more_class = "color"
+        }
+        information_lenght[index] = data[index].content.length
+        infor_content.innerHTML = data[index].content;
+        $(".ui-tab").append(infor_content)
+        var infor_hr = "<td class=" + more_class + " onclick=\"more_text(this)\" mark=" + index + ">" + more + "</td>"
+          + "<hr style=\"height:1px;border:none;border-top:1px solid #EEEEEE;\" />";
+        $(".ui-tab").append(infor_hr)
+      })
+    }
+    //初始化加载，分页首页数据，输入：每页多少条数据，当前页（默认为1）；输出：当前页数据和总页数
+    window.onload = function () {
+      information_display()
+    }
+    //添加按钮“查看更多”的点击事件
+    function more_text(item) {
+      console.log("单击查看更多：")
+      if ($(item).text() == "查看更多") {
+        if (information_lenght[$(item).attr("mark")] > 75) {
+          $(item).text("收起");
+          $("#info-manager-content" + $(item).attr("mark")).css({ height: (information_lenght[$(item).attr("mark")] / 75) * 30 });
+        }
+      }
+      else {
+        $(item).text("查看更多");
+        $(".info-shrink-text").css({ height: "20px" });
+      }
+    }
+  </script>
+
+</body>
+
+</html>

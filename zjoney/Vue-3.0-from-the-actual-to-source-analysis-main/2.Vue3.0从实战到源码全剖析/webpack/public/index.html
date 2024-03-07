@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>珠峰培训</title>
+
+  <!-- 加载页面首先计算REM -->
+  <style>
+    html {
+      /* 750PX的设计稿中 1REM=100PX */
+      font-size: 100px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #F4F4F4;
+    }
+
+    #app {
+      margin: 0 auto;
+      max-width: 750px;
+      min-height: 100%;
+      background: #FFF;
+    }
+  </style>
+  <script>
+    ~ function () {
+      function computed() {
+        let HTML = document.documentElement,
+          winW = HTML.clientWidth,
+          desW = 750;
+        if (winW >= desW) {
+          HTML.style.fontSize = "100px";
+          return;
+        }
+        HTML.style.fontSize = winW / desW * 100 + 'px';
+      }
+      computed();
+      window.addEventListener('resize', computed);
+    }();
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+</html>

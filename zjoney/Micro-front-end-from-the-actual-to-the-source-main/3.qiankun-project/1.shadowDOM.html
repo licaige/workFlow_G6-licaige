@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="outer">abc</div>
+    <script>
+        // 影子dom  video audio标签
+        const template = `<div id="qiankun-xxx">
+            <div id="inner">bcd</div>    
+            <style>div{color:red}</style>
+        </div>`
+        const container = document.createElement('div')
+        container.innerHTML = template;
+        const appElement =  container.firstChild
+        let oldContent =appElement.innerHTML; // 老的内容
+        appElement.innerHTML = ''
+        let shadow =  appElement.attachShadow({mode:'closed'})
+        shadow.innerHTML = oldContent; // 放到影子dom中
+        document.body.appendChild(appElement)
+
+
+        console.dir(shadow.querySelector('#inner'))
+    </script>
+</body>
+</html>

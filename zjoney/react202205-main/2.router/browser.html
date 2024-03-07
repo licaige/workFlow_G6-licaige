@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hash</title>
+  <style>
+    #root {
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <ul>
+    <li><a onclick="go('/a')">/a</a></li>
+    <li><a onclick="go('/b')">/b</a></li>
+    <li><a onclick="go('/c')">/c</a></li>
+    <li><a onclick="back()">后退</a></li>
+    <li><a onclick="forward()">前进</a></li>
+  </ul>
+  <script>
+    function render(event) {
+      console.log(event);
+      root.innerHTML = window.location.pathname;
+    }
+    function back() {
+      historyObj.go(-1)
+      //historyObj.back();
+    }
+    function forward() {
+      historyObj.go(1)
+      //historyObj.forward();
+    }
+    window.onpopstate = render;
+    window.addEventListener('popstate', render);
+    let historyObj = window.history;
+    let oldPushState = historyObj.pushState;
+    historyObj.pushState = function (state, title, url) {
+      oldPushState.call(historyObj, state, title, url);
+      render();
+    }
+    function go(url) {
+      historyObj.pushState({ name: '/a' }, null, url);
+    }
+  </script>
+</body>
+
+</html>
