@@ -1,0 +1,139 @@
+#root {
+  flex: 1;
+  height: 100vh;
+  text-align: center;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  }
+  a:hover {
+    color: #535bf2;
+  }
+}
+
+// 主应用 layout 布局样式【子应用采用 scoped css 设置样式，不会收到影响】
+.layout {
+  height: 100%;
+  .layout-header {
+    display: flex;
+    background-color: antiquewhite;
+    height: 48px;
+    align-items: center;
+    color: #646cff;
+    font-weight: 500;
+    padding: 0 16px;
+  }
+  .layout-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    .layout-left {
+      width: 200px;
+      background-color: #f9f9f9;;
+      display: flex;
+      flex-direction: column;
+    }
+    .layout-right {
+      padding: 16px;
+      flex: 1;
+      background-color: #fff;
+    }
+  }
+}
+
+// 该元素样式将设置为全局样式【即将会被设置到所有应用 button 元素上】
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+// 覆盖 reactApp layout scoped 样式
+._layout_1tw3u_1 {
+  padding-top: 30px
+}
+
+// 覆盖 vueApp layout scoped 样式
+.layout[data-v-051739fd] {
+  padding-top: 30px
+}

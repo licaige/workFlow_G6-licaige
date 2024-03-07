@@ -1,0 +1,34 @@
+// 属性设置面板公共css
+.el-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.el-tabs__content {
+  flex: 1;
+  padding: 20px;
+}
+
+.el-tabs__nav {
+  border-radius: none;
+  user-select: none;
+}
+
+.zs-color-picker-panel__visible {
+  z-index: 10 !important;
+}
+
+.el-form-item__content {
+  flex-wrap: nowrap !important;
+  justify-content: space-between;
+
+  .el-switch {
+    margin-left: 10px;
+  }
+}
+
+// 颜色选择面板
+.zs-color-picker-panel__visible {
+  z-index: 10 !important;
+}

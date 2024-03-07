@@ -1,0 +1,10 @@
+/.svelte/
+/build/
+/functions/
+/node_modules/
+/static/
+/tmp/
+
+*.cjs
+*.json
+*.txt

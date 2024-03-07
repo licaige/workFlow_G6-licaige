@@ -1,0 +1,36 @@
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": #00c091,
+    ),
+    "success": (
+      "base": #67C23A,
+    ),
+    "warning": (
+      "base": #E6A23C,
+    ),
+    "danger": (
+      "base": #F56C6C,
+    ),
+    "error": (
+      "base": #F56C6C,
+    ),
+    "info": (
+      "base": #909399,
+    ),
+  ),
+
+  $button-padding-horizontal: (
+    "default": 80px
+  )
+);
+
+$primary-color: #1890ff;
+
+// web-deevelop简历模板颜色
+$primary-title-color: #121c26;
+$primary-sub-title-color: #666;
+$primary-title-font-size: 20px;
+
+$primary-text-color: #757575;
+$primary-text-font-size: 14px;
