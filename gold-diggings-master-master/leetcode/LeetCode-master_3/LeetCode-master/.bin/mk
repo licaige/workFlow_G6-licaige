@@ -1,0 +1,122 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const readline = require('readline');
+const path = require('path');
+const _ = require('lodash');
+
+main();
+
+async function main() {
+    const directory = await getDirectory('LeetCode');
+    writeMarkdown(
+        'README.md',
+        'LeetCode 经典题目（JavaScript 实现）',
+        directory,
+        _.partialRight(renderDirectories, renderFileAsLink)
+    );
+    writeMarkdown(
+        'static/mind.md',
+        'LeetCode 经典题目（JavaScript 实现）',
+        directory,
+        _.partialRight(renderDirectories, renderFileAsTitle)
+    );
+}
+
+async function getDirectory(fileOrDirPath) {
+    const absolutePath = path.resolve('.', fileOrDirPath);
+    const relativePath = path.relative('.', fileOrDirPath);
+    const name = path.basename(fileOrDirPath);
+    const stat = await fs.promises.stat(absolutePath);
+    if (stat.isFile()) {
+        const firstLine = await readFirstLine(absolutePath);
+        return {
+            type: 'file',
+            name: name,
+            path: relativePath,
+            title: name.replace(/(\.js|\.ts)\.md/, ''),
+            introduction: _.trim(firstLine, '# '),
+        };
+    } else {
+        const dirs = await fs.promises.readdir(absolutePath);
+        const files = await Promise.all(_.map(dirs, (dir) => getDirectory(path.join(fileOrDirPath, dir))));
+        return { type: 'directory', name: name, path: relativePath, child: files };
+    }
+}
+
+async function readFirstLine(pathToFile) {
+    const readable = fs.createReadStream(pathToFile);
+    const reader = readline.createInterface({ input: readable });
+    const line = await new Promise((resolve) => {
+        reader.on('line', (line) => {
+            reader.close();
+            resolve(line);
+        });
+    });
+    readable.close();
+    return line;
+}
+
+const topics = new Map([
+    ['Linked List', '链表 (Linked List)'],
+    ['Stack and Queue', '栈与队列（Stack and Queue）'],
+    ['Hash Table', '哈希表 (Hash Table)'],
+    ['Array', '数组（Array）'],
+    ['String', '字符串（String）'],
+    ['Binary Search', '二分查找（Binary Search）'],
+    ['Sorting', '排序（Sorting）'],
+    ['Two Pointers', '双指针（Two Pointers）'],
+    ['Sliding Window', '滑动窗口（Sliding Window）'],
+    ['Binary Tree', '二叉树（Binary Tree）'],
+    ['Backtracking', '回溯（Backtracking）'],
+    ['Greedy', '贪心（Greedy）'],
+    ['Dynamic Programming', '动态规划（Dynamic Programming）'],
+    ['Union Find', '并查集（Union Find）'],
+    ['Trie', '字典树（Trie）'],
+    ['Segment Tree', '线段树（Segment Tree）'],
+    ['Graph', '图（Graph）'],
+    ['Depth-First Search', '深度优先搜索（Depth-First Search）'],
+    ['Breadth-First Search', '广度优先搜索（Breadth-First Search）'],
+    ['Topological Sort', '拓扑排序（Topological Sort）'],
+    ['Prefix Sum', '前缀和（Prefix Sum）'],
+    ['Design', '设计（Design）'],
+]);
+
+async function writeMarkdown(target, title, directory, render) {
+    await fs.promises.writeFile(
+        target,
+        `## ${title}
+    
+${render(directory.child, '###')}
+    `
+    );
+}
+
+function renderDirectories(directories, level, renderFile) {
+    return directories
+        .filter((fileOrDir) => !fileOrDir.name.startsWith('_') && !fileOrDir.name.startsWith('.'))
+        .sort((a, b) => {
+            const topicKeys = [...topics.keys()];
+            const comparison = topicKeys.indexOf(a.name) - topicKeys.indexOf(b.name);
+            return comparison === 0 ? parseInt(a.name) - parseInt(b.name) : comparison;
+        })
+        .map((fileOrDir) => {
+            if (fileOrDir.type === 'directory') {
+                return `${level} ${topics.get(fileOrDir.name) || fileOrDir.name}
+
+${renderDirectories(fileOrDir.child, level + '#', renderFile)}
+                `;
+            } else {
+                return renderFile(fileOrDir, level);
+            }
+        })
+        .join('\n');
+}
+
+function renderFileAsLink(file) {
+    return `-   [${file.title}](<${file.path}>)`;
+}
+
+function renderFileAsTitle(file, level) {
+    return `${level} ${file.name}`;
+}

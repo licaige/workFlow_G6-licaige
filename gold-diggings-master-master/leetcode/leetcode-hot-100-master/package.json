@@ -1,0 +1,24 @@
+{
+  "name": "leetcode-hot-100",
+  "version": "1.0.0",
+  "description": "leetcode 热题 100",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carefulbird/leetcode-hot-100.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carefulbird/leetcode-hot-100/issues"
+  },
+  "homepage": "https://github.com/carefulbird/leetcode-hot-100#readme",
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "prettier": "^2.7.1"
+  }
+}

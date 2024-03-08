@@ -1,0 +1,29 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "leetcode",
+  "scripts": {
+    "lint": "eslint src/ .eslintrc.js scripts/ --fix",
+    "generate": "tsx scripts/generate.ts",
+    "question": "tsx scripts/question.ts",
+    "sync": "tsx scripts/sync.ts",
+    "append": "tsx scripts/append.ts"
+  },
+  "author": "jiangshanmeta",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  },
+  "dependencies": {
+    "@types/node": "^18.11.15",
+    "tsx": "^3.12.1",
+    "typescript": "^4.2.3"
+  }
+}

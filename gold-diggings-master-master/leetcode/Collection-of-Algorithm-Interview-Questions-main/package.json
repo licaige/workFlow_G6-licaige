@@ -1,0 +1,20 @@
+{
+  "name": "collection-of-algorithm-interview-questions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/qiugu/Collection-of-Algorithm-Interview-Questions.git",
+  "author": "qiugu <476710564@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "update": "node scripts/updateNum.js",
+    "prepare": "husky install",
+    "test": "node scripts/excaTest.js"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "husky": "^7.0.1",
+    "inquirer": "^8.1.5",
+    "jest": "^27.0.6"
+  }
+}
