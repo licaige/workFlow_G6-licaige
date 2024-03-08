@@ -5,13 +5,13 @@ import { loadMicroApp} from 'qiankun'
 function App() {
   const containerRef = React.createRef();
  
-  useEffect(()=>{
+  /*useEffect(()=>{
     loadMicroApp({
       name:'m-static',
       entry: 'http://localhost:30000',
       container:containerRef.current
     })
-  })
+  })*/
   // keep-alive 可以实现动态的加载
   return (
     <div className="App">
@@ -20,7 +20,7 @@ function App() {
           <Link to="/vue">Vue应用</Link>
       </BrowserRouter>
 
-      <div ref={containerRef}></div>
+      {/*<div ref={containerRef}></div>*/}
 
       <div id='container'></div>
     </div>  
