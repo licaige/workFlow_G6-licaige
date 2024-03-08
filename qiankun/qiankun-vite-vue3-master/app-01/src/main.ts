@@ -20,7 +20,6 @@ if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
   renderWithQiankun({
     mount(props) {
       console.log("--app 01 mount");
-
       app = createApp(App);
       app.use(router);
       app.mount(
