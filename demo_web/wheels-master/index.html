@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Index</title>
+  <style>
+    a{text-decoration: none; border-bottom: 1px solid;}
+    *{box-sizing: border-box;}
+    body{ margin: 0; min-height: 100vh; display: flex; justify-content: center; }
+    .page{ width: 36em; margin: 2em; border: 1px solid #ddd; padding: 0 1em;
+      box-shadow: 3px 3px 6px hsla(0,0%,0%,0.1);
+    }
+    ol>li{ padding:.2em .5em; }
+    ol>li:hover{ background: #ddd; }
+    ol>li .difficulty{ float: right; }
+  </style>
+
+  <div class="page">
+    <h1>
+      用原生 JS 造轮子
+    </h1>
+    <p>不用任何框架、预编译，用最笨的办法造轮子</p>
+    <p>使用最新 JS 语法编写</p>
+    <p><a href="https://github.com/FrankFang/wheels">所有代码</a>开源，方便阅读</p>
+    <ol>
+      <li>
+        <a href="./demos/tabs.html">
+          Tabs 组件
+        </a>
+        <span class="difficulty">难度 0.0/5</span>
+      </li>
+      <li>
+        <a href="./demos/pager.html">
+          Pager 组件
+        </a>
+        <span class="difficulty">难度 0.5/5</span>
+      </li>
+      <li>
+        <a href="./demos/image-picker.html">
+          图片上传组件
+        </a>
+        <span class="difficulty">难度 1.0/5</span>
+      </li>
+      <li>
+        <a href="./demos/fullpage.html">
+          FullPage 组件
+        </a>
+        <span class="difficulty">难度 2.0/5</span>
+      </li>
+      <li>
+        <a href="./demos/calendar.html">
+          Calendar
+        </a>
+        <span class="difficulty">难度 2.5/5</span>
+      </li>
+      <li>
+        <a href="https://github.com/FrankFang/wheels/blob/master/lib/dom/index.js">
+          DOM 工具库（不断更新中）
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/FrankFang/wheels/blob/master/lib/bom/index.js">
+          BOM 工具库（不断更新中）
+        </a>
+      </li>
+    </ol>
+  </div>
+  <!--百度统计-->
+  <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?950926001a84a4f88cd3e1c7c0bfac08"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+</html>
