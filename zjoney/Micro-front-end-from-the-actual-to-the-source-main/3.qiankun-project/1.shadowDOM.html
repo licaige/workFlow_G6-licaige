@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="outer">abc</div>
+    <div id="outer" style="color: yellow">abc</div>
     <script>
         // 影子dom  video audio标签
         const template = `<div id="qiankun-xxx">
@@ -22,8 +22,6 @@
         let shadow =  appElement.attachShadow({mode:'closed'})
         shadow.innerHTML = oldContent; // 放到影子dom中
         document.body.appendChild(appElement)
-
-
         console.dir(shadow.querySelector('#inner'))
     </script>
 </body>
