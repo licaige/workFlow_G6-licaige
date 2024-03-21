@@ -1,0 +1,62 @@
+@import "common/var";
+@import "mixins/mixins";
+
+// .el-divider
+@include b(divider) {
+  position: relative;
+
+  //.el-divider--horizontal 横向
+  @include m(horizontal) {
+    display: block;
+    width: 100%;
+    margin: 24px 0;
+
+    height: 0;
+    border: 0px;
+    border-top: 1px #dcdfe6;
+  }
+
+  //.el-divider--vertical 纵向
+  // 1
+  // em 相对单位
+  // - 两个特点
+  // - em是 ( font-size ) 的单位时是 ( 父元素的font-size大小 )
+  // - em是 ( 其他属性 ) 的单位时是 ( 自身font-size的大小 )
+  @include m(vertical) {
+    display: inline-block;
+    width: 1px;
+    height: 1em; // 指代自身font-size的小大，这里是纵向排列时，高度正好比文字短一点，经典
+    margin: 0 8px; // 左右边距
+    vertical-align: middle;
+    position: relative;
+    background: #dcdfe6;
+  }
+
+  // .el-divider__text
+  @include e(text) {
+    position: absolute;
+    background-color: $--color-white;
+    padding: 0 20px;
+    font-weight: 500;
+    color: $--color-text-primary;
+    font-size: 14px;
+
+    // .el-divider__text.is-left
+    @include when(left) {
+      left: 20px;
+      transform: translateY(-50%); // 垂直居中
+    }
+
+    // el-divider__text.is-center
+    @include when(center) {
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%); // 水平垂直居中
+    }
+
+    // el-divider__text.is-right
+    @include when(right) {
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  }
+}

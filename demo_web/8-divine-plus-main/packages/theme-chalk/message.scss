@@ -1,0 +1,127 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(message) {
+  min-width: $--message-min-width; // $--message-min-width: 380px !default;
+  box-sizing: border-box;
+  border-radius: $--border-radius-base;
+  border-width: $--border-width-base;
+  border-style: $--border-style-base;
+  border-color: $--border-color-lighter;
+
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+
+  background-color: $--message-background-color; // $--message-background-color: #edf2fc !default;
+  transition:
+    opacity 0.3s,
+    transform 0.4s,
+    top 0.4s;
+  overflow: hidden;
+  padding: $--message-padding; // $--message-padding: 15px 15px 15px 20px !default;
+  display: flex;
+  align-items: center;
+
+  // dv-message .is-center
+  @include when(center) {
+    justify-content: center;
+  }
+
+  @include when(show-close) {
+    .dv-message__content {
+      padding-right: 16px;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  @include m(info) {
+    .dv-message__content {
+      color: $--message-info-font-color;
+    }
+  }
+
+  @include m(success) {
+    background-color: $--color-success-lighter;
+    border-color: $--color-success-light;
+
+    .dv-message__content {
+      color: $--message-success-font-color;
+    }
+  }
+  @include m(warning) {
+    background-color: $--color-warning-lighter;
+    border-color: $--color-warning-light;
+
+    .dv-message__content {
+      color: $--message-warning-font-color;
+    }
+  }
+
+  @include m(error) {
+    background-color: $--color-danger-lighter;
+    border-color: $--color-danger-light;
+
+    .dv-message__content {
+      color: $--message-danger-font-color;
+    }
+  }
+
+  @include e(icon) {
+    margin-right: 10px;
+  }
+
+  @include e(content) {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+
+  @include e(closeBtn) {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: $--message-close-icon-color;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+
+    &:focus {
+      outline-width: 0;
+    }
+    &:hover {
+      color: $--message-close-hover-color;
+    }
+  }
+
+  & .dv-icon-success {
+    color: $--message-success-font-color;
+  }
+
+  & .dv-icon-error {
+    color: $--message-danger-font-color;
+  }
+
+  & .dv-icon-info {
+    color: $--message-info-font-color;
+  }
+
+  & .dv-icon-warning {
+    color: $--message-warning-font-color;
+  }
+}
+
+.dv-message-enter,
+.dv-message-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

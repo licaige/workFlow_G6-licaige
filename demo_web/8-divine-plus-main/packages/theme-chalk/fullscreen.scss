@@ -1,0 +1,25 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(fullscreen) {
+  position: relative;
+  background: #fff;
+
+  @include when(directive) {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  @include e(zoom) {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

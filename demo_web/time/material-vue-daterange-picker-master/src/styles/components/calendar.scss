@@ -1,0 +1,157 @@
+$cellActiveBgColor: #4285f4;
+$cellInRangeBgColor: #eef4ff;
+$cellSize: 34px;
+
+
+table.calendar-table {
+  width: 100%;
+  margin: 0;
+  border-spacing: 0;
+  // ??? border-collapse
+  border-collapse: collapse;
+
+  // 移除其它 css 库的影响，比如 vuepress 的主题样式
+  tr,
+  th,
+  td {
+    border: none;
+  }
+
+  // TODO add renderCalendarCell function for API to custom the calendar cell style
+  td,
+  th {
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    min-width: $cellSize;
+    width: $cellSize;
+    padding: $cellSize/2 0;
+    height: 0;
+    line-height: 0;
+    font-size: 12px;
+    // border-radius: 50%;
+    white-space: nowrap;
+    cursor: pointer;
+
+    // border-radius: 4px;
+  }
+
+  td.calendar-cell {
+    position: relative;
+
+    &:hover {
+      background-color: #eee;
+      border-color: transparent;
+      color: inherit;
+    }
+    &.today {
+      font-weight: bold;
+    }
+
+    // items between start and end
+    &.in-range {
+      background-color: $cellInRangeBgColor;
+      border-color: transparent;
+      color: #000;
+      border-radius: 0;
+    }
+
+    // 选中项 (active item)
+    // TODO 开放 API，允许用户自定义 active 的样式，如何做 ？
+    // TODO give an API for user to custom active class
+    &.active,
+    &.active:hover {
+      border-color: transparent;
+      color: #fff;
+
+      &.start-date {
+        border-top-left-radius: $cellSize;
+        border-bottom-left-radius: $cellSize;
+
+        // bootstraps style
+        // border-radius: 4px 0 0 0;
+      }
+
+      &.end-date {
+        // left-top, left-bottom
+        border-top-right-radius: $cellSize;
+        border-bottom-right-radius: $cellSize;
+
+        // bootstraps style
+        // border-radius: 0 0 4px 0;
+      }
+
+      .calendar-cell__content {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 90%;
+        height: 90%;
+        line-height: 1;
+        border-radius: 999px;
+        background-color: $cellActiveBgColor;
+
+        // bootstraps style
+        // top: 0%;
+        // left: 0%;
+        // width: 100%;
+        // height: 100%;
+        // border-radius: 0;
+        // background-color: $cellActiveBgColor;
+
+      }
+    }
+
+    // Items that do not belong to the current month（不在当前月份 Calendar 的 item）
+    // see more: https://github.com/ly525/v-md-date-range-picker/wiki/styles#dayoff
+    &.off,
+    &.off.in-range,
+    &.off.start-date,
+    &.off.end-date {
+      background-color: #fff;
+      border-color: transparent;
+      color: #999;
+
+      .calendar-cell__content {
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+// TODO need refactor by scss mixin
+.v-drp__css-icon-wrapper {
+  position: relative;
+
+  .v-drp__css-icon {
+
+    &.arrow-left:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      border-top: solid 2px currentColor;
+      border-right: solid 2px currentColor;
+      transform: rotate(-135deg);
+    }
+
+    &.arrow-right:before {
+      content: '';
+      position: absolute;
+      right: 50%;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      border-top: solid 2px currentColor;
+      border-right: solid 2px currentColor;
+      transform: rotate(45deg);
+    }
+  }
+
+}

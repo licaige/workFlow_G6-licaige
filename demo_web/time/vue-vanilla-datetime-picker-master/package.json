@@ -1,0 +1,104 @@
+{
+  "name": "vue-vanilla-datetime-picker",
+  "version": "1.2.0",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --name DateTimePicker ./src/components/DateTimePicker.vue",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e"
+  },
+  "author": "Vladyslav Shchepotin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shchepotin/vue-vanilla-datetime-picker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shchepotin/vue-vanilla-datetime-picker.git"
+  },
+  "keywords": [
+    "vue",
+    "date",
+    "datetime",
+    "time",
+    "picker"
+  ],
+  "main": "./dist/DateTimePicker.common.js",
+  "dependencies": {
+    "core-js": "^3.12.1",
+    "luxon": "^1.26.0",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.0",
+    "@vue/cli-plugin-e2e-cypress": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-plugin-unit-jest": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-airbnb": "^5.3.0",
+    "@vue/test-utils": "1.2.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.9.0",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "airbnb-base"
+    ],
+    "rules": {
+      "no-param-reassign": 0,
+      "no-multi-assign": 0,
+      "guard-for-in": 0,
+      "no-underscore-dangle": 0,
+      "max-len": 0,
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-console": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

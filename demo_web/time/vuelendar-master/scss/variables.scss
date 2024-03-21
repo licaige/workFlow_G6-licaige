@@ -1,0 +1,34 @@
+//
+// Base colors variables
+//
+$vl-primary: #C83F3A !default;
+$vl-white: #FFF !default;
+$vl-black: #3E3A4E !default;
+$vl-gray-0: #A0A0A0 !default;
+$vl-gray-1: #B5B5B5 !default;
+$vl-gray-2: #F6F6F6 !default;
+
+//
+// Specific colors for stuff
+//
+$vl-calendar-text-color: $vl-black !default;
+$vl-calendar-bg-color: $vl-gray-2 !default;
+
+$vl-weekday-text-color: $vl-primary !default;
+
+$vl-selected-day-bg-color: $vl-primary !default;
+$vl-selected-day-text-color: $vl-white !default;
+$vl-selected-disabled-day-bg-color: darken($vl-primary, 15%) !default;
+$vl-selected-disabled-day-text-color: $vl-black !default;
+$vl-selected-disabled-border: 1px solid $vl-black !default;
+
+//
+// Sizes
+//
+$vl-calendar-month-width: 300px !default;
+
+//
+// Paddings
+//
+$vl-calendar-month-padding: 0 20px !default;
+$vl-calendar-padding: 20px 0 0 !default;

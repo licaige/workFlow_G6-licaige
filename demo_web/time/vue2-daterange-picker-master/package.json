@@ -1,0 +1,67 @@
+{
+  "name": "vue2-daterange-picker",
+  "version": "0.6.7",
+  "description": "Vue2 date range picker based on https://github.com/dangrossman/bootstrap-daterangepicker (no jQuery)",
+  "author": "Nikola Kostadinov <nikolakk@gmail.com>",
+  "main": "dist/vue2-daterange-picker.umd.min.js",
+  "jsnext:main": "dist/vue2-daterange-picker.umd.min.js",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Innologica/vue2-daterange-picker"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "components:parse": "node ./docs/.scripts/parse.js",
+    "components:watch": "watch \"npm run components:parse\" ./src",
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name vue2-daterange-picker ./src/index.js",
+    "docs:dev": "concurrently \"npm run components:watch\" \"vuepress dev docs\"",
+    "docs:build": "vuepress build docs",
+    "prepublishOnly": "npm run lib",
+    "unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/runtime": "^7.7.4",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-plugin-unit-mocha": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "@vuedoc/parser": "^1.4.0",
+    "@vuepress/plugin-back-to-top": "^1.2.0",
+    "@vuepress/plugin-google-analytics": "^1.2.0",
+    "acorn": "^7.1.0",
+    "autoprefixer": "^9.7.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0",
+    "caniuse-lite": "^1.0.30001265",
+    "chai": "^4.1.2",
+    "concurrently": "^4.1.2",
+    "es6-symbol": "^3.1.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.0.1",
+    "markdown-it-footnote": "^3.0.2",
+    "mockdate": "^2.0.5",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^10.1.1",
+    "vue-template-compiler": "^2.6.10",
+    "vuepress": "^1.2",
+    "webpack": "^4.41.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

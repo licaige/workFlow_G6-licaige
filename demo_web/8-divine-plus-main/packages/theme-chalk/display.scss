@@ -1,0 +1,46 @@
+@import "common/var";
+@import "mixins/mixins";
+
+/** Element 额外提供了一系列类名，用于在某些条件下隐藏元素。这些类名可以添加在任何 DOM 元素或自定义组件上。如果需要，请自行引入以下文件：**/
+/** 基于断点的隐藏类 **/
+/**
+// hidden-xs-only - 当视口在 xs 尺寸时隐藏
+// hidden-sm-only - 当视口在 sm 尺寸时隐藏
+// hidden-sm-and-down - 当视口在 sm 及以下尺寸时隐藏
+// hidden-sm-and-up - 当视口在 sm 及以上尺寸时隐藏
+// hidden-md-only - 当视口在 md 尺寸时隐藏
+// hidden-md-and-down - 当视口在 md 及以下尺寸时隐藏
+// hidden-md-and-up - 当视口在 md 及以上尺寸时隐藏
+// hidden-lg-only - 当视口在 lg 尺寸时隐藏
+// hidden-lg-and-down - 当视口在 lg 及以下尺寸时隐藏
+// hidden-lg-and-up - 当视口在 lg 及以上尺寸时隐藏
+// hidden-xl-only - 当视口在 xl 尺寸时隐藏
+**/
+
+/**
+$--breakpoints-spec: (
+  'xs-only' : (max-width: $--sm - 1),
+  'sm-and-up' : (min-width: $--sm),
+  'sm-only': "(min-width: #{$--sm}) and (max-width: #{$--md - 1})",
+  'sm-and-down': (max-width: $--md - 1),
+  'md-and-up' : (min-width: $--md),
+  'md-only': "(min-width: #{$--md}) and (max-width: #{$--lg - 1})",
+  'md-and-down': (max-width: $--lg - 1),
+  'lg-and-up' : (min-width: $--lg),
+  'lg-only': "(min-width: #{$--lg}) and (max-width: #{$--xl - 1})",
+  'lg-and-down': (max-width: $--xl - 1),
+  'xl-only' : (min-width: $--xl),
+);
+**/
+.hidden {
+  @each $break-point-name, $value in $--breakpoints-spec {
+    &-#{$break-point-name} {
+      @include res($break-point-name, $--breakpoints-spec) {
+        display: none !important;
+      }
+    }
+  }
+  // 遍历map
+  // key -> $break-point-name
+  // value -> $value
+}

@@ -1,0 +1,138 @@
+@import "mixins/mixins";
+@import "mixins/utils";
+@import "common/var";
+
+@include b(progress) {
+  position: relative;
+  line-height: 1;
+  margin: 10px;
+
+  @include e(text) {
+    font-size: 14px;
+    color: $--color-text-regular;
+    display: inline-block; // inline-block 保证 %xxx 在末尾
+    vertical-align: middle;
+    margin-left: 10px;
+    line-height: 1;
+  }
+
+  @include m((circle, dashboard)) {
+    display: inline-block;
+    margin: 0 10px;
+
+    .dv-progress__text {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      transform: translate(0, -50%);
+    }
+  }
+
+  @include m(without-text) {
+    .dv-progress__text {
+      display: none; // 无文字
+    }
+
+    .dv-progress-bar {
+      padding-right: 0;
+      margin-right: 0;
+      display: block;
+    }
+  }
+
+  // 文字在图形内，不需要右边距
+  @include m(text-inside) {
+    .dv-progress-bar {
+      padding-right: 0;
+      margin-right: 0;
+    }
+  }
+
+  @include when(success) {
+    .dv-progress-bar__inner {
+      background-color: $--color-success;
+    }
+
+    .dv-progress__text {
+      color: $--color-success;
+    }
+  }
+
+  @include when(warning) {
+    .dv-progress-bar__inner {
+      background-color: $--color-warning;
+    }
+
+    .dv-progress__text {
+      color: $--color-warning;
+    }
+  }
+
+  @include when(error) {
+    .dv-progress-bar__inner {
+      background-color: $--color-danger;
+    }
+
+    .dv-progress__text {
+      color: $--color-danger;
+    }
+  }
+}
+
+// line
+@include b(progress-bar) {
+  padding-right: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  margin-right: -55px;
+  box-sizing: border-box;
+
+  // $--border-color-lighter: #EBEEF5 !default;
+  // 进度条背景
+  // strokeWidth 作用在这里
+  @include e(outer) {
+    height: 6px;
+    border-radius: 100px;
+    background-color: $--border-color-lighter;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+  }
+  @include e(inner) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%; // 充满outer
+    background-color: $--color-primary;
+    text-align: right;
+    border-radius: 100px;
+    line-height: 1;
+    white-space: nowrap;
+    transition: width 0.6s ease;
+
+    @include utils-vertical-center;
+  }
+
+  // 文字在图形内
+  @include e(innerText) {
+    display: inline-block;
+    vertical-align: middle;
+    color: $--color-white;
+    font-size: 12px;
+    margin: 0 5px;
+  }
+}
+
+@keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 32px 0;
+  }
+}

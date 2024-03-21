@@ -1,0 +1,66 @@
+@import "mixins/mixins";
+@import "common/var";
+@import "common/root-var.scss";
+
+@include b(rate) {
+  height: $--rate-height;
+  line-height: 1;
+
+  &:focus,
+  &:active {
+    outline-width: 0;
+  }
+
+  @include e(item) {
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  @include e(icon) {
+    position: relative;
+    display: inline-block;
+    font-size: $--rate-icon-size;
+    margin-right: $--rate-icon-margin;
+    color: $--rate-icon-color;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+
+    &.is-hover {
+      transform: scale(1);
+
+      // 注意
+      // - 问题: 这里不能使用 css 变量的方式 来修改每个rate组件的单独的hover时的样式设置，因为这样会改变所有 rate 组件的样式
+      // - 解决: 我们通过 mouseover mouseleave click 事件来动态修改 行内样式style
+      color: var(--rate-icon-selected-color, "#fadb14");
+      font-size: var(--rate-icon-selected-size, "18px");
+    }
+
+    .path2 {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  @include e(decimal) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  @include e(text) {
+    font-size: $--rate-font-size;
+    vertical-align: middle;
+  }
+}

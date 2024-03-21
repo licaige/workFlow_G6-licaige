@@ -1,0 +1,205 @@
+{
+  "id": "4169159",
+  "name": "DivinePlus",
+  "font_family": "iconfont",
+  "css_prefix_text": "dv-icon-",
+  "description": "DivinePlus vue3组件库",
+  "glyphs": [
+    {
+      "icon_id": "36270900",
+      "name": "parent",
+      "font_class": "parent",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "36270907",
+      "name": "select",
+      "font_class": "select",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "36270910",
+      "name": "polygon",
+      "font_class": "polygon",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "36567824",
+      "name": "star-selected",
+      "font_class": "star2",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "12865674",
+      "name": "good night",
+      "font_class": "goodnight",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "34452863",
+      "name": "goods",
+      "font_class": "goods",
+      "unicode": "e82c",
+      "unicode_decimal": 59436
+    },
+    {
+      "icon_id": "29786278",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "29786299",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "29786301",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "29786315",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "5387532",
+      "name": "减号",
+      "font_class": "jianhao",
+      "unicode": "eaf5",
+      "unicode_decimal": 60149
+    },
+    {
+      "icon_id": "11372671",
+      "name": "减少",
+      "font_class": "jianshao",
+      "unicode": "e8b1",
+      "unicode_decimal": 59569
+    },
+    {
+      "icon_id": "15838424",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "36403816",
+      "name": "红酒",
+      "font_class": "hongjiu",
+      "unicode": "10121",
+      "unicode_decimal": 65825
+    },
+    {
+      "icon_id": "36403819",
+      "name": "奶咖",
+      "font_class": "naika",
+      "unicode": "10122",
+      "unicode_decimal": 65826
+    },
+    {
+      "icon_id": "36403832",
+      "name": "咖啡",
+      "font_class": "kafei",
+      "unicode": "10123",
+      "unicode_decimal": 65827
+    },
+    {
+      "icon_id": "36403837",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "10124",
+      "unicode_decimal": 65828
+    },
+    {
+      "icon_id": "36411741",
+      "name": "截屏",
+      "font_class": "jieping",
+      "unicode": "e6d1",
+      "unicode_decimal": 59089
+    },
+    {
+      "icon_id": "3456457",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "4611765",
+      "name": "对勾",
+      "font_class": "duigou",
+      "unicode": "ebe6",
+      "unicode_decimal": 60390
+    },
+    {
+      "icon_id": "4766293",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "5485616",
+      "name": "错误",
+      "font_class": "cuowu",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "8106217",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "11249856",
+      "name": "star",
+      "font_class": "star1",
+      "unicode": "e859",
+      "unicode_decimal": 59481
+    },
+    {
+      "icon_id": "29947",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "10246127",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "13743965",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "1638283",
+      "name": "右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    }
+  ]
+}

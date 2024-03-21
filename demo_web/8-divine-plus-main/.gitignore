@@ -1,0 +1,17 @@
+# 忽略 node_modules
+node_modules
+
+# dist
+dist
+examples/dist
+
+# vuepress2 .cache .temp dist
+docs/.vuepress/.temp/
+docs/.vuepress/.cache/
+docs/.vuepress/dist/
+
+# debug
+npminstall-debug.json
+
+# yarn
+yarn.lock

@@ -1,0 +1,43 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:require-extensions/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "env": "development"
+      },
+      "typescript": true
+    }
+  },
+  "ignorePatterns": ["*.js", "*.d.ts"],
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript"
+      ],
+      "excludedFiles": "*.d.ts",
+      "plugins": ["@typescript-eslint", "require-extensions"],
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": "error",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "import/no-named-as-default-member": "off",
+        "prefer-arrow-callback": "error"
+      }
+    }
+  ]
+}

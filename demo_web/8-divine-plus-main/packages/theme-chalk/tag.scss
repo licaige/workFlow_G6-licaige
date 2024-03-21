@@ -1,0 +1,182 @@
+@import "mixins/mixins";
+@import "common/var";
+
+// 颜色函数
+// - red() green() blue()
+// - rgb() rgba()
+// - mix()
+// ```
+// rgb($red,$green,$blue)：根据红、绿、蓝三个值创建一个颜色；
+// rgba($red,$green,$blue,$alpha)：根据红、绿、蓝和透明度值创建一个颜色；// rgba 分别表示 red green blue alpha
+
+// mix($color-1,$color-2,[$weight])：把两种颜色混合在一起
+
+// red($color)：从一个颜色中获取其中红色值；
+// green($color)：从一个颜色中获取其中绿色值；
+// blue($color)：从一个颜色中获取其中蓝色值；
+// ---
+// 1
+// mix
+// - Mix函数是将两种颜色根据一定的比例混合在一起，生成另一种颜色
+// - 官网 https://www.sass.hk/skill/sass25.html
+// - mix($color-1,$color-2,$weight);
+//   - 权重
+//     - 默认: 默认权重是50%，表示各占一半
+//     - 25%: 表示第一个颜色所占比例为25%
+//     - background: mix(red, white, 70%);
+// ```
+
+@mixin genTheme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
+  background-color: mix($--tag-primary-color, $--color-white, $backgroundColorWeight);
+  border-color: mix($--tag-primary-color, $--color-white, $borderColorWeight);
+  color: mix($--tag-primary-color, $--color-white, $fontColorWeight);
+
+  @include when(hit) {
+    border-color: $--tag-primary-color;
+  }
+
+  .dv-tag__close {
+    color: mix($--tag-primary-color, $--color-white, $fontColorWeight);
+    &:hover {
+      color: $--color-white;
+      background-color: mix($--tag-primary-color, $--color-white, $hoverColorWeight);
+    }
+  }
+
+  &.dv-tag--info {
+    background-color: mix($--tag-info-color, $--color-white, $backgroundColorWeight);
+    border-color: mix($--tag-info-color, $--color-white, $borderColorWeight);
+    color: mix($--tag-info-color, $--color-white, $fontColorWeight);
+
+    @include when(hit) {
+      border-color: $--tag-info-color;
+    }
+
+    .dv-tag__close {
+      color: mix($--tag-info-color, $--color-white, $fontColorWeight);
+      &:hover {
+        color: $--color-white;
+        background-color: mix($--tag-info-color, $--color-white, $hoverColorWeight);
+      }
+    }
+  }
+
+  &.dv-tag--success {
+    background-color: mix($--tag-success-color, $--color-white, $backgroundColorWeight);
+    border-color: mix($--tag-success-color, $--color-white, $borderColorWeight);
+    color: mix($--tag-success-color, $--color-white, $fontColorWeight);
+
+    @include when(hit) {
+      border-color: $--tag-success-color;
+    }
+
+    .dv-tag__close {
+      color: mix($--tag-success-color, $--color-white, $fontColorWeight);
+      &:hover {
+        color: $--color-white;
+        background-color: mix($--tag-success-color, $--color-white, $hoverColorWeight);
+      }
+    }
+  }
+
+  &.dv-tag--warning {
+    background-color: mix($--tag-warning-color, $--color-white, $backgroundColorWeight);
+    border-color: mix($--tag-warning-color, $--color-white, $borderColorWeight);
+    color: mix($--tag-warning-color, $--color-white, $fontColorWeight);
+
+    @include when(hit) {
+      border-color: $--tag-warning-color;
+    }
+
+    .dv-tag__close {
+      color: mix($--tag-warning-color, $--color-white, $fontColorWeight);
+      &:hover {
+        color: $--color-white;
+        background-color: mix($--tag-warning-color, $--color-white, $hoverColorWeight);
+      }
+    }
+  }
+
+  &.dv-tag--danger {
+    background-color: mix($--tag-danger-color, $--color-white, $backgroundColorWeight);
+    border-color: mix($--tag-danger-color, $--color-white, $borderColorWeight);
+    color: mix($--tag-danger-color, $--color-white, $fontColorWeight);
+
+    @include when(hit) {
+      border-color: $--tag-danger-color;
+    }
+
+    .dv-tag__close {
+      color: mix($--tag-danger-color, $--color-white, $fontColorWeight);
+      &:hover {
+        color: $--color-white;
+        background-color: mix($--tag-danger-color, $--color-white, $hoverColorWeight);
+      }
+    }
+  }
+}
+
+@include b(tag) {
+  @include genTheme(10%, 20%, 100%, 100%);
+  // @mixin genTheme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight)
+  display: inline-block;
+  height: 32px;
+  padding: $--tag-padding;
+  line-height: 30px;
+  font-size: $--tag-font-size;
+  color: $--tag-primary-color;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $--tag-border-radius;
+  box-sizing: border-box;
+  white-space: nowrap;
+
+  .dv-icon-close {
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    top: -1px;
+    right: -5px;
+
+    &::before {
+      display: block;
+    }
+  }
+
+  @include e(content) {
+  }
+
+  @include m(dark) {
+    @include genTheme(100%, 100%, 0, 80%);
+  }
+
+  @include m(plain) {
+    @include genTheme(0, 40%, 100%, 100%);
+  }
+
+  @include m(large) {
+    height: 34px;
+    line-height: 34px;
+
+    .dv-icon-close {
+      transform: scale(0.8);
+    }
+  }
+
+  @include m(small) {
+    height: 20px;
+    padding: 0 5px;
+    line-height: 19px;
+
+    .dv-icon-close {
+      margin-left: -3px;
+      transform: scale(0.7);
+    }
+  }
+}

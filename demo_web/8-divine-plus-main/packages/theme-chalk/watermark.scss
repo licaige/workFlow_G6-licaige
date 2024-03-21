@@ -1,0 +1,8 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(watermark) {
+  position: relative;
+
+  // @include e(image) {}
+}

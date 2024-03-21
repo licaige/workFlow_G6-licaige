@@ -1,0 +1,69 @@
+@use "sass:math";
+@import "mixins/mixins";
+@import "common/var";
+
+// .dv-badge
+@include b(badge) {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+
+  // .dv-badge__content
+  @include e(content) {
+    background-color: $--badge-background-color;
+    border-radius: $--badge-radius; // 10px
+    color: $--color-white;
+    display: inline-block;
+    font-size: $--badge-font-size; // 12px
+    height: $--badge-size; // 18px
+    line-height: $--badge-size; // 18px
+    padding: 0 $--badge-padding; // 6px
+    text-align: center;
+    white-space: nowrap; // 不换行
+    border: 1px solid $--color-white;
+
+    // .dv-badge__content.is-fixed
+    @include when(fixed) {
+      // 绝对定位
+      position: absolute;
+      top: 0;
+      right: #{1 + math.div($--badge-size, 2)}; // 1 + 18 / 2 = 10，高度的一半 + 1
+      // right
+      // math.div($number1, $number2)
+      // - 返回 $number1 除以 $number2 的结果
+      // - division 是除法的意思
+      transform: translateY(-50%) translateX(100%);
+
+      // .dv-badge__content.is-fixed.is-dot
+      @include when(dot) {
+        right: 5px;
+      }
+    }
+
+    // .dv-badge__content.is-fixed.is-dot
+    @include when(dot) {
+      height: 8px;
+      width: 8px;
+      padding: 0;
+      right: 0;
+      border-radius: 50%;
+    }
+
+    // .dv-badge__content--[primary/success/warning/info/danger]
+    @each $type in (primary, success, warning, info, danger) {
+      @include m($type) {
+        @if $type == primary {
+          background-color: $--color-primary;
+        } @else if $type == success {
+          background-color: $--color-success;
+        } @else if $type == warning {
+          background-color: $--color-warning;
+        } @else if $type == info {
+          background-color: $--color-info;
+        } @else if $type == danger {
+          background-color: $--color-danger;
+        }
+      }
+    }
+  }
+}

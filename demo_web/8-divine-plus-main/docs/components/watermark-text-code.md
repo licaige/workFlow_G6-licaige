@@ -1,0 +1,19 @@
+```
+<template>
+   <dv-watermark
+    content="水印效果"
+    fontsize="16px"
+    fontcolor="#FFB6C1"
+    z-index="99"
+    gap="10"
+  >
+    <div>
+      <p>文字内容1</p>
+      <p>文字内容2</p>
+      <p>文字内容3</p>
+      <p>文字内容4</p>
+      <p>文字内容5</p>
+    </div>
+  </dv-watermark>
+</template>
+```

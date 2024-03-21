@@ -1,0 +1,67 @@
+@import "mixins/mixins";
+
+@include b(container) {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
+
+  // is-vertical
+  @include when(vertical) {
+    flex-direction: column;
+  }
+}
+
+// @mixin when($state) {
+//   @at-root {
+//     &.#{$state-prefix + $state} {
+//       @content;
+//     }
+//     // .di-row.is-justify-center
+//   }
+//   // 1
+//   // $state-prefix: 'is-';
+// }
+
+// 1
+// @at-root
+// - 作用: 将 ( 一个或多个 ) 样式规则生成在 ( 样式文件 ) 的 ( 根层级上 )
+// - 结果: 始终是把 @at-root 的 class 放在样式文件的 ( 根层级上 )，不管 @at-root在多深的层次
+// - 记忆: at-root 从名字就能知道是在 ( 当前文件的顶层 )
+// - 案例:
+// 编译前
+// .super {
+//   width: 100px;
+//   @at-root {
+//       .sub {
+//           width: 100%;
+//       }
+//   }
+//   .sub2 {
+//       width: 200px;
+//       @at-root {
+//           .sub3 {
+//               width: 300px;
+//           }
+//       }
+//   }
+// }
+// 编译后
+// .super {
+//   width: 100px;
+//   @at-root {
+//       .sub {
+//           width: 100%;
+//       }
+//   }
+//   .sub2 {
+//       width: 200px;
+//       @at-root {
+//           .sub3 {
+//               width: 300px;
+//           }
+//       }
+//   }
+// }

@@ -1,0 +1,10 @@
+@import "mixins/mixins";
+
+// el-aside
+// 在 style 标签中设置了默认宽度是 300px
+
+@include b(aside) {
+  overflow: auto;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}

@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "lib",
+        "rootDir": "./packages",
+    },
+    "include": [
+        "packages/**/*.ts",
+        "packages/**/*.tsx"
+    ],
+    "exclude": [
+        "packages/**/__tests__/*",
+    ]
+}

@@ -1,0 +1,432 @@
+@import "function";
+@import "../common/var.scss";
+@import "../mixins/config.scss";
+
+/* Break-point
+--------------------------*/
+// $--sm: 768px !default;
+// $--md: 992px !default;
+// $--lg: 1200px !default;
+// $--xl: 1920px !default;
+
+// 断点map
+// $--breakpoints: (
+//   'xs' : (max-width: $--sm - 1),
+//   'sm' : (min-width: $--sm),
+//   'md' : (min-width: $--md),
+//   'lg' : (min-width: $--lg),
+//   'xl' : (min-width: $--xl)
+// );
+
+// 1
+// string.unquote() 去掉引号
+// @debug string.unquote("Helvetica"); // Helvetica
+// @debug string.unquote(".widget:hover"); // .widget:hover
+
+// 2
+// meta.inspect()
+// - 回值：unquoted string
+// 返回$value的字符串表示形式，其实就是字符串
+
+// 3
+// map-has-key($map, $key) map中是否存在key
+// map-get($map, $key) 获取map中key对应的value
+
+/* Break-points
+ -------------------------- */
+@mixin res($key, $map: $--breakpoints) {
+  // 循环断点Map，如果存在则返回
+  @if map-has-key($map, $key) {
+    // 如果map存在该key
+    // 'sm-only' 这些only是用来判断是否隐藏用的
+    @if $key== "sm-only" or $key== "md-only" or $key== "lg-only" {
+      // 判定特定定义处理字符串参数值问题
+      @media only screen and #{unquote(map-get($map, $key))} {
+        @content;
+      }
+    } @else {
+      @media only screen and #{inspect(map-get($map, $key))} {
+        @content;
+        // 表示：通过 map-get($map, $key) 获取 $--breakpoints map中的某个属性对应的值，并使用inspect转成字符串，并使用插值 #{} 获取其中的变量字符串
+        // 比如：@media only screen and ( max-width: 767px !default) {}
+        // 比如：@media only screen and (min-width: 768px) {}
+      }
+    }
+  } @else {
+    // 如果map中不存在key
+    @warn "Undefeined points: `#{$map}`";
+  }
+}
+
+/* Scrollbar
+ -------------------------- */
+@mixin scroll-bar {
+  $--scrollbar-thumb-background: #b4bccc;
+  $--scrollbar-track-background: #fff;
+
+  &::-webkit-scrollbar {
+    z-index: 11;
+    width: 6px;
+
+    &:horizontal {
+      height: 6px;
+    }
+
+    &-thumb {
+      border-radius: 5px;
+      width: 6px;
+      background: $--scrollbar-thumb-background;
+    }
+
+    &-corner {
+      background: $--scrollbar-track-background;
+    }
+
+    &-track {
+      background: $--scrollbar-track-background;
+
+      &-piece {
+        background: $--scrollbar-track-background;
+        width: 6px;
+      }
+    }
+  }
+}
+
+/* Placeholder
+ -------------------------- */
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+/* BEM
+ -------------------------- */
+@mixin b($block) {
+  $B: $namespace + "-" + $block !global;
+  // $B -> 定义了一个$B变量，是局部变量，同时也是一个全局变量
+
+  .#{$B} {
+    // 这里其实就是引用了 $B 变量做为class名 ---> el-$block
+    // 比如 el-row -----> .#{$B} -> .el-row
+    @content;
+  }
+  // $B
+  // 1. 这里的 $namespace = el
+  // 2. $block 是参数，表示BEM中的block
+
+  // !global
+  // - 表示变量提升，将局部变量提升为全局变量，在其他函数体内也能访问到此变量
+  // $var: red;
+  // @mixin foo($var: $var) {
+  //   default-color: $var;
+  //   $var: green !global; // 局部变量，变量$var被设为green；在局部作用域中，$var都会被设为green
+  //   scoped-color: $var; // 注意：上面修改的是全局变量，而这里是局部变量未被修改，所以是 red
+  // }
+  // .bar {
+  //   @include foo($var);
+  //   color: $var; // 这里 color 引用的是 全局变量 $var，全局变量$var被修改成了 green
+  // }
+  // 被编译为 .bar {
+  //   default-color: red;
+  //   scoped-color: red;
+  //   color: green; // color 是全局变量
+  // }
+
+  // @content 是 @include 花括号中的值
+
+  // #{$B} 是插值语句
+  // - 插值语句可以在 ( 选择器 ) 或者 ( 属性名 ) 中使用 ( 变量 )
+  // - 插值语句用在 ( 属性值 ) 中也是可以的
+}
+
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector +
+      "." +
+      $B +
+      $element-separator +
+      $unit +
+      ","};
+    // $element-separator: '__';
+
+    // $B: $namespace+'-'+$block !global; 是一个 block
+    // $B -> 注意：这里 $B 是在 b 中定义的，但是通过 !global 后变成全局，可以用在其他css中；
+    // 比如：在 badge 组件中 --------> B就表 el-badge
+
+    // $currentSelector + "." + $B + $element-separator + $unit + ","
+    // 例子
+    // - .$B ----------------------- .el-breadcrumb
+    // - $element-separator -------- __
+    // - $unit ------------------ separator
+    // - 如果$element是list或者map时，有多个成员时， ',' 能分隔多个class，比如 .a, .b, .c {}
+    // - 总的 .el-breadcrumb__separator
+
+    // 总体比如：在 badge 组件中 ----> $currentSelector 等于 .el-badge__content
+  }
+
+  // @if
+  // 当 `@if` 的表达式返回值不是 `false` 或者 `null` 时，条件成立，输出 `{}` 内的代码
+  // ---
+  // $type: monster;
+  // p {
+  //   @if $type == ocean {
+  //     color: blue;
+  //   } @else if $type == matador {
+  //     color: red;
+  //   } @else if $type == monster {
+  //     color: green;
+  //   } @else {
+  //     color: black;
+  //   }
+  // }
+
+  // A
+  // @function hitAllSpecialNestRule($selector) {
+  //   @return containsModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
+  // }
+
+  @if hitAllSpecialNestRule($selector) {
+    // $selector是&，以el-badge以例就是 .el-badge
+    @at-root {
+      #{$selector} {
+        // 父元素block -------------------- .el-badge .el-breadcrumb
+        #{$currentSelector} {
+          // 当前元素element ------- .el-badge__content .el-breadcrumb__separator
+          @content; // 总体 --------------------------- .el-badge .el-badge__content {}    .el-breadcrumb .el-breadcrumb__separator
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+// M
+@mixin m($modifier) {
+  $selector: &; // 这里变量没有使用到 ？
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      & +
+      $modifier-separator +
+      $unit +
+      ","};
+  }
+  // $modifier-separator: '--';
+  // $namespace: 'el';
+  // $element-separator: '__';
+  // $state-prefix: 'is-';
+  // & 指代父元素，比如 .el-row
+  // --------
+  // (1) 当 ( &是row ) 并且 当传入的 ( $modifier是flex ) 时
+  // 遍历完：$currentSelector ------> &--flex ------> .el-row--flex
+  // (2) 当 ( &是divider ) 并且 当传入的 ( $modifier是horizontal ) 时
+  // 遍历完：$currentSelector ------> &--horizontal ------> .el-divider--horizontal
+
+  // $currentSelector变量的初始值 ‘’ -> 会在循环中被覆盖掉
+  // - 例如
+  //  - $currentSelector: "";
+  //  - $currentSelector: .el-row-flex
+
+  // @each
+  // 格式为 @each var in <list>|<map>
+  // @each...in...的作用：遍历一个 list 或者 map 中的所有值
+  // - var 表示任意变量名
+  // - list 表示一连串的值
+  // -------- 1
+  // list
+  // @each $animal in puma, sea-slug, egret {
+  //   .#{$animal}-icon {}
+  // }
+  // 编译为
+  // .puma-icon {}
+  // .sea-slug-icon { }
+  // .egret-icon {}
+  // -------- 2
+  // map
+  // @each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
+  //   #{$header} {
+  //     font-size: $size;
+  //   }
+  // }
+  // 编译为
+  // h1 {
+  //   font-size: 2em; }
+  // h2 {
+  //   font-size: 1.5em; }
+  // h3 {
+  //   font-size: 1.2em; }
+
+  // @at-root
+  // - 表示提升到父元素的同一层级 ( !!!! 这里一定要注意如果是多层的 @at-root 是提升到最外层的父元素同级，而不是最近的父级，即【样式文件的根层级】 !!!! )
+  // - @at-root 官网说明：https://www.sass.hk/skill/sass40.html
+  // - 重点了解
+  //    1. @at-root 在 BEM 中的优势
+  //    2. @at-root 的区块处理能力
+  // - 一定要注意两点
+  //    1. & -------------------------- 指的 ( 一定是最近的父级 )
+  //    2. @at-root ------------------- 指的 ( 一定是最外层的父级 )
+  // -------------------------------------------------------------- 分割线
+  // -------------------------------------------------------------- 分割线
+  // 2
+  // @at-root
+  // - 作用：将 ( 一个或多个 ) 样式规则生成在 ( 样式文件 ) 的 ( 根层级上 )
+  // - 案例：
+  // 编译前
+  // .super {
+  //   width: 100px;
+  //   @at-root {
+  //       .sub {
+  //           width: 100%;
+  //       }
+  //   }
+  //   .sub2 {
+  //       width: 200px;
+  //       @at-root {
+  //           .sub3 {
+  //               width: 300px;
+  //           }
+  //       }
+  //   }
+  // }
+  // 编译后
+  // .super {
+  //   width: 100px;
+  //   @at-root {
+  //       .sub {
+  //           width: 100%;
+  //       }
+  //   }
+  //   .sub2 {
+  //       width: 200px;
+  //       @at-root {
+  //           .sub3 {
+  //               width: 300px;
+  //           }
+  //       }
+  //   }
+  // }
+  // 结果
+  // - 始终是把 @at-root 的 class 放在样式文件的 ( 根层级上 )，不管 @at-root在多深的层次
+  // 记忆
+  // - at-root 从名字就能知道是在文件的根层级
+  @at-root {
+    // 这里表示提升到和 b 同级别
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin configurable-m($modifier, $E-flag: false) {
+  $selector: &;
+  $interpolation: "";
+
+  @if $E-flag {
+    $interpolation: $element-separator + $E-flag;
+  }
+
+  @at-root {
+    #{$selector} {
+      .#{$B + $interpolation + $modifier-separator + $modifier} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin spec-selector(
+  $specSelector: "",
+  $element: $E,
+  $modifier: false,
+  $block: $B
+) {
+  $modifierCombo: "";
+
+  @if $modifier {
+    $modifierCombo: $modifier-separator + $modifier;
+  }
+
+  @at-root {
+    #{&}#{$specSelector}.#{$block
+      + $element-separator
+      + $element
+      + $modifierCombo} {
+      @content;
+    }
+  }
+}
+
+@mixin meb($modifier: false, $element: $E, $block: $B) {
+  $selector: &;
+  $modifierCombo: "";
+
+  @if $modifier {
+    $modifierCombo: $modifier-separator + $modifier;
+  }
+
+  @at-root {
+    #{$selector} {
+      .#{$block + $element-separator + $element + $modifierCombo} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+  // 1
+  // when 中的 & 指代的是 m
+  // 比如 .el-row--flex.is-justify-center
+  // 2
+  // $state-prefix: 'is-';
+  // 3
+  // $state的值是枚举：
+  // -> justify-center | justify-end | justify-space-between | justify-space-around
+  // -> align-top | align-middle | align-bottom
+  // 4
+  // & -> 在b是el-row时表示的是 .el-row--flex
+  // 5
+  // 举例
+  // .el-row--flex .is-justify-center: {  justify-content: center; }
+}
+
+@mixin extend-rule($name) {
+  @extend #{"%shared-" + $name};
+}
+
+@mixin share-rule($name) {
+  $rule-name: "%shared-" + $name;
+
+  @at-root #{$rule-name} {
+    @content;
+  }
+}
+
+@mixin pseudo($pseudo) {
+  @at-root #{&}#{":#{$pseudo}"} {
+    @content;
+  }
+}

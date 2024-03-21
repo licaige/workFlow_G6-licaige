@@ -1,0 +1,55 @@
+// TODO: open api for developer to custom the active class
+$activeRangeBgColor: #4285f4;
+
+.action-buttons {
+  clear: both;
+  padding: 8px;
+  line-height: 12px;
+  vertical-align: middle;
+}
+
+.ranges {
+  font-size: 12px;
+  float: none;
+  margin-top: 8px;
+  text-align: left;
+
+  ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+
+  li {
+    box-sizing: border-box;
+    font-size: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+
+    // 如果开放样式给用户，让其自定义呢？
+    &:hover {
+      background-color: #eee;
+    }
+
+    &.active {
+      color: $activeRangeBgColor;
+
+      // bootstrap style
+      // background-color: $activeRangeBgColor;
+      // // TODO did I need set border style ??
+      // border: 1px solid $activeRangeBgColor;
+      // color: #fff;
+    }
+  }
+}
+
+
+/*  Larger Screen Styling */
+@media (min-width: 564px) {
+  .ranges  {
+    ul {
+      width: 140px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+@import "mixins/mixins";
+@import "mixins/utils";
+@import "common/var";
+
+// .el-breadcrumb
+@include b(breadcrumb) {
+  font-size: 14px;
+  line-height: 1; // line-height:1 当设置了 font-size: 14px 时表示 line-height: 14px;
+  display: flex;
+
+  // 1
+  // line-height
+  // - ( line-height: 1 ) 相当于 (  line-height: 100% )，表示的是自身font-size的大小
+  // - 比如此时你设置了font-size：20px，之后你设置了line-height:1，转义过来的意思就是line-height:20px，行高为20px，这种定义样式的方法通常会用于iconfont的设置
+  // - https://juejin.cn/post/6971673576017494053
+
+  @include utils-clearfix; // 清除浮动，因为 .el-breadcrumb__item 做了左浮动操作
+
+  // .el-breadcrumb__separator
+  @include e(separator) {
+    margin: 0 9px;
+    font-weight: bold;
+    color: $--color-text-placeholder;
+
+    &[class*="icon"] {
+      margin: 0 6px;
+      font-weight: normal;
+    }
+  }
+
+  // .el-breadcrumb__item
+  @include e(item) {
+    float: left; // 父class中已经做了清除浮动操作
+
+    // 每个item都有一个 inner，而 inner中是 slot
+    // .el-breadcrumb__item .el-breadcrumb__inner
+    @include e(inner) {
+      color: $--color-text-regular;
+
+      &.is-link,
+      & a {
+        font-weight: bold;
+        text-decoration: none;
+        transition: $--color-transition-base;
+        color: $--color-text-primary;
+
+        &:hover {
+          // hover时便成有黑色变成蓝色，手型
+          color: $--color-primary;
+          cursor: pointer;
+        }
+      }
+    }
+
+    @include e(component) {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+    }
+
+    // .el-breadcrumb__item:last-child
+    // - 1. 最后一个元素hover时不做变化
+    // - 2. 最后一个元素的分隔符不显示
+    &:last-child {
+      .dv-breadcrumb__inner,
+      .dv-breadcrumb__inner a {
+        &,
+        &:hover {
+          font-weight: normal;
+          color: $--color-text-regular;
+          cursor: text;
+        }
+      }
+
+      .dv-breadcrumb__separator {
+        display: none;
+      }
+    }
+  }
+}

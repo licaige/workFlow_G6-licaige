@@ -1,0 +1,11 @@
+.*
+!.eslintrc.json
+!.eslintignore
+!.npmignore
+!.gitignore
+!.github
+
+node_modules
+
+test-results/
+playwright-report/

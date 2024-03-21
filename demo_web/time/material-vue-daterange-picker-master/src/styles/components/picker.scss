@@ -1,0 +1,201 @@
+/**
+ * =============================================================================
+ * ************   日期范围选择器   ************
+ * =============================================================================
+ *
+ * Inspired by https://github.com/zdhxiong/mdui
+ * Inspired by bootstrap.daterangepicker
+ * add
+ */
+
+/**
+ * =============================================================================
+ * ************   日期范围选择器   ************
+ * =============================================================================
+ *
+ * Inspired by https://github.com/zdhxiong/mdui
+ * Inspired by bootstrap.daterangepicker
+ */
+
+ * {
+   box-sizing: border-box;
+ }
+
+/**
+ * mixins
+ */
+ @mixin get-opens-arrow ($val: 7px, $is-before: true) {
+  top: -$val;
+  $bg: if($is-before, #ccc, #fff);
+
+  border-right: $val solid transparent;
+  border-bottom: $val solid $bg;
+  border-left: $val solid transparent;
+}
+
+%center-block {
+  left: 0;
+  right: 0;
+  width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/**
+  * 控制箭头在 daterangepicker 中的位置。center的时候，需要 JavaScript 辅助
+  * generate style below:
+  .opens-arrow-pos-left {
+    top: 35px;
+    left: 10px;
+    right: auto;
+  }
+
+  .opens-arrow-pos-left::before {
+    left: 9px;
+  }
+  .opens-arrow-pos-left::after {
+    left: 10px;
+  }
+
+*/
+@mixin control-opens-arrow-pos ($direction: left) {
+  $reverse-direction: if($direction == left, right, left);
+
+  &.opens-arrow-pos-#{$direction} {
+    top: 40px;
+    @if $direction != center {
+      #{$direction}: 10px;
+      // 这边的 auto 做了什么？
+      #{$reverse-direction}: auto;
+    }
+
+    &::before {
+      @if $direction != center {
+        #{$direction}: 9px;
+      }
+      @else {
+        @extend %center-block;
+      }
+    }
+
+    &::after {
+      @if $direction != center {
+        #{$direction}: 10px;
+      }
+      @else {
+        @extend %center-block;
+      }
+    }
+  }
+}
+
+
+// md-date-range-picker <-> mdrp
+.mdrp-root {
+  position: relative;
+  display: inline-block;
+}
+
+$prefix-class: mdrp__panel;
+
+.#{$prefix-class} {
+    font-size: 15px;
+    line-height: 1em;
+
+    position: absolute;
+    z-index: 3001;
+    top: 100px;
+    left: 20px;
+
+    width: 278px;
+    max-width: none;
+    margin-top: 7px;
+    padding: 0;
+
+    color: inherit;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+
+    &.show-calendar {
+      display: block;
+    }
+
+    // TODO what these code do ?
+    &::before,
+    &::after {
+      position: absolute;
+      display: inline-block;
+      border-bottom-color: red;
+      content: "";
+    }
+
+    &::before {
+      @include get-opens-arrow();
+    }
+
+    &::after {
+      @include get-opens-arrow(6px, false);
+    }
+
+    & {
+      @include control-opens-arrow-pos (left);
+      @include control-opens-arrow-pos (right);
+      @include control-opens-arrow-pos (center);
+    }
+
+    &.dropdown-menu {
+      // TODO max-width: none; 什么作用？
+      max-width: none;
+      // TODO z-index best practice ？？
+      z-index: 9;
+    }
+
+    .calendar-table {
+      display: none;
+      max-width: 270px;
+    }
+
+    &.show-calendar .calendar-table {
+      display: block;
+    }
+
+}
+
+/*  Larger Screen Styling */
+@media (min-width: 564px) {
+  // TODO width auto 的使用场景
+  .#{$prefix-class} {
+    width: auto;
+
+    &.show-calendar {
+      display: inline-flex;
+    }
+
+    .calendar-table {
+      &.left {
+        padding: 8px 0 8px 8px;
+      }
+      // 为何右边是 8px 8px 8px 0; 呢，也就是为何左边会有 8px ?
+      &.right {
+        padding: 8px;
+      }
+    }
+  }
+}
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all 0.2s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}

@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node", // 以上是 vue 推荐的配置
+    "skipLibCheck": true, // 略过声明检查
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["packages/*"]
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "types": ["node", "webpack-env"] // 1. 只有 node 和 webpack-env 的包声明文件会自动引入，其他模块的声明文件不会自动引入 2. webpack-env这里主要用于 require.context 的ts类型
+  },
+
+  // 1
+  // eg: backup组件
+  // 如果报错：找不到模块，需要配置两个地方
+  // - a. 在 components 文件夹下编写 index.d.ts
+  // - b. 在 package.json 中 include 添加路径  "packages/components/*"
+
+  // 2
+  // 注意区分：别名的设置
+  "include": [
+    "packages",
+    // 注意:
+    // - 1. 我们设置 别名@ 代表 packages 文件夹，及其以下的所有所有文件
+    // - 2. 不能是 packages/*  ------- 这样表示一级目录，不包含二级目录
+    // - 3. 可以是 package/**/* ------ 这样表示二级目录
+    // 扩展
+    // - 设置别名需要设置 3 个地方
+    // - 1. tsconfig.json 中设置
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@/*": ["packages/*"]
+    // },
+    //  - 2. tsconfig.json 中设置
+    //  "include": ["packages"] // 表示: 指定需要编译处理的文件列表，支持 glob 模式匹配
+    //  - 3. webpack.config.js 中设置
+    // alias: { "@": path.resolve(__dirname, "../packages") }
+
+    // "packages/*", // 通过类型别名 @ 引用组件和方法就会报错，具体请看上面的写法
+    // "packages/**/*", // 表示 packages 子目录/子文件 包含 包括子目录下的所有文件和目录
+    // "packages/components/*", // 这里必须添加，不然package/components/组件/index.ts中引入组件会报错，找不到模块
+    "examples",
+    "docs",
+    "utils",
+    "vue.config.js"
+  ],
+  // 因为: 这里不去用 ts 解析 node_modules 中的文件
+  // 所以: node_module 中需要提供 js 文件
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,161 @@
+@use "sass:math";
+@import "./common/var.scss";
+@import "./mixins/mixins.scss";
+
+[class*="dv-col-"] {
+  float: left;
+  box-sizing: border-box;
+  @include when(guttered) {
+    display: block;
+    min-height: 1px;
+  }
+}
+
+.dv-col-0 {
+  display: none;
+}
+
+@for $i from 0 through 24 {
+  .dv-col-#{$i} {
+    width: (math.div(1, 24) * $i * 100) * 1%;
+  }
+
+  .dv-col-offset-#{$i} {
+    margin-left: (math.div(1, 24) * $i * 100) * 1%;
+  }
+
+  .dv-col-pull-#{$i} {
+    position: relative;
+    right: (math.div(1, 24) * $i * 100) * 1%;
+  }
+
+  .dv-col-push-#{$i} {
+    position: relative;
+    left: (math.div(1, 24) * $i * 100) * 1%;
+  }
+}
+
+@include res(xs) {
+  .dv-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .dv-col-xs-#{$i} {
+      width: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-xs-offset-#{$i} {
+      margin-left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-xs-pull-#{$i} {
+      position: relative;
+      right: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-xs-push-#{$i} {
+      position: relative;
+      left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(sm) {
+  .dv-col-sm-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .dv-col-sm-#{$i} {
+      width: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-sm-offset-#{$i} {
+      margin-left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-sm-pull-#{$i} {
+      position: relative;
+      right: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-sm-push-#{$i} {
+      position: relative;
+      left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(md) {
+  .dv-col-md-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .dv-col-md-#{$i} {
+      width: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-md-offset-#{$i} {
+      margin-left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-md-pull-#{$i} {
+      position: relative;
+      right: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-md-push-#{$i} {
+      position: relative;
+      left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(lg) {
+  .dv-col-lg-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .dv-col-lg-#{$i} {
+      width: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-lg-offset-#{$i} {
+      margin-left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-lg-pull-#{$i} {
+      position: relative;
+      right: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-lg-push-#{$i} {
+      position: relative;
+      left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(xl) {
+  .dv-col-xl-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .dv-col-xl-#{$i} {
+      width: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-xl-offset-#{$i} {
+      margin-left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-xl-pull-#{$i} {
+      position: relative;
+      right: (math.div(1, 24) * $i * 100) * 1%;
+    }
+
+    .dv-col-xl-push-#{$i} {
+      position: relative;
+      left: (math.div(1, 24) * $i * 100) * 1%;
+    }
+  }
+}
