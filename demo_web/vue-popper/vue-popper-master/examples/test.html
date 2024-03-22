@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="../lib/umd/index.js"></script>
+    <style>
+    body {
+        margin: 0;
+    }
+
+    .reference {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 400px;
+        height: 200px;
+        border: 1px dashed #666;
+    }
+
+    .content {
+        width: 10vw;
+        min-width: 8em;
+        height: 10vh;
+        padding: .2em .4em;
+    }
+    </style>
+</head>
+<body>
+<div id="module"></div>
+
+<script>
+
+new Vue({
+  el: '#module',
+  template: '<div' +
+    ' class="reference"' +
+    ' ref="reference"' +
+    ' :style="style"' +
+    ' @mouseenter="show=true"' +
+    ' @mousedown="drag=true"' +
+    ' @mouseup="drag=false"' +
+    ' @mousemove="move"' +
+    ' @mouseleave="show=true">' +
+    '   <popper' +
+    '       v-if="show"' +
+    '       :popperOptions="options"' +
+    '       arrowPosition="start"><div' +
+    '       class="content">sdfsdf</div>' +
+    '   </popper>' +
+    '</div>',
+  data: function () {
+    return {
+      show: false,
+      drag: false,
+      options: {
+        placement: 'bottom-start',
+        positionFixed: true,
+        modifiers: {
+          preventOverflow: {
+            padding: 20,
+          },
+        },
+      },
+      style: null,
+    }
+  },
+  methods: {
+    move: function (e) {
+      if (this.drag) this.style = {
+        left: (e.pageX - this.$refs.reference.clientWidth / 2) + 'px',
+        top: (e.pageY - this.$refs.reference.clientHeight / 2) + 'px',
+      }
+    },
+  },
+  components: { 'popper': VuePopper },
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MouseEvents</title>
+  <script src="../lib/umd/index.js"></script>
+</head>
+<body>
+<div id="module" style="width: 100px;height: 100px;background: gray"></div>
+
+<script>
+var module = document.getElementById('module')
+// do something ...
+MouseEvents.DragMove.bind(module, console.log)
+</script>
+</body>
+</html>

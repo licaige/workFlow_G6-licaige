@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScrollGet</title>
+  <script src="../lib/umd/index.js"></script>
+  <style>
+    body {
+      padding: 1px;
+    }
+
+    .wrapper {
+      padding: 1px;
+      height: 100vh;
+      overflow: scroll;
+      background: #eee;
+    }
+
+    #module, #module1 {
+      height: 10px;
+      margin: 100vh 0 50vh;
+      background: #999;
+    }
+
+    #module1 {
+      background: #000;
+    }
+
+    .content {
+      width: 50vw;
+      height: 20vh;
+      margin: 20vh 0;
+      background: #eedfc5;
+    }
+
+    .a {
+      background: #c5d7ee;
+      width: 50vw;
+      height: 20vh;
+      margin: 20vh 0;
+    }
+
+    #wrapper {
+      height: 70vh;
+      overflow: auto;
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+<!--<div class="wrapper">-->
+<!--  a-->
+<!--  <div id="module"></div>-->
+<!--&lt;!&ndash;  <div id="module1"></div>&ndash;&gt;-->
+<!--</div>-->
+<div id="wrapper">
+  <div style="display: flex; width: 200vw; flex-wrap: wrap">
+    <h1 class="a" id="a">a</h1>
+    <div class="content">content</div>
+    <h1 class="a" id="b">b</h1>
+    <div class="content">content</div>
+    <h1 class="a" id="c">c</h1>
+    <div class="content">content</div>
+    <h1 class="a" id="d">d</h1>
+    <div class="content" style="margin: 0 0 30px">content</div>
+  </div>
+
+  <div id="block" style="position: fixed; left: 0; top: 0">sdfsdf</div>
+  <a id="link" href="https://baidu.com" target="__blank" download="">link</a>
+</div>
+<div style="height: 300vh"></div>
+
+<script>
+  // var module = document.getElementById('module')
+  // // do something ...
+  // function run() {
+  //   ScrollGet.scrollToElement(document.getElementById('module')).then(() => {
+  //     console.log(document.getElementById('module').parentElement.scrollTop, ScrollGet.getRect(document.getElementById('module')).top)
+  //   })
+  // }
+
+  ScrollGet.getViewElementsWhenScroll(document.getElementById('wrapper'), ['a', 'b', 'c', 'd'].map(id => document.getElementById(id)), console.log);
+
+  const block = document.querySelector('#block');
+  const link = document.querySelector('#link');
+
+  function click(el) {
+    return new Promise(resolve => {
+      const cb = ev => {
+        resolve()
+        console.log(1111, ev);
+      }
+      el.addEventListener('click', cb)
+      el.click()
+      setTimeout(() => el?.removeEventListener('click', cb), 1000)
+    })
+  }
+</script>
+</body>
+</html>

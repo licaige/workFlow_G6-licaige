@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copy</title>
+  <script src="../lib/umd/index.js"></script>
+</head>
+<body>
+<h1 class="root-h1">Copy</h1>
+<section class="app">
+  <h2 id="Repository" class="root-h">Repository</h2>
+  <div class="root-content-wrap">
+    <a href="https://github.com/livelybone/copy" target="_blank">
+      https://github.com/livelybone/copy
+    </a>
+  </div>
+
+  <h2 id="CopyDom" class="root-h">CopyDom</h2>
+  <div class="example-wrap">
+    <h3 class="root-module-title">Example</h3><br>
+    <textarea
+        id="textarea">My name is livelybone, 26 years old, 168cm, and my lover is Yanci</textarea>
+    <button style="display: block; margin-top: .1rem" onclick="copyDom()">Copy Dom</button>
+    <div id="copy-dom-code"></div>
+  </div>
+
+  <h2 id="CopyImage" class="root-h">CopyImage</h2>
+  <div class="example-wrap">
+    <h3 class="root-module-title">Example</h3><br>
+    <img id="img"
+         src="./sherlock.jpg"
+         alt="pic">
+    <button style="display: block; margin-top: .1rem" onclick="copyImg()">Copy Image</button>
+    <p class="root-desc" style="margin: .1rem 0 .05rem;">The command `copy` can only works in click
+      event triggered by users</p>
+    <p class="root-desc font-warn">Image copy may not always works, it is under the influence of
+      domain(images in some website can't be copied by js, such as: github.io ->
+      https://livelybone.github.io/common/images/natuto.jpeg), url extension and something else</p>
+    <div id="copy-img-code"></div>
+  </div>
+
+  <h2 id="CopyText" class="root-h">CopyText</h2>
+  <div class="example-wrap">
+    <h3 class="root-module-title">Example</h3><br>
+    <button onclick="copyText()">Copy Text: 'My name is livelybone'</button>
+    <div id="copy-text-code"></div>
+  </div>
+
+  <h2 id="ObjectSimpleCopy" class="root-h">ObjectSimpleCopy</h2>
+  <div class="example-wrap">
+    <div id="obj-simple-copy-code"></div>
+  </div>
+
+  <h2 id="ObjectDeepCopy" class="root-h">ObjectDeepCopy</h2>
+  <div class="example-wrap">
+    <div id="obj-deep-copy-code"></div>
+  </div>
+
+  <h2 id="ObjectDeepMerge" class="root-h">ObjectDeepMerge</h2>
+  <div class="example-wrap">
+    <div id="obj-deep-merge-code"></div>
+  </div>
+</section>
+
+<script type="text/javascript" id="code">
+/*CATALOGUE: Repository, CopyDom, CopyImage, CopyText, ObjectSimpleCopy, ObjectDeepCopy, ObjectDeepMerge*/
+function getEl(selector) {
+  return document.querySelectorAll(selector)
+}
+
+/*START*/
+/*RENDER_ID: copy-dom-code*/
+/*NAME: Code*/
+function copyDom() {
+  Copy.copyDom(getEl('#textarea')[0])
+  alert('Copy success!')
+}
+
+/*END*/
+
+/*START*/
+/*RENDER_ID: copy-img-code*/
+/*NAME: Code*/
+function copyImg() {
+  Copy.copyDom(getEl('#img')[0])
+  alert('Copy success!')
+}
+
+/*END*/
+
+/*START*/
+/*RENDER_ID: copy-text-code*/
+/*NAME: Code*/
+function copyText() {
+  Copy.copyText('My name is livelybone')
+    .then(() => alert('Copy success!'))
+    .catch(console.error)
+}
+
+/*END*/
+
+/*START*/
+/*RENDER_ID: obj-simple-copy-code*/
+/*NAME: Code*/
+/*DESC: Can not copy object that has circular structure. See results in console*/
+!(function() {
+  var obj = {
+    name: 'livelybone',
+    age: 26,
+  }
+  var obj1 = Copy.objectSimpleCopy(obj)
+  console.log('---- objectSimpleCopy ----')
+  console.log('> obj: ', obj)
+  console.log('> obj1: ', obj1)
+  console.log('> whether obj is equal to obj1: ', obj === obj1)
+})()
+/*END*/
+
+/*START*/
+/*RENDER_ID: obj-deep-copy-code*/
+/*NAME: Code*/
+/*DESC: Can copy object that has circular structure. See results in console*/
+!(function() {
+  var obj = {
+    name: 'livelybone',
+    age: 26,
+  }
+  obj.quote = obj
+  var obj1 = Copy.objectDeepCopy(obj)
+  console.log('---- objectDeepCopy ----')
+  console.log('> obj: ', obj)
+  console.log('> obj1: ', obj1)
+  console.log('> whether obj is equal to obj1: ', obj === obj1)
+  console.log('> whether obj.quote is equal to obj1.quote: ', obj.quote === obj1.quote)
+  console.log('> whether obj1 is equal to obj1.quote: ', obj1.quote === obj1)
+})()
+/*END*/
+
+/*START*/
+/*RENDER_ID: obj-deep-merge-code*/
+/*NAME: Code*/
+/*DESC: See results in console*/
+!(function() {
+  var obj = {
+    name: 'livelybone',
+    age: 26,
+    bwh: [2, 1, 3],
+    weight: 55,
+    lover: 'Yanci',
+  }
+
+  // obj.a = obj
+
+  var obj1 = {
+    name: 'Yanci',
+    age: 26,
+    bwh: [1, null, 3],
+    height: 160,
+    lover: 'livelybone',
+  }
+
+  // obj1.a = obj1
+  var obj2 = Copy.objectDeepMerge({}, obj, obj1)
+  console.log('---- objectDeepMerge ----')
+  console.log('> obj: ', obj)
+  console.log('> obj1: ', obj1)
+  console.log('> obj2: ', obj2)
+  console.log(obj2.a === obj2)
+})()
+/*END*/
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+$bg: #fff;
+$border: #c2ccdc;
+$base-size: 1em;
+
+@function size($val) {
+  @return $val * $base-size;
+}
+
+$pseudoSize: size(0.4);
+
+.arrow-extend {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@mixin pseudo($bg: $border, $direction: top, $borderWidth: $pseudoSize) {
+  @extend .arrow-extend;
+  #{$direction}: -$pseudoSize;
+  border: $borderWidth solid transparent;
+
+  @if ($direction==top) {
+    border-top: 0;
+    border-bottom-color: $bg;
+  } @else if ($direction==bottom) {
+    border-bottom: 0;
+    border-top-color: $bg;
+  } @else if ($direction==left) {
+    border-left: 0;
+    border-right-color: $bg;
+  } @else if ($direction==right) {
+    border-right: 0;
+    border-left-color: $bg;
+  }
+}
+
+.vue-popper {
+  border: 1px solid $border;
+  border-radius: size(0.2);
+  background: $bg;
+
+  @each $placement, $pos, $pseudoPos in (top, bottom, left), (bottom, top, left),
+    (left, right, top), (right, left, top)
+  {
+    &[x-placement^='#{$placement}'] {
+      margin-#{$pos}: size(0.75);
+
+      .arrow {
+        @include pseudo($border, $pos);
+
+        &:before {
+          content: '';
+          @include pseudo($bg, $pos);
+          #{$pseudoPos}: -$pseudoSize;
+          #{$pos}: 1px;
+        }
+      }
+    }
+  }
+}
