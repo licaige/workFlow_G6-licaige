@@ -9,6 +9,7 @@ let $removeEventListener: 'removeEventListener' | 'detachEvent' =
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   // detect event model
+  // 选择要播放的事件模型。检测事件模型
   if ('addEventListener' in window) {
     $addEventListener = 'addEventListener'
     $removeEventListener = 'removeEventListener'

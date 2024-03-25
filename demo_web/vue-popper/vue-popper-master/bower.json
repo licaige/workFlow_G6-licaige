@@ -1,0 +1,48 @@
+{
+  "name": "vue-popperjs",
+  "version": "1.3.4",
+  "description": "VueJS popover",
+  "main": "dist/js/vue-popper.js",
+  "authors": [
+    "Igor Ognichenko <ognichenko.igor@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vue-popper.js",
+    "vue-popover",
+    "vuejs-popper.js",
+    "vuejs-popover",
+    "vue",
+    "vuejs",
+    "vue-plugin",
+    "vue-component"
+  ],
+  "homepage": "https://github.com/RobinCK/vue-popper",
+  "ignore": [
+    ".idea",
+    ".git",
+    ".gitattributes",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    ".travis.yml",
+    ".babelrc",
+    ".editorconfig",
+    ".npmignore",
+    "_config.yml",
+    "circle.yml",
+    "yarn.lock",
+    "package.json",
+    ".codeclimate.yml",
+    "node_modules",
+    "bower_components",
+    "CHANGELOG.md",
+    "test",
+    "tests",
+    "build"
+  ],
+  "dependencies": {
+    "popper.js": "^1.9.1"
+  }
+}

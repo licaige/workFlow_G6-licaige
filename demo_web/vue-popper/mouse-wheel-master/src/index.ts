@@ -5,16 +5,20 @@ export type CustomListener = (ev: CustomWheelEvent) => any
 export interface CustomWheelEvent {
   /**
    * Pixel delta
+   * 增量像素
    * */
   dx: number
   dy: number
   dz: number
   /**
    * Delta time
+   * 我的三角洲
    * */
   dTime: number
   /**
    * `wheelEnd` event data only have prop timeStamp
+   *
+   * “wheelEnd”事件数据只有prop timeStamp
    * */
   originalEvent: WheelEvent | { timeStamp: number }
   type: CustomEventType
@@ -25,14 +29,18 @@ export interface BindOptions {
    * The threshold interval between two event
    * used to determine whether the event should be ignored
    *
-   * Default to 0
+   * 两个事件之间的阈值间隔，用于确定是否应忽略该事件
+   *
+   * Default to 0  默认为0
    * */
   debounceTime?: number
   /**
    * The threshold interval between two event
    * used to determine whether the event type is wheelStart/wheelEnd
    *
-   * Default to 500
+   * 两个事件之间的阈值间隔，用于确定事件类型是否为wheelStart/wheelEnd
+   *
+   * Default to 500  默认为500
    * */
   interval?: number
   useCapture?: boolean
@@ -55,7 +63,7 @@ let $removeEventListener: 'removeEventListener' | 'detachEvent' =
 let support: string = 'wheel'
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  // detect event model
+  // detect event model  选择要播放的事件模型。检测事件模型
   if ('addEventListener' in window) {
     $addEventListener = 'addEventListener'
     $removeEventListener = 'removeEventListener'
@@ -65,13 +73,14 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     prefix = 'on'
   }
 
-  // detect available wheel event
+  // detect available wheel event  启用
   if ('onwheel' in document.createElement('div')) {
     // "Wheel" is supported by most higher versions of browsers
+    // 大多数更高版本的浏览器都支持“轮子”
     // 各个厂商的高版本浏览器都支持"wheel"
     support = 'wheel'
   } else if (window.onmousewheel !== undefined) {
-    // Webkit and IE always support "mousewheel"
+    // Webkit and IE always support "mousewheel"  Webkit和IE始终支持“鼠标滚轮”
     // Webkit 和 IE一定支持"mousewheel"
     support = 'mousewheel'
   } else {
@@ -85,8 +94,10 @@ function dealOriginalEvent(ev: any): WheelEvent {
   const originalEvent = ev || window.event
 
   // create a normalized event object
+  // 创建规范化的事件对象
   const event = {
     // keep a ref to the original event object
+    // 保留对原始事件对象的引用
     originalEvent,
     timeStamp: originalEvent.timeStamp,
     target: originalEvent.target || originalEvent.srcElement,
@@ -102,11 +113,13 @@ function dealOriginalEvent(ev: any): WheelEvent {
   }
 
   // calculate deltaY (and deltaX) according to the event
+  // 根据事件计算deltaY（和deltaX）
   if (support === 'mousewheel') {
     event.deltaY = (-1 / 40) * originalEvent.wheelDelta
 
     if (originalEvent.wheelDeltaX) {
       // Webkit also support wheelDeltaX
+      // Webkit还支持wheelDeltaX
       event.deltaX = (-1 / 40) * originalEvent.wheelDeltaX
     }
   } else {
@@ -202,6 +215,7 @@ export const bind: BindFn = (element: any, listener: any, options?: any) => {
 
   if (support === 'DOMMouseScroll') {
     // handle MozMousePixelScroll in older Firefox
+    // 在旧版Firefox中处理MozMousePixelScroll
     return $addWheelListener(element, 'MozMousePixelScroll', listener, options)
   }
   return $addWheelListener(element, support, listener, options)

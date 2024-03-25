@@ -100,6 +100,7 @@ export default function isMobile(param?: IsMobileParameter): isMobileResult {
 
   // Facebook mobile app's integrated browser adds a bunch of strings that
   // match everything. Strip it out if it exists.
+  // Facebook移动应用程序的集成浏览器添加了一组匹配所有内容的字符串。如果存在，请将其剥离。
   let tmp = userAgent.split('[FBAN');
   if (typeof tmp[1] !== 'undefined') {
     userAgent = tmp[0];
@@ -108,6 +109,9 @@ export default function isMobile(param?: IsMobileParameter): isMobileResult {
   // Twitter mobile app's integrated browser on iPad adds a "Twitter for
   // iPhone" string. Same probably happens on other tablet platforms.
   // This will confuse detection so strip it out if it exists.
+  // 推特手机应用程序在iPad上的集成浏览器添加了一个“推特换iPhone”字符串。
+  // 其他平板电脑平台可能也会出现这种情况。
+  // 这会混淆检测，所以如果它存在，就把它去掉。
   tmp = userAgent.split('Twitter');
   if (typeof tmp[1] !== 'undefined') {
     userAgent = tmp[0];
@@ -183,10 +187,10 @@ export default function isMobile(param?: IsMobileParameter): isMobileResult {
     result.windows.device ||
     result.other.device;
   // excludes 'other' devices and ipods, targeting touchscreen phones
+  // 不包括针对触摸屏手机的“其他”设备和iPod
   result.phone =
     result.apple.phone || result.android.phone || result.windows.phone;
   result.tablet =
     result.apple.tablet || result.android.tablet || result.windows.tablet;
-
   return result;
 }
