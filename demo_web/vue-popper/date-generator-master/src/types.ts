@@ -1,5 +1,5 @@
 /**
- * Integer number
+ * Integer number   整数
  * */
 export type Integer = number
 /**
@@ -153,7 +153,7 @@ export interface GntYearOptions {
    * */
   max?: Integer
 }
-
+// 年度信息
 export interface YearInfo {
   /**
    * String that already been formatted, such as `2020`
@@ -164,7 +164,7 @@ export interface YearInfo {
   canBeChose: boolean
   isNow: boolean
 }
-
+// 日期比较
 export enum DateCompare {
   GreatThanYear = 100,
   GreatThanMonth = 10,

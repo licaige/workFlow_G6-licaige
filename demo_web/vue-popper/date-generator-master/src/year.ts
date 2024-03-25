@@ -36,6 +36,5 @@ export function gntYear(
       })
     }
   }
-
   return arr
 }
