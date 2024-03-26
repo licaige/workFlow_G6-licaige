@@ -1,0 +1,51 @@
+{
+  "name": "toolbook-server",
+  "version": "1.0.0",
+  "description": "toolbook-server",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "egg": "^3",
+    "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
+    "egg-mysql": "^3.1.1",
+    "egg-scripts": "^2",
+    "egg-view-ejs": "^3.0.0",
+    "ejs": "^3.1.8",
+    "mkdirp": "^0.5.6",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "egg-bin": "^5",
+    "egg-ci": "^2",
+    "egg-mock": "^5",
+    "eslint": "^8",
+    "eslint-config-egg": "^12"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-toolbook-server",
+    "stop": "egg-scripts stop --title=egg-server-toolbook-server",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov"
+  },
+  "ci": {
+    "version": "16, 18",
+    "type": "github"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "bia",
+  "license": "MIT"
+}
