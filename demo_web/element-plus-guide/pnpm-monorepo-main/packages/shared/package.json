@@ -1,0 +1,6 @@
+{
+    "name": "@vue/shared",
+    "version": "0.0.1",
+    "main": "dist/shared.cjs.js",
+    "module": "dist/shared.esm-bundler.js"
+}

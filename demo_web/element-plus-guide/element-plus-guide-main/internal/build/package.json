@@ -1,0 +1,28 @@
+{
+  "name": "build",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "gulp": "^4.0.2"
+  },
+  "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.4.4",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "fast-glob": "^3.3.2",
+    "rollup": "^4.3.1",
+    "rollup-plugin-esbuild": "^6.1.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "ts-morph": "^20.0.0",
+    "unplugin-vue-macros": "^2.7.0"
+  }
+}

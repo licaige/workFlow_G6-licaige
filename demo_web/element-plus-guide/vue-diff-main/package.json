@@ -1,0 +1,25 @@
+{
+  "name": "vue-diff",
+  "version": "1.0.0",
+  "description": "Vue 的 DIFF 算法理解",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watchAll",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amebyte/vue-diff.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amebyte/vue-diff/issues"
+  },
+  "homepage": "https://github.com/amebyte/vue-diff#readme",
+  "dependencies": {
+    "jest": "^27.4.5"
+  }
+}

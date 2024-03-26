@@ -1,0 +1,17 @@
+{
+      "name": "button",
+      "version": "0.0.0",
+      "main": "index.umd.js",
+      "module": "index.umd.js",
+      "author": "Cobyte",
+      "description": "",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/amebyte/vue3-jsx-ui.git"
+      },
+      "keywords": ["vue3", "组件库", "tsx", "UI"],
+      "license": "ISC",
+      "bugs": {
+        "url": "https://github.com/amebyte/vue3-jsx-ui/issues"
+      }
+    }

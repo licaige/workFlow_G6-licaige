@@ -1,0 +1,25 @@
+{
+  "name": "ffmpeg-download",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "download": "node ./src/download.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amebyte/ffmpeg-download.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
+  "bugs": {
+    "url": "https://github.com/amebyte/ffmpeg-download/issues"
+  },
+  "homepage": "https://github.com/amebyte/ffmpeg-download#readme"
+}
