@@ -1,6 +1,6 @@
 import { unref } from "vue";
 import useEventListener from "./useEventListener";
-
+// 触发事件
 export default function useClickAway(target, handler) {
   const event = "pointerdown";
 
