@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>连线题示例</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- 工具栏 -->
+    <div class="tools">
+      <div class="button reset">重置</div>
+      <div class="button undo">撤销</div>
+      <div class="button save">保存</div>
+      <div class="button delete">删除</div>
+      <div class="button read">查询</div>
+      <div class="button check">纠错</div>
+    </div>
+    <div class="content">
+      <!-- 左侧 -->
+      <div class="options leftOptions">
+        <div class="option" data-value="水果" data-ownership="L">水果</div>
+        <div class="option" data-value="动物" data-ownership="L">动物</div>
+        <div class="option" data-value="汽车" data-ownership="L">汽车</div>
+        <div class="option" data-value="蔬菜" data-ownership="L">蔬菜</div>
+      </div>
+      <!-- 右侧 -->
+      <div class="options rightOptions">
+        <div class="option" data-value="🥕" data-ownership="R">🥕</div>
+        <div class="option" data-value="🚗" data-ownership="R">🚗</div>
+        <div class="option" data-value="🐒" data-ownership="R">🐒</div>
+        <div class="option" data-value="🍌" data-ownership="R">🍌</div>
+      </div>
+      <!-- 实际连线标签 -->
+      <canvas id="canvas" width="400" height="250"></canvas>
+      <!-- 模拟连线标签 -->
+      <canvas id="backCanvas" width="400" height="250"></canvas>
+
+    </div>
+  </div>
+
+</body>
+<script src="./js/index.js"></script>
+
+</html>

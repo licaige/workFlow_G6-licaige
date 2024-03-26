@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js+canvas·画板工具</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <!-- <div style="height: 50px; background-color: orange"></div> -->
+    <!-- 标题 -->
+    <h1 class="title">js+canvas·Drawing-Board</h1>
+    <!-- 画板工具 -->
+    <div class="drawing-board">
+      <!-- 画板 -->
+      <canvas class="drawing-board__canvas"></canvas>
+      <!-- 工具栏 -->
+      <div class="drawing-board__tools">
+        <input type="color" />
+        <div class="item line-width exclude">
+          <div class="decrement">-</div>
+          <div class="v">2</div>
+          <div class="increment">+</div>
+        </div>
+        <div class="item eraser exclude">橡皮擦</div>
+        <div class="item clear">清除画布</div>
+        <div class="item undo">撤销</div>
+        <div class="item redo">重做</div>
+        <div class="item save">保存绘图</div>
+        <div class="item record">历史记录</div>
+      </div>
+      <!-- 橡皮擦模式：自定义游标 -->
+      <div class="drawing-board__cursor"></div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>弹框组件封装</title>
+    <link rel="stylesheet" href="plugin/LHYAlertView.css">
+    <!--css 部分-->
+    <style>
+        body { min-width: 1000px; font:  14px "微软雅黑"; }
+        .container {
+            margin: 100px auto;
+            text-align: center;
+        }
+        .btn {
+            padding: 8px;
+            margin: 0 8px;
+            letter-spacing: 2px;
+        }
+        .code { background: #eee;}
+    </style>
+</head>
+<body>
+
+
+<!--html 部分-->
+<div class="container">
+    <button type="button" class="btn" id="btn1">DEFAULT</button>
+    <button type="button" class="btn" id="btn2">ALERT</button>
+    <button type="button" class="btn" id="btn3">CONFIRM</button>
+    <button type="button" class="btn" id="btn4">PROMPT</button>
+</div>
+<div class="tips">
+    <h3>User Guide</h3>
+    <p>引入 LHYAlertView.css / LHYAlertView.js，调用语法如下：</p>
+    <p class="code">new LHYAlertView({ options...})</p>
+    <ul class="guide-list">
+        <li>type：弹出框类型，默认为default，支持default/alert/confirm/prompt</li>
+        <li>title：标题，默认温馨提示</li>
+        <li>message：显示文本信息</li>
+        <li>autoClose：指定弹出框自动关闭时间，默认不自动关闭，如果需要自动关闭，则设值为毫秒时间即可，如500</li>
+        <li>placeholder：输入框提示符，针对于prompt类型时使用</li>
+        <li>cancelTitle：取消按钮标题，默认为取消</li>
+        <li>sureTitle：确定按钮标题，默认为确定</li>
+        <li>cancelCallBack：点击取消按钮时的回调函数</li>
+        <li>sureCallBack：点击确定按钮时的回调函数</li>
+
+    </ul>
+</div>
+
+
+<script type="text/javascript" src="plugin/LHYAlertView.js"></script>
+<script type="text/javascript">
+    let btn1 = document.getElementById("btn1");
+    let btn2 = document.getElementById("btn2");
+    let btn3 = document.getElementById("btn3");
+    let btn4 = document.getElementById("btn4");
+    
+
+    btn1.onclick = function () {
+        new LHYAlertView({
+            type: "default",
+            autoClose: 1000,
+            message: "恭喜您，登陆成功！"
+        });
+    }
+    btn2.onclick = function () {
+        new LHYAlertView({
+            type: "alert",
+            message: "您已成功激活账号！"
+        });
+    };
+    btn3.onclick = function () {
+        new LHYAlertView({
+            type: "confirm",
+            title: "xxx 提示",
+            message: "您确定要退出登录吗？",
+            sureCallBack: function () {
+                console.log("用户点击了确定按钮！");
+            },
+            cancelCallBack: function () {
+                console.log("用户点击了取消按钮！");
+            }
+        });
+    };
+    btn4.onclick = function () {
+        new LHYAlertView({
+            type: "prompt",
+            title: "xxx 提示",
+            placeholder: "请输入您的身份证号！",
+            sureCallBack: function (text) {
+                console.log(text);
+            },
+            cancelCallBack: function () {
+                console.log("用户点击了取消按钮！");
+            }
+        });
+    };
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+.container {
+    text-align: center;
+    margin: 100px auto;
+}
+
+#clock-canvas {
+    /*border: 1px solid #cccccc;*/
+}
+
+#clock-des {
+    color: #333;
+    letter-spacing: 5px;
+}

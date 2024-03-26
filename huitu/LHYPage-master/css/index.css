@@ -1,0 +1,57 @@
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+#content {
+    width: 1000px;
+    height: 500px;
+    background: pink;
+    margin: 0 auto;
+}
+#page-box {
+    width: 1000px;
+    margin: 20px auto;
+    text-align: center;
+    color: gray;
+}
+
+#page-box .page-box {
+    margin: 0 20px;
+}
+#page-box .page {
+    width: 30px;
+    line-height: 30px;
+    background: lightslategray;
+    color: #fff;
+}
+#page-box .page:hover {
+    background: cornflowerblue;
+}
+#page-box .page.cur-page {
+    background: cornflowerblue;
+} 
+#page-box  .jump-input {
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    text-align: center;
+    height: 30px;
+    width: 60px;
+}
+#page-box  .jump-btn {
+    outline: none;
+    border: none;
+    width: 100px;
+    height: 30px;
+    background: lightslategray;
+    cursor: pointer;
+    color: #fff;
+}
+#page-box  .jump-btn:hover {
+    background: cornflowerblue;
+}
+#page-box a:not(.page):hover {
+    border-bottom: 1px solid gray;
+}

@@ -1,0 +1,75 @@
+.container {
+  width: 400px;
+  margin: 100px auto;
+}
+
+.tools {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #EEE;
+  box-sizing: border-box;
+  padding: 0 35px;
+  border-bottom: 1px dashed #808080;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.tools .button:not(:first-child) {
+  margin-left: 16px;
+}
+
+.tools .button:hover {
+  color: #1E90FF;
+}
+
+.content {
+  width: 400px;
+  height: 250px;
+  background: #EEE;
+  box-sizing: border-box;
+  padding: 0 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.rightOptions {
+  font-size: 26px;
+}
+
+.option {
+  width: 100px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  color: #555;
+  position: relative;
+  z-index: 1;
+}
+
+.option:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.option.active {
+  background: #6495ED;
+  color: #FFF;
+}
+
+#canvas,
+#backCanvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

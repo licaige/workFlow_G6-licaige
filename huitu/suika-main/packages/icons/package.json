@@ -1,0 +1,32 @@
+{
+  "name": "@suika/icons",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/icons.es.js",
+  "module": "./dist/icons.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/icons.es.js",
+      "require": "./dist/icons.cjs.js"
+    }
+  },
+  "scripts": {
+    "dev": "node ../../scripts/dev.js icons",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "vite": "^4.2.0",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "tslib": "^2.5.0"
+  }
+}

@@ -1,0 +1,784 @@
+{
+  "apifoxProject": "1.0.0",
+  "info": {
+    "name": "API层封装接口测试",
+    "description": "",
+    "mockRule": { "rules": [], "enableSystemRule": true }
+  },
+  "responseCollection": [
+    {
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer" },
+          "message": { "type": "string", "mock": { "mock": "Not found" } }
+        },
+        "required": ["code", "message"],
+        "x-apifox-orders": ["code", "message"]
+      },
+      "defaultEnable": false,
+      "name": "记录不存在",
+      "code": 404,
+      "contentType": "json",
+      "id": "65132456"
+    },
+    {
+      "jsonSchema": { "type": "object", "properties": {}, "x-apifox-orders": [] },
+      "defaultEnable": false,
+      "name": "修改成功",
+      "code": 200,
+      "contentType": "json",
+      "id": "65132457"
+    },
+    {
+      "jsonSchema": { "type": "object", "properties": {}, "x-apifox-orders": [] },
+      "defaultEnable": false,
+      "name": "新建成功",
+      "code": 201,
+      "contentType": "json",
+      "id": "65132458"
+    },
+    {
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "mock": { "mock": "401" } },
+          "message": { "type": "string", "mock": { "mock": "Invalid Param" } }
+        },
+        "required": ["code", "message"],
+        "x-apifox-orders": ["code", "message"]
+      },
+      "defaultEnable": false,
+      "name": "参数不正确",
+      "code": 401,
+      "contentType": "json",
+      "id": "65132459"
+    }
+  ],
+  "apiCollection": [
+    {
+      "name": "根目录",
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "preProcessors": [],
+      "postProcessors": [],
+      "auth": {},
+      "items": [
+        {
+          "name": "axios封装",
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {},
+          "items": [
+            {
+              "name": "错误的请求",
+              "api": {
+                "id": "30144813",
+                "method": "get",
+                "path": "/500-error",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "71401441",
+                    "name": "服务器错误",
+                    "code": 500,
+                    "contentType": "json",
+                    "jsonSchema": { "type": "object", "properties": {}, "x-apifox-orders": [] }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": { "type": "none", "parameters": [] },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {}
+              }
+            },
+            {
+              "name": "获取管理员列表",
+              "api": {
+                "id": "28810559",
+                "method": "get",
+                "path": "/admins",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "67629006",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G7PNPX3J96GWKF4V686F156P": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": {
+                            "data": {
+                              "type": "object",
+                              "properties": {
+                                "admins": { "type": "array", "items": { "type": "string" } }
+                              },
+                              "x-apifox-orders": ["admins"],
+                              "required": ["admins"]
+                            }
+                          },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G7PNPX3J96GWKF4V686F156P"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "jsonSchema": { "type": "object", "properties": {}, "x-apifox-orders": [] }
+                },
+                "description": "",
+                "tags": [],
+                "status": "developing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 20,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {}
+              }
+            },
+            {
+              "name": "延时请求",
+              "api": {
+                "id": "29593770",
+                "method": "get",
+                "path": "/delay",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "69851866",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G80B1BDJ7A7SSV9NAWXF6HW1": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": {
+                            "data": {
+                              "type": "object",
+                              "properties": { "name": { "type": "string" } },
+                              "x-apifox-orders": ["name"],
+                              "required": ["name"]
+                            }
+                          },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G80B1BDJ7A7SSV9NAWXF6HW1"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": { "type": "none", "parameters": [] },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 60,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": { "enable": true, "value": "fox.mockResponse.setDelay(2000)" }
+              }
+            },
+            {
+              "name": "获取名字列表",
+              "api": {
+                "id": "29626734",
+                "method": "get",
+                "path": "/names",
+                "parameters": {
+                  "path": [],
+                  "query": [
+                    {
+                      "name": "search",
+                      "required": false,
+                      "description": "过滤参数",
+                      "type": "string"
+                    }
+                  ],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "69951284",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G80G6Z4MPW0JEPZY8D66ZWSJ": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": {
+                            "data": {
+                              "type": "object",
+                              "properties": {
+                                "names": { "type": "array", "items": { "type": "string" } }
+                              },
+                              "x-apifox-orders": ["names"],
+                              "required": ["names"]
+                            }
+                          },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G80G6Z4MPW0JEPZY8D66ZWSJ"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": { "type": "none", "parameters": [] },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 70,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {
+                  "enable": true,
+                  "value": "const names = ['Tom','Jenny','Gogo','Thomas','Latty','Sato','Elroy','Sinney'];\n\nconst search = fox.mockRequest.getParam('search');\n\nconst returnNames = search?\n    names.filter((name)=>name.toLowerCase().includes(search.toLowerCase()))\n    :names;\n\nfox.mockResponse.setDelay(500)\n\nfox.mockResponse.setBody({\n    code: 0,\n    data: {\n        names: returnNames\n    },\n    message: null\n})"
+                }
+              }
+            },
+            {
+              "name": "没有返回固定格式包裹的名字请求",
+              "api": {
+                "id": "30147195",
+                "method": "get",
+                "path": "/admins-no-wrapper",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "71407815",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "admins": { "type": "array", "items": { "type": "string" } }
+                      },
+                      "x-apifox-orders": ["admins"],
+                      "required": ["admins"]
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": { "type": "none", "parameters": [] },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 80,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {}
+              }
+            },
+            {
+              "name": "注册",
+              "api": {
+                "id": "30810359",
+                "method": "post",
+                "path": "/register",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "73187796",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G8N4ACZ9ZFNW832JHDWJZNR9": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": { "data": { "type": "null" } },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G8N4ACZ9ZFNW832JHDWJZNR9"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "password": { "type": "string" },
+                      "username": { "type": "string" }
+                    },
+                    "x-apifox-orders": ["username", "password"],
+                    "required": ["username", "password"]
+                  }
+                },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 90,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {
+                  "enable": true,
+                  "value": "const username = fox.mockRequest.getParam('username');\r\nconst password = fox.mockRequest.getParam('password');\r\n\r\nlet message = ''\r\nif(!username){\r\n    message = '缺乏username参数'\r\n}\r\nif(!password){\r\n    message += '缺乏password参数'\r\n}\r\n\r\nif(message){\r\n    fox.mockResponse.setCode(400)\r\n    fox.mockResponse.setBody({\r\n        code: 400,\r\n        data: null,\r\n        message\r\n    })\r\n}else{\r\n    fox.mockResponse.setBody({\r\n        code: 0,\r\n        data: null,\r\n        message\r\n    })\r\n}"
+                }
+              }
+            },
+            {
+              "name": "更换密码",
+              "api": {
+                "id": "30813813",
+                "method": "put",
+                "path": "/password",
+                "parameters": {
+                  "path": [],
+                  "query": [
+                    { "name": "username", "required": true, "description": "", "type": "string" }
+                  ],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "73195838",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": { "type": "object", "properties": {}, "x-apifox-orders": [] }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": { "password": { "type": "string" } },
+                    "x-apifox-orders": ["password"],
+                    "required": ["password"]
+                  }
+                },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 100,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {
+                  "enable": true,
+                  "value": "const username = fox.mockRequest.getParam('username');\r\nconst password = fox.mockRequest.getParam('password');\r\n\r\n// if(username==='Tom'){\r\n//     fox.mockResponse.setBody({\r\n//         code: 0,\r\n//         data: null,\r\n//         message: '该用户信息不存在'\r\n//     })\r\n// }else{\r\nlet message = ''\r\nif(!username){\r\n    message = '缺乏username参数'\r\n}\r\nif(!password){\r\n    message += '缺乏password参数'\r\n}\r\nif(message){\r\n    fox.mockResponse.setCode(400)\r\n    fox.mockResponse.setBody({\r\n        code: 400,\r\n        data: null,\r\n        message\r\n    })\r\n}else if(username==='Tom'){\r\n    fox.mockResponse.setBody({\r\n        code: 1,\r\n        data: null,\r\n        message: '该用户信息不存在'\r\n    })\r\n}else{\r\n    fox.mockResponse.setBody({\r\n        code: 0,\r\n        data: null,\r\n        message:'修改成功'\r\n    })\r\n}\r\n// }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                }
+              }
+            },
+            {
+              "name": "注销",
+              "api": {
+                "id": "30815087",
+                "method": "delete",
+                "path": "/unregister",
+                "parameters": {
+                  "path": [],
+                  "query": [
+                    { "name": "username", "required": true, "description": "", "type": "string" }
+                  ],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "73199024",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": { "type": "object", "properties": {}, "x-apifox-orders": [] }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": { "type": "none", "parameters": [] },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 110,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {
+                  "enable": true,
+                  "value": "const username = fox.mockRequest.getParam('username');\r\nconst password = fox.mockRequest.getParam('password');\r\n\r\nlet message = ''\r\nif(!username){\r\n    message = '缺乏username参数'\r\n}\r\n\r\nif(message){\r\n    fox.mockResponse.setCode(400)\r\n    fox.mockResponse.setBody({\r\n        code: 400,\r\n        data: null,\r\n        message\r\n    })\r\n}else{\r\n    fox.mockResponse.setBody({\r\n        code: 0,\r\n        data: null,\r\n        message\r\n    })\r\n}"
+                }
+              }
+            },
+            {
+              "name": "注册（Form数据）",
+              "api": {
+                "id": "31960812",
+                "method": "post",
+                "path": "/register-form",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "76407017",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G97X56FRA6T829JFABCB5C36": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": { "data": { "type": "null" } },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G97X56FRA6T829JFABCB5C36"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "multipart/form-data",
+                  "parameters": [
+                    { "name": "username", "required": true, "description": "", "type": "string" },
+                    { "name": "password", "required": true, "description": "", "type": "string" }
+                  ]
+                },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 120,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {}
+              }
+            },
+            {
+              "name": "上传图片",
+              "api": {
+                "id": "31993932",
+                "method": "post",
+                "path": "/photo",
+                "parameters": { "path": [], "query": [], "cookie": [], "header": [] },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "76497965",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G9AFRWSDKWYHGP14GQGQ35R3": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": { "data": { "type": "null" } },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G9AFRWSDKWYHGP14GQGQ35R3"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "multipart/form-data",
+                  "parameters": [
+                    {
+                      "name": "photo",
+                      "required": false,
+                      "description": "",
+                      "sampleValue": "file://C:\\Users\\Administrator\\Pictures\\Saved Pictures\\CI.webp",
+                      "type": "file"
+                    }
+                  ]
+                },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 130,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {}
+              }
+            },
+            {
+              "name": "获取账号详情",
+              "api": {
+                "id": "33055534",
+                "method": "get",
+                "path": "/account/{username}",
+                "parameters": {
+                  "path": [
+                    {
+                      "name": "username",
+                      "required": true,
+                      "sampleValue": "jenny",
+                      "type": "string"
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "commonParameters": { "query": [], "body": [], "cookie": [], "header": [] },
+                "responses": [
+                  {
+                    "id": "79483234",
+                    "name": "成功",
+                    "code": 200,
+                    "contentType": "json",
+                    "jsonSchema": {
+                      "x-apifox-overrides": {},
+                      "type": "object",
+                      "x-apifox-refs": {
+                        "01G9S41RBQ9TAY6H2TZ81KR0SV": {
+                          "$ref": "#/definitions/12432732",
+                          "x-apifox-overrides": {
+                            "data": {
+                              "type": "object",
+                              "properties": {
+                                "id": { "type": "string" },
+                                "name": { "type": "string" },
+                                "role": { "type": "string" }
+                              },
+                              "x-apifox-orders": ["id", "name", "role"],
+                              "required": ["id", "name", "role"]
+                            }
+                          },
+                          "required": ["data"]
+                        }
+                      },
+                      "x-apifox-orders": ["01G9S41RBQ9TAY6H2TZ81KR0SV"],
+                      "properties": {}
+                    }
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": { "type": "none", "parameters": [] },
+                "description": "",
+                "tags": [],
+                "status": "testing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 140,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {},
+                "mockScript": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "socketCollection": [],
+  "docCollection": [],
+  "schemaCollection": [
+    {
+      "name": "根目录",
+      "items": [
+        {
+          "name": "axios封装",
+          "items": [
+            {
+              "name": "BackendResultFormat",
+              "id": "#/definitions/12432732",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "number", "default": 0, "mock": { "mock": "0" } },
+                    "data": {
+                      "type": ["string", "integer", "boolean", "array", "object", "number", "null"]
+                    },
+                    "message": { "type": ["string", "null"] }
+                  },
+                  "x-apifox-orders": ["code", "data", "message"],
+                  "required": ["code", "data", "message"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "apiTestCaseCollection": [
+    { "name": "默认分组", "children": [], "items": [] },
+    {
+      "name": "宠物店",
+      "children": [],
+      "items": [
+        { "id": 994017, "name": "测试宠物新建/修改/删除流程", "description": "", "steps": [] }
+      ]
+    }
+  ],
+  "apiTestSuiteCollection": [],
+  "environments": [
+    {
+      "baseUrl": "http://127.0.0.1",
+      "baseUrls": { "default": "http://127.0.0.1" },
+      "parameters": {},
+      "variables": [],
+      "name": "测试环境",
+      "type": "normal",
+      "visibility": "protected",
+      "ordering": 0,
+      "id": "4154742"
+    },
+    {
+      "baseUrl": "http://127.0.0.1",
+      "baseUrls": { "default": "http://127.0.0.1" },
+      "parameters": {},
+      "variables": [],
+      "name": "正式环境",
+      "type": "normal",
+      "visibility": "protected",
+      "ordering": 0,
+      "id": "4154743"
+    },
+    {
+      "baseUrl": "http://127.0.0.1:4523/mock/1237759",
+      "baseUrls": { "default": "http://127.0.0.1:4523/mock/undefined" },
+      "parameters": {},
+      "variables": [],
+      "name": "本地 Mock",
+      "type": "mock",
+      "visibility": "protected",
+      "ordering": 0,
+      "id": "4154744"
+    },
+    {
+      "baseUrl": "",
+      "baseUrls": { "default": "" },
+      "parameters": {},
+      "variables": [],
+      "name": "云端 Mock",
+      "type": "cloudMock",
+      "visibility": "protected",
+      "ordering": 0,
+      "id": "4154745"
+    }
+  ],
+  "commonScripts": [],
+  "databaseConnections": [],
+  "globalVariables": [],
+  "commonParameters": null,
+  "projectSetting": {
+    "apiStatuses": ["testing", "released", "developing", "designing"],
+    "servers": [{ "id": "default", "name": "默认服务" }],
+    "preProcessors": [],
+    "postProcessors": [],
+    "auth": {},
+    "cloudMock": {
+      "security": "free",
+      "token": "OSJ3b6H0iLuHa4zamO4qiVj6bDTM2mow",
+      "enable": false,
+      "tokenKey": "apifoxToken"
+    },
+    "initialDisabledMockIds": [],
+    "id": "970383"
+  }
+}

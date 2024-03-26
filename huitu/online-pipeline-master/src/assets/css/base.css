@@ -1,0 +1,46 @@
+.tip-text {
+    width: 120px;
+    background-color: rgba(64, 158, 255, 0.6);
+    color: #000;
+    text-align: center;
+    border-radius: 6px;
+    line-height: 12px;
+    padding: 5px 5px;
+    position: absolute;
+    z-index: 1;
+    margin-left: -65px;
+}
+
+.tip-text::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(64, 158, 255, 0.6) transparent;
+}
+
+.tip-text span{
+    /*margin: 0 5px;*/
+    padding: 10px 13px;
+    display: inline-block;
+    background-color: #409eff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+}
+.tip-text span:hover{
+    background-color: #94e8ea;
+    color: #000000;
+}
+
+body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

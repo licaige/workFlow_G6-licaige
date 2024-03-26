@@ -1,0 +1,17 @@
+{
+  "name": "@suika/geo",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "sideEffects": false,
+  "main": "dist/geo.es.js",
+  "module": "dist/geo.es.js",
+  "types": "dist/geo.d.ts",
+  "scripts": {
+    "dev": "node ../../scripts/dev.js geo",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "vite": "^4.2.0"
+  }
+}

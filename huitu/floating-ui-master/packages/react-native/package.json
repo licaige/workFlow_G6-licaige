@@ -1,0 +1,57 @@
+{
+  "name": "@floating-ui/react-native",
+  "version": "0.10.4",
+  "description": "Floating UI for React Native",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/floating-ui.react-native.js",
+  "module": "./dist/floating-ui.react-native.esm.js",
+  "types": "./dist/floating-ui.react-native.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "biome lint .",
+    "clean": "rimraf dist out-tsc",
+    "build": "rollup -c",
+    "build:api": "build-api --tsc tsconfig.lib.json",
+    "publint": "publint",
+    "prepack": "compat-exports",
+    "typecheck": "tsc -b"
+  },
+  "author": "atomiks",
+  "license": "MIT",
+  "bugs": "https://github.com/floating-ui/floating-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/floating-ui/floating-ui.git",
+    "directory": "packages/react-native"
+  },
+  "homepage": "https://floating-ui.com/docs/react-native",
+  "keywords": [
+    "tooltip",
+    "popover",
+    "dropdown",
+    "menu",
+    "popup",
+    "positioning",
+    "react",
+    "react-native"
+  ],
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.64.0"
+  },
+  "dependencies": {
+    "@floating-ui/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.46",
+    "@types/react-native": "^0.72.8",
+    "config": "workspace:*",
+    "react": "^18.2.0",
+    "react-native": "0.72.1"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@suika/common",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "sideEffects": false,
+  "main": "dist/common.es.js",
+  "module": "dist/common.es.js",
+  "types": "dist/common.d.ts",
+  "scripts": {
+    "dev": "node ../../scripts/dev.js common",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.2",
+    "@types/lodash.clonedeep": "^4.5.7",
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/lodash.isequal": "^4.5.6",
+    "@types/lodash.omit": "^4.5.7",
+    "@types/lodash.throttle": "^4.1.7",
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
+    "lodash.omit": "^4.5.0",
+    "lodash.throttle": "^4.1.1",
+    "uuid": "^9.0.0"
+  }
+}

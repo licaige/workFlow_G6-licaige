@@ -1,0 +1,58 @@
+{
+  "name": "@suika/components",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/components.es.js",
+  "module": "dist/components.es.js",
+  "types": "dist/components.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/components.es.js",
+      "require": "./dist/components.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "node ../../scripts/dev.js components",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.22.3",
+    "@suika/common": "workspace:^",
+    "@suika/icons": "workspace:^",
+    "classnames": "^2.3.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@storybook/addon-essentials": "^7.0.6",
+    "@storybook/addon-interactions": "^7.0.6",
+    "@storybook/addon-links": "^7.0.6",
+    "@storybook/blocks": "^7.0.6",
+    "@storybook/react": "^7.0.6",
+    "@storybook/react-vite": "^7.0.6",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "eslint-plugin-storybook": "^0.6.11",
+    "prop-types": "^15.8.1",
+    "sass": "^1.57.1",
+    "storybook": "^7.0.6",
+    "vite": "^4.2.0"
+  }
+}

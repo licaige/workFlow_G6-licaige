@@ -1,0 +1,121 @@
+/* 标题 */
+.title {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* 容器 */
+.drawing-board {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 1px dashed #ccc;
+  user-select: none;
+  position: relative;
+}
+
+/* 画板 */
+.drawing-board__canvas {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* 工具栏 */
+.drawing-board__tools {
+  width: max-content;
+  height: 50px;
+  padding: 0 28px;
+  border-radius: 25px;
+  background: #555;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 在绘制状态下，禁止工具栏触发鼠标事件 ⭐️ */
+.drawing-board.drawing .drawing-board__tools {
+  pointer-events: none;
+}
+
+.drawing-board__tools [type="color"] {
+  outline: none;
+  border: none;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.drawing-board__tools .item {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #0074ff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.drawing-board__tools .item.line-width {
+  padding: 0;
+  margin-left: 6px;
+  overflow: hidden;
+}
+
+.drawing-board__tools .item .v {
+  width: 40px;
+  border-left: 1px solid #555;
+  border-right: 1px solid #555;
+
+  font: bold 16px "Times New Roman", Times, serif;
+  line-height: 30px;
+  text-align: center;
+  cursor: default;
+}
+
+.drawing-board__tools .item .increment,
+.drawing-board__tools .item .decrement {
+  width: 40px;
+  height: inherit;
+  background: #0074ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.drawing-board__tools .item .increment:hover,
+.drawing-board__tools .item .decrement:hover,
+.drawing-board__tools .item.eraser.active,
+.drawing-board__tools .item:not(.exclude):hover {
+  background-color: #0050cc;
+  color: #eee;
+}
+
+.drawing-board__tools .item:not(:last-child) {
+  margin-right: 6px;
+}
+
+.drawing-board__cursor {
+  position: absolute;
+  border: 2px solid #000;
+  border-radius: 50%;
+  pointer-events: none; /* 使鼠标事件不会被该元素捕获，以允许下方的画布接收鼠标事件 */
+  transform: translate(-50%, -50%); /* 将鼠标样式的中心点设置为鼠标位置 */
+  display: none; /* 默认隐藏 */
+}

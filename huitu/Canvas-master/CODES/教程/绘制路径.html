@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制路径</title>
+  <style>
+    #canvas {
+      border: 1px solid #CCC;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="500" height="300"></canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+    const canvas = document.getElementById('canvas');
+    /** @type {CanvasRenderingContext2D} */
+    const ctx = canvas.getContext('2d');
+
+
+    ctx.beginPath();
+    ctx.moveTo(250, 30);
+    ctx.lineTo(350, 100);
+    ctx.lineTo(150, 100);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(250, 100);
+    ctx.lineTo(350, 200);
+    ctx.lineTo(150, 200);
+    ctx.closePath();
+    ctx.fill();
+
+  </script>
+</body>
+
+</html>

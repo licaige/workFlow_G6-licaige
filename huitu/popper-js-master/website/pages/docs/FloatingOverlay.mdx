@@ -1,0 +1,63 @@
+<PageCard>
+
+# FloatingOverlay
+
+Provides base styling for a fixed overlay element.
+
+```js
+import {FloatingOverlay} from '@floating-ui/react';
+```
+
+This is useful to dim content or block pointer events behind a
+floating element, in addition to locking the body scroll.
+
+<ShowFor packages={['react-dom']}>
+
+<PackageLimited>@floating-ui/react only</PackageLimited>
+
+</ShowFor>
+
+</PageCard>
+
+## Usage
+
+It renders a `<div>{:js}` with base styling. Can be styled with
+any CSS solution.
+
+```js
+function App() {
+  return (
+    <FloatingOverlay>
+      <div />
+    </FloatingOverlay>
+  );
+}
+```
+
+## Props
+
+```ts
+interface FloatingOverlayProps {
+  lockScroll?: boolean;
+}
+```
+
+### `lockScroll{:.keyword}`
+
+Whether the `<body>{:html}` is prevented from scrolling while the
+overlay is rendered. Uses a robust technique that works on iOS
+and handles horizontal scrolling.
+
+```js
+<FloatingOverlay lockScroll>
+  {/* floating element */}
+</FloatingOverlay>
+```
+
+<Notice>
+
+If you need a more advanced solution,
+[`react-remove-scroll`](https://www.npmjs.com/package/react-remove-scroll)
+is a great option.
+
+</Notice>

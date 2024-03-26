@@ -1,0 +1,98 @@
+<!--
+ * @Author: Lee
+ * @Date: 2021-12-06 20:18:18
+ * @LastEditors: Lee
+ * @LastEditTime: 2021-12-06 21:07:41
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas - 绘制多行文本</title>
+    <style>
+      #canvas {
+        background: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="375" height="667"></canvas>
+    <script>
+      const canvas = document.querySelector('#canvas');
+      const context = canvas.getContext('2d');
+      context.fillStyle = 'blue';
+      context.textBaseline = 'top';
+      context.textAlign = 'left';
+      context.font = '30pt sans-serif';
+
+      context.fillText('Hello', 0, 0);
+
+      function a(
+        str,
+        ctx,
+        initX,
+        initY,
+        style,
+        font,
+        lineHeight,
+        maxWidth,
+        row
+      ) {
+        var lineWidth = 0;
+
+        var lastSubStrIndex = 0;
+
+        ctx.setFontSize(font);
+
+        ctx.setFillStyle(style);
+
+        ctx.setTextAlign('left');
+
+        var currentRow = 1;
+
+        maxWidth = Math.ceil(maxWidth);
+
+        for (let i = 0; i < str.length; i++) {
+          lineWidth += ctx.measureText(str[i]).width;
+
+          // console.log(lineWidth)
+
+          if (lineWidth > maxWidth) {
+            undefined;
+
+            // console.log(maxWidth, "最大宽度")
+
+            currentRow++;
+
+            let newStr = str.substring(lastSubStrIndex, i + 1);
+
+            if (currentRow > row && str.length > i) {
+              newStr = str.substring(lastSubStrIndex, i - 2) + '...';
+            }
+
+            ctx.fillText(newStr, initX, initY);
+
+            initY += lineHeight;
+
+            lineWidth = 0;
+
+            lastSubStrIndex = i + 1;
+
+            if (currentRow > row) {
+              break;
+            }
+          }
+
+          if (i == str.length - 1) {
+            undefined;
+
+            ctx.fillText(str.substring(lastSubStrIndex, i + 1), initX, initY);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

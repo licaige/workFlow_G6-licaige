@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制圆弧</title>
+  <style>
+    #canvas {
+      border: 1px solid #CCC;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="500" height="300"></canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+    const canvas = document.getElementById('canvas');
+    /** @type {CanvasRenderingContext2D} */
+    const ctx = canvas.getContext('2d');
+
+    // 绘制脸
+    ctx.arc(250, 150, 50, 0, Math.PI * 2, true);
+    ctx.moveTo(285, 150);
+    // 绘制嘴
+    ctx.arc(250, 150, 35, 0, Math.PI);
+    ctx.moveTo(240, 130);
+
+    // 绘制左眼
+    ctx.arc(230, 130, 10, 0, Math.PI * 2);
+    ctx.moveTo(280, 130);
+
+    // 绘制右眼
+    ctx.arc(270, 130, 10, 0, Math.PI * 2);
+    ctx.stroke();
+
+
+    // ctx.beginPath();
+    // ctx.arc(125, 150, 75, 0, 2 * Math.PI, false);
+    // ctx.closePath();
+    // ctx.fillStyle = "#333";
+    // ctx.closePath();
+    // ctx.fill();
+
+
+    // ctx.beginPath();
+    // ctx.arc(325, 150, 75, 0, 45, true);
+    // ctx.strokeStyle = "#333";
+    // ctx.closePath();
+    // ctx.stroke()
+
+
+  </script>
+</body>
+
+</html>
