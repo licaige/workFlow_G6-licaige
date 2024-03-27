@@ -1,0 +1,32 @@
+{
+  "name": "@uppy/provider-views",
+  "description": "View library for Uppy remote provider plugins.",
+  "version": "3.10.0",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "style": "dist/style.min.css",
+  "types": "types/index.d.ts",
+  "type": "module",
+  "keywords": [
+    "file uploader",
+    "uppy"
+  ],
+  "homepage": "https://uppy.io",
+  "bugs": {
+    "url": "https://github.com/transloadit/uppy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transloadit/uppy.git"
+  },
+  "dependencies": {
+    "@uppy/utils": "workspace:^",
+    "classnames": "^2.2.6",
+    "nanoid": "^4.0.0",
+    "p-queue": "^7.3.4",
+    "preact": "^10.5.13"
+  },
+  "peerDependencies": {
+    "@uppy/core": "workspace:^"
+  }
+}

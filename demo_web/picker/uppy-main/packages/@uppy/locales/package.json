@@ -1,0 +1,23 @@
+{
+  "name": "@uppy/locales",
+  "description": "Uppy language packs",
+  "version": "3.5.2",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "uppy",
+    "uppy-plugin",
+    "language packs"
+  ],
+  "homepage": "https://uppy.io",
+  "bugs": {
+    "url": "https://github.com/transloadit/uppy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transloadit/uppy.git"
+  },
+  "dependencies": {
+    "@uppy/utils": "workspace:^"
+  }
+}

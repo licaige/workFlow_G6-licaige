@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  
+  <!-- 这里使用官方提供的jquery版本，版本太高生产会报错【当然也可以】 -->
+  <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <!-- 比如这个版本就是高的版本，不建议使用
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+
+  <script id="rrbayJs" src="/canyou/js/wza.min.js" referrerpolicy="origin" ></script>
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <style>
+    .el-menu-item.is-active {
+      background-color: #478ce9 !important;
+      font-weight: bold;
+    }
+    .el-submenu.is-active i{
+      color: #fff;
+    }
+    .el-submenu.is-active span{
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

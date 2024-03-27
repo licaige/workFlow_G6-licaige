@@ -1,0 +1,47 @@
+{
+  "name": "vue-scroll-picker",
+  "version": "1.1.4",
+  "description": "iOS Style Scroll Picker Component for Vue 3. Support All Gestures of Mouse(also MouseWheel) and Touch.",
+  "author": "Changwan Jun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wan2land/vue-scroll-picker.git"
+  },
+  "scripts": {
+    "prepack": "npm run build",
+    "test": "npm run test:lint && npm run test:build",
+    "test:lint": "eslint 'src/**/*.ts'",
+    "test:build": "npm run build:production && node scripts/test-build.mjs",
+    "dev:example": "vite serve example --host 0.0.0.0",
+    "build": "npm run build:production && npm run build:example",
+    "build:production": "vite build && tsc -p tsconfig.build.json",
+    "build:example": "vite build example && cp example/CNAME example-dist/",
+    "deploy:example": "npm run build:example && gh-pages -d example-dist"
+  },
+  "main": "lib/vue-scroll-picker.umd.js",
+  "module": "lib/vue-scroll-picker.mjs",
+  "types": "lib/index.d.ts",
+  "devDependencies": {
+    "@commitlint/cli": "17.8.1",
+    "@commitlint/config-conventional": "13.2.0",
+    "@types/node": "18.19.26",
+    "@types/simple-icons": "5.21.1",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "@vitejs/plugin-vue": "^4.6.2",
+    "@vue/compiler-sfc": "3.4.21",
+    "@vue/eslint-config-typescript": "11.0.3",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "8.10.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-vue": "9.24.0",
+    "gh-pages": "3.2.3",
+    "husky": "7.0.4",
+    "prettier": "2.8.8",
+    "simple-icons": "7.21.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.5.2",
+    "vue": "3.4.21"
+  }
+}

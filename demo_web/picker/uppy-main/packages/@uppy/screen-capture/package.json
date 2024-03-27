@@ -1,0 +1,37 @@
+{
+  "name": "@uppy/screen-capture",
+  "description": "Uppy plugin that captures video from display or application.",
+  "version": "3.1.3",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "style": "dist/style.min.css",
+  "types": "types/index.d.ts",
+  "type": "module",
+  "keywords": [
+    "file uploader",
+    "uppy",
+    "uppy-plugin",
+    "screen capture",
+    "video",
+    "record",
+    "mediarecorder"
+  ],
+  "homepage": "https://uppy.io",
+  "bugs": {
+    "url": "https://github.com/transloadit/uppy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transloadit/uppy.git"
+  },
+  "dependencies": {
+    "@uppy/utils": "workspace:^",
+    "preact": "^10.5.13"
+  },
+  "peerDependencies": {
+    "@uppy/core": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,9 @@
+./assets/main.css
+./assets/logo.png
+index.html
+node_modules/
+demo/*
+.gitignore
+.editorconfig
+.eslintrc
+./src/CheckboxInput
