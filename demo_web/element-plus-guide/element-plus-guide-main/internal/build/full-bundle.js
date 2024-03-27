@@ -39,6 +39,7 @@ export const buildFullEntry = async () => {
       }),
       replace({
         'process.env.NODE_ENV': '"production"',
+        // 这个选项用于防止在字符串后面紧跟一个等号时进行替换。可以用于避免错误的赋值操作
         preventAssignment: true,
       }),
       esbuild(),
