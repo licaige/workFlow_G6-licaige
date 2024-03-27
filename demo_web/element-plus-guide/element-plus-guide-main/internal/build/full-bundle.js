@@ -32,6 +32,8 @@ export const buildFullEntry = async () => {
           vue: vue(),
         },
       }),
+      //  @rollup/plugin-node-resolve 插件默认是不认识 .ts 这些文件的，
+      // 我们需要通过 extensions 选项进行手动配置，让它能识别相关文件。
       nodeResolve({
         extensions: ['.ts'],
       }),
@@ -48,10 +50,10 @@ export const buildFullEntry = async () => {
   bundle.write({
     format: 'umd',
     file: resolve(epOutput, 'dist', 'index.full.js'),
-    name: 'CobyteUI',
+    name: 'CobyteUI', // 将整个组件库要设置一个变量名称：`CobyteUI`
     globals: {
-      vue: 'Vue',
+      vue: 'Vue', // 组件库中需要使用到的全局变量 Vue
     },
   })
 }
-// buildFullEntry()
+buildFullEntry()
