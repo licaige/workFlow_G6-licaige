@@ -3,7 +3,7 @@ import { defineComponent, PropType, h, renderSlot, VNode } from 'vue'
 
 function debounce<TFunc extends Function>(handle: TFunc, delay = 83): TFunc { // eslint-disable-line @typescript-eslint/ban-types
   let timeout = null as any
-  return function (this: any) {
+  return function(this: any) {
     if (timeout) {
       clearTimeout(timeout)
       timeout = null
@@ -60,28 +60,28 @@ export default defineComponent({
     modelValue: null,
     options: {
       type: Array as PropType<ScrollPickerOptionable[]>,
-      default: () => [],
+      default: () => []
     },
     dragSensitivity: {
       type: Number,
-      default: 1.7,
+      default: 1.7
     },
     touchSensitivity: {
       type: Number,
-      default: 1.7,
+      default: 1.7
     },
     scrollSensitivity: {
       type: Number,
-      default: 1,
+      default: 1
     },
     empty: {
       type: String,
-      default: 'No Items',
+      default: 'No Items'
     },
     placeholder: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
@@ -95,7 +95,7 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
     'wheel': (value: any) => true,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
-    'click': (newValue: any, oldValue: any) => true,
+    'click': (newValue: any, oldValue: any) => true
   },
   data() {
     const internalOptions = normalizeOptions(this.options)
@@ -126,13 +126,13 @@ export default defineComponent({
 
       start: null as [scroll: number, clientY: number] | null,
 
-      isDragging: false,
+      isDragging: false
     }
   },
   computed: {
     hasPlaceholder(): boolean {
       return !!(this.placeholder || this.$slots.placeholder)
-    },
+    }
   },
   watch: {
     modelValue(value: any) {
@@ -170,8 +170,8 @@ export default defineComponent({
           }
         })
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   beforeUpdate() {
     this.refItems = []
@@ -281,9 +281,15 @@ export default defineComponent({
 
     },
     onWheel(event: MouseWheelEvent) {
-      if (this.scroll! >= this.scrollMin && event.deltaY < 0) { return }
-      if (this.scroll! <= this.scrollMax && event.deltaY > 0) { return }
-      if (this.bounds.length === 1) { return }
+      if (this.scroll! >= this.scrollMin && event.deltaY < 0) {
+        return
+      }
+      if (this.scroll! <= this.scrollMax && event.deltaY > 0) {
+        return
+      }
+      if (this.bounds.length === 1) {
+        return
+      }
 
       event.preventDefault()
 
@@ -420,7 +426,7 @@ export default defineComponent({
         indexes[indexCursor] != null
         && this.internalOptions[indexes[indexCursor]]
         && this.internalOptions[indexes[indexCursor]].disabled
-      ) {
+        ) {
         console.log('skip', indexes[indexCursor])
         indexCursor++
       }
@@ -452,7 +458,7 @@ export default defineComponent({
       if (this.internalValue !== value) {
         this.$emit('update:modelValue', this.internalValue = value)
       }
-    },
+    }
   },
   render() {
     let nodes = [] as VNode[]
@@ -462,23 +468,23 @@ export default defineComponent({
           'vue-scroll-picker-item',
           'vue-scroll-picker-item-placeholder',
           {
-            'vue-scroll-picker-item-selected': this.internalIndex === -1,
-          },
+            'vue-scroll-picker-item-selected': this.internalIndex === -1
+          }
         ],
-        ref: (el) => el && this.setRefItem(el as HTMLDivElement),
+        ref: (el) => el && this.setRefItem(el as HTMLDivElement)
       }, renderSlot(this.$slots, 'placeholder', { text: this.placeholder }, () => [
-        this.placeholder,
+        this.placeholder
       ])))
     } else if (this.internalOptions.length === 0) {
       nodes.push(h('div', {
         class: [
           'vue-scroll-picker-item',
           'vue-scroll-picker-item-empty',
-          'vue-scroll-picker-item-selected',
+          'vue-scroll-picker-item-selected'
         ],
-        ref: (el) => el && this.setRefItem(el as HTMLDivElement),
+        ref: (el) => el && this.setRefItem(el as HTMLDivElement)
       }, renderSlot(this.$slots, 'empty', { text: this.empty }, () => [
-        this.empty,
+        this.empty
       ])))
     }
 
@@ -488,35 +494,35 @@ export default defineComponent({
           'vue-scroll-picker-item',
           {
             'vue-scroll-picker-item-selected': this.internalIndex === index,
-            'vue-scroll-picker-item-disabled': option.disabled,
-          },
+            'vue-scroll-picker-item-disabled': option.disabled
+          }
         ],
         key: option.value,
-        ref: (el) => el && this.setRefItem(el as HTMLDivElement),
+        ref: (el) => el && this.setRefItem(el as HTMLDivElement)
       }, renderSlot(this.$slots, 'default', { option }, () => [
-        option.name,
+        option.name
       ]))
     }))
     return h('div', {
       class: [
-        'vue-scroll-picker',
-      ],
+        'vue-scroll-picker'
+      ]
     }, [
       h('div', {
         ref: 'rotator',
         class: [
           'vue-scroll-picker-rotator',
           {
-            'vue-scroll-picker-rotator-transition': this.transitionTimeout,
-          },
+            'vue-scroll-picker-rotator-transition': this.transitionTimeout
+          }
         ],
-        style: typeof this.scroll === 'number' ? { top: `${this.scroll}px` } : {},
+        style: typeof this.scroll === 'number' ? { top: `${this.scroll}px` } : {}
       }, nodes),
       h('div', { class: ['vue-scroll-picker-layer'] }, [
         h('div', { class: ['vue-scroll-picker-layer-top'], ref: 'layerTop' }),
         h('div', { class: ['vue-scroll-picker-layer-selection'], ref: 'layerSelection' }),
-        h('div', { class: ['vue-scroll-picker-layer-bottom'], ref: 'layerBottom' }),
-      ]),
+        h('div', { class: ['vue-scroll-picker-layer-bottom'], ref: 'layerBottom' })
+      ])
     ])
-  },
+  }
 })
