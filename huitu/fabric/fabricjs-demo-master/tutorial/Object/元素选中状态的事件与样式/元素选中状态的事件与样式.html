@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元素选中状态的事件与样式</title>
+</head>
+<body>
+<canvas id="c" style="border: 1px solid #ccc;"></canvas>
+<script src="./fabric.js"></script>
+<script>
+  const canvas = new fabric.Canvas('c', {
+    width: 400,
+    height: 400,
+  })
+  let circle = new fabric.Circle({
+    // 控制角空心、实心
+    // transparentCorners: true,
+    // 控制角的颜色
+    // cornerColor: 'pink',
+    // 控制角边框颜色
+    // cornerStrokeColor: 'blue',
+    // 控制角大小
+    // cornerSize: 20,
+    // 控制角边框虚线规则
+    // cornerDashArray: [4, 10, 20],
+    // 控制角形状
+    // cornerStyle: 'circle',
+    // 辅助边颜色
+    // borderColor: 'red',
+    // 辅助边粗细
+    // borderScaleFactor: 4,
+    // 辅助边虚线规则
+    // borderDashArray: [10, 20, 30],
+    // 填充色
+    // fill: '#ffde7d',
+    // 内边距 接受一个数值，不需要传入单位
+    // padding: 20,
+    // 背景色
+    //  backgroundColor: '#f6416c',
+    // 被选中之后的背景色
+    // selectionBackgroundColor: '#00b8a9',
+    /*
+    * 但需要注意，如果你同时设置了 backgroundColor 和 selectionBackgroundColor，
+    * 重叠的部分 backgroundColor 的优先级更高。
+那什么地方才是不重叠的地方呢？那就是设置了 padding 的地方。
+    *
+    * */
+    // 移动元素时的透明度 『移动时 』0 表示完全透明，1 表示完全不透明
+    // borderOpacityWhenMoving: 0.1,
+    // 禁止选中
+    // selectable:false,
+    // 无法通过空白区域操作元素
+    /*
+    * 如果图形不是矩形，在选中元素后，辅助边和图形之间会有一个空白区。
+    * 也就是前面用 backgroundColor 填充的那部分
+    * */
+    // perPixelTargetFind: false,
+    // 隐藏控制角,也就无法通过控制角去缩放和旋转元素了
+    // hasControls: false,
+    // 隐藏辅助边
+    // hasBorders: false,
+    top: 80,
+    left: 80,
+    radius: 50,
+    fill: '#ffde7d' // 淡黄色
+  })
+  canvas.add(circle)
+</script>
+</body>
+</html>

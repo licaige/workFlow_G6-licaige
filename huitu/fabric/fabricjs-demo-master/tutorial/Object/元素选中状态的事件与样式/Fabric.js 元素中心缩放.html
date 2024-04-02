@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>centeredScaling</title>
+  <style>
+      #canvasBox {
+          border: 1px solid #ccc;
+      }
+  </style>
+</head>
+<body>
+<canvas id="canvasBox" width="1900" height="800"></canvas>
+
+<script src="./fabric.js"></script>
+<script>
+
+  // 如果 centeredScaling 为 false（默认），需要按alt键才能以中心点作为缩放原点
+
+  let canvas = new fabric.Canvas('canvasBox', {
+    // centeredScaling: true // 全局所有元素都生效
+  })
+
+  let rect = new fabric.Rect({
+    width: 200,
+    height: 160,
+    left: 100,
+    top: 100,
+    fill: 'pink',
+    // 禁止选中
+    // selectable:false,
+    centeredScaling: true // 单个元素生效
+  })
+
+
+  rect.on('mousedown', (e) => {
+   /* console.log('mousedown 单击', e);
+    const selectTarget = e.transform.target;
+    canvas.setActiveObject(selectTarget,true);
+    let activeObject = canvas.getActiveObject();
+    console.log('获取画布当前选中的对象', activeObject);*/
+  });
+
+
+
+  let circle = new fabric.Circle({
+    radius: 50,
+    left: 800,
+    top: 480,
+    fill: 'green'
+  })
+
+  canvas.add(rect)
+
+  canvas.add(circle)
+  canvas
+    .on('selection:cleared', (e) => {
+      // 画布内取消选中后的事件
+      console.log('画布内取消选中后的事件',canvas.getActiveObject());
+    })
+    .on('selection:created', (e) => {
+      // 初次选中图形目标的事件
+      console.log('初次选中图形目标的事件',canvas.getActiveObject());
+    })
+    .on('selection:updated', (e) => {
+      // 变更选中图形目标的事件
+      console.log('变更选中图形目标的事件',canvas.getActiveObject());
+    })
+    .on('mouse:down', (e) => {
+      // 画布鼠标按下事件
+      console.log('画布鼠标按下事件',e);
+      canvas.setActiveObject(rect);
+    })
+    .on('mouse:up', (e) => {
+      // 画布鼠标松开事件
+      console.log('画布鼠标松开事件',e);
+    })
+    .on('mouse:move', (e) => {
+      // 画布鼠标移动事件
+      // console.log('画布鼠标移动事件',e);
+    })
+    .on('object:added', (e) => {
+      // 当有图形添加进画布时触发的事件
+      console.log('当有图形添加进画布时触发的事件',e.target);
+    })
+    .on('object:removed', (e) => {
+      // 当有图形从画布销毁时触发的事件
+      console.log('当有图形从画布销毁时触发的事件',e.target);
+    })
+    .on('object:moving', (e) => {
+      // 图形移动时触发；
+      console.log('图形移动时触发',e.target);
+    })
+    .on('object:scaling', (e) => {
+      // 图形缩放时触发；
+      console.log('图形缩放时触发',e.target);
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

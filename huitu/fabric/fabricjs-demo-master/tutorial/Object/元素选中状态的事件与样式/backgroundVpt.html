@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>backgroundVpt</title>
+  <style>
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="600"></canvas>
+<script src="./fabric.js"></script>
+<script>
+  window.onload = function() {
+    // 使用 元素id 创建画布，此时可以在画布上框选
+  const canvas = new fabric.Canvas('canvasBox', {
+    width: 600,
+    height: 600,
+    backgroundVpt: false // 不受视口变换影响（也就是不管拖拽还是缩放画布，背景图都不受影响）
+  })
+
+    fabric.Image.fromURL('./bg.jpg', img => {
+      canvas.setBackgroundImage(img)
+      canvas.renderAll()
+    })
+
+    canvas.on('mouse:wheel', opt => {
+      const delta = opt.e.deltaY // 滚轮，向上滚一下是 -100，向下滚一下是 100
+      let zoom = canvas.getZoom() // 获取画布当前缩放值
+      zoom *= 0.999 ** delta
+      if (zoom > 20) zoom = 20
+      if (zoom < 0.01) zoom = 0.01
+      canvas.zoomToPoint(
+        { // 关键点
+          x: opt.e.offsetX,
+          y: opt.e.offsetY
+        },
+        zoom
+      )
+      opt.e.preventDefault()
+      opt.e.stopPropagation()
+    })
+
+    canvas.on('mouse:down', opt => { // 鼠标按下时触发
+      let evt = opt.e
+      canvas.isDragging = true // isDragging 是自定义的
+      canvas.lastPosX = evt.clientX // lastPosX 是自定义的
+      canvas.lastPosY = evt.clientY // lastPosY 是自定义的
+    })
+
+    canvas.on('mouse:move', opt => { // 鼠标移动时触发
+      if (canvas.isDragging) {
+        let evt = opt.e
+        let vpt = canvas.viewportTransform // 聚焦视图的转换
+        vpt[4] += evt.clientX - canvas.lastPosX
+        vpt[5] += evt.clientY - canvas.lastPosY
+        canvas.requestRenderAll()
+        canvas.lastPosX = evt.clientX
+        canvas.lastPosY = evt.clientY
+      }
+    })
+
+    canvas.on('mouse:up', opt => { // 鼠标松开时触发
+      canvas.setViewportTransform(canvas.viewportTransform) // 设置此画布实例的视口转换  
+      canvas.isDragging = false
+    })
+
+    // 圆形
+    circle = new fabric.Circle({
+      name: 'circle',
+      top: 60,
+      left: 60,
+      radius: 30, // 圆的半径 30
+      fill: 'yellowgreen'
+    })
+
+    // 矩形
+    rect = new fabric.Rect({
+      name: 'rect',
+      top: 30, // 距离容器顶部 60px
+      left: 100, // 距离容器左侧 200px
+      fill: 'orange', // 填充a 橙色
+      width: 60, // 宽度 60px
+      height: 60 // 高度 60px
+    })
+    
+    // 将矩形添加到画布中
+    canvas.add(circle, rect)
+  }
+</script>
+</body>
+</html>
