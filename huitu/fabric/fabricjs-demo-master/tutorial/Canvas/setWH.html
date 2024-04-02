@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置画布宽高</title>
+  <style>
+    .btn-x {
+      margin-bottom: 10px;
+    }
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="btn-x">
+  <button onclick="setWidth(200)">宽度200px</button>
+  <button onclick="setHeight(300)">高度300px</button>
+  <button onclick="setDimensions(600, 400)">一键设置宽高：宽度600px，高度400px</button>
+</div>
+<canvas id="canvasBox" width="600" height="600"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let canvas = null
+
+  // 设置画布宽度
+  function setWidth(width) {
+    canvas.setWidth(width)
+  }
+
+  // 设置画布高度
+  function setHeight(height) {
+    canvas.setHeight(height)
+  }
+
+  // 一键设置宽高
+  function setDimensions(width, height) {
+    canvas.setDimensions({
+      width,
+      height
+    })
+  }
+
+  window.onload = function() {
+    // 使用 元素id 创建画布，此时可以在画布上框选
+    canvas = new fabric.Canvas('canvasBox', {
+      width: 100,
+      height: 100
+    })
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自由绘制</title>
+  <style>
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    #canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <select onchange="typeChange(this.options[this.options.selectedIndex].value)">
+      <option value="default">默认（框选）</option>
+      <option value="rect">矩形</option>
+      <option value="circle">圆形</option>
+      <option value="ellipse">椭圆形</option>
+      <option value="triangle">三角形</option>
+      <option value="line">线段</option>
+      <option value="polyline">折线</option>
+      <option value="polygon">多边形</option>
+    </select>
+  </div>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let currentType = 'default'
+  let spaceKeyState = false // 空格键是否被按住: true按住; false松开
+
+  let downPoint = null // 鼠标按下的坐标 {x: 0, y: 0}
+  let upPoint = null // 鼠标松开的坐标 {x: 0, y: 0}
+
+  let canvas = null // 画板
+
+  let currentCircle = null // 临时圆，创建圆的时候使用
+  let currentEllipse = null // 临时椭圆，创建椭圆时使用
+  let currentTriangle = null // 临时三角形，创建三角形时使用
+  let currentLine = null // 临时线段
+  let currentPolyline = null // 临时折线
+  let currentPolygon = null // 临时多边形
+
+  // 初始化画板
+  function initCanvas() {
+    canvas = new fabric.Canvas('canvas')
+
+    canvas.on('mouse:down', canvasMouseDown)   // 鼠标在画布上按下
+    canvas.on('mouse:move', canvasMouseMove)   // 鼠标在画布上移动
+    canvas.on('mouse:up', canvasMouseUp)       // 鼠标在画布上松开
+    canvas.on('mouse:wheel', canvasMouseWheel) // 鼠标滚轮在画布上的事件
+    canvas.on('mouse:dblclick', canvasMouseDblclick)
+  }
+
+  // 创建矩形
+  function createRect() {
+
+    // 点击事件，不生成矩形
+    if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+      return
+    }
+
+    // 创建矩形
+    // 矩形参数计算
+    let top = Math.min(downPoint.y, upPoint.y)
+    let left = Math.min(downPoint.x, upPoint.x)
+    let width = Math.abs(downPoint.x - upPoint.x)
+    let height = Math.abs(downPoint.y - upPoint.y)
+
+    // 矩形对象
+    const rect = new fabric.Rect({
+      top,
+      left,
+      width,
+      height,
+      fill: 'transparent',
+      stroke: '#000'
+    })
+
+    // 将矩形添加到画布上
+    canvas.add(rect)
+    // 选中刚创建的矩形
+    // canvas.setActiveObject(rect)
+
+    downPoint = null
+    upPoint = null
+  }
+
+  // 创建圆形
+  function createCircle(e) {
+    currentCircle = new fabric.Circle({
+      top: downPoint.y,
+      left: downPoint.x,
+      radius: 0,
+      fill: 'transparent',
+      stroke: 'rgba(0, 0, 0, 0.2)'
+    })
+
+    canvas.add(currentCircle)
+  }
+
+  // 修改当前正在创建的圆
+  function changeCurrentCircleOpt(e) {
+    const currentPoint = e.absolutePointer
+
+    let radius = Math.min(Math.abs(downPoint.x - currentPoint.x), Math.abs(downPoint.y - currentPoint.y)) / 2
+    let top = currentPoint.y > downPoint.y ? downPoint.y : downPoint.y - radius * 2
+    let left = currentPoint.x > downPoint.x ? downPoint.x :  downPoint.x - radius * 2
+
+    currentCircle.set('radius', radius)
+    currentCircle.set('top', top)
+    currentCircle.set('left', left)
+
+    canvas.requestRenderAll()
+  }
+
+  // 创建椭圆
+  function createEllipse(e) {
+    currentEllipse = new fabric.Ellipse({
+      top: downPoint.y,
+      left: downPoint.x,
+      rx: 0,
+      ry: 0,
+      fill: 'transparent',
+      stroke: 'rgba(0, 0, 0, 0.2)'
+    })
+    canvas.add(currentEllipse)
+  }
+
+  // 修改当前正在创建的椭圆
+  function changeCurrentEllipseOpt(e) {
+    const currentPoint = e.absolutePointer
+
+    let rx = Math.abs(downPoint.x - currentPoint.x) / 2
+    let ry = Math.abs(downPoint.y - currentPoint.y) / 2
+
+    let top = currentPoint.y > downPoint.y ? downPoint.y : downPoint.y - ry * 2
+    let left = currentPoint.x > downPoint.x ? downPoint.x :  downPoint.x - rx * 2
+
+    currentEllipse.set('rx', rx)
+    currentEllipse.set('ry', ry)
+    currentEllipse.set('top', top)
+    currentEllipse.set('left', left)
+    canvas.requestRenderAll()
+  }
+
+  // 创建三角形
+  function createTriangle(e) {
+    currentTriangle = new fabric.Triangle({
+      top: downPoint.y,
+      left: downPoint.x,
+      width: 0,
+      height: 0,
+      fill: 'transparent',
+      stroke: 'rgba(0, 0, 0, 0.2)'
+    })
+    canvas.add(currentTriangle)
+  }
+
+  // 修改当前正在创建的三角形
+  function changeCurrentTriangle(e) {
+    const currentPoint = e.absolutePointer
+
+    let width = Math.abs(downPoint.x - currentPoint.x)
+    let height = Math.abs(downPoint.y - currentPoint.y)
+
+    let top = currentPoint.y > downPoint.y ? downPoint.y : currentPoint.y
+    let left = currentPoint.x > downPoint.x ? downPoint.x : currentPoint.x
+
+    currentTriangle.set('width', width)
+    currentTriangle.set('height', height)
+    currentTriangle.set('top', top)
+    currentTriangle.set('left', left)
+    canvas.requestRenderAll()
+  }
+
+  // 创建线段
+  function createLine(e) {
+    currentLine = new fabric.Line(
+      [
+        downPoint.x, downPoint.y, // 起始点坐标
+        downPoint.x, downPoint.y // 结束点坐标
+      ],
+      {
+        stroke: 'rgba(0, 0, 0, 0.2)', // 笔触颜色
+      }
+    )
+    canvas.add(currentLine)
+  }
+
+  // 修改当前正在创建的线段
+  function changeCurrentLine(e) {
+    const currentPoint = e.absolutePointer
+    // console.log(currentLine)
+    currentLine.set('x2', currentPoint.x)
+    currentLine.set('y2', currentPoint.y)
+
+    canvas.requestRenderAll()
+  }
+
+  // 创建折线
+  function createPolyline(e) {
+    const currentPoint = e.absolutePointer
+    currentPolyline = new fabric.Polyline(
+      [
+        { x: currentPoint.x, y: currentPoint.y },
+        { x: currentPoint.x, y: currentPoint.y }
+      ],
+      {
+        fill: 'transparent',
+        stroke: 'rgba(0, 0, 0, 0.2)',
+        objectCaching: false
+      }
+    )
+    canvas.add(currentPolyline)
+  }
+
+  // 修改当前正在创建的折线
+  function changeCurrentPolyline(e) {
+    const currentPoint = e.absolutePointer
+
+    let points = currentPolyline.points
+
+    points.push({
+      x: currentPoint.x,
+      y: currentPoint.y
+    })
+    canvas.requestRenderAll()
+  }
+
+  // 折线橡皮带
+  function changePolylineBelt(e) {
+    const currentPoint = e.absolutePointer
+    let points = currentPolyline.points
+
+    points[points.length - 1].x = currentPoint.x
+    points[points.length - 1].y = currentPoint.y
+
+    canvas.requestRenderAll()
+  }
+
+  // 完成折线绘制
+  function finishPolyline(e) {
+    const currentPoint = e.absolutePointer
+    let points = currentPolyline.points
+    points[points.length - 1].x = currentPoint.x
+    points[points.length - 1].y = currentPoint.y
+
+    points.pop()
+    points.pop()
+    canvas.remove(currentPolyline)
+    if (points.length > 1) {
+      let polyline = new fabric.Polyline(points, {
+        stroke: '#000',
+        fill: 'transparent'
+      })
+
+      canvas.add(polyline)
+    }
+    currentPolyline = null
+
+    canvas.requestRenderAll()
+  }
+
+  // 创建多边形
+  function createPolygon(e) {
+    const currentPoint = e.absolutePointer
+    currentPolygon = new fabric.Polygon(
+      [
+        { x: currentPoint.x, y: currentPoint.y },
+        { x: currentPoint.x, y: currentPoint.y }
+      ],
+      {
+        fill: 'transparent',
+        stroke: 'rgba(0, 0, 0, 0.2)',
+        objectCaching: false
+      }
+    )
+    canvas.add(currentPolygon)
+  }
+
+  // 修改当前正在创建的多边形
+  function changeCurrentPolygon(e) {
+    const currentPoint = e.absolutePointer
+
+    let points = currentPolygon.points
+
+    points.push({
+      x: currentPoint.x,
+      y: currentPoint.y
+    })
+    canvas.requestRenderAll()
+  }
+
+  // 多边形橡皮带
+  function changePolygonBelt(e) {
+    const currentPoint = e.absolutePointer
+    let points = currentPolygon.points
+
+    points[points.length - 1].x = currentPoint.x
+    points[points.length - 1].y = currentPoint.y
+
+    canvas.requestRenderAll()
+  }
+
+  // 完成多边形绘制
+  function finishPolygon(e) {
+    const currentPoint = e.absolutePointer
+    let points = currentPolygon.points
+    points[points.length - 1].x = currentPoint.x
+    points[points.length - 1].y = currentPoint.y
+
+    points.pop()
+    points.pop()
+    canvas.remove(currentPolygon)
+    if (points.length > 1) {
+      let polygon = new fabric.Polygon(points, {
+        stroke: '#000',
+        fill: 'transparent'
+      })
+
+      canvas.add(polygon)
+    }
+
+    currentPolygon = null
+    canvas.requestRenderAll()
+  }
+
+  // 鼠标在画布上按下
+  function canvasMouseDown(e) {
+
+    if (spaceKeyState) {
+      // 按住空格时，鼠标指针是抓
+      canvas.setCursor('grabbing')
+    }
+
+    downPoint = e.absolutePointer
+
+    if (spaceKeyState) {
+      canvas.isDragging = true
+      canvas.lastPosX = e.e.clientX
+      canvas.lastPosY = e.e.clientY
+      canvas.selection = false // 移动时不出现框选样式
+    } else {
+      switch (currentType) {
+        case 'circle':
+          createCircle(e)
+          break
+        case 'ellipse':
+          createEllipse(e)
+          break
+        case 'triangle':
+          createTriangle(e)
+          break
+        case 'line':
+          createLine(e)
+          break
+        case 'polyline':
+          if (currentPolyline === null) {
+            createPolyline(e)
+          } else {
+            changeCurrentPolyline(e)
+          }
+          break
+        case 'polygon':
+          if (currentPolygon === null) {
+            createPolygon(e)
+          } else {
+            changeCurrentPolygon(e)
+          }
+          break
+      }
+    }
+
+  }
+
+  // 画布操作类型切换
+  function typeChange(opt) {
+    currentType = opt
+    switch(opt) {
+      case 'default':
+        canvas.selection = true
+        setSelectionStyle()
+        canvas.skipTargetFind = false // 允许选中
+        break
+      case 'rect':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'rgba(0, 0, 0, 0.2)',
+          lineWidth: 1
+        })
+        canvas.skipTargetFind = true // 禁止选中
+        break
+      case 'circle':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'transparent',
+          lineWidth: 0
+        })
+        canvas.skipTargetFind = true
+        break
+      case 'ellipse':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'transparent',
+          lineWidth: 0
+        })
+        canvas.skipTargetFind = true // 禁止选中
+        break
+      case 'triangle':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'transparent',
+          lineWidth: 0
+        })
+        canvas.skipTargetFind = true // 禁止选中
+        break
+      case 'line':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'transparent',
+          lineWidth: 0
+        })
+        canvas.skipTargetFind = true // 禁止选中
+        break
+      case 'polyline':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'transparent',
+          lineWidth: 0
+        })
+        canvas.skipTargetFind = true // 禁止选中
+        break
+      case 'polygon':
+        setSelectionStyle({
+          color: 'transparent',
+          borderColor: 'transparent',
+          lineWidth: 0
+        })
+        canvas.skipTargetFind = true // 禁止选中
+        break
+      default:
+        setSelectionStyle()
+        break
+    }
+  }
+
+  // 设置选框样式
+  function setSelectionStyle(options = {}) {
+    canvas.selectionColor = options.color || 'rgba(100, 100, 255, 0.3)'
+    canvas.selectionBorderColor = options.borderColor || 'rgba(255, 255, 255, 0.3)'
+    canvas.selectionLineWidth = options.lineWidth || 1
+    canvas.selectionDashArray = options.dashArray || []
+  }
+
+  // 鼠标在画布上移动
+  function canvasMouseMove(e) {
+
+    if (spaceKeyState) {
+      // 按住空格时，鼠标指针是手掌
+      canvas.setCursor('grab')
+    }
+
+    // 拖拽画布
+    if (canvas.isDragging) {
+      // 拖拽时，鼠标指针是抓
+      canvas.setCursor('grabbing')
+      const vpt = canvas.viewportTransform // 聚焦视图的转换
+      vpt[4] += e.e.clientX - canvas.lastPosX
+      vpt[5] += e.e.clientY - canvas.lastPosY
+      canvas.requestRenderAll()
+      canvas.lastPosX = e.e.clientX
+      canvas.lastPosY = e.e.clientY
+    } else {
+      switch(currentType) {
+        case 'circle':
+          currentCircle && changeCurrentCircleOpt(e)
+          break
+        case 'ellipse':
+          currentEllipse && changeCurrentEllipseOpt(e)
+          break
+        case 'triangle':
+          currentTriangle && changeCurrentTriangle(e)
+          break
+        case 'line':
+          currentLine && changeCurrentLine(e)
+          break
+        case 'polyline':
+          currentPolyline && changePolylineBelt(e)
+          break
+        case 'polygon':
+          currentPolygon && changePolygonBelt(e)
+          break
+      }
+    }
+  }
+
+  // 鼠标在画布上松开
+  function canvasMouseUp(e) {
+    upPoint = e.absolutePointer
+
+    if (spaceKeyState) {
+      canvas.setCursor('grab')
+    }
+
+    if (canvas.isDragging) {
+      canvas.setViewportTransform(canvas.viewportTransform) // 设置此画布实例的视口转换
+      canvas.isDragging = false
+      canvas.selection = true // 移动结束后还原框选样式
+      return
+    }
+
+    switch(currentType) {
+      case 'default': // 框选
+        break
+      case 'rect': // 创建矩形
+        createRect()
+        break
+      case 'circle': // 创建圆形
+        if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+          canvas.remove(currentCircle)
+        } else {
+          if (currentCircle){
+            currentCircle.set('stroke', '#000')
+          }
+        }
+        currentCircle = null
+        break
+      case 'ellipse': // 创建椭圆
+        if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+          canvas.remove(currentEllipse)
+        } else {
+          if (currentEllipse){
+            currentEllipse.set('stroke', '#000')
+          }
+          currentEllipse = null
+        }
+        break
+      case 'triangle': // 创建三角形
+        if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+          canvas.remove(currentTriangle)
+        } else {
+          if (currentTriangle){
+            currentTriangle.set('stroke', '#000')
+          }
+          currentTriangle = null
+        }
+        break
+      case 'line': // 创建线段
+        if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+          canvas.remove(currentLine)
+        } else {
+          if (currentLine){
+            currentLine.set('stroke', '#000')
+          }
+          currentLine = null
+        }
+        break
+    }
+  }
+
+  // 鼠标在画布上双击
+  function canvasMouseDblclick(e) {
+    // console.log(e)
+    switch(currentType) {
+      case 'polyline':
+        finishPolyline(e)
+        break
+      case 'polygon':
+        finishPolygon(e)
+        break
+    }
+  }
+
+  // 鼠标滚轮在画布上的事件
+  function canvasMouseWheel(opt) {
+    const delta = opt.e.deltaY // 滚轮，向上滚一下是 -100，向下滚一下是 100
+    let zoom = canvas.getZoom() // 获取画布当前缩放值
+    zoom *= 0.999 ** delta
+    if (zoom > 20) zoom = 20  
+    if (zoom < 0.01) zoom = 0.01
+    canvas.zoomToPoint(
+      {
+        x: opt.e.offsetX,
+        y: opt.e.offsetY
+      },
+      zoom
+    )
+    opt.e.preventDefault()
+    opt.e.stopPropagation()
+  }
+
+  // 全局键盘事件 按下
+  function keyDown(e) {
+    // console.log(e.keyCode)
+    if(e.keyCode === 32) { // 空格键
+      spaceKeyState = true
+      if (!canvas.isDragging) {
+        // 在非拖拽时按下空格，鼠标指针是个手
+        canvas.setCursor('grab')
+      }
+    }
+  }
+
+  // 全局键盘事件 抬起
+  function keyUp(e) {
+    // console.log(e.keyCode)
+    if(e.keyCode === 32) { // 空格键
+      spaceKeyState = false
+      if(!canvas.isDragging) {
+        canvas.setCursor('default')
+      }
+    }
+  }
+
+  window.onload = function() {
+    initCanvas()
+
+    window.addEventListener('keydown', keyDown, false)
+    window.addEventListener('keyup', keyUp, false)
+  }
+</script>
+</body>
+</html>

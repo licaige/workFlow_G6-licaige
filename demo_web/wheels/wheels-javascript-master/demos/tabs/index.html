@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabs</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrapper">
+  <div class="tabs">
+    <ol data-role="tabs-nav">
+      <li>how buying works</li>
+      <li>how selling works</li>
+    </ol>
+    <ol data-role="tabs-panes">
+      <li>
+        <div class="circle">1</div>
+      </li>
+      <li>
+        <div class="circle">2</div>
+      </li>
+    </ol>
+  </div>
+</div>
+<script src="../../lib/index.js"></script>
+<script src="../../lib/view-source.js"></script>
+<script src="./main.js"></script>
+<script>
+  new Tabs({
+    element:document.querySelectorAll(".tabs")[0]
+  })
+</script>
+</body>
+</html>

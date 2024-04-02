@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置指定文字颜色和背景色</title>
+</head>
+<body>
+  <canvas id="c" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c')
+
+    const iText = new fabric.IText('hello\nworld', {
+      styles: {
+        0: {
+          1: {
+            textBackgroundColor: 'red', // 背景色
+            fill: '#fff' // 文字颜色
+          }
+        },
+        1: {
+          2: {
+            fill: 'hotpink'
+          }
+        }
+      }
+    })
+
+    canvas.add(iText)
+  </script>
+</body>
+</html>

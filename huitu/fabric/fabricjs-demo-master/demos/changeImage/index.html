@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>修改图片</title>
+  <style>
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .box {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-right: 20px;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main">
+    <div class="box">
+      <button onclick="change1()">修改图片</button>
+      <canvas width="300" height="300" id="canvas1"></canvas>
+    </div>
+    
+    <div class="box">
+      <button onclick="change2()">修改图片</button>
+      <canvas width="300" height="300" id="canvas2"></canvas>
+    </div>
+    
+    <div class="box">
+      <button onclick="change3()">修改图片</button>
+      <canvas width="300" height="300" id="canvas3"></canvas>
+    </div>
+  </div>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  let canvas1 = null
+  let canvas2 = null
+  let canvas3 = null
+
+  window.onload = function() {
+    canvas1 = new fabric.Canvas('canvas1')
+    fabric.Image.fromURL('../../images/Agumon.png', oImg => {
+      canvas1.add(oImg)
+    })
+
+    canvas2 = new fabric.Canvas('canvas2')
+    fabric.Image.fromURL('../../images/Agumon.png', oImg => {
+      const text = new fabric.Text('没缓存的组', {
+        fontSize: 14,
+        top: 50
+      })
+      const group = new fabric.Group([oImg, text], {
+        objectCaching: false
+      })
+      canvas2.add(group)
+    })
+
+    canvas3 = new fabric.Canvas('canvas3')
+    fabric.Image.fromURL('../../images/Agumon.png', oImg => {
+      const text = new fabric.Text('有缓存的组', {
+        fontSize: 14,
+        top: 50
+      })
+      const group = new fabric.Group([oImg, text])
+      canvas3.add(group)
+    })
+  }
+
+  function change1() {
+    // 获取图片
+    const img = canvas1.getObjects()[0]
+    img.setSrc('../../images/Bhikkhu.png', () => {
+      canvas1.renderAll()
+    })
+  }
+
+  // 在建组时设置了不缓存
+  function change2() {
+    // 获取组
+    const group = canvas2.getObjects()[0]
+    // 获取图片（因为图片放在了组的第一位）
+    const img = group.getObjects().find(item => {
+      return item.isType('image')
+    })
+    img.setSrc('../../images/Bhikkhu.png', () => {
+      canvas2.renderAll()
+    })
+  }
+
+  // 有缓存的组
+  function change3() {
+    // 获取组
+    const group = canvas3.getObjects()[0]
+    // 获取图片（因为图片放在了组的第一位）
+    const img = group.getObjects().find(item => {
+      return item.isType('image')
+    })
+    group.removeWithUpdate(img)
+    img.setSrc('../../images/Bhikkhu.png', () => {
+      group.addWithUpdate(img)
+      canvas3.renderAll()
+    })
+
+  }
+</script>
+</body>
+</html>

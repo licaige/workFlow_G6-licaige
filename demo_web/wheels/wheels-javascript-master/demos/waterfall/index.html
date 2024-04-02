@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../styles/normalize.css">
+  <link rel="stylesheet" href="./style.css">
+  <title>waterfall</title>
+</head>
+<body>
+<div id="waterfall"></div>
+<div class="loader" id="loader">
+  <div class="loader-inner line-spin-fade-loader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<script src="../../lib/index.js"></script>
+<script src="../../lib/view-source.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script>
+  window.onload = function () {
+    let waterfall = new WaterFall({
+      container: '#waterfall',
+      pins: '.pin',
+      loader: '#loader',
+      gapHeight: 20,
+      gapWidth: 20,
+      pinWidth: 216,
+      threshold: 100,
+    })
+    waterfall.on("load", function () {
+      setTimeout(function () {
+        // 生成模拟数据
+        var mockData = {
+          data: [],
+        };
+        for (var i = 0; i < 10; i++) {
+          mockData.data[i] = {
+            src: "img/" + Math.ceil(Math.random() * 18) + ".jpeg",
+            title: "图片" + Math.ceil(Math.random() * 18),
+          };
+
+        }
+
+        var arr = [];
+        for (var i = 0, len = mockData.data.length; i < len; i++) {
+          var data = mockData.data[i];
+
+          arr.push(
+            '<div class="pin"><img src="' +
+            data.src +
+            '" class="img" alt="' +
+            data.title +
+            '"> <p class="description">' +
+            data.title +
+            "</p></div>"
+          );
+        }
+
+        // 调用 append 方法 检验是否所有的图片都具有高度后才会 append 进文档树中
+        waterfall.append(arr.join(""), ".img");
+      }, 1000);
+    });
+  }
+</script>
+
+</body>
+</html>

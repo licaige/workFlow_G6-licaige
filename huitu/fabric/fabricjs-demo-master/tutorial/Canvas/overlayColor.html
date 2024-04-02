@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overlayColor</title>
+</head>
+<body>
+  <canvas id="canvasBox"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    let canvas = new fabric.Canvas('canvasBox', {
+      overlayColor: 'pink', // 覆盖颜色，也可以使用 setOverlayColor(overlayColor, callback) 设置
+      backgroundColor: 'red' // 背景色
+    })
+
+    // 就算用背景图一样会被 overlayColor 覆盖
+    canvas.setBackgroundImage(
+      'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/27d1b4e5f8824198b6d51a2b1c2d0d75~tplv-k3u1fbpfcp-zoom-crop-mark:400:400:400:400.awebp',
+      canvas.renderAll.bind(canvas)
+    )
+
+    // 元素也会被 overlayColor 覆盖
+    let rect = new fabric.Rect({
+      width: 80,
+      height: 80,
+    })
+
+    canvas.add(rect)
+
+    setTimeout(() => {
+      canvas.overlayColor = null
+      canvas.renderAll()
+    }, 1000)
+  </script>
+</body>
+</html>

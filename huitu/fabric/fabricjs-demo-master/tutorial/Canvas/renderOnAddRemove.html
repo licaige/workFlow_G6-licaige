@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>renderOnAddRemove</title>
+</head>
+<body>
+
+<canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let canvas = new fabric.Canvas('canvasBox', {
+    renderOnAddRemove: false // 如果设置成 false，通过代码添加和删除元素、移动旋转等操作时画布并不会自动刷新
+  })
+
+  let rect = new fabric.Rect({
+    width: 80,
+    height: 80,
+    left: 30,
+    top: 30,
+    fill: 'pink'
+  })
+
+  canvas.add(rect)
+
+  // 需要手动刷新
+  canvas.requestRenderAll()
+
+</script>
+</body>
+</html>

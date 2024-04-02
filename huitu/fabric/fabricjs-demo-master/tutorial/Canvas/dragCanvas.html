@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖拽画布</title>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('canvasBox')
+
+    fabric.Image.fromURL('../../images/bg3.jpg', img => {
+      canvas.setBackgroundImage(img)
+      canvas.renderAll()
+    })
+
+    // 圆形
+    circle = new fabric.Circle({
+      name: 'circle',
+      top: 60,
+      left: 60,
+      radius: 30, // 圆的半径 30
+      fill: '#08d9d6'
+    })
+
+    // 将矩形添加到画布中
+    canvas.add(circle)
+
+    canvas.on('mouse:down', opt => { // 鼠标按下时触发
+      let evt = opt.e
+      canvas.isDragging = true // isDragging 是自定义的
+      canvas.lastPosX = evt.clientX // lastPosX 是自定义的
+      canvas.lastPosY = evt.clientY // lastPosY 是自定义的
+    })
+
+    canvas.on('mouse:move', opt => { // 鼠标移动时触发
+      if (canvas.isDragging) {
+        let evt = opt.e
+        let vpt = canvas.viewportTransform // 聚焦视图的转换
+        vpt[4] += evt.clientX - canvas.lastPosX
+        vpt[5] += evt.clientY - canvas.lastPosY
+        canvas.requestRenderAll()
+        canvas.lastPosX = evt.clientX
+        canvas.lastPosY = evt.clientY
+      }
+    })
+
+    canvas.on('mouse:up', opt => { // 鼠标松开时触发
+      canvas.setViewportTransform(canvas.viewportTransform) // 设置此画布实例的视口转换  
+      canvas.isDragging = false
+    })
+  </script>
+</body>
+</html>

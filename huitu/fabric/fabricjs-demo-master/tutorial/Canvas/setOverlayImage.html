@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setOverlayImage</title>
+</head>
+<body>
+  <canvas id="canvasBox" width="800" height="800" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    let canvas = new fabric.Canvas('canvasBox')
+
+
+    // 设置背景图
+    // canvas.setOverlayImage(
+    //   '../../images/bg4.png',
+    //   canvas.renderAll.bind(canvas),
+    //   {
+    //     originX: 'left',
+    //     originY: 'top'
+    //   }
+    // )
+
+    // 具有不同属性的图像
+    // canvas.setOverlayImage(
+    //   '../../images/bg4.png',
+    //   canvas.renderAll.bind(canvas),
+    //   {
+    //     opacity: 0.5,
+    //     angle: 45,
+    //     left: 400,
+    //     top: 400,
+    //     originX: 'left',
+    //     originY: 'top'
+    //   }
+    // )
+
+    // 拉伸覆盖图像
+    // fabric.Image.fromURL(
+    //   '../../images/bg4.png',
+    //   function(img, isError) 
+    //   {
+    //     img.set({
+    //       width: canvas.width,
+    //       height: canvas.height,
+    //       originX: 'left',
+    //       originY: 'top'
+    //     })
+    //     canvas.setOverlayImage(img, canvas.renderAll.bind(canvas))
+    //   }
+    // )
+
+    // 拉伸覆盖图像
+    // canvas.setOverlayImage(
+    //   '../../images/bg4.png',
+    //   canvas.renderAll.bind(canvas),
+    //  {
+    //     width: canvas.width,
+    //     height: canvas.height,
+    //     originX: 'left',
+    //     originY: 'top'
+    //   }
+    // )
+
+    // 从交叉原点加载的图像
+    canvas.setOverlayImage(
+      '../../images/bg4.png',
+      canvas.renderAll.bind(canvas),
+      {
+        opacity: 0.5,
+        angle: 45,
+        left: 400,
+        top: 400,
+        originX: 'left',
+        originY: 'top',
+        crossOrigin: 'anonymous'
+      }
+    )
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "chenfangxu-blog",
+  "version": "1.0.0",
+  "description": "陈方旭的个人文档",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "prepare": "husky install"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/qiqihaobenben/Front-End-Basics.git",
+  "author": "cfangxu <chenfangxu_qixin@163.com> (https://qiqihaobenben.github.io/)",
+  "license": "CC-BY-4.0",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "cz-git": "^1.2.8",
+    "cz-relax": "0.0.1",
+    "husky": "^7.0.0",
+    "vuepress": "^1.9.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git"
+    }
+  }
+}

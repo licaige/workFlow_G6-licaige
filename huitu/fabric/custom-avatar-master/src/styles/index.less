@@ -1,0 +1,76 @@
+@import url("./normalize.less");
+
+* { /* 火狐 */ /* webkit浏览器 */ /* IE10 */
+    user-select: none;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    line-height: 1;
+}
+
+html,
+body {
+    width: 100%;
+}
+
+body {
+    position: relative;
+    font-family: MicrosoftYaHei, sans-serif;
+    color: #26201a;
+
+    .scroll-hide;
+}
+
+img {
+    display: block;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.scroll-hide {
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+    }
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.notice-enter-active,
+.notice-leave-active {
+    will-change: transform;
+    transition: all 0.48s linear;
+}
+
+.notice-enter-from {
+    opacity: 0;
+    transform: translateY(120%);
+}
+
+.notice-leave-to {
+    opacity: 0;
+    transform: translateY(-120%);
+}
+
+.el-dialog--center .el-dialog__body {
+    padding: 0 8px 16px !important;
+}
+
+@media only screen and (max-width: 768px) {
+    #app {
+        -webkit-tap-highlight-color: transparent; /* 禁用图片点击高亮效果 */
+    }
+
+    .el-dialog__title {
+        font-size: 20px !important;
+        font-weight: 600;
+    }
+}

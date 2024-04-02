@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calcOffset 计算画布所在位置和文档的偏移量</title>
+  <style>
+    .btn-x {
+      margin-bottom: 10px;
+    }
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="btn-x">
+    <button onclick="calcOffset()">计算偏移量</button>
+  </div>
+  <canvas id="canvasBox" width="600" height="600"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let canvas = new fabric.Canvas('canvasBox')
+
+  function calcOffset() {
+    let res = canvas.calcOffset() // 计算画布元素相对于文档的偏移量此方法也作为窗口的“ resize”事件处理程序附加
+    console.log(res._offset)
+  }
+
+</script>
+</body>
+</html>

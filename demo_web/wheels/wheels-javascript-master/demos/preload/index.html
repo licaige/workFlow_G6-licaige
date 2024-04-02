@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Preload</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="normalize.css">
+</head>
+<body>
+<div class="loadPage" id="loadPage">
+  <div class="loading">
+    <div class="loading-num" id="loading-num"></div>
+    <div class="inner">
+      <div class="loading-progress" id="loading-progress"></div>
+    </div>
+  </div>
+</div>
+<div class="main">loading 消失，进入主内容区</div>
+<script src="../../lib/view-source.js"></script>
+<script src="main.js" type="text/javascript"></script>
+<script>
+  let pics = [
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/1.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/2.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/3.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/4.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/5.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/6.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/7.jpeg',
+    'https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/8.jpeg',
+  ]
+  let preload = new Preload(pics, {
+    complete: function (successNum, failNum) {
+      setTimeout(function () {
+        document.getElementById('loadPage').style.display = 'none'
+      }, 1000)
+    },
+    progress: function (index, total, type) {
+      let progress = document.getElementById('loading-progress')
+      let num = document.getElementById('loading-num')
+      let percent = Math.floor((index / total) * 100) + '%'
+      console.log(percent,'per')
+      num.innerText = progress.style.width = percent
+    }
+  })
+</script>
+</body>
+</html>

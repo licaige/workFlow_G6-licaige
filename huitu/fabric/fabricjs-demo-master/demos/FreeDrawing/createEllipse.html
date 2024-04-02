@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自由绘制椭圆形</title>
+  <style>
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    #canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <select onchange="typeChange(this.options[this.options.selectedIndex].value)">
+      <option value="default">默认（框选）</option>
+      <option value="ellipse">椭圆形</option>
+    </select>
+  </div>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  let canvas = null
+
+  let currentType = 'default'
+  let downPoint = null
+  let upPoint = null
+
+  let currentEllipse = null // 临时椭圆
+
+  // 初始化画板
+  function initCanvas() {
+    canvas = new fabric.Canvas('canvas')
+
+    canvas.on('mouse:down', canvasMouseDown)   // 鼠标在画布上按下
+    canvas.on('mouse:move', canvasMouseMove)   // 鼠标在画布上移动
+    canvas.on('mouse:up', canvasMouseUp)       // 鼠标在画布上松开
+  }
+
+  // 画布操作类型切换
+  function typeChange(opt) {
+    currentType = opt
+    switch(opt) {
+      case 'default':
+        canvas.selection = true
+        canvas.selectionColor = 'rgba(100, 100, 255, 0.3)'
+        canvas.selectionBorderColor = 'rgba(255, 255, 255, 0.3)'
+        canvas.skipTargetFind = false // 允许选中
+        break
+      case 'ellipse':
+        canvas.selectionColor = 'transparent'
+        canvas.selectionBorderColor = 'transparent'
+        canvas.skipTargetFind = true // 禁止选中
+        break
+    }
+  }
+
+  // 鼠标在画布上按下
+  function canvasMouseDown(e) {
+    downPoint = e.absolutePointer
+
+    if (currentType === 'ellipse') {
+      currentEllipse = new fabric.Ellipse({
+        top: downPoint.y,
+        left: downPoint.x,
+        rx: 0,
+        ry: 0,
+        fill: 'transparent',
+        stroke: 'rgba(0, 0, 0, 0.2)'
+      })
+      canvas.add(currentEllipse)
+    }
+  }
+
+  // 鼠标在画布上移动
+  function canvasMouseMove(e) {
+    if (currentType === 'ellipse' && currentEllipse) {
+      const currentPoint = e.absolutePointer
+
+      let rx = Math.abs(downPoint.x - currentPoint.x) / 2
+      let ry = Math.abs(downPoint.y - currentPoint.y) / 2
+
+      let top = currentPoint.y > downPoint.y ? downPoint.y : downPoint.y - ry * 2
+      let left = currentPoint.x > downPoint.x ? downPoint.x :  downPoint.x - rx * 2
+
+      currentEllipse.set('rx', rx)
+      currentEllipse.set('ry', ry)
+      currentEllipse.set('top', top)
+      currentEllipse.set('left', left)
+      canvas.requestRenderAll()
+    }
+  }
+
+  // 鼠标在画布上松开
+  function canvasMouseUp(e) {
+    upPoint = e.absolutePointer
+
+    if (currentType === 'ellipse') {
+      if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+        canvas.remove(currentEllipse)
+      } else {
+        currentEllipse.set('stroke', '#000')
+      }
+      currentEllipse = null
+    }
+  }
+
+  window.onload = function() {
+    initCanvas()
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calcViewportBoundaries 计算画布4个角的位置</title>
+  <style>
+    .btn-x {
+      margin-bottom: 10px;
+    }
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="btn-x">
+    <button onclick="calcViewportBoundaries()">计算画布4个角的位置</button>
+  </div>
+  <canvas id="canvasBox" width="600" height="600"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let canvas = new fabric.Canvas('canvasBox')
+
+  function calcViewportBoundaries() {
+    let res = canvas.calcViewportBoundaries() // 计算画布4个角的位置
+    console.log(res)
+  }
+
+</script>
+</body>
+</html>

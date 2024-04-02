@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图案笔刷 PatternBrush</title>
+</head>
+<body>
+  <canvas id="c" width="400" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../../script/fabric.js"></script>
+  <script>
+    // 初始化
+    const canvas = new fabric.Canvas('c')
+
+    canvas.isDrawingMode = true
+
+    let img = new Image();
+    img.src = '../../../images/bubble.jpg'
+
+    img.onload = function() {
+      let texturePatternBrush = new fabric.PatternBrush(canvas);
+      texturePatternBrush.source = img;
+      texturePatternBrush.width = 50
+      canvas.freeDrawingBrush = texturePatternBrush
+    }
+  </script>
+</body>
+</html>

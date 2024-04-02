@@ -1,0 +1,28 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "- 手写 loader，处理 css、vue 文件等 - 手写 plugins，自动化构建打包后的 html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "debug": "node --inspect --inspect-brk node_modules/webpack/bin/webpack.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "less": "^3.11.1",
+    "loader-utils": "^1.4.0",
+    "mime": "^2.4.4",
+    "sass": "^1.26.2",
+    "schema-utils": "^2.6.4",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "cos-nodejs-sdk-v5": "^2.5.17"
+  }
+}

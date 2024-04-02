@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>修改多边形形状</title>
+</head>
+<body>
+  <canvas id="c" width="500" height="400" style="border:1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+
+    // 绑定画布
+    const canvas = new fabric.Canvas('c')
+
+    // 多边形的顶点
+    let points = [
+      {x: 80, y: 80},
+      {x: 150, y: 40},
+      {x: 220, y: 80},
+      {x: 200, y: 190},
+      {x: 100, y: 160}
+    ]
+
+    // 多边形
+    const polygon = new fabric.Polygon(
+      points, // 顶点坐标集
+      {
+        fill: 'red', // 填充红色
+        stroke: 'black', // 边框黑色
+        strokeWidth: 2, // 边框粗细
+        objectCaching: false, // 当“true”时，对象缓存在另一个画布上。当“false”时，除非必要(clipPath)默认为 true，否则不缓存对象。默认是true
+        selectable: false, // 禁止选中
+        evented: false, // 当设置为“false”时，对象不能成为事件的目标。所有事件都会通过它传播。
+      }
+    )
+
+    // 圆形列表
+    let circleList = []
+
+    // 循环所有定点并创建圆形
+    points.forEach((item, index) => {
+      circleList.push(
+        new fabric.Circle({
+          left: item.x,
+          top: item.y,
+          strokeWidth: 5,
+          radius: 12,
+          fill: '#fff',
+          stroke: '#666',
+          originX: 'center', // x轴方向以中心点为原点
+          originY: 'center', // y轴方向以中心点为原点
+          hasControls: false, // 不显示控制器
+          hasBorders: false, // 不显示控制器的边
+          cid: `circle-${index}` // 自定义属性
+        })
+      )
+    })
+
+    // 将多边形和圆形对象添加到画布中
+    canvas.add(polygon, ...circleList)
+
+    // 监听画布上的元素移动事件
+    canvas.on('object:moving', function(e) {
+      // 当前移动的元素
+      let target = e.target
+      // 如果存在自定义属性和指定值就执行以下代码（本例主要筛选出刚刚创建的几个圆形）
+      if ('cid' in target && target.cid.match(RegExp(/circle-/))) {
+          let index = target.cid.split('-')[1] // 通过cid可以判断出当前操作的是哪个圆形，并且圆形的cid最后一位对应多边形指定的顶点
+          let points = polygon.points // 获取多边形定点
+          points[index].x = target.left // 修改指定顶点的x坐标
+          points[index].y = target.top // 修改指定定点的y坐标
+          
+          canvas.renderAll() // 刷新画布
+      }
+    })
+
+  </script>
+</body>
+</html>

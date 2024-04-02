@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>controlsAboveOverlay</title>
+  <style>
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="canvasBox" width="600" height="600"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  // controlsAboveOverlay要配合裁剪画布来演示
+  // 当 controlsAboveOverlay 为 true 时，超出展示区的控件也会被显示出来
+
+  window.onload = function() {
+    // 使用 元素id 创建画布，此时可以在画布上框选
+    const canvas = new fabric.Canvas('canvasBox', {
+      width: 400,
+      height: 400,
+      backgroundColor: '#ddd',
+      controlsAboveOverlay: true // 默认为false
+    })
+
+    const clipPath = new fabric.Circle({ radius: 100, top: 0, left: 20 })
+    canvas.clipPath = clipPath
+
+    // 圆形
+    fabric.Image.fromURL('../../images/Agumon.png', oImg => {
+      oImg.left = 30
+      oImg.top = 30
+      canvas.add(oImg)
+    })
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基础笔刷 BaseBrush</title>
+</head>
+
+<body>
+  <canvas id="c" width="600" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c', {
+      isDrawingMode: true // 开启绘画模式
+    })
+
+    canvas.freeDrawingBrush.width = 20 // 画笔宽度
+    // canvas.freeDrawingBrush.color = 'pink' // 画笔颜色
+    // canvas.freeDrawingBrush.limitedToCanvasSize = true // 当“ true”时，自由绘制被限制为画布大小。
+    // canvas.freeDrawingBrush.strokeDashArray = [20, 50] // 行程破折号数组
+
+    // 画笔投影
+    // canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+    //   blur: 10,
+    //   offsetX: 10,
+    //   offsetY: 10,
+    //   color: '#30e3ca'
+    // })
+
+    // canvas.freeDrawingBrush.strokeLineCap = 'round' // 线条结尾的画笔风格 butt | round | square , default round
+
+    // canvas.freeDrawingBrush.strokeLineJoin = 'miter' // 画笔的角落风格 bevel | round | miter
+
+    // canvas.freeDrawingBrush.strokeMiterLimit = 10 // 最大斜接长度
+
+    // 鼠标按下时触发
+    // canvas.freeDrawingBrush.onMouseDown = function (t, e) {
+    //   console.log(t)
+    //   console.log(e)
+    //   this.canvas._isMainEvent(e.e) && (this.drawStraightLine = e.e[this.straightLineKey])
+    //   this._prepareForDrawing(t)
+    //   this._captureDrawingPath(t)
+    //   this._render()
+    // }
+
+    // 鼠标移动时触发
+    // canvas.freeDrawingBrush.onMouseMove = function (t, e) {
+    //   if (
+    //     this.canvas._isMainEvent(e.e) &&
+    //     (this.drawStraightLine = e.e[this.straightLineKey],
+    //       (!0 !== this.limitedToCanvasSize || !this._isOutSideCanvas(t)) &&
+    //       this._captureDrawingPath(t) && 1 < this._points.length)
+    //   )
+    //     if (this.needsFullRender())
+    //       this.canvas.clearContext(this.canvas.contextTop),
+    //       this._render();
+    //     else {
+    //       var i = this._points,
+    //         r = i.length,
+    //         n = this.canvas.contextTop;
+    //       this._saveAndTransform(n),
+    //         this.oldEnd && (n.beginPath(),
+    //           n.moveTo(this.oldEnd.x, this.oldEnd.y)),
+    //         this.oldEnd = this._drawSegment(n, i[r - 2], i[r - 1], !0),
+    //         n.stroke(),
+    //         n.restore()
+    //     }
+    // }
+
+    // 鼠标松开时触发
+    // canvas.freeDrawingBrush.onMouseUp = function (t) {
+    //   return !this.canvas._isMainEvent(t.e) || (this.drawStraightLine = !1,
+    //     this.oldEnd = void 0,
+    //     this._finalizeAndAddPath(),
+    //     !1)
+    // }
+  </script>
+</body>
+
+</html>

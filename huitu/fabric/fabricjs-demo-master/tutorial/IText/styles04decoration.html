@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上划线、中划线、下划线</title>
+</head>
+<body>
+  <canvas id="c1" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <!-- <button>上划线</button> -->
+  <button onclick="linethrough()">中划线</button>
+  <!-- <button>下划线</button> -->
+  <canvas id="c2" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    // c1
+    const canvas1 = new fabric.Canvas('c1')
+
+    const iText1 = new fabric.IText('aaa',{
+      styles: {
+        0: {
+          0: { overline: true }, // 上划线
+          1: { linethrough: true }, // 中划线
+          2: { underline: true } // 下划线
+        }
+      }
+    })
+
+    canvas1.add(iText1)
+
+
+    // c2
+    const canvas2 = new fabric.Canvas('c2')
+
+    const iText2 = new fabric.IText('hello wor\nld')
+
+    canvas2.add(iText2)
+
+    function linethrough() {
+      let activeTxt = canvas2.getActiveObject()
+
+      if (!activeTxt) return
+
+      if (activeTxt.isEditing) {
+        // 编辑状态
+        const state = activeTxt.getSelectionStyles().find(item => item.linethrough !== true)
+
+        if (!state || (JSON.stringify(state) === '{}' && activeTxt['linethrough'] === true)) {
+          activeTxt.setSelectionStyles({ 'linethrough': false })
+        } else {
+          activeTxt.setSelectionStyles({ 'linethrough': true })
+        }
+      } else {
+        // 选择状态
+        if (activeTxt['linethrough'] === true) {
+          activeTxt.linethrough = false
+          activeTxt.dirty = true;
+          let s = activeTxt.styles
+          for(let i in s) {
+            for (let j in s[i]) {
+              s[i][j].linethrough = false
+            }
+          }
+        } else {
+          activeTxt.linethrough = true
+          activeTxt.dirty = true;
+          let s = activeTxt.styles
+          for(let i in s) {
+            for (let j in s[i]) {
+              s[i][j].linethrough = true
+            }
+          }
+        }
+      }
+
+      canvas2.renderAll()
+    }
+
+  </script>
+</body>
+</html>

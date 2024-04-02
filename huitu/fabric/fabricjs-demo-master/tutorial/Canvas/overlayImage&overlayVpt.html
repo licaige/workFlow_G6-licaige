@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overlayImage&overlayVpt</title>
+</head>
+<body>
+  <canvas id="canvasBox"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    let canvas = new fabric.Canvas('canvasBox', {
+      // 覆盖图像，也可以使用 setOverlayImage(image, callback, optionsopt) 设置
+      overlayImage: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/27d1b4e5f8824198b6d51a2b1c2d0d75~tplv-k3u1fbpfcp-zoom-crop-mark:400:400:400:400.awebp',
+      overlayVpt: false, // 如果设置为假覆盖图像不受视口变换的影响
+      backgroundColor: 'red', // 背景色
+    })
+
+    // 元素也会被 overlayImage 覆盖
+    let rect = new fabric.Rect({
+      width: 80,
+      height: 80,
+    })
+
+    // 鼠标滚轮缩放画布
+    canvas.on('mouse:wheel', opt => {
+      const delta = opt.e.deltaY // 滚轮，向上滚一下是 -100，向下滚一下是 100
+      let zoom = canvas.getZoom() // 获取画布当前缩放值
+      zoom *= 0.999 ** delta
+      if (zoom > 20) zoom = 20
+      if (zoom < 0.01) zoom = 0.01
+      canvas.zoomToPoint(
+        { // 关键点
+          x: opt.e.offsetX,
+          y: opt.e.offsetY
+        },
+        zoom
+      )
+      opt.e.preventDefault()
+      opt.e.stopPropagation()
+    })
+
+    // 拖拽画布
+    canvas.on('mouse:down', opt => { // 鼠标按下时触发
+      let evt = opt.e
+      canvas.isDragging = true // isDragging 是自定义的
+      canvas.lastPosX = evt.clientX // lastPosX 是自定义的
+      canvas.lastPosY = evt.clientY // lastPosY 是自定义的
+    })
+
+    canvas.on('mouse:move', opt => { // 鼠标移动时触发
+      if (canvas.isDragging) {
+        let evt = opt.e
+        let vpt = canvas.viewportTransform // 聚焦视图的转换
+        vpt[4] += evt.clientX - canvas.lastPosX
+        vpt[5] += evt.clientY - canvas.lastPosY
+        canvas.requestRenderAll()
+        canvas.lastPosX = evt.clientX
+        canvas.lastPosY = evt.clientY
+      }
+    })
+
+    canvas.on('mouse:up', opt => { // 鼠标松开时触发
+      canvas.setViewportTransform(canvas.viewportTransform) // 设置此画布实例的视口转换  
+      canvas.isDragging = false
+    })
+
+    canvas.add(rect)
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圆形笔刷 CircleBrush</title>
+</head>
+<body>
+  <canvas id="c" width="600" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../../script/fabric.js"></script>
+  <script>
+    // 初始化
+    const canvas = new fabric.Canvas('c')
+
+    canvas.isDrawingMode = true
+
+    // 写法1
+    // canvas.freeDrawingBrush = new fabric.CircleBrush(canvas)
+
+    // canvas.freeDrawingBrush.width = 6 // 笔刷宽度，默认10
+
+    // 写法2
+    let circleBrush = new fabric.CircleBrush()
+    circleBrush.initialize(canvas)
+    canvas.freeDrawingBrush = circleBrush
+
+    // 设置笔刷宽度
+    // circleBrush.width = 30
+
+    // 设置颜色
+    // circleBrush.color = 'pink'
+    // circleBrush.color = '#c123a8'
+    // circleBrush.color = 'rgb(10, 230, 120)'
+
+    // 设置阴影
+    // circleBrush.shadow = new fabric.Shadow({
+    //   blur: 10, // 羽化程度
+    //   offsetX: 20, // x轴偏移量
+    //   offsetY: 20, // y轴偏移量
+    //   color: '#30e3ca' // 投影颜色
+    // })
+
+    // 鼠标按下
+    // circleBrush.onMouseDown = function (pointer, e) {
+    //   console.log(pointer)
+    //   console.log(e)
+    // }
+
+    // 鼠标松开
+    // circleBrush.onMouseUp = function (pointer) {
+    //   console.log(pointer)
+    // }
+
+    // 鼠标移动时
+    circleBrush.onMouseMove = function (pointer, e) {
+      console.log(pointer)
+      console.log(e)
+      circleBrush.drawDot(pointer)
+      circleBrush.addPoint({x: pointer.x + 50, y: pointer.y + 50})
+    }
+  </script>
+</body>
+</html>

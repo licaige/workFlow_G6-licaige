@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>限制边框宽度缩放strokeUniform</title>
+</head>
+<body>
+<canvas id="c" width="500" height="500" style="border: 1px solid #ccc;"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  let canvas = new fabric.Canvas('c')
+
+  let rect = new fabric.Rect({
+    left: 260,
+    top: 110,
+    width: 80,
+    height: 60,
+    fill: 'hotpink',
+    stroke: '#333',
+    strokeWidth: 10,
+    strokeUniform: true
+  })
+
+  let circle = new fabric.Circle({
+    top: 200,
+    left: 150,
+    radius: 30,
+    fill: 'yellowgreen',
+    stroke: '#333',
+    strokeWidth: 10,
+    strokeUniform: true
+  })
+
+  let triangle = new fabric.Triangle({
+    width: 100,
+    height: 100,
+    left: 300,
+    top: 200,
+    fill: 'skyblue',
+    stroke: '#333',
+    strokeWidth: 10,
+    strokeUniform: true
+  })
+
+  let text = new fabric.Text('雷猴啊', {
+    top: 30,
+    left: 30,
+    fill: 'orange',
+    stroke: '#333',
+    strokeWidth: 2,
+    strokeUniform: true // 在 Text 里不生效！！！
+  })
+
+  canvas.add(rect, circle, triangle, text)
+
+</script>
+</body>
+</html>

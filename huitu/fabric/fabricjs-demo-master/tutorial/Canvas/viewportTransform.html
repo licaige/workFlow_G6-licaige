@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>viewportTransform</title>
+</head>
+
+<body>
+<canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  // 使用 元素id 创建画布，此时可以在画布上框选
+  let canvas = new fabric.Canvas('canvasBox', {
+    width: 400,
+    height: 400
+  })
+
+  let rect = new fabric.Rect({
+    top: 10,
+    left: 10,
+    width: 80,
+    height: 80,
+    fill: 'pink'
+  })
+
+  // 三角形
+  let triangle = new fabric.Triangle({
+    top: 100,
+    left: 100,
+    width: 80, // 底边长度
+    height: 100, // 底边到对角的距离
+    fill: 'blue'
+  })
+
+  // 将三角形添加到画布中
+  canvas.add(rect, triangle)
+
+  // viewportTransform 默认值：[1, 0, 0, 1, 0, 0]
+  // 参数说明：[水平缩放, 水平倾斜, 垂直倾斜, 垂直缩放, 水平移动, 垂直移动]
+  // canvas.viewportTransform = [0.8, 0.1, 0.1, 1.5, 10, 10]
+  canvas.setViewportTransform([0.8, 0.1, 0.1, 1.5, 10, 10])
+</script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建Canvas画布</title>
+  <style>
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvasBox" width="600" height="600"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  window.onload = function() {
+    // 使用 元素id 创建画布，此时可以在画布上框选
+    new fabric.Canvas('canvasBox')
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元素选中状态的事件与样式</title>
+</head>
+<body>
+  <button onclick="getActiveObj()">获取选中元素</button>
+  <canvas id="c" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c', {
+      width: 400,
+      height: 400,
+    })
+
+    let circle = new fabric.Circle({
+      top: 80,
+      left: 80,
+      radius: 50,
+      fill: '#ffde7d',
+      backgroundColor: '#f6416c',
+
+      transparentCorners: false,
+      cornerColor: 'pink', // 控制角颜色
+      cornerSize: 20,
+      cornerStyle: 'circle', // 控制角样式，圆形 circle，矩形 rect
+      cornerStrokeColor: '#f08a5d', // 选中时，控制角的边框颜色
+      cornerDashArray: [10, 4, 6], // 控制角边框虚线规则
+      // hasControls: false, // 取消选中时的控制角
+
+      borderColor: '#aa96da', // 选中时辅助边框颜色
+      borderScaleFactor: 10, // 选中时边框粗细
+      borderDashArray: [10, 20, 30], // 选中时虚线边框规则
+      // hasBorders: false, // 取消选中时的边框
+
+      padding: 20, // 内边距
+      selectionBackgroundColor: '#00b8a9', // 选中时的背景颜色
+      borderOpacityWhenMoving: 0.1, // 当对象活动和移动时，对象控制边界的不透明度  
+
+      // selectable: false, // 禁止选中
+      // perPixelTargetFind: true, // 无法通过空白区域操作元素
+    })
+
+    // 返回控制角的可见性，'tl', 'tr', 'br', 'bl', 'ml', 'mt', 'mr', 'mb', 'mtr'
+    // console.log(circle.isControlVisible('mt'))
+
+    // 设置控制角的可见性
+    // 'tl', 'tr', 'br', 'bl', 'ml', 'mt', 'mr', 'mb', 'mtr'
+    circle.setControlsVisibility({
+      bl: false
+    })
+
+    // 设置控制角的可见性
+    circle.setControlVisible('tr', false)
+
+    canvas.add(circle)
+
+    function getActiveObj() {
+      console.log(canvas.getActiveObject())
+    }
+  </script>
+</body>
+</html>

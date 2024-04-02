@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基础笔刷 BaseBrush</title>
+</head>
+<body>
+  <canvas id="c" width="600" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c')
+
+    canvas.freeDrawingBrush.width = 20 // 画笔宽度
+    canvas.freeDrawingBrush.color = 'pink' // 画笔颜色
+    canvas.freeDrawingBrush.limitedToCanvasSize = true // 能否超出当前画板
+    canvas.freeDrawingBrush.strokeDashArray = [20, 50] // 行程破折号数组
+
+    // 画笔投影
+    canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+      blur: 10,
+      offsetX: 10,
+      offsetY: 10,
+      affectStroke: true,
+      color: '#30e3ca'
+    })
+
+    canvas.freeDrawingBrush.strokeLineCap = 'round' // 线条结尾的画笔风格 butt | round | square , default round
+
+    canvas.freeDrawingBrush.strokeLineJoin = 'miter' // 画笔的角落风格 bevel | round | miter
+
+    canvas.freeDrawingBrush.strokeMiterLimit = 100 // 最大斜接长度
+
+    canvas.isDrawingMode = true
+  </script>
+</body>
+</html>

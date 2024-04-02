@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手动加粗文本</title>
+</head>
+<body>
+  <button onclick="bold()">加粗</button>
+  <canvas id="c" width="600" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c')
+
+    const iText = new fabric.IText('hello world')
+
+    canvas.add(iText)
+
+    // 加粗
+    function bold() {
+      let activeTxt = canvas.getActiveObject()
+
+      if (!activeTxt) return
+
+      if (activeTxt.isEditing) {
+        // 编辑状态
+        const state = activeTxt.getSelectionStyles().find(item => item.fontWeight !== 'bold')
+
+        if (!state || (JSON.stringify(state) === '{}' && activeTxt['fontWeight'] === 'bold')) {
+          activeTxt.setSelectionStyles({ 'fontWeight': 'normal' })
+        } else {
+          activeTxt.setSelectionStyles({ 'fontWeight': 'bold' })
+        }
+      } else {
+        // 选择状态
+        if (activeTxt['fontWeight'] === 'bold') {
+          activeTxt.fontWeight = 'normal'
+          let s = activeTxt.styles
+          for(let i in s) {
+            for (let j in s[i]) {
+              s[i][j].fontWeight = 'normal'
+            }
+          }
+        } else {
+          activeTxt.fontWeight = 'bold'
+          let s = activeTxt.styles
+          for(let i in s) {
+            for (let j in s[i]) {
+              s[i][j].fontWeight = 'bold'
+            }
+          }
+        }
+      }
+
+      canvas.renderAll()
+    }
+  </script>
+</body>
+</html>

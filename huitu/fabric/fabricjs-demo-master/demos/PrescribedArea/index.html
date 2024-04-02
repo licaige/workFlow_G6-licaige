@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrescribedArea 元素不超出画布</title>
+  <style>
+    .btn-x {
+      margin-bottom: 10px;
+    }
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="600"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+
+    let canvas = new fabric.Canvas('canvasBox')
+
+    let rect = new fabric.Rect({
+      width: 40,
+      height: 40,
+      left: 10,
+      top: 10,
+      fill: 'pink'
+    })
+    
+    canvas.add(rect)
+
+    rect.on('mouseup', ev => {
+      let canvasBoundaries = canvas.calcViewportBoundaries()
+
+      let obj = ev.target
+
+      let objBoundingRect = obj.getBoundingRect()
+
+      if (objBoundingRect.left < canvasBoundaries.tl.x) {
+        ev.target.left = canvasBoundaries.tl.x
+      }
+
+      if (objBoundingRect.left + objBoundingRect.width > canvasBoundaries.br.x) {
+        ev.target.left = canvasBoundaries.br.x - objBoundingRect.width
+      }
+
+      if (objBoundingRect.top < canvasBoundaries.tl.y) {
+        ev.target.top = canvasBoundaries.tl.y
+      }
+
+      if (objBoundingRect.top + objBoundingRect.height > canvasBoundaries.br.y) {
+        ev.target.top = canvasBoundaries.br.y - objBoundingRect.height
+      }
+
+      canvas.renderAll()
+    })
+
+  </script>
+</body>
+</html>

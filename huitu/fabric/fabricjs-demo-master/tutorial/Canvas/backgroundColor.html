@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景色</title>
+  <style>
+    .box {
+      display: inline-block;
+    }
+    .canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <canvas id="canvasBox1" width="400" height="400" class="canvasBox"></canvas>
+  </div>
+
+  <div class="box">
+    <canvas id="canvasBox2" width="400" height="400" class="canvasBox"></canvas>
+  </div>
+
+  <div class="box">
+    <canvas id="canvasBox3" width="400" height="400" class="canvasBox"></canvas>
+  </div>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  // 默认方式
+  // http://fabricjs.com/docs/fabric.Canvas.html#backgroundColor
+  const canvas1 = new fabric.Canvas('canvasBox1', {
+    backgroundColor: '#e4f9f5'
+  })
+
+  // 使用 setBackgroundColor 方法
+  // http://fabricjs.com/docs/fabric.Canvas.html#setBackgroundColor
+  const canvas2 = new fabric.Canvas('canvasBox2')
+  canvas2.setBackgroundColor(
+    'rgba(248, 243, 212, 0.6)', // 色值
+    canvas2.renderAll.bind(canvas2) // 回调函数
+  )
+
+  // 使用图片做纹理
+  // http://fabricjs.com/docs/fabric.Canvas.html#setBackgroundColor
+  const canvas3 = new fabric.Canvas('canvasBox3')
+  canvas3.setBackgroundColor(
+    // 纹理背景
+    {
+      source: 'http://fabricjs.com/assets/escheresque_ste.png',
+      repeat: 'repeat', // 重复
+      offsetX: 200, // 偏移 x
+      offsetY: 100 // 偏移 y
+    },
+    canvas3.renderAll.bind(canvas3) // 回调函数
+  )
+</script>
+</body>
+</html>

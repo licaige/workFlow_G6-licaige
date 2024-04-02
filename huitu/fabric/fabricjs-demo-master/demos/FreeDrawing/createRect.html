@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自由绘制矩形</title>
+  <style>
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    #canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <select onchange="typeChange(this.options[this.options.selectedIndex].value)">
+      <option value="default">默认（框选）</option>
+      <option value="rect">矩形</option>
+    </select>
+  </div>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let canvas = null
+
+  let currentType = 'default'
+  let downPoint = null
+  let upPoint = null
+
+  // 初始化画板
+  function initCanvas() {
+    canvas = new fabric.Canvas('canvas')
+
+    canvas.on('mouse:down', canvasMouseDown)   // 鼠标在画布上按下
+    canvas.on('mouse:up', canvasMouseUp)       // 鼠标在画布上松开
+  }
+
+  // 画布操作类型切换
+  function typeChange(opt) {
+    currentType = opt
+    switch(opt) {
+      case 'default':
+        canvas.selection = true
+        canvas.selectionColor = 'rgba(100, 100, 255, 0.3)'
+        canvas.selectionBorderColor = 'rgba(255, 255, 255, 0.3)'
+        canvas.skipTargetFind = false // 允许选中
+        break
+      case 'rect':
+        canvas.selectionColor = 'transparent'
+        canvas.selectionBorderColor = 'rgba(0, 0, 0, 0.2)'
+        canvas.skipTargetFind = true // 禁止选中
+        break
+    }
+  }
+
+  // 鼠标在画布上按下
+  function canvasMouseDown(e) {
+    downPoint = e.absolutePointer
+  }
+
+  // 鼠标在画布上松开
+  function canvasMouseUp(e) {
+    if (currentType === 'rect') {
+      upPoint = e.absolutePointer
+      // 创建矩形
+      createRect()
+    }
+  }
+
+  // 创建矩形
+  function createRect() {
+    // 点击事件，不生成矩形
+    if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+      return
+    }
+
+    // 创建矩形
+    // 矩形参数计算
+    let top = Math.min(downPoint.y, upPoint.y)
+    let left = Math.min(downPoint.x, upPoint.x)
+    let width = Math.abs(downPoint.x - upPoint.x)
+    let height = Math.abs(downPoint.y - upPoint.y)
+
+    // 矩形对象
+    const rect = new fabric.Rect({
+      top,
+      left,
+      width,
+      height,
+      fill: 'transparent',
+      stroke: '#000'
+    })
+
+    // 将矩形添加到画布上
+    canvas.add(rect)
+
+    downPoint = null
+    upPoint = null
+  }
+
+
+  window.onload = function() {
+    initCanvas()
+  }
+</script>
+</body>
+</html>

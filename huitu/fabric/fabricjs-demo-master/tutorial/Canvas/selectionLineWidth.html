@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selectionLineWidth 框选时线条宽度</title>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+  
+    let canvas = new fabric.Canvas('canvasBox', {
+      selectionBorderColor: 'red', // 框选时边框颜色
+      selectionLineWidth: 20, // 框选时线条宽度
+    })
+  
+    // 三角形
+    const triangle = new fabric.Triangle({
+      top: 100,
+      left: 50,
+      width: 80, // 底边宽度
+      height: 100, // 底边到定点的距离
+      fill: 'blue',
+    })
+
+    // 矩形
+    const rect = new fabric.Rect({
+      width: 60,
+      height: 60,
+      top: 100,
+      left: 200,
+      fill: 'pink'
+    })
+
+    // 圆形
+    const circle = new fabric.Circle({
+      radius: 40,
+      top: 300,
+      left: 50,
+      fill: 'yellowgreen'
+    })
+
+    canvas.add(triangle, rect, circle)
+  
+  </script>
+</body>
+</html>

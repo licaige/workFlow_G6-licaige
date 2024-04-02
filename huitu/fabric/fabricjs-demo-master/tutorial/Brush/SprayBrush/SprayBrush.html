@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喷雾笔刷 SprayBrush</title>
+</head>
+<body>
+<canvas id="c" width="700" height="700" style="border: 1px solid #ccc;"></canvas>
+
+<script src="../../../script/fabric.js"></script>
+<script>
+  let Semicircle = fabric.util.createClass(fabric.Object, {
+    // 初始化
+    initialize(options) {
+      this.callSuper('initialize', options)
+      this.width = 100
+      this.height = 50
+    },
+    // 渲染
+    _render(ctx) {
+      ctx.strokeStyle = this.stroke || '#333' // 初始化描边颜色
+      ctx.lineWidth = this.strokeWidth || 1 // 初始化描边宽度
+      ctx.fillStyle = this.fill || '#333' // 初始化填充色
+      ctx.beginPath() // 开始绘制路径
+      ctx.arc(0, -2.5, 5, 0, 180 * Math.PI / 180) // 绘制半圆
+      ctx.closePath() // 结束绘制路径
+      ctx.stroke() // 描边
+      ctx.fill() // 填充
+    }
+  })
+
+  // 初始化
+  const canvas = new fabric.Canvas('c', {
+    isDrawingMode: true
+  })
+
+  let sprayBrush = new fabric.SprayBrush()
+  sprayBrush.initialize(canvas)
+  canvas.freeDrawingBrush = sprayBrush
+
+  sprayBrush.width = 200
+  sprayBrush.density = 10
+  sprayBrush.dotWidth = 10
+  sprayBrush.dotWidthVariance = 1
+  sprayBrush.color = 'pink'
+  sprayBrush.randomColor = true
+  sprayBrush.optimizeOverlapping = false
+  sprayBrush.randomOpacity = true
+
+  sprayBrush.shadow = new fabric.Shadow({
+    blur: 10,
+    offsetX: 10,
+    offsetY: 10,
+    color: '#30e3ca'
+  })
+</script>
+</body>
+</html>

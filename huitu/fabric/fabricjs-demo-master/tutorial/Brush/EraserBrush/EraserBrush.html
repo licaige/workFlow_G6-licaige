@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>橡皮擦笔刷 EraserBrush</title>
+</head>
+<body>
+<div style="margin-bottom: 10px;">
+  <button id="select" type="button" onclick="changeAction('select')">select</button>
+  <button id="erase" type="button" onclick="changeAction('erase')">erase</button>
+  <button id="erase" type="button" onclick="changeAction('undoErasing')">undo erasing</button>
+</div>
+<canvas id="c" width="400" height="400" style="border: 1px solid #ccc;"></canvas>
+
+<script src="./fabric.js"></script>
+
+<script>
+  const canvas = this.__canvas = new fabric.Canvas('c')
+
+  canvas.add(
+    // 第一个正方形（宝蓝色）
+    new fabric.Rect({
+      top: 50,
+      left: 50,
+      width: 50,
+      height: 50,
+      fill: "#4b5cc4",
+      opacity: 0.8,
+      erasable: false // 不允许擦拭
+    }),
+    // 第二个正方形（桃红色）
+    new fabric.Rect({
+      top: 50,
+      left: 150,
+      width: 50,
+      height: 50,
+      fill: "#f47983",
+      opacity: 0.8
+    })
+  )
+
+  // 修改画板行为模式
+  function changeAction(mode) {
+    switch (mode) {
+      case "select":
+        canvas.isDrawingMode = false // 不允许绘画（返回普通框选模式）
+        break
+      case "erase":
+        canvas.isDrawingMode = true // 进入绘画模式
+        canvas.freeDrawingBrush = new fabric.EraserBrush(canvas) // 使用橡皮擦画笔
+        canvas.freeDrawingBrush.width = 10 // 设置画笔粗细为 10
+        break
+      case 'undoErasing':
+        canvas.isDrawingMode = true
+        canvas.freeDrawingBrush = new fabric.EraserBrush(canvas)
+        canvas.freeDrawingBrush.width = 10
+        canvas.freeDrawingBrush.inverted = true
+      default:
+        break
+    }
+  }
+</script>
+</body>
+</html>

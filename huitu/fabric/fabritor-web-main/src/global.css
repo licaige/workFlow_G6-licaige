@@ -1,0 +1,47 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#ice-container {
+  height: 100%;
+}
+
+.fabritor-layout  .ant-tabs-left >.ant-tabs-nav .ant-tabs-tab {
+  padding: 8px 18px;
+}
+
+.ant-tabs-content-holder {
+  overflow: auto !important;
+}
+
+.fabritor-layout h5.ant-typography {
+  margin: 0;
+}
+
+.fabritor-color-setter .rcs .rc-input-number-affix-wrapper {
+  height: 20px;
+}
+.fabritor-color-setter .rcs-preset-colors {
+  gap: 5;
+}
+
+.fabritor-toolbar-item {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  line-height: 0;
+
+  &:hover {
+    background-color: rgba(64,87,109,.07);
+  }
+}
+
+#fabritor-rough-svg {
+  position: fixed;
+  left: 99999999px;
+  top: 99999999px;
+  z-index: -1;
+}

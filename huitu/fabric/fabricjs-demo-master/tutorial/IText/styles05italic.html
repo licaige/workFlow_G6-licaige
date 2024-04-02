@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>斜体</title>
+</head>
+<body>
+  <button onclick="italic()">斜体</button>
+  <canvas id="c" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c')
+
+    const iText = new fabric.IText('hello world')
+
+    canvas.add(iText)
+
+    function italic() {
+      let activeTxt = canvas.getActiveObject()
+
+      if (!activeTxt) return
+
+      if (activeTxt.isEditing) {
+        // 编辑状态
+        const state = activeTxt.getSelectionStyles().find(item => item.fontStyle !== 'italic')
+
+        if (!state || (JSON.stringify(state) === '{}' && activeTxt['fontStyle'] === 'italic')) {
+          activeTxt.setSelectionStyles({ 'fontStyle': 'normal' })
+        } else {
+          activeTxt.setSelectionStyles({ 'fontStyle': 'italic' })
+        }
+      } else {
+        // 选择状态
+        if (activeTxt['fontStyle'] === 'italic') {
+          activeTxt.fontStyle = 'normal'
+          let s = activeTxt.styles
+          for(let i in s) {
+            for (let j in s[i]) {
+              s[i][j].fontStyle = 'normal'
+            }
+          }
+        } else {
+          activeTxt.fontStyle = 'italic'
+          let s = activeTxt.styles
+          for(let i in s) {
+            for (let j in s[i]) {
+              s[i][j].fontStyle = 'italic'
+            }
+          }
+        }
+      }
+
+      canvas.renderAll()
+    }
+  </script>
+</body>
+</html>

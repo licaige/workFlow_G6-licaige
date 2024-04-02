@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>html2canvas 简易版</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 50px;
+        }
+        #app {
+            position: relative;
+            padding-top: 10px;
+            padding-left: 20px;
+            width: 360px;
+            height: 640px;
+            border: 1px solid #000;
+        }
+        .name {
+            font-size: 50px;
+            font-weight: bold;
+            color: purple;
+        }
+        .avatar {
+            margin-right: 10px;
+            background: lightcyan;
+            border: 5px solid green;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+        }
+        input {
+            padding: 5px;
+            border: 2px solid green;
+        }
+        .box {
+            margin-top: 20px;
+            margin-left: 50px;
+            width: 100px;
+            height: 100px;
+            font-size: 20px;
+            color: #fff;
+            background: green;
+            transform: rotate(45deg);
+        }
+        .box2 {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            font-size: 26px;
+            background: red;
+            opacity: 0.3;
+        }
+        .zIndex1 {
+            position: absolute;
+            padding: 0 15px;
+            top: 50px;
+            right: 0;
+            font-size: 30px;
+            border: 1px solid red;
+            z-index: 1;
+        }
+        .zIndex-1 {
+            position: absolute;
+            padding: 0 15px;
+            bottom: 230px;
+            right: 0;
+            font-size: 30px;
+            border: 1px solid red;
+            z-index: -1;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <div class="name">尤水就下</div>
+            <img class="avatar" src="https://p26-passport.byteacctimg.com/img/user-avatar/7470b65342454dd6699a6cf772652260~300x300.image" />
+            <div class="row">
+                <div class="box">呵呵</div>
+                <div>
+                    <div class="box2"></div>
+                </div>
+            </div>
+            <div class="row">
+                <span>写点什么吧：</span>
+                <input value="哈哈哈" />
+            </div>
+            <div class="zIndex1">zIndex: 1</div>
+            <div class="zIndex-1">zIndex: -1</div>
+        </div>
+        <div>
+            <button onclick="handleClick()">html2Canvas</button>
+        </div>
+        <script src="./index.js"></script>
+        <script>
+            function handleClick() {
+                new html2canvas(document.getElementById('app'));
+            }
+            setTimeout(() => {
+                handleClick();
+            }, 1000);
+        </script>
+    </body>
+</html>

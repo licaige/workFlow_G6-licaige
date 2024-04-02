@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自由绘制线段</title>
+  <style>
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    #canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <select onchange="typeChange(this.options[this.options.selectedIndex].value)">
+      <option value="default">默认（框选）</option>
+      <option value="line">线段</option>
+    </select>
+  </div>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  let canvas = null
+
+  let currentType = 'default'
+  let downPoint = null
+  let upPoint = null
+
+  let currentLine = null // 临时线段
+
+  // 初始化画板
+  function initCanvas() {
+    canvas = new fabric.Canvas('canvas')
+
+    canvas.on('mouse:down', canvasMouseDown)   // 鼠标在画布上按下
+    canvas.on('mouse:move', canvasMouseMove)   // 鼠标在画布上移动
+    canvas.on('mouse:up', canvasMouseUp)       // 鼠标在画布上松开
+  }
+
+  // 画布操作类型切换
+  function typeChange(opt) {
+    currentType = opt
+    switch(opt) {
+      case 'default':
+        canvas.selection = true
+        canvas.selectionColor = 'rgba(100, 100, 255, 0.3)'
+        canvas.selectionBorderColor = 'rgba(255, 255, 255, 0.3)'
+        canvas.skipTargetFind = false // 允许选中
+        break
+      case 'line':
+        canvas.selectionColor = 'transparent'
+        canvas.selectionBorderColor = 'transparent'
+        canvas.skipTargetFind = true // 禁止选中
+        break
+    }
+  }
+
+  // 鼠标在画布上按下
+  function canvasMouseDown(e) {
+    downPoint = e.absolutePointer
+
+    if (currentType === 'line') {
+      currentLine = new fabric.Line(
+        [
+          downPoint.x, downPoint.y, // 起始点坐标
+          downPoint.x, downPoint.y // 结束点坐标
+        ],
+        {
+          stroke: 'rgba(0, 0, 0, 0.2)', // 笔触颜色
+        }
+      )
+      canvas.add(currentLine)
+    }
+  }
+
+  // 鼠标在画布上移动
+  function canvasMouseMove(e) {
+    if (currentType === 'line' && currentLine) {
+      const currentPoint = e.absolutePointer
+
+      currentLine.set('x2', currentPoint.x)
+      currentLine.set('y2', currentPoint.y)
+
+      canvas.requestRenderAll()
+    }
+  }
+
+  // 鼠标在画布上松开
+  function canvasMouseUp(e) {
+    upPoint = e.absolutePointer
+
+    if (currentType === 'line') {
+      if (JSON.stringify(downPoint) === JSON.stringify(upPoint)) {
+        canvas.remove(currentLine)
+      } else {
+        if (currentLine){
+          currentLine.set('stroke', '#000')
+        }
+      }
+      currentLine = null
+    }
+  }
+
+  window.onload = function() {
+    initCanvas()
+  }
+</script>
+</body>
+</html>

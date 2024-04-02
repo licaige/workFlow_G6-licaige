@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selectionFullyContained 需手动精准选中元素</title>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+  
+    let canvas = new fabric.Canvas('canvasBox', {
+      selectionFullyContained: true // 当设置为 true 时，只有真实选中元素才有选框出现
+    })
+  
+    // 三角形
+    const triangle = new fabric.Triangle({
+      top: 100,
+      left: 50,
+      width: 80, // 底边宽度
+      height: 100, // 底边到定点的距离
+      fill: 'blue',
+    })
+
+    canvas.add(triangle)
+  
+  </script>
+</body>
+</html>

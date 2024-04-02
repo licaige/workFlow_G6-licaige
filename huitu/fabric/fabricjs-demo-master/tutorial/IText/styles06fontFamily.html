@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义字体</title>
+  <style>
+    /*  */
+    @font-face {
+      font-family: ali;
+      src: url('../../fonts/AlibabaPuHuiTi-2-35-Thin.ttf');
+    }
+    @font-face {
+      font-family: douyu;
+      src: url('../../fonts/douyu.ttf');
+    }
+  </style>
+</head>
+<body>
+  <button onclick="setFont('douyu')">斗鱼</button>
+  <button onclick="setFont('ali')">阿里</button>
+  <canvas id="c" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <script src="../../script/fontfaceobserver.js"></script>
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const font = new FontFaceObserver('douyu')
+    const canvas = new fabric.Canvas('c')
+
+    const iText = new fabric.IText('雷猴')
+
+    canvas.add(iText)
+
+    function setFont(font) {
+      let fontFamily = new FontFaceObserver(font)
+
+      fontFamily.load()
+        .then(() => {
+          let target = canvas.getActiveObject()
+          if (target) {
+            target.set("fontFamily", font)
+            canvas.requestRenderAll()
+          }
+        })
+        .catch(() => {
+          console.error('字体加载失败')
+        })
+    }
+  </script>
+</body>
+</html>

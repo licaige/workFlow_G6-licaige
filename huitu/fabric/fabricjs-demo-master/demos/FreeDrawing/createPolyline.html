@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自由绘制折线</title>
+  <style>
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    #canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <select onchange="typeChange(this.options[this.options.selectedIndex].value)">
+      <option value="default">默认（框选）</option>
+      <option value="polyline">折线</option>
+    </select>
+  </div>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+  let canvas = null
+
+  let currentType = 'default'
+
+  let currentPolyline = null // 临时折线
+
+  // 初始化画板
+  function initCanvas() {
+    canvas = new fabric.Canvas('canvas')
+
+    canvas.on('mouse:down', canvasMouseDown)         // 鼠标在画布上按下
+    canvas.on('mouse:move', canvasMouseMove)         // 鼠标在画布上移动
+    canvas.on('mouse:dblclick', canvasMouseDblclick) // 鼠标在画布上双击
+  }
+
+  // 创建折线
+  function createPolyline(e) {
+    const currentPoint = e.absolutePointer
+    currentPolyline = new fabric.Polyline(
+      [
+        { x: currentPoint.x, y: currentPoint.y },
+        { x: currentPoint.x, y: currentPoint.y }
+      ],
+      {
+        fill: 'transparent',
+        stroke: 'rgba(0, 0, 0, 0.2)',
+        objectCaching: false
+      }
+    )
+    canvas.add(currentPolyline)
+  }
+
+  // 修改当前正在创建的折线
+  function changeCurrentPolyline(e) {
+    const currentPoint = e.absolutePointer
+
+    let points = currentPolyline.points
+
+    points.push({
+      x: currentPoint.x,
+      y: currentPoint.y
+    })
+    canvas.requestRenderAll()
+  }
+
+  // 折线橡皮带
+  function changePolylineBelt(e) {
+    const currentPoint = e.absolutePointer
+    let points = currentPolyline.points
+
+    points[points.length - 1].x = currentPoint.x
+    points[points.length - 1].y = currentPoint.y
+
+    canvas.requestRenderAll()
+  }
+
+  // 完成折线绘制
+  function finishPolyline(e) {
+    const currentPoint = e.absolutePointer
+    let points = currentPolyline.points
+    points[points.length - 1].x = currentPoint.x
+    points[points.length - 1].y = currentPoint.y
+
+    points.pop()
+    points.pop()
+    canvas.remove(currentPolyline)
+
+    if (points.length > 1) {
+      let polyline = new fabric.Polyline(points, {
+        stroke: '#000',
+        fill: 'transparent'
+      })
+
+      canvas.add(polyline)
+    }
+    currentPolyline = null
+
+    canvas.requestRenderAll()
+  }
+
+  // 鼠标在画布上按下
+  function canvasMouseDown(e) {
+    if (currentType === 'polyline') {
+      if (currentPolyline === null) {
+        createPolyline(e)
+      } else {
+        changeCurrentPolyline(e)
+      }
+    }
+  }
+
+  // 鼠标在画布上移动
+  function canvasMouseMove(e) {
+    if (currentType === 'polyline' && currentPolyline) {
+      changePolylineBelt(e)
+    }
+  }
+
+  // 鼠标在画布上双击
+  function canvasMouseDblclick(e) {
+    if (currentType === 'polyline') {
+      finishPolyline(e)
+    }
+  }
+
+  // 画布操作类型切换
+  function typeChange(opt) {
+    currentType = opt
+    switch(opt) {
+      case 'default':
+        canvas.selection = true
+        canvas.selectionColor = 'rgba(100, 100, 255, 0.3)'
+        canvas.selectionBorderColor = 'rgba(255, 255, 255, 0.3)'
+        canvas.skipTargetFind = false // 允许选中
+        break
+      case 'polyline':
+        canvas.selectionColor = 'transparent'
+        canvas.selectionBorderColor = 'transparent'
+        canvas.skipTargetFind = true // 禁止选中
+        break
+    }
+  }
+
+  window.onload = function() {
+    initCanvas()
+  }
+</script>
+</body>
+</html>

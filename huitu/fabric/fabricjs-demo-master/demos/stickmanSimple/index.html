@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简单版的stickman</title>
+</head>
+<body>
+  <canvas id="c" width="500" height="500" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+
+    // 官方版地址：http://fabricjs.com/stickman
+
+    // 绑定画布元素
+    const canvas = new fabric.Canvas('c')
+    
+    // 让全局的元素都以中心为原点（根据你实际业务需求去设置吧）
+    fabric.Object.prototype.originX = 'center'
+    fabric.Object.prototype.originY = 'center'
+  
+    // 创建直线
+    let line = new fabric.Line(
+      [ 50, 40, 200, 40 ], // 直线的4个坐标 [x1, y1, x2, y2]
+      {
+        fill: 'red', // 直线填充颜色
+        stroke: 'red', // 直线边框颜色
+        strokeWidth: 5, // 直线边框粗细
+        selectable: false, // 当设置为“ false”时，不能选择对象进行修改(使用基于点击或基于组的选择)。但事情还是发生了。
+        evented: false, // 当设置为“ false”时，对象不能成为事件的目标。所有事件都会通过它传播。
+      }
+    )
+    
+    // 创建圆形
+    let circle = new fabric.Circle({
+      left: line.get('x1'), // 圆形x坐标，用了直线的起点的x坐标
+      top: line.get('y1'), // 圆形y坐标，用了直线的起点的y坐标
+      strokeWidth: 5,
+      radius: 12, // 半径
+      fill: '#fff',
+      stroke: '#666',
+      hasControls: false, // 当设置为“ false”时，对象的控件不会显示，也不能用于操作对象
+      hasBorders: false // 当设置为“ false”时，不呈现对象的控制边框
+    })
+  
+    // 将直线和圆形添加到画布中
+    canvas.add(line, circle)
+  
+    // 移动元素时触发的事件
+    canvas.on('object:moving', function(e) {
+      // 因为本例只有圆形能移动，所以我在函数中并没有去判断当前操作的是什么元素
+      var p = e.target // 获取当前移动的元素
+      line.set({'x1': p.left, 'y1': p.top}) // 将直线的起点坐标的x和y设置成圆形的left和top
+      canvas.renderAll() // 重新渲染画布
+    })
+  </script>
+</body>
+</html>

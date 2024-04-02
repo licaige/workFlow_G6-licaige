@@ -1,0 +1,39 @@
+.fabritor-panel-wrapper {
+  margin-left: -24px;
+  padding: 16px;
+}
+
+.fabritor-panel-shape-item {
+  cursor: pointer;
+}
+
+.fabritor-list-item {
+  background: rgba(53, 71, 90, 0.2);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  &:hover {
+    border:  2px solid rgba(255,34,34,.5) !important;
+  }
+}
+
+.fabritor-sider {
+  position: relative;
+  .ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fabritor-setter-panel {
+    position: absolute;
+    left: 64px;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    z-index: 99;
+    background-color: #fff;
+  }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>铅笔 PencilBrush</title>
+</head>
+<body>
+  <canvas id="c" width="600" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../../script/fabric.js"></script>
+  <script>
+    // 初始化
+    const canvas = new fabric.Canvas('c')
+
+    canvas.isDrawingMode = true
+
+    let pencilBrush = new fabric.PencilBrush()
+    pencilBrush.initialize(canvas)
+    pencilBrush.color = '#c123a8' // 画笔颜色
+    pencilBrush.decimate = 40, // 拐角的平滑程度，数值越大越平滑
+
+    // 铅笔粗细
+    pencilBrush.width = 10
+
+    // 绘制时不能超出画布
+    pencilBrush.limitedToCanvasSize = true
+
+    // 绘制直线的组合键，默认shiftKey。'altKey' | 'shiftKey' | 'ctrlKey' | 'none' | undefined | null
+    pencilBrush.straightLineKey = 'shiftKey'
+
+    // 阴影
+    pencilBrush.shadow = new fabric.Shadow({
+      blur: 10, // 羽化程度
+      offsetX: 10, // x轴偏移量
+      offsetY: 10, // y轴偏移量
+      color: '#30e3ca' // 投影颜色
+    })
+
+    // 虚线
+    pencilBrush.strokeDashArray = [20, 30, 40]
+
+    // 帽
+    pencilBrush.strokeLineCap = 'butt' // "butt" 对接, "round" 圆形, "square" 方形
+
+    // 转角
+    pencilBrush.strokeLineJoin = 'miter', // "bevel" 斜面, "round" 圆形, "miter" 斜面
+
+    // 倾斜角度，仅适用于 strokeLinejoin = 'miter' 时
+    pencilBrush.strokeMiterLimit = 200
+
+    // 设置画笔
+    canvas.freeDrawingBrush = pencilBrush
+
+    // 生成路径前
+    canvas.on('before:path:created', opt => {
+      console.log(opt.path)
+    })
+
+    // 生成路径后
+    canvas.on('path:created', function(opt) {
+      console.log(opt.path)
+    })
+
+    // 鼠标点击时
+    pencilBrush.onMouseDown = function(t, e) {
+      console.log(t)
+      console.log(e)
+
+      this.canvas._isMainEvent(e.e) &&
+      (
+        this.drawStraightLine = e.e[this.straightLineKey],
+        this._prepareForDrawing(t),
+        this._captureDrawingPath(t),
+        this._render()
+      )
+    }
+
+    // 鼠标移动时
+    pencilBrush.onMouseMove = function(t, e) {
+      console.log(t)
+      console.log(e)
+
+      if (
+        this.canvas._isMainEvent(e.e) && (this.drawStraightLine = e.e[this.straightLineKey],
+        (!0 !== this.limitedToCanvasSize || !this._isOutSideCanvas(t)) && this._captureDrawingPath(t) && 1 < this._points.length)
+      ) {
+        if (this.needsFullRender()) {
+          this.canvas.clearContext(this.canvas.contextTop)
+          this._render()
+        }
+        else {
+          var i = this._points
+            , r = i.length
+            , n = this.canvas.contextTop
+
+          this._saveAndTransform(n)
+          this.oldEnd && 
+            (
+              n.beginPath(),
+              n.moveTo(this.oldEnd.x, this.oldEnd.y)
+            )
+
+          this.oldEnd = this._drawSegment(n, i[r - 2], i[r - 1], !0)
+          n.stroke()
+          n.restore()
+        }
+      }
+    }
+
+    // 鼠标松开时
+    pencilBrush.onMouseUp = function(t) {
+      console.log(t)
+
+      return !this.canvas._isMainEvent(t.e) || 
+        (
+          this.drawStraightLine = !1,
+          this.oldEnd = void 0,
+          this._finalizeAndAddPath(),
+          !1
+        )
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态设置字号大小</title>
+  <style>
+    input {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <input type="range" min="5" max="150" value="40" id="size" onchange="changeSize(value)">
+  <canvas id="c" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c')
+
+    const iText = new fabric.IText('hello world')
+
+    canvas.add(iText)
+
+    function changeSize(value) {
+      let activeTxt = canvas.getActiveObject()
+
+      if (!activeTxt) return
+
+      if (activeTxt.isEditing) {
+        // 编辑状态
+        activeTxt.setSelectionStyles({ 'fontSize': value})
+      } else {
+        activeTxt.fontSize = value
+        let s = activeTxt.styles
+        for(let i in s) {
+          for (let j in s[i]) {
+            s[i][j].fontSize = value
+          }
+        }
+        activeTxt.dirty = true
+      }
+
+      canvas.renderAll()
+    }
+  </script>
+</body>
+</html>

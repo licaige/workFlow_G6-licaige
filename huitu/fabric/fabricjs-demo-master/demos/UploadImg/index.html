@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上传图片</title>
+</head>
+<body>
+
+<div>
+  <input type="file" name="file" id="upload" onchange="handleUpload()" />
+  <button onclick="saveCanvas()">保存</button>
+</div>
+
+<canvas id="canvas" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+// 上传文件的DOM元素
+const uploadEl = document.getElementById("upload")
+
+// 画布
+let canvas = null
+
+// 初始化画布
+function initCanvas() {
+  canvas = new fabric.Canvas('canvas')
+}
+
+// 上传文件事件
+function handleUpload() {
+  // 上传文件列表的第一个文件
+  const file = uploadEl.files[0]
+
+  // 图片文件的地址
+  let imgPath = null
+
+  // 获取图片文件真实路径
+  // 由于浏览器安全策略，现在需要这么做了
+  if (window.createObjcectURL != undefined) {
+    imgPath = window.createOjcectURL(file); 
+  } else if (window.URL != undefined) {
+    imgPath = window.URL.createObjectURL(file); 
+  } else if (window.webkitURL != undefined) {
+    imgPath = window.webkitURL.createObjectURL(file);
+  }
+
+  // 实现方式1
+  // 创建一个fabric的图片，在回调函数里添加到画布上
+  // fabric.Image.fromURL(
+  //   imgPath, // 真实图片地址
+  //   img => {
+  //     // 将图片设置再画布上，然后重新渲染画布，图片就出来了。
+  //     canvas.setBackgroundImage(
+  //       img, // 要设置的图片
+  //       canvas.renderAll.bind(canvas) // 重新渲染画布
+  //     )
+  //   }
+  // )
+
+  // 实现方式2
+  canvas.setBackgroundImage(
+    imgPath,
+    canvas.renderAll.bind(canvas)
+  )
+}
+
+// 保存画布
+function saveCanvas() {
+  let data = canvas.toJSON()
+  console.log(data)
+}
+
+window.onload = function() {
+  initCanvas()
+}
+</script>
+</body>
+</html>

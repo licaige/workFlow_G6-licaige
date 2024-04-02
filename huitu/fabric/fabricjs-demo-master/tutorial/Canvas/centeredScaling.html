@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>centeredScaling</title>
+  <style>
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="400"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+<script>
+
+  // 如果 centeredScaling 为 false（默认），需要按alt键才能以中心点作为缩放原点
+
+  let canvas = new fabric.Canvas('canvasBox', {
+    centeredScaling: true // 全局所有元素都生效
+  })
+
+  let rect = new fabric.Rect({
+    width: 100,
+    height: 60,
+    left: 100,
+    top: 100,
+    fill: 'pink',
+    // centeredScaling: true // 单个元素生效
+  })
+
+  let circle = new fabric.Circle({
+    radius: 50,
+    left: 300,
+    top: 80,
+    fill: 'green'
+  })
+
+  canvas.add(rect)
+
+  canvas.add(circle)
+</script>
+</body>
+</html>

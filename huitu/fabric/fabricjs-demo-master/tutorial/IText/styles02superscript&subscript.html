@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上标和下标</title>
+</head>
+<body>
+  <canvas id="c" width="300" height="300" style="border: 1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    const canvas = new fabric.Canvas('c')
+
+    const iText = new fabric.IText('32=9\nH2O', {
+      styles: {
+        0: {
+          1: {
+            deltaY: -14,
+            fontSize: 24,
+          }
+        },
+        1: {
+          1: {
+            deltaY: 0,
+            fontSize: 24
+          }
+        }
+      }
+    })
+
+    canvas.add(iText)
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selection</title>
+</head>
+<body>
+
+<canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+<script src="../../script/fabric.js"></script>
+<script>
+
+  let canvas = new fabric.Canvas('canvasBox', {
+    selection: false // 设置成false，画布不能框选操作
+  })
+
+  // 椭圆
+  const ellipse = new fabric.Ellipse({
+    top: 100,
+    left: 200,
+    rx: 100,
+    ry: 50,
+    fill: '#ddd',
+    originX: 'center', // 旋转x轴：left, right, center
+    originY: 'center' // 旋转y轴：top, bottom, center
+  })
+
+  canvas.add(ellipse)
+
+</script>
+</body>
+</html>

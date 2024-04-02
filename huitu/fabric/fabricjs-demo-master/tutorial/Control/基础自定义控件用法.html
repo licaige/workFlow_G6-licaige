@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基础自定义控件用法</title>
+</head>
+<body>
+  <canvas id="c" width="500" height="400" style="border:1px solid #ccc"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+
+    const canvas = new fabric.Canvas('c')
+
+    // 创建矩形
+    let rect = new fabric.Rect({
+      left: 100,
+      top: 50,
+      fill: 'yellow',
+      width: 200,
+      height: 100,
+      objectCaching: false,
+      stroke: 'lightgreen',
+      strokeWidth: 4,
+    })
+
+    // 将矩形添加到画布里
+    canvas.add(rect)
+
+    // 删除元素的方法
+    function deleteObject(eventData, transform) {
+      let target = transform.target
+      let canvas = target.canvas
+      canvas.remove(target) // 删除元素
+      canvas.requestRenderAll() // 刷新画布
+    }
+
+    // 创建自定义控件并添加到矩形里
+    rect.controls.deleteControl = new fabric.Control({
+      x: 0.5,
+      y: -0.5,
+      offsetY: -16,
+      offsetX: 16,
+      cursorStyle: 'pointer', // 鼠标移到控件时的指针样式
+      mouseUpHandler: deleteObject, // 鼠标抬起时触发的事件
+      render: function(ctx, left, top, styleOverride, fabricObject) { // 渲染一个粉红色的正方形
+        ctx.save()
+        let size = this.cornerSize
+        ctx.fillStyle = 'pink'
+        ctx.translate(left, top)
+        ctx.fillRect(-size / 2, -size / 2, size, size)
+        ctx.restore()
+      },
+      cornerSize: 24
+    })
+  </script>
+</body>
+</html>

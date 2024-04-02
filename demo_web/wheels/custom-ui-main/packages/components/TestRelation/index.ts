@@ -1,0 +1,1 @@
+export const FATHER_KEY = Symbol("FATHER_KEY")

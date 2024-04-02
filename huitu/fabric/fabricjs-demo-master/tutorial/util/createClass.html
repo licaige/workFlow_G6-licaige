@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>createClass 创建子类</title>
+</head>
+<body>
+  <canvas id="canvasBox" width="600" height="600" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../script/fabric.js"></script>
+  <script>
+    // 创建画布
+    let canvas = new fabric.Canvas('canvasBox')
+
+    // 半圆子类
+    let Semicircle = fabric.util.createClass(fabric.Object, {
+      initialize(options) {
+        this.callSuper('initialize', options)
+        this.width = 100
+        this.height = 50
+      },
+      _render(ctx) {
+        ctx.fillStyle = this.fill || '#333'
+        ctx.lineWidth = this.strokeWidth || 1
+        ctx.strokeStyle = this.stroke || '#333'
+        ctx.beginPath()
+        ctx.arc(0, -25, 50, 0, 180 * Math.PI / 180)
+        ctx.closePath()
+        ctx.stroke()
+        ctx.fill()
+      }
+    })
+
+    // 半圆
+    let semicircle = new Semicircle({
+      top: 100,
+      left: 100,
+      stroke: 'pink',
+      fill: 'yellowgreen',
+      strokeWidth: 10
+    })
+
+    canvas.add(semicircle)
+  </script>
+</body>
+</html>

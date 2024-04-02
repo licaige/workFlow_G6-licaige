@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摆正元素</title>
+  <style>
+    .btn-x {
+      margin-bottom: 10px;
+    }
+    #canvasBox {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="btn-x">
+    <button onclick="straightenObject()">摆正元素</button>
+    <button onclick="fxStraightenObject()">摆正元素（过渡动画）</button>
+  </div>
+  <canvas id="canvasBox" width="600" height="600"></canvas>
+  
+<script src="../../script/fabric.js"></script>
+<script>
+  let canvas = null
+  let triangle = null
+
+  window.onload = function() {
+    // 使用 元素id 创建画布，此时可以在画布上框选
+    canvas = new fabric.Canvas('canvasBox', {
+      width: 400,
+      height: 400
+    })
+
+    // 三角形
+    triangle = new fabric.Triangle({
+      top: 100,
+      left: 100,
+      width: 80, // 底边长度
+      height: 100, // 底边到对角的距离
+      fill: 'blue',
+      angle: 30
+    })
+    
+    // 将三角形添加到画布中
+    canvas.add(triangle)
+
+    // renderAll()
+  }
+
+  // 不断刷新画布
+  // function renderAll() {
+  //   canvas.renderAll()
+  //   requestAnimationFrame(renderAll)
+  // }
+
+  function straightenObject() {
+    // canvas.straightenObject(triangle)
+    triangle.straighten()
+    canvas.renderAll()
+  }
+
+  function fxStraightenObject() {
+    // canvas.fxStraightenObject(triangle)
+    triangle.fxStraighten({
+      onChange() {
+        canvas.renderAll()
+      },
+      onComplete() {
+        canvas.renderAll()
+      }
+    })
+  }
+
+</script>
+</body>
+</html>

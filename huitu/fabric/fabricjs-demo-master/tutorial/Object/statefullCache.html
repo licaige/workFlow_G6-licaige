@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>是否需要重新绘制缓存的副本 statefullCache</title>
+</head>
+<body>
+  <canvas id="c" width="600" height="400" style="border: 1px solid #ccc;"></canvas>
+
+  <script src="../../../script/fabric.js"></script>
+  <script>
+    // 初始化
+    let canvas = new fabric.Canvas('c')
+
+    // 矩形 - 亮粉色
+    let rect = new fabric.Rect({
+      left: 260,
+      top: 110,
+      width: 80,
+      height: 60,
+      fill: 'hotpink',
+      statefullCache: true
+    })
+
+    // canvas.add(rect)
+
+    // console.log(rect.set)
+    // rect.set('fill', 'blue')
+
+    setTimeout(() => {
+      console.log(rect.fill)
+      rect.fill = 'red'
+      console.log(rect.fill)
+
+      canvas.renderAll()
+    }, 1000)
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回到顶部</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <span id="toTop" class="toTop"></span>
+    <script src="../../lib/index.js"></script>
+    <script src="../../lib/view-source.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+    <script>
+      let topElement=document.getElementById('toTop')
+      let toTop=new ScrollToTop(topElement,{
+        showWhen:200,
+        speed:200
+      })
+    </script>
+  </body>
+</html>

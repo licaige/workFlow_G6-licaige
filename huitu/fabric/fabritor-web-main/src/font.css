@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "AlibabaPuHuiTi";
+  src: url("./assets/fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff") format("woff"),
+    url("./assets/fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SourceHanSans";
+  src: url("./assets/fonts/SourceHanSansCN-Regular.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "霞鹜新晰黑";
+  src: url("./assets/fonts/LXGWNeoXiHei.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "霞鹜尚智黑";
+  src: url("./assets/fonts/LXGWFasmartGothic.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "霞鹜文楷";
+  src: url("./assets/fonts/LXGWWenKai-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "小赖字体";
+  src: url("./assets/fonts/XiaolaiSC-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SourceHanSerif";
+  src: url("./assets/fonts/SourceHanSerifCN-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "方正楷体";
+  src: url("./assets/fonts/方正楷体简体.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "悠哉字体";
+  src: url("./assets/fonts/Yozai-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "包图小白体";
+  src: url("./assets/fonts/包图小白体.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "手写杂字体";
+  src: url("./assets/fonts/手写杂字体.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "胡晓波男神体";
+  src: url("./assets/fonts/胡晓波男神体.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "胡晓波骚包体";
+  src: url("./assets/fonts/胡晓波骚包体.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "站酷快乐体";
+  src: url("./assets/fonts/站酷快乐体.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "站酷文艺体";
+  src: url("./assets/fonts/站酷文艺体.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "站酷小薇LOGO体";
+  src: url("./assets/fonts/站酷小薇LOGO体.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SmileySans";
+  src: url("./assets/fonts/SmileySans-Oblique.ttf");
+  font-display: swap;
+}
+
