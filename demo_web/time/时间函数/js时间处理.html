@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js时间处理</title>
+  <script src="./formatTime.js"></script>
+</head>
+<body>
+<script>
+  // var startTime = data.data.rows[i].startTime;//这是从后台传来的时间戳格式的
+  // var startTime1 = formatTime(startTime,'Y年M月D日 h:m:s');
+  // var startTime2 = formatTime(startTime,'Y-M-D h:m:s');
+  // alert(startTime1+'————'+startTime2);
+// 1、获取今天0点和24点的时间戳
+  /*
+  * 通常会有这样的需求，就是查看今天的数据，
+  * 那么就需要获取今天0点和24点的时间戳，
+  * 可以通过setHours函数来进行操作
+  * */
+//   这里的setHours后面对应的四个参数分别是时分秒毫秒，即把时间设置为00:00:00:00
+//   let timestamp = new Date().setHours(0, 0, 0, 0)
+//   console.log('timestamp',timestamp)
+//   24点和0点的思路其实是一样的，把时间设置为24:00:00:00即可
+//   let timestamp = new Date().setHours(24, 0, 0, 0)
+// 2、获取近七天的时间戳
+  /*
+  *其实近七天就是六天前的0点到今天的24点，举个栗子，今天是8月7日，那么要获取近七天的数据，
+  * 应该是8月1日00:00:00到8月7日24:00:00，8月7日24:00:00的时间戳在上面已经讲过了，
+  * 就不再赘述啦，那么8月1日00:00:00呢？
+  * */
+
+
+</script>
+</body>
+</html>
