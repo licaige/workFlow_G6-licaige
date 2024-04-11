@@ -1,0 +1,22 @@
+@import '../../../styles-var/devui-var.scss';
+
+.#{$devui-prefix}-fixed-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $devui-shadow;
+  opacity: 1;
+  z-index: 1050;
+}
+
+.#{$devui-prefix}-fixed-overlay--fade-enter-active,
+.#{$devui-prefix}-fixed-overlay--fade-leave-active {
+  transition: opacity 0.1s cubic-bezier(0, 0, 1, 1);
+}
+
+.#{$devui-prefix}-fixed-overlay--fade-enter-from,
+.#{$devui-prefix}-fixed-overlay--fade-leave-to {
+  opacity: 0;
+}

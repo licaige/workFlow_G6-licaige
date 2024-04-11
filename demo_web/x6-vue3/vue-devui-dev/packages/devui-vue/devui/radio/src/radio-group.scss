@@ -1,0 +1,24 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-radio-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &.is-row {
+    flex-direction: row;
+  }
+
+  &.is-column {
+    flex-direction: column;
+  }
+
+  .#{$devui-prefix}-radio__wrapper {
+    min-height: 28px;
+
+    &:not(:last-child) {
+      padding-right: 20px;
+    }
+  }
+}

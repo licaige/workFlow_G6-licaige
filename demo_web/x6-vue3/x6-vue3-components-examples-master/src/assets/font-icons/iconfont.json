@@ -1,0 +1,79 @@
+{
+  "id": "3159536",
+  "name": "gateway-flow",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "586725",
+      "name": "align-center",
+      "font_class": "aligncenter",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "586726",
+      "name": "align-left",
+      "font_class": "alignleft",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "586727",
+      "name": "align-right",
+      "font_class": "alignright",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "586924",
+      "name": "iframe",
+      "font_class": "iframe",
+      "unicode": "e74c",
+      "unicode_decimal": 59212
+    },
+    {
+      "icon_id": "586818",
+      "name": "copy-node",
+      "font_class": "copynode",
+      "unicode": "e6e4",
+      "unicode_decimal": 59108
+    },
+    {
+      "icon_id": "586822",
+      "name": "cut",
+      "font_class": "cut",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "586896",
+      "name": "font-Italics",
+      "font_class": "fontitalics",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "586898",
+      "name": "font-strikethrough",
+      "font_class": "fontstrikethrough",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "586899",
+      "name": "font-underline",
+      "font_class": "fontunderline",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "586893",
+      "name": "font-bold",
+      "font_class": "fontbold",
+      "unicode": "e72e",
+      "unicode_decimal": 59182
+    }
+  ]
+}

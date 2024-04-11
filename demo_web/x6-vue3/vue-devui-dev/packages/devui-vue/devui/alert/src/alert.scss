@@ -1,0 +1,189 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-alert {
+  color: $devui-text;
+  font-size: $devui-font-size;
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  line-height: 24px;
+  border-radius: $devui-border-radius;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &.#{$devui-prefix}-alert--center {
+    justify-content: center;
+  }
+
+  .#{$devui-prefix}-alert__content {
+    padding: 0 16px 0 4px;
+    word-break: normal;
+    word-wrap: break-word;
+  }
+
+  .#{$devui-prefix}-alert__close-icon {
+    color: $devui-text;
+    opacity: 1;
+    line-height: 26px;
+    height: 24px;
+    position: absolute;
+    right: 16px;
+    top: 8px;
+
+    & > svg path {
+      fill: $devui-light-text;
+    }
+
+    span {
+      color: $devui-text;
+      font-size: $devui-font-size;
+      font-weight: bold;
+    }
+  }
+
+  &.#{$devui-prefix}-alert--success {
+    background-color: $devui-success-bg;
+    color: $devui-text;
+
+    .#{$devui-prefix}-alert__close-icon {
+      & > svg path {
+        fill: $devui-success-line;
+      }
+    }
+  }
+
+  &.#{$devui-prefix}-alert--info {
+    background-color: $devui-info-bg;
+    color: $devui-text;
+
+    .#{$devui-prefix}-alert__close-icon {
+      & > svg path {
+        fill: $devui-info-line;
+      }
+    }
+  }
+
+  &.#{$devui-prefix}-alert--warning {
+    background-color: $devui-warning-bg;
+    color: $devui-text;
+
+    .#{$devui-prefix}-alert__close-icon {
+      & > svg path {
+        fill: $devui-warning-line;
+      }
+    }
+  }
+
+  &.#{$devui-prefix}-alert--danger {
+    background-color: $devui-danger-bg;
+    color: $devui-text;
+
+    .#{$devui-prefix}-alert__close-icon {
+      & > svg path {
+        fill: $devui-danger-line;
+      }
+    }
+  }
+
+  &.#{$devui-prefix}-alert--simple {
+    color: $devui-text;
+
+    .#{$devui-prefix}-alert__close-icon {
+      & > svg path {
+        fill: $devui-text-weak;
+      }
+    }
+  }
+
+  svg.#{$devui-prefix}-alert__icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    transform: translateY(-1px); //字体14px图标16px对齐问题，微调
+  }
+
+  .#{$devui-prefix}-alert__icon.#{$devui-prefix}-alert__icon--success {
+    & > g {
+      path {
+        fill: $devui-success-line;
+      }
+
+      polygon {
+        fill: $devui-light-text;
+        stroke: $devui-light-text;
+      }
+    }
+  }
+
+  .#{$devui-prefix}-alert__icon.#{$devui-prefix}-alert__icon--warning {
+    & > g {
+      path.warning-outer {
+        fill: $devui-warning-line;
+      }
+
+      path.warning-inner {
+        fill: $devui-light-text;
+        stroke: $devui-light-text;
+      }
+    }
+  }
+
+  .#{$devui-prefix}-alert__icon.#{$devui-prefix}-alert__icon--info {
+    & > g {
+      path.info-outer {
+        fill: $devui-info-line;
+      }
+
+      path.info-inner {
+        fill: $devui-light-text;
+        stroke: $devui-light-text;
+      }
+    }
+  }
+
+  .#{$devui-prefix}-alert__icon.#{$devui-prefix}-alert__icon--error {
+    & > g {
+      path.error-outer {
+        fill: $devui-danger-line;
+      }
+
+      path.error-inner {
+        fill: $devui-light-text;
+        stroke: $devui-light-text;
+      }
+    }
+  }
+}
+
+.#{$devui-prefix}-alert__icon-wrap {
+  margin-right: 4px;
+}
+
+.#{$devui-prefix}-alert--close {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform-origin: 50% 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.#{$devui-prefix}-alert-leave-active {
+  animation: alertUpOut 0.3s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes alertUpOut {
+  0% {
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: 0% 0%;
+    opacity: 0;
+  }
+}

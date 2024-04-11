@@ -1,0 +1,76 @@
+@use 'sass:math';
+
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-col {
+  position: relative;
+  max-width: 100%;
+  min-height: 1px;
+}
+
+@function percentage ($i, $sum: 24) {
+  @return math.div($i, $sum) * 100%;
+}
+
+.#{$devui-prefix}-col__span--0 {
+  display: none;
+}
+
+.#{$devui-prefix}-col__xs--span-0 {
+  display: none;
+}
+
+@for $i from 1 through 24 {
+  .#{$devui-prefix}-col__offset--#{$i} {
+    margin-left: percentage($i);
+  }
+  .#{$devui-prefix}-col__pull--#{$i} {
+    right: percentage($i);
+  }
+  .#{$devui-prefix}-col__push--#{$i} {
+    left: percentage($i);
+  }
+  .#{$devui-prefix}-col__span--#{$i} {
+    display: block;
+    flex: 0 0 percentage($i);
+    width: percentage($i);
+  }
+  .#{$devui-prefix}-col__xs--offset-#{$i} {
+    margin-left: percentage($i);
+  }
+  .#{$devui-prefix}-col__xs--pull-#{$i} {
+    right: percentage($i);
+  }
+  .#{$devui-prefix}-col__xs--push-#{$i} {
+    left: percentage($i);
+  }
+  .#{$devui-prefix}-col__xs--span-#{$i} {
+    display: block;
+    flex: 0 0 percentage($i);
+    width: percentage($i);
+  }
+}
+
+@each $size, $value in (sm, 576), (md, 768), (lg, 992), (xl, 1200), (xxl, 1600) {
+  @media screen and (min-width: #{$value}px) {
+    .#{$devui-prefix}-col__#{$size}--span-0 {
+      display: none;
+    }
+    @for $i from 1 through 24 {
+      .#{$devui-prefix}-col__#{$size}--offset-#{$i} {
+        margin-left: percentage($i);
+      }
+      .#{$devui-prefix}-col__#{$size}--pull-#{$i} {
+        right: percentage($i);
+      }
+      .#{$devui-prefix}-col__#{$size}--push-#{$i} {
+        left: percentage($i);
+      }
+      .#{$devui-prefix}-col__#{$size}--span-#{$i} {
+        display: block;
+        flex: 0 0 percentage($i);
+        width: percentage($i);
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "@lhlyu/vue-virtual-waterfall",
+  "description": "vue3 virtual waterfall component",
+  "version": "1.0.5",
+  "author": "lhlyu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lhlyu/vue-virtual-waterfall.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "fmt": "prettier --write .",
+    "dev": "vite --host",
+    "build": "vue-tsc && vite build",
+    "build:npm": "vue-tsc && vite build --mode npm",
+    "preview": "vite preview",
+    "pub": "bash scripts/publish.sh"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "vue3",
+    "waterfall",
+    "virtual-list",
+    "component"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "dependencies": {
+    "@vueuse/core": "^10.9.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.19",
+    "cssnano": "^6.1.2",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "prettier-plugin-rational-order": "^1.0.3",
+    "sass": "^1.74.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.8",
+    "vite-plugin-dts": "^3.8.1",
+    "vue": "^3.4.21",
+    "vue-tsc": "^2.0.12"
+  }
+}

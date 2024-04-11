@@ -1,0 +1,56 @@
+@import '../../../../styles-var/devui-var.scss';
+
+.#{$devui-prefix}-table__sort-clickable {
+  flex: 1;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 8px;
+  margin-right: 4px;
+  vertical-align: -0.55em;
+  cursor: pointer;
+}
+
+.#{$devui-prefix}-table__sort-default {
+  > svg g use {
+    fill: $devui-dividing-line;
+  }
+
+  > svg g polygon {
+    fill: $devui-icon-bg;
+  }
+
+  &:hover {
+    > svg g use {
+      fill: $devui-icon-fill-active-hover;
+    }
+  }
+}
+
+.#{$devui-prefix}-table__sort-asc,
+.#{$devui-prefix}-table__sort-desc {
+  > svg g use {
+    fill: $devui-icon-fill-active;
+  }
+
+  > svg g polygon {
+    fill: $devui-icon-bg;
+  }
+
+  &:hover {
+    > svg g use {
+      fill: $devui-icon-fill-active-hover;
+    }
+  }
+}
+
+.#{$devui-prefix}-table__sort-asc {
+  > svg g polygon:last-of-type {
+    opacity: 0.3;
+  }
+}
+
+.#{$devui-prefix}-table__sort-desc {
+  > svg g polygon:first-of-type {
+    opacity: 0.3;
+  }
+}

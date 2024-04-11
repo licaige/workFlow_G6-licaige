@@ -1,0 +1,211 @@
+@use 'sass:math';
+
+@import '@devui/theme/styles-var/devui-var.scss';
+
+:host {
+  display: inline-block;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+.#{$devui-prefix}-switch {
+  display: inline-flex;
+  align-items: center;
+  width: $devui-size-md * 1.4;
+  height: $devui-size-md;
+
+  &__wrapper {
+    width: 100%;
+    height: 62.5%;
+    border-radius: $devui-border-radius-full;
+    background: $devui-shape-icon-fill;
+    border: 1px solid $devui-line;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    vertical-align: bottom;
+    transition: $devui-animation-duration-slow $devui-animation-ease-in-out-smooth all;
+
+    &:not(.#{$devui-prefix}-switch--checked):hover {
+      background-color: $devui-gray-40;
+      border-color: $devui-gray-40;
+    }
+
+    &:active {
+      border-color: $devui-primary-hover;
+      border-color: $devui-primary-hover;
+    }
+
+    .#{$devui-prefix}-switch__inner-wrapper {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      padding-left: 14px;
+      font-size: $devui-font-size;
+      box-sizing: border-box;
+
+      .#{$devui-prefix}-switch__inner {
+        color: $devui-light-text;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+      }
+    }
+
+    small {
+      width: 16px;
+      height: 16px;
+      background: $devui-light-text;
+      border-radius: $devui-border-radius-full;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      transition: $devui-animation-duration-base $devui-animation-ease-in-out-smooth all;
+
+      &.mouseDown {
+        width: 19px;
+      }
+    }
+  }
+
+  // md
+  .#{$devui-prefix}-switch--checked .#{$devui-prefix}-switch__inner-wrapper {
+    padding-left: unset;
+    padding-right: 14px;
+  }
+
+  .#{$devui-prefix}-switch--checked small {
+    background: $devui-light-text;
+    left: 26px;
+
+    &.mouseDown {
+      left: 23px;
+    }
+  }
+
+  // lg
+  &--lg {
+    width: $devui-size-lg * 1.4;
+    height: $devui-size-lg;
+
+    .#{$devui-prefix}-switch__wrapper {
+      height: 64%;
+    }
+
+    .#{$devui-prefix}-switch__inner-wrapper {
+      padding-left: 24px;
+      font-size: $devui-font-size-modal-title;
+    }
+
+    .#{$devui-prefix}-switch--checked .#{$devui-prefix}-switch__inner-wrapper {
+      padding-left: unset;
+      padding-right: 24px;
+    }
+
+    & small {
+      width: 22px;
+      height: 22px;
+
+      &.mouseDown {
+        width: 26px;
+      }
+    }
+
+    .#{$devui-prefix}-switch--checked small {
+      background: $devui-light-text;
+      left: 31px;
+
+      &.mouseDown {
+        left: 28px;
+      }
+    }
+  }
+
+  // sm
+  &--sm {
+    width: $devui-size-sm * 1.4;
+    height: $devui-size-sm;
+
+    .#{$devui-prefix}-switch__wrapper {
+      height: 66%;
+    }
+
+    .#{$devui-prefix}-switch__inner-wrapper {
+      line-height: 1;
+      padding-left: 12px;
+      font-size: $devui-font-size-sm;
+    }
+
+    .#{$devui-prefix}-switch--checked .#{$devui-prefix}-switch__inner-wrapper {
+      padding-left: unset;
+      padding-right: 18px;
+    }
+
+    & small {
+      width: 12px;
+      height: 12px;
+      position: absolute;
+
+      &.mouseDown {
+        width: 14px;
+      }
+    }
+
+    .#{$devui-prefix}-switch--checked small {
+      left: 19px;
+
+      &.mouseDown {
+        left: 17px;
+      }
+    }
+  }
+
+  &--checked {
+    background: $devui-brand;
+    border-color: $devui-brand;
+
+    &:hover {
+      background: $devui-primary-hover;
+      border-color: $devui-primary-hover;
+    }
+
+    &:active {
+      background: $devui-brand-active-focus;
+      border-color: $devui-brand-active-focus;
+    }
+  }
+
+  & > .#{$devui-prefix}-switch--disabled {
+    &,
+    &:hover,
+    &:active,
+    &.#{$devui-prefix}-switch--checked {
+      cursor: not-allowed;
+    }
+
+    &,
+    &:hover,
+    &:active {
+      background-color: $devui-disabled-line;
+      border-color: $devui-disabled-line;
+
+      small {
+        background-color: $devui-unavailable;
+      }
+    }
+
+    &.#{$devui-prefix}-switch--checked {
+      background-color: $devui-icon-fill-active-disabled;
+      border-color: $devui-icon-fill-active-disabled;
+
+      small {
+        background-color: $devui-light-text;
+      }
+    }
+  }
+}

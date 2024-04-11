@@ -1,0 +1,37 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-statistic {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.5715;
+  list-style: none;
+
+  &__title {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  &__content {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__prefix {
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__suffix {
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__value {
+    display: inline-block;
+  }
+}

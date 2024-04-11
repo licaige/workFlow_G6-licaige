@@ -1,0 +1,90 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-rate--align {
+  font-size: $devui-font-size-icon;
+  margin-right: 5px;
+  position: relative;
+  line-height: 1;
+}
+
+.#{$devui-prefix}-rate--pointer {
+  cursor: pointer;
+}
+
+.#{$devui-prefix}-rate {
+  display: inline-flex;
+}
+
+.#{$devui-prefix}-rate__color-active {
+  i {
+    color: $devui-brand;
+  }
+
+  line-height: 1.5;
+
+  svg g {
+    fill: $devui-brand;
+  }
+}
+
+.#{$devui-prefix}-rate__color--success {
+  i {
+    color: #3dcca6;
+  }
+
+  svg g {
+    fill: #3dcca6;
+  }
+}
+
+.#{$devui-prefix}-rate__color--warning {
+  i {
+    color: #fac20a;
+  }
+
+  svg g {
+    fill: #fac20a;
+  }
+}
+
+.#{$devui-prefix}-rate__color--error {
+  i {
+    color: #f66f6a;
+  }
+
+  svg g {
+    fill: #f66f6a;
+  }
+}
+
+.#{$devui-prefix}-rate__color--customize {
+  color: var(--star-color);
+
+  svg g {
+    fill: var(--star-color);
+  }
+}
+
+.#{$devui-prefix}-rate__active-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.#{$devui-prefix}-rate__color {
+  color: $devui-shape-icon-fill;
+  line-height: 1.5;
+
+  .icon {
+    color: $devui-shape-icon-fill !important;
+  }
+
+  svg g {
+    fill: $devui-shape-icon-fill;
+  }
+}
+
+.#{$devui-prefix}-rate--only-read {
+  cursor: not-allowed;
+}

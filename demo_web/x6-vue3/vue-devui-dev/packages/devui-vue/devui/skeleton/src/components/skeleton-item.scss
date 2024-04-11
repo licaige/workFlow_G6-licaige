@@ -1,0 +1,79 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-skeleton-item {
+  background-color: $devui-list-item-hover-bg;
+
+  &--round {
+    border-radius: $devui-border-radius;
+  }
+
+  &--square {
+    width: 100%;
+    height: 16px;
+  }
+
+  &--circle {
+    border-radius: 50%;
+    &.#{$devui-prefix}-skeleton-item {
+      &--sm {
+        width: 20px;
+        height: 20px;
+      }
+
+      &--md {
+        width: 40px;
+        height: 40px;
+      }
+
+      &--lg {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+
+  &--image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 40%;
+      height: 40%;
+    }
+
+    &.#{$devui-prefix}-skeleton-item {
+      &--sm {
+        width: 50px;
+        height: 50px;
+      }
+
+      &--md {
+        width: 100px;
+        height: 100px;
+      }
+
+      &--lg {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+
+  &--animation {
+    &.#{$devui-prefix}-skeleton-item {
+      background:
+        linear-gradient(100deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 60%)
+        $devui-list-item-hover-bg;
+      background-size: 200% 100%;
+      background-position-x: 180%;
+      animation: 2s skeletonLoading ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes skeletonLoading {
+  to {
+    background-position-x: -20%;
+  }
+}

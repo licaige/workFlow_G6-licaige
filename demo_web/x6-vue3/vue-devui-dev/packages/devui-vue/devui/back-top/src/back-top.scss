@@ -1,0 +1,32 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-back-top {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 9;
+
+  .#{$devui-prefix}-back-top__base {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .#{$devui-prefix}-back-top__content {
+    opacity: 0.4;
+    background-color: $devui-text-weak;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .#{$devui-prefix}-back-top__custom {
+    background-color: #ffffff;
+  }
+}

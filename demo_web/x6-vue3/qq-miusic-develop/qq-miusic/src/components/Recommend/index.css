@@ -1,0 +1,71 @@
+.banner{
+  width : 100%;
+  margin-top : 2px;
+}
+.banner img {
+    width: 100%;
+}
+.station {
+    padding: 0 0.2rem;
+}
+.sta_title {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.48rem;
+    margin: 0;
+}
+.station ul {
+    margin-right: -0.15rem;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.station ul li {
+    float: left;
+    width: 3.7rem;
+    margin-right: 0.15rem;
+    position: relative;
+    list-style: none;
+}
+.station ul li .station_name {
+    background: white;
+    height: 0.8rem;
+    padding-left: 0.2rem;
+    line-height: 1.8;
+}
+.station ul li img {
+    width: 100%;
+}
+.station ul li .anticon-caret-right {
+    color: white;
+    position: absolute;
+    top: 3.6rem;
+    right: 0.2rem;
+    font-size: 0.9rem;
+}
+.foot {
+    text-align: center;
+    margin-top: 0.4rem;
+}
+.foot_computer{
+  margin :30px 0;
+}
+.foot_logo{
+  margin :20px 0
+}
+.station ul li .icon-bofang {
+  color: white;
+  position: absolute;
+  bottom: 1.7rem;
+  right: 0.2rem;
+  font-size: 0.5rem;
+}
+.space-carousel {
+    padding: 16px;
+    background: #DEF1E5;
+    overflow: hidden;
+  }
+  .am-wingblank.am-wingblank-lg{
+      margin-left: 0px;
+      margin-right: 0px;
+      margin: 0px 2%;
+  }

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H5playerVue</title>
+  <link rel="stylesheet" href="./static/css/antd.min.css">
+  <style>
+    body {
+      padding: 8px 8px 32px;
+    }
+    #app {
+      display: none;
+    }
+
+    .actions {
+      padding-left: 8px;
+    }
+
+    .ant-form-item {
+      margin-bottom: 8px
+    }
+    .ant-btn {
+      margin-right: 2px;
+    }
+
+    .icon-wrapper {
+      position: relative;
+      padding-left: 20px;
+    }
+    .icon-wrapper .anticon {
+      position: absolute;
+      top: -2px;
+      width: 16px;
+      height: 16px;
+      line-height: 1;
+      font-size: 16px;
+      left: 0;
+    }
+
+    ::-webkit-media-controls {
+      display: none !important;
+    }
+
+    @media screen and (max-width: 991px) {
+      #player {
+        width: calc(100vw - 16px);
+        height: calc((100vw - 16px) * 5 / 8);
+      }
+    }
+    @media screen and (min-width: 992px) {
+      #player {
+        width: calc(50vw - 8px);
+        height: calc((50vw - 8px) * 5 / 8);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <a-locale-provider :locale="zh_CN">
+      <a-row>
+        <a-col :span="24" :md="12">
+          <a-affix :offset-top="8">
+            <div id="player"></div>
+          </a-affix>
+          <a-form-item>
+            分屏
+            <a-radio-group v-model="splitNum" @change="arrangeWindow">
+              <a-radio-button :value="1">1x1</a-radio-button>
+              <a-radio-button :value="2">2x2</a-radio-button>
+              <a-radio-button :value="3" v-show="!isMoveDevice">3x3</a-radio-button>
+              <a-radio-button :value="4" v-show="!isMoveDevice">4x4</a-radio-button>
+            </a-radio-group>
+            <a-button @click="wholeFullScreen" v-show="!isMoveDevice">整体全屏</a-button>
+          </a-form-item>
+        </a-col>
+        <a-col :span="24" :md="12">
+          <div class="actions">
+            <a-tabs v-model="tabActive">
+              <a-tab-pane key="mse" tab="普通模式" :disabled="!mseSupport"></a-tab-pane>
+              <a-tab-pane key="decoder" tab="高级模式"></a-tab-pane>
+              <!-- <a-tab-pane key="log" tab="日志"></a-tab-pane> -->
+            </a-tabs>
+            
+            <a-form :label-col="labelCol" :wrapper-col="wrapperCol" v-show="tabActive !== 'log'">
+              <a-form-item label="预览URL">
+                <a-input v-model="urls.realplay"></a-input>
+              </a-form-item>
+              <a-form-item label="对讲URL">
+                <a-input v-model="urls.talk"></a-input>
+              </a-form-item>
+              <a-form-item label="预览&对讲">
+                <a-button id="btn-realplay" @click="realplay">开始预览</a-button>
+                <a-button id="btn-realplay-stop" @click="stopPlay">停止预览</a-button>
+                <a-button id="btn-talk-start" @click="talkStart">开始对讲</a-button>
+                <a-button id="btn-talk-stop" @click="talkStop">停止对讲</a-button>
+                <a-button id="btn-stopall" @click="stopAllPlay">停止全部窗口</a-button>
+              </a-form-item>
+
+              <a-form-item label="回放URL">
+                <a-input v-model="urls.playback"></a-input>
+                <br>
+                <a-date-picker show-time placeholder="开始时间" format="YYYY-MM-DD HH:mm:ss"
+                  v-model="playback.startTime" :value-format="playback.valueFormat">
+                </a-date-picker>
+                <a-date-picker show-time placeholder="结束时间" format="YYYY-MM-DD HH:mm:ss"
+                  v-model="playback.endTime" :value-format="playback.valueFormat">
+                </a-date-picker>
+              </a-form-item>
+              <a-form-item label="回放">
+                <a-button id="btn-playback" @click="playbackStart">开始回放</a-button>
+                <a-button id="btn-playback-pause" @click="playbackPause">暂停</a-button>
+                <a-button id="btn-playback-sesume" @click="playbackResume">恢复</a-button>
+                <a-button id="btn-playback-stop" @click="stopPlay">停止回放</a-button>
+                <br>
+                <a-row>
+                  <a-col :span="16">
+                    <a-button id="btn-playback-slow" @click="playbackSlow">慢放</a-button>
+                    <a-button id="btn-playback-fast" @click="playbackFast">快放</a-button>
+                    <a-button id="btn-playback-one" @click="frameForward" v-show="tabActive === 'decoder'">单帧</a-button>
+                    <br>
+                    <a-date-picker show-time placeholder="开始时间" format="YYYY-MM-DD HH:mm:ss"
+                      v-model="playback.seekStart"
+                      :value-format="playback.valueFormat">
+                    </a-date-picker>
+                    &nbsp;<a-button @click="seekTo">定位</a-button>
+                  </a-col>
+                  <a-col :span="8">
+                    <a-statistic title="当前播放速度" :value="playback.rate"></a-statistic>
+                  </a-col>
+                </a-row>
+              </a-form-item>
+
+              <a-form-item label="声音">
+                <a-row>
+                  <a-col :span="10">
+                    <a-button id="btn-sound-open" @click="openSound">开启</a-button>
+                    <a-button id="btn-sound-close" @click="closeSound">关闭</a-button>
+                  </a-col>
+                  <a-col :span="12">
+                    <div class="icon-wrapper">
+                      <a-icon v-if="muted" :component="volumeOffSvg"></a-icon>
+                      <a-icon v-else :component="volumeOnSvg"></a-icon>
+                      <a-slider v-model="volume" :default-value="50" :disabled="muted" @change="setVolume"></a-slider>
+                    </div>
+                  </a-col>
+                </a-row>
+              </a-form-item>
+              
+              <a-form-item label="抓图&录像">
+                <a-button id="btn-capture-jpeg" @click="capture('JPEG')">抓取JPEG</a-button>
+                <a-button id="btn-capture-bmp" @click="capture('BMP')">抓取BMP</a-button>
+                <br>
+                <a-button id="btn-record-mp4" @click="recordStart('MP4')">录制MP4</a-button>
+                <a-button id="btn-record-ps" @click="recordStart('PS')">录制PS</a-button>
+                <a-button id="btn-record-save" @click="recordStop">停止录制并保存文件</a-button>
+              </a-form-item>
+
+              <a-form-item label="视频信息&OSD时间">
+                <a-button id="btn-video-info" @click="getvideoInfo">获取视频信息</a-button>
+                <a-button id="btn-ose-time" @click="getOSDTime">获取OSD时间</a-button>
+              </a-form-item>
+              
+              <a-form-item label="电子放大&智能信息" v-show="tabActive === 'decoder'">
+                <a-button id="btn-enlarge-open" @click="enlarge">开启电子放大</a-button>
+                <a-button id="btn-enlarge-close" @click="enlargeClose">关闭电子放大</a-button>
+                <a-button id="btn-intellect-open" @click="intellectTrigger(true)">开启智能信息</a-button>
+                <a-button id="btn-intellect-close" @click="intellectTrigger(false)">关闭智能信息</a-button>
+              </a-form-item>
+            </a-form>
+          </div>
+        </a-col>
+      </a-row>
+    </a-locale-provider>
+  </div>
+  
+  <template id="play-log">
+    <div></div>
+  </template>
+  
+  <!-- 移动端调试 -->
+  <!-- <script src="./static/js/vconsole.min.js"></script>
+  <script>
+      const vc = new VConsole()
+  </script> -->
+  
+  <script src="./static/js/moment.js"></script>
+  <script src="./static/js/vue.js"></script>
+  <script src="./static/js/antd.min.js"></script>
+  <script src="./static/js/antd-with-locales.min.js"></script>
+  <script src="./h5player.min.js"></script>
+  <script>
+    const { LocaleProvider, locales } = window.antd
+    moment.locale('./static/js/zh-cn.js')
+
+    const IS_MOVE_DEVICE = document.body.clientWidth < 992 // 是否移动设备
+    const MSE_IS_SUPPORT = !!window.MediaSource // 是否支持mse
+
+    // const Log = Vue.component('log', {
+    //   template: '#play-log',
+    //   data() {
+    //     return {
+
+    //     }
+    //   },
+    //   methods: {
+    //   }
+    // })
+
+    const app = new Vue({
+      el: '#app',
+      // components: { Log },
+      data() {
+        return {
+          zh_CN: locales.zh_CN,
+          isMoveDevice: IS_MOVE_DEVICE,
+          player: null,
+          splitNum: IS_MOVE_DEVICE ? 1 : 2,
+          mseSupport: MSE_IS_SUPPORT,
+          tabActive: MSE_IS_SUPPORT ? 'mse' : 'decoder',
+          labelCol: { span: 5 },
+          wrapperCol: { span: 18 },
+          urls: {
+            realplay: 'wss://10.41.163.126:6014/proxy/10.41.163.126:559/EUrl/6gFx47S',
+            talk: 'wss://10.41.163.126:6014/proxy/10.41.163.126:559/EUrl/6gFx47S',
+            playback: 'wss://10.41.163.126:6014/proxy/10.41.163.126:559/EUrl/6gFx47S'
+          },
+          playback: {
+            startTime: '2021-07-26T00:00:00',
+            endTime: '2021-07-26T23:59:59',
+            valueFormat: moment.HTML5_FMT.DATETIME_LOCAL_SECONDS,
+            seekStart: '2021-07-26T12:00:00',
+            rate: ''
+          },
+          muted: true,
+          volume: 50,
+          volumeOnSvg: {
+            template: '<svg t="1624453273744" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1421" width="200" height="200"><path d="M597.994667 138.005333q130.005333 28.010667 213.994667 132.992t84.010667 241.002667-84.010667 241.002667-213.994667 132.992l0-88q93.994667-28.010667 153.002667-106.005333t59.008-180.010667-59.008-180.010667-153.002667-106.005333l0-88zM704 512q0 120-106.005333 172.010667l0-344q106.005333 52.010667 106.005333 172.010667zM128 384l170.005333 0 213.994667-213.994667 0 684.010667-213.994667-213.994667-170.005333 0 0-256z" p-id="1422"></path></svg>'
+          },
+          volumeOffSvg: {
+            template: '<svg t="1624453193279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9147" width="200" height="200"><path d="M512 170.005333l0 180.010667-90.005333-90.005333zM181.994667 128l714.005333 714.005333-53.994667 53.994667-88-88q-74.005333 58.005333-156.010667 77.994667l0-88q50.005333-13.994667 96-50.005333l-181.994667-181.994667 0 288-213.994667-213.994667-170.005333 0 0-256 202.005333 0-202.005333-202.005333zM810.005333 512q0-101.994667-59.008-180.010667t-153.002667-106.005333l0-88q130.005333 28.010667 213.994667 132.992t84.010667 241.002667q0 96-44.010667 178.005333l-64-66.005333q21.994667-53.994667 21.994667-112zM704 512q0 18.005333-2.005333 26.005333l-104-104 0-93.994667q106.005333 52.010667 106.005333 172.010667z" p-id="9148"></path></svg>'
+          }
+        }
+      },
+      computed: {
+        mode: function() {
+          return this.tabActive === 'mse' ? 0 : 1
+        }
+      },
+      methods: {
+        init() {
+          // 设置播放容器的宽高并监听窗口大小变化
+          window.addEventListener('resize', () => {
+            this.player.JS_Resize()
+          })
+        },
+        createPlayer() {
+          this.player = new window.JSPlugin({
+            szId: 'player',
+            szBasePath: "/",
+            iMaxSplit: 4,
+            iCurrentSplit: IS_MOVE_DEVICE ? 1 : 2,
+            openDebug: true,
+            oStyle: {
+              borderSelect: IS_MOVE_DEVICE ? '#000' : '#FFCC00',
+            }
+          })
+
+          // 事件回调绑定
+          this.player.JS_SetWindowControlCallback({
+            windowEventSelect: function (iWndIndex) {  //插件选中窗口回调
+                console.log('windowSelect callback: ', iWndIndex);
+            },
+            pluginErrorHandler: function (iWndIndex, iErrorCode, oError) {  //插件错误回调
+                console.log('pluginError callback: ', iWndIndex, iErrorCode, oError);
+            },
+            windowEventOver: function (iWndIndex) {  //鼠标移过回调
+                //console.log(iWndIndex);
+            },
+            windowEventOut: function (iWndIndex) {  //鼠标移出回调
+                //console.log(iWndIndex);
+            },
+            windowEventUp: function (iWndIndex) {  //鼠标mouseup事件回调
+                //console.log(iWndIndex);
+            },
+            windowFullCcreenChange: function (bFull) {  //全屏切换回调
+                console.log('fullScreen callback: ', bFull);
+            },
+            firstFrameDisplay: function (iWndIndex, iWidth, iHeight) {  //首帧显示回调
+                console.log('firstFrame loaded callback: ', iWndIndex, iWidth, iHeight);
+            },
+            performanceLack: function () {  //性能不足回调
+                console.log('performanceLack callback: ');
+            }
+        });
+        },
+        arrangeWindow() {
+          let splitNum = this.splitNum
+          this.player.JS_ArrangeWindow(splitNum).then(
+            () => { console.log(`arrangeWindow to ${splitNum}x${splitNum} success`) },
+            e => { console.error(e) }
+          )
+        },
+        wholeFullScreen() {
+          this.player.JS_FullScreenDisplay(true).then(
+            () => { console.log(`wholeFullScreen success`) },
+            e => { console.error(e) }
+          )
+        },
+        /* 预览&对讲 */
+        realplay() {
+          let { player, mode, urls } = this,
+            index = player.currentWindowIndex,
+            playURL = urls.realplay
+
+          player.JS_Play(playURL, { playURL, mode }, index).then(
+            () => { console.log('realplay success') },
+            e => { console.error(e) }
+          )
+        },
+        stopPlay() {
+          this.player.JS_Stop().then(
+            () => { this.playback.rate = 0; console.log('stop realplay success') },
+            e => { console.error(e) }
+          )
+        },
+        talkStart() {
+          let url = this.urls.talk
+          this.player.JS_StartTalk(url).then(
+            () => { console.log('talkStart success') },
+            e => { console.error(e) }
+          )
+        },
+        talkStop() {
+          this.player.JS_StopTalk().then(
+            () => { console.log('talkStop success') },
+            e => { console.error(e) }
+          )
+        },
+        stopAllPlay() {
+          this.player.JS_StopRealPlayAll().then(
+            () => {  this.playback.rate = 0; console.log('stopAllPlay success') },
+            e => { console.error(e) }
+          )
+        },
+        /* 回放 */
+        playbackStart() {
+          let { player, mode, urls, playback } = this,
+            index = player.currentWindowIndex,
+            playURL = urls.playback,
+            { startTime, endTime } = playback
+
+            startTime += 'Z'
+            endTime += 'Z'
+
+          player.JS_Play(playURL, { playURL, mode }, index, startTime, endTime).then(
+            () => {
+              console.log('playbackStart success')
+              this.playback.rate = 1
+            },
+            e => { console.error(e) }
+          )
+        },
+        playbackPause() {
+          this.player.JS_Pause().then(
+            () => { console.log('playbackPause success') },
+            e => { console.error(e) }
+          )
+        },
+        playbackResume() {
+          this.player.JS_Resume().then(
+            () => { console.log('playbackResume success') },
+            e => { console.error(e) }
+          )
+        },
+        seekTo() {
+          let { seekStart, endTime } = this.playback
+          seekStart += 'Z'
+          endTime += 'Z'
+          this.player.JS_Seek(this.player.currentWindowIndex, seekStart, endTime).then(
+            () => { console.log('seekTo success') },
+            e => { console.error(e) }
+          )
+        },
+        playbackSlow() {
+          this.player.JS_Slow().then(
+            rate => {
+              this.playback.rate = rate
+            },
+            e => { console.error(e) }
+          )
+        },
+        playbackFast() {
+          this.player.JS_Fast().then(
+            rate => {
+              this.playback.rate = rate
+            },
+            e => { console.error(e) }
+          )
+        },
+        frameForward() {
+          this.player.JS_FrameForward(this.player.currentWindowIndex).then(
+            () => { this.playback.rate = 1; console.log('frameForward success') },
+            e => { console.error(e) }
+          )
+        },
+        /* 声音、抓图、录像 */
+        openSound() {
+          this.player.JS_OpenSound().then(
+            () => {
+              console.log('openSound success')
+              this.muted = false
+            },
+            e => { console.error(e) }
+          )
+        },
+        closeSound() {
+          this.player.JS_CloseSound().then(
+            () => {
+              console.log('closeSound success')
+              this.muted = true
+            },
+            e => { console.error(e) }
+          )
+        },
+        setVolume(value) {
+          let player = this.player,
+            index = player.currentWindowIndex
+          this.player.JS_SetVolume(index, value).then(
+            () => {
+              console.log('setVolume success', value)
+            },
+            e => { console.error(e) }
+          )
+        },
+        capture(imageType) {
+          let player = this.player,
+            index = player.currentWindowIndex
+
+          player.JS_CapturePicture(index, 'img', imageType).then(
+            () => { console.log('capture success', imageType) },
+            e => { console.error(e) }
+          )
+        },
+        recordStart(type) {
+          const codeMap = { MP4: 5, PS: 2 }
+          let player = this.player,
+            index = player.currentWindowIndex,
+            fileName = `${moment().format('YYYYMMDDHHmm')}.mp4`
+            typeCode = codeMap[type]
+
+          player.JS_StartSaveEx(index, fileName, typeCode).then(
+            () => { console.log('record start ...') },
+            e => { console.error(e) }
+          )
+        },
+        recordStop() {
+          let player = this.player 
+            index = player.currentWindowIndex
+
+          player.JS_StopSave(index).then(
+            () => { console.log('record stoped, saving ...') },
+            e => { console.error(e) }
+          )
+        },
+        /* 电子放大、智能信息 */
+        enlarge() {
+          let player = this.player,
+            index = player.currentWindowIndex
+
+          player.JS_EnableZoom(index).then(
+            () => { console.log('enlarge start..., select range...') },
+            e => { console.error(e) }
+          )
+        },
+        enlargeClose() {
+          let player = this.player,
+            index = player.currentWindowIndex
+
+          player.JS_DisableZoom(index).then(
+            () => { console.log('enlargeClose success') },
+            e => { console.error(e) }
+          )
+        },
+        intellectTrigger(openFlag) {
+          let player = this.player,
+            index = player.currentWindowIndex
+
+          let result = player.JS_RenderALLPrivateData(index,openFlag)
+          console.log(`${openFlag ? 'open' : 'close'} intellect ${result === 1 ? 'success': 'failed'}`)
+        },
+        getvideoInfo() {
+          let player = this.player,
+            index = player.currentWindowIndex
+
+          player.JS_GetVideoInfo(index).then(function (videoInfo) {
+            console.log("videoInfo:", videoInfo);
+          });
+        },
+        getOSDTime() {
+          let player = this.player,
+            index = player.currentWindowIndex
+
+          player.JS_GetOSDTime(index).then(function(time) {
+            console.log("osdTime:", new Date(time));
+          });
+        }
+      },
+      mounted() {
+        this.$el.style.setProperty('display', 'block')
+        this.init()
+        this.createPlayer()
+      }
+    })
+  </script>
+</body>
+</html>

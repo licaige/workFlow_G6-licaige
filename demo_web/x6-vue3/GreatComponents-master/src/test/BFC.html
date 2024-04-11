@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC</title>
+</head>
+<body>
+  <!-- 块级格式化上下文，只有块级元素参与，该区域有一套渲染规则约束块级盒子布局，且与区域外部无关 -->
+  <!-- 一个盒子不设置height，当其子元素都设置浮动的时候，无法撑起自身 -->
+  <!-- 说明盒子没有形成BFC -->
+
+  <!-- 创建BFC -->
+  <!-- 1. float值不是none -->
+  <!-- 2. position值不是static或者relative -->
+  <!-- 3. display值是inline-block，flex或者inline-flex -->
+  <!-- 4. overflow: hidden -->
+
+  <!-- BFC作用 -->
+  <!-- 1. 解决margin塌陷 -->
+
+  <!-- son的margin导致father下移 -->
+  <style>
+    .father {
+      width: 200px;
+      height: 300px;
+      background-color: aqua;
+      /* 下面4种方式都可以 */
+      /* float: left; */
+      /* position: absolute; */
+      /* display: inline-block; */
+      /* overflow: hidden; */
+    }
+    .son {
+      width: 100px;
+      height: 100px;
+      background-color: aquamarine;
+      margin-top: 10px;
+    }
+  </style>
+  <div class="father">
+    <!-- margin-top: 10px -->
+    <div class="son"></div>
+  </div>
+
+  <!-- 2. 阻止元素被浮动元素覆盖 -->
+  <style>
+    .son {
+      width: 200px;
+      height: 200px;
+      background-color: aquamarine;
+      float: left;
+    }
+    .last-son {
+      width: 200px;
+      height: 300px;
+      background-color: blueviolet;
+      overflow: hidden;
+    }
+  </style>
+  <div>
+    <div class="son"></div>
+    <div class="son"></div>
+    <div class="son"></div>
+    <div class="last-son"></div>
+  </div>
+</body>
+</html>

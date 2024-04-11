@@ -1,0 +1,304 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-accordion__menu {
+  ol,
+  ul {
+    margin: 0 !important;
+    line-height: 0 !important;
+    font-size: 12px;
+  }
+}
+
+:host {
+  display: block;
+}
+
+.#{$devui-prefix}-accordion__menu-item,
+d-accordion-item,
+d-accordion-item-hreflink,
+d-accordion-item-routerlink,
+.#{$devui-prefix}-accordion__list {
+  display: block;
+}
+
+/* 菜单底色 */
+.#{$devui-prefix}-accordion__menu {
+  display: block;
+  background: $devui-base-bg;
+  width: 100%;
+  overflow-y: auto;
+  border-radius: $devui-border-radius;
+  height: 100%;
+
+  &.#{$devui-prefix}-accordion--menu-normal {
+    box-shadow: $devui-shadow-length-base $devui-shadow;
+  }
+
+  & > .#{$devui-prefix}-accordion__list {
+    padding: 10px 0;
+  }
+
+  .#{$devui-prefix}-accordion--overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.#{$devui-prefix}-accordion__submenu {
+  background: $devui-base-bg;
+  width: 100%;
+}
+
+/* 单行菜单 */
+.#{$devui-prefix}-accordion__item-title {
+  display: block;
+  height: 40px;
+  width: 100%;
+  padding: 0 10px 0 20px;
+  font-weight: 400;
+  line-height: 40px;
+  color: $devui-text-weak;
+  background: transparent;
+  cursor: pointer;
+
+  &.#{$devui-prefix}-accordion--disabled {
+    color: $devui-disabled-text;
+    cursor: not-allowed;
+
+    & > a {
+      color: $devui-disabled-text;
+    }
+  }
+
+  &:not(.#{$devui-prefix}-accordion--disabled) {
+    &:hover {
+      background: $devui-list-item-hover-bg;
+      color: $devui-list-item-hover-text;
+    }
+
+    &.#{$devui-prefix}-accordion--router-active,
+    &.#{$devui-prefix}-accordion--active:not(.#{$devui-prefix}-accordion--open) {
+      color: $devui-brand-active;
+      font-weight: bold;
+
+      & > a {
+        color: $devui-brand-active;
+      }
+    }
+  }
+
+  & > a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    color: $devui-text-weak;
+
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+/* 解决链接可点击区域大小不是100%宽度问题 */
+d-accordion-item-hreflink,
+d-accordion-item-routerlink {
+  &.#{$devui-prefix}-accordion__item-title {
+    padding: 0;
+
+    & > a {
+      padding: 0 10px 0 20px;
+    }
+  }
+}
+
+/* 展开图标相关 */
+.#{$devui-prefix}-accordion__menu-item > .#{$devui-prefix}-accordion__item-title {
+  position: relative;
+
+  & > .#{$devui-prefix}-accordion__open-icon {
+    display: inline-block;
+    text-indent: 0;
+    pointer-events: none; /* 让鼠标穿透 */
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    transition: transform ease-out 0.3s;
+
+    & > svg {
+      width: 16px;
+      height: 16px;
+
+      path {
+        fill: $devui-text-weak;
+      }
+    }
+  }
+
+  &:not(.#{$devui-prefix}-accordion--open) {
+    &.#{$devui-prefix}-accordion--active {
+      svg path {
+        fill: $devui-icon-fill-active;
+      }
+    }
+  }
+
+  &.#{$devui-prefix}-accordion--open > .#{$devui-prefix}-accordion__open-icon {
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+
+  &.#{$devui-prefix}-accordion--disabled > .#{$devui-prefix}-accordion__open-icon {
+    color: $devui-disabled-text;
+
+    svg path {
+      fill: $devui-disabled-text;
+    }
+  }
+}
+
+/* 可展开的菜单 */
+.#{$devui-prefix}-accordion__menu-item > .#{$devui-prefix}-accordion__item-title {
+  padding-right: 30px;
+
+  &.#{$devui-prefix}-accordion--active:not(.#{$devui-prefix}-accordion--open) {
+    color: $devui-brand-active;
+    background: transparent;
+  }
+}
+
+.#{$devui-prefix}-accordion__list .#{$devui-prefix}-accordion--menu-hidden {
+  // display: none;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* 视觉融合灰线 */
+.#{$devui-prefix}-accordion__item-title {
+  position: relative;
+
+  .#{$devui-prefix}-accordion__splitter {
+    position: absolute;
+    display: inline-block;
+    left: 10px;
+    width: 2px;
+    height: 40px;
+    background: $devui-dividing-line;
+    vertical-align: middle;
+
+    &.#{$devui-prefix}__parent-list {
+      background-color: transparent;
+    }
+  }
+
+  .#{$devui-prefix}-accordion__splitter::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 18px;
+    background: $devui-form-control-line-active;
+    position: absolute;
+    top: 11px;
+    left: 0;
+    opacity: 0;
+  }
+
+  &.#{$devui-prefix}-accordion--router-active,
+  &.#{$devui-prefix}-accordion--active {
+    &:not(.#{$devui-prefix}-accordion--open) .#{$devui-prefix}-accordion__splitter::before {
+      opacity: 1;
+    }
+  }
+}
+
+.#{$devui-prefix}-accordion--show-animate .#{$devui-prefix}-accordion__item-title {
+  transition: font-weight $devui-animation-duration-fast $devui-animation-ease-in-out-smooth,
+    background-color $devui-animation-duration-fast $devui-animation-ease-in-out-smooth;
+
+  .#{$devui-prefix}-accordion__splitter::before {
+    transform: scaleY(0);
+    transition: transform $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+  }
+
+  &.#{$devui-prefix}-accordion--router-active,
+  &.#{$devui-prefix}-accordion--active {
+    &:not(.#{$devui-prefix}-accordion--open) .#{$devui-prefix}-accordion__splitter::before {
+      transform: scaleY(1);
+    }
+  }
+}
+
+.#{$devui-prefix}-accordion__list > .#{$devui-prefix}-accordion__item:first-child {
+  & > .#{$devui-prefix}-accordion__item-title,
+  & > .#{$devui-prefix}-accordion__menu-item > .#{$devui-prefix}-accordion__item-title {
+    & > a > .#{$devui-prefix}-accordion__splitter,
+    & > .#{$devui-prefix}-accordion__splitter {
+      height: 28px;
+      top: 12px;
+
+      &::before {
+        top: 0;
+      }
+    }
+  }
+}
+
+.#{$devui-prefix}-accordion__list > .#{$devui-prefix}-accordion__item:last-child {
+  & > .#{$devui-prefix}-accordion__item-title,
+  & > .#{$devui-prefix}-accordion__menu-item > .#{$devui-prefix}-accordion__item-title {
+    & > a > .#{$devui-prefix}-accordion__splitter,
+    & > .#{$devui-prefix}-accordion__splitter {
+      height: 28px;
+      top: 0;
+
+      &::before {
+        top: initial;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.#{$devui-prefix}-accordion__list > .#{$devui-prefix}-accordion__item:last-child:first-child {
+  & > .#{$devui-prefix}-accordion__item-title,
+  & > .#{$devui-prefix}-accordion__menu-item > .#{$devui-prefix}-accordion__item-title {
+    & > a > .#{$devui-prefix}-accordion__splitter,
+    & > .#{$devui-prefix}-accordion__splitter {
+      height: 18px;
+      top: 11px;
+    }
+  }
+}
+
+.#{$devui-prefix}-accordion__item {
+  list-style: none;
+
+  & > a {
+    padding: 0 10px 0 20px;
+    color: var(--devui-text-weak, #575d6c);
+    display: block;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+.#{$devui-prefix}-accordion__item-title .tag-done {
+  display: inline-block;
+  height: 18px;
+  min-height: 20px;
+  padding: 0 10px;
+  margin-left: 8px;
+  line-height: 18px;
+  color: #fa9841;
+  border: solid 1px #fa9841;
+  background: $devui-base-bg;
+  font-size: $devui-font-size;
+  border-radius: $devui-border-radius;
+  text-indent: 0;
+  cursor: default;
+}

@@ -1,0 +1,110 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+@mixin fixed-arrow-button() {
+  position: absolute;
+  top: -18px;
+  z-index: 2;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background: $devui-highlight-overlay;
+  box-shadow: $devui-shadow-length-hover $devui-light-shadow;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+
+  &:hover {
+    background: $devui-area;
+  }
+
+  svg polygon {
+    fill: $devui-text;
+  }
+}
+
+.#{$devui-prefix}-carousel {
+  display: block;
+  position: relative;
+
+  .#{$devui-prefix}-carousel__arrow {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+
+    .arrow-left {
+      @include fixed-arrow-button();
+
+      left: 10px;
+    }
+
+    .arrow-right {
+      @include fixed-arrow-button();
+
+      right: 10px;
+    }
+  }
+
+  .#{$devui-prefix}-carousel__item-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    .#{$devui-prefix}-carousel__item-container {
+      display: flex;
+      height: 100%;
+      position: relative;
+
+      .#{$devui-prefix}-carousel__item {
+        flex: 1;
+        position: relative;
+        height: 100%;
+      }
+    }
+  }
+
+  .#{$devui-prefix}-carousel__dots {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    list-style: none;
+
+    &.bottom {
+      bottom: 8px;
+    }
+
+    &.top {
+      top: 8px;
+    }
+
+    .dot-item {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      margin-right: 8px;
+      background: $devui-icon-fill;
+
+      &:hover {
+        cursor: pointer;
+        background: $devui-icon-fill-hover;
+      }
+
+      &.active {
+        width: 24px;
+        background: $devui-icon-fill-active;
+        transition: all $devui-animation-duration-slow $devui-animation-ease-in-smooth;
+      }
+    }
+  }
+}
+
+.#{$devui-prefix}-carousel {
+  .#{$devui-prefix}-carousel__arrow {
+    .arrow-left,
+    .arrow-right {
+      transition: background-color $devui-animation-duration-slow $devui-animation-ease-in-smooth;
+    }
+  }
+}

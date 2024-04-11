@@ -1,0 +1,68 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-breadcrumb-font-style {
+  font-size: $devui-font-size;
+  color: $devui-aide-text;
+  line-height: 18px;
+}
+
+.#{$devui-prefix}-breadcrumb__item {
+  @extend .#{$devui-prefix}-breadcrumb-font-style;
+
+  cursor: auto;
+
+  a {
+    @extend .#{$devui-prefix}-breadcrumb-font-style;
+
+    cursor: pointer;
+
+    &:hover {
+      color: $devui-text;
+      text-decoration: none;
+    }
+  }
+
+  a,
+  span {
+    transition: color $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+  }
+
+  .is-link {
+    cursor: pointer;
+
+    &:hover {
+      color: $devui-text;
+      text-decoration: none;
+    }
+  }
+
+  &-dropdown {
+    padding: 0;
+    margin: 0;
+    width: 100px;
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100px;
+      padding: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $devui-list-item-hover-bg;
+        color: $devui-list-item-hover-text;
+      }
+    }
+  }
+}
+
+.#{$devui-prefix}-breadcrumb__separator {
+  @extend .#{$devui-prefix}-breadcrumb-font-style;
+
+  margin: 0 4px;
+}

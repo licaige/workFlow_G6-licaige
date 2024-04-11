@@ -1,0 +1,44 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-comment {
+  display: flex;
+  align-items: flex-start;
+
+  &__avatar {
+    margin: 0 16px 0 0;
+  }
+
+  &__main {
+    width: 100%;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+  }
+
+  &__author {
+    padding: 0 8px 0 0;
+    font-size: $devui-font-size;
+    color: $devui-text-weak;
+    font-weight: 800;
+  }
+
+  &__datetime {
+    font-size: $devui-font-size;
+    color: $devui-aide-text;
+  }
+
+  &__content {
+    margin-top: 8px;
+    line-height: 20px;
+    font-size: $devui-font-size;
+    color: $devui-text;
+  }
+
+  &__actions {
+    padding: 0;
+    list-style-type: none;
+    margin: 12px 0 0;
+  }
+}

@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-inner {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-inner .item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: none;
+    transition: transform .6s ease-in-out;
+    -moz-transition: -moz-transform .6s ease-in-out;
+    -webkit-transition: -webkit-transform .6s ease-in-out;
+    -o-transition: -o-transform .6s ease-in-out;
+    text-align: center;
+    font-size: 30px;
+}
+.carousel-inner .item.active,
+.carousel-inner .item.next,
+.carousel-inner .item.prev {
+    display: block;
+}
+.carousel-inner .next,
+.carousel-inner .prev {
+    /*绝对定位避免换行*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.carousel-inner .item.active,
+.carousel-inner .item.next.left,
+.carousel-inner .item.prev.right {
+    /*点击右箭头，下一个往左滑
+点击左箭头，下一个往右滑*/
+    transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+}
+
+.carousel-inner .item.next,
+.carousel-inner .item.active.right {
+    transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
+}
+
+.carousel-inner .item.active.left,
+.carousel-inner .item.prev {
+    transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -o-transform: translate3d(-100%, 0, 0);
+}
+
+.carousel-inner .btn-prev,
+.carousel-inner .btn-next {
+    display: inline-block;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carousel-inner .btn-prev {
+    position: absolute;
+    top: 40%;
+    left: 10px;
+}
+
+.carousel-inner .btn-next {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+}
+
+.carousel-inner .btn-num-container {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.carousel-inner .btn-num.current {
+    background: red;
+}
+
+.carousel-inner .btn-num {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 10px 0 0;
+    border-radius: 50%;
+    border: 1px #fff solid;
+    background: transparent;
+    cursor: pointer;
+}
+
+.carousel-inner.vertical .item.active,
+.carousel-inner.vertical .item.next.left,
+.carousel-inner.vertical .item.prev.right {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+}
+.carousel-inner.vertical .item.next,
+.carousel-inner.vertical .item.active.right {
+    transform: translate3d(0, 100%, 0);
+    -moz-transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+    -o-transform: translate3d(0, 100%, 0);
+}
+
+.carousel-inner.vertical .item.active.left,
+.carousel-inner.vertical .item.prev {
+    transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -100%, 0);
+    -o-transform: translate3d(0, -100%, 0);
+}
+
+.carousel-inner.vertical .btn-prev {
+    display: none;
+}
+
+.carousel-inner.vertical .btn-next {
+    display: none;
+}
+
+.carousel-inner.vertical .btn-num-container {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    vertical-align: middle;
+    right: 10px;
+    left: initial;
+    bottom: initial;
+    top: 40%;
+}
+
+.carousel-inner.vertical .btn-num {
+    display: block;
+    margin: 10px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .carousel-inner .btn-num {
+        width: 6px;
+        height: 6px;
+        margin-right: 6px;
+    }
+}

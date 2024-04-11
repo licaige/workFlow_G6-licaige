@@ -1,0 +1,61 @@
+.rank {
+  padding: 0 0.15rem;
+  background: #f3f3f3;
+}
+.rank ul li {
+  display: -ms-flexbox;
+  display: flex;
+  height: 2.5rem;
+  margin-bottom: 0.2rem;
+  background: white;
+}
+.rank p {
+  margin: 0;
+}
+.ph_img {
+  width: 2.5rem;
+  height: 2.5rem;
+  position: relative;
+  float: left;
+}
+.ph_song_list {
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 0.2rem;
+  overflow: hidden;
+  padding-right: 0.3rem;
+  position: relative;
+}
+.ph_img img {
+  width: 100%;
+}
+.ph_img span{
+  position: absolute;
+  left: 5px;
+  bottom: 7px;
+  color: white;
+  font-size: 24px;
+  opacity: 0.6;
+}
+.icon-you {
+  position: absolute;
+  right: 0;
+  top: 1rem;
+  font-size: 0.4rem;
+}
+.ph_song_list h2 {
+  line-height: 1.7;
+  font-size: 0.48rem;
+  margin: 0;
+}
+.ph_song_list p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgba(0, 0, 0, .5);
+  font-size: 0.4rem;
+  line-height: 1.3;
+}
+.ph_song_list p span {
+  color: black;
+}

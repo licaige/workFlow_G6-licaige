@@ -1,0 +1,6 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-layout__content {
+  flex: auto;
+  min-height: 0;
+}

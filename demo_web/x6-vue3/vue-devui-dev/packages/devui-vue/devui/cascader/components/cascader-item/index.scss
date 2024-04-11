@@ -1,0 +1,71 @@
+@import '../../../style/mixins/flex';
+@import '../../../styles-var/devui-var.scss';
+
+.#{$devui-prefix}-cascader {
+  &__li {
+    &.dropdown-item {
+      height: 36px;
+      padding: 8px 12px;
+      color: $devui-text;
+      cursor: pointer;
+      border-radius: $devui-border-radius;
+      box-sizing: border-box;
+      @include flex(flex-start);
+
+      margin-top: 4px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .cascader-li__wraper {
+      flex: 1;
+      @include flex(flex-start);
+    }
+
+    .dropdown-item-label {
+      display: inline-block;
+      flex: 1;
+      width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: $devui-font-size;
+    }
+
+    &.leaf-active {
+      background: $devui-list-item-hover-bg;
+
+      span {
+        color: $devui-brand-active;
+      }
+    }
+
+    &.disabled {
+      background-color: $devui-disabled-bg;
+      cursor: not-allowed;
+
+      .dropdown-item-label {
+        color: $devui-disabled-text;
+      }
+    }
+
+    .cascader-li {
+      &__checkbox {
+        margin-right: 4px;
+      }
+
+      &__icon {
+        margin-right: 4px;
+        font-size: $devui-font-size-icon;
+        color: $devui-text;
+        line-height: 16px;
+        height: 16px;
+
+        &.disabled {
+          color: $devui-disabled-text !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-row {
+  display: flex;
+}
+
+.#{$devui-prefix}-row__wrap {
+  flex-wrap: wrap;
+}
+
+@each $prefix, $value in (top, flex-start), (middle, center), (bottom, flex-end) {
+  .#{$devui-prefix}-row__align--#{$prefix} {
+    align-items: $value;
+  }
+}
+
+@each $prefix, $value in (start, flex-start), (center, center), (end, flex-end), (around, space-around), (between, space-between) {
+  .#{$devui-prefix}-row__justify--#{$prefix} {
+    justify-content: $value;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="hls.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <video class="hk-video" id="video"></video>
+</body>
+
+<script>
+  if (Hls.isSupported()) {
+    var video = document.getElementById('video');
+    var hls = new Hls();
+    hls.loadSource('http://10.20.112.41:83/openUrl/YUJqhpK/live.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      video.play();
+    });
+  }
+</script>
+
+</html>
+
+<style>
+  /* body {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+
+  /* * {
+    margin: 0;
+    padding: 0;
+  }*/
+
+  .hk-video {
+    margin-top: 20px;
+    width: 60%;
+    height: 40%;
+    background-color: antiquewhite;
+  }
+</style>

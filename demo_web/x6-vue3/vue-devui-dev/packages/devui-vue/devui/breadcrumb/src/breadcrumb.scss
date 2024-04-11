@@ -1,0 +1,12 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-breadcrumb {
+  display: flex;
+  align-items: center;
+
+  .#{$devui-prefix}-breadcrumb__item:last-child {
+    .#{$devui-prefix}-breadcrumb__separator {
+      display: none;
+    }
+  }
+}

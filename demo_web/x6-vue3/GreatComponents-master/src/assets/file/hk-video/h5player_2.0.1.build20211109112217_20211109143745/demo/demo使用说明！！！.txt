@@ -1,0 +1,4 @@
+方式一、
+双击启动webs.exe，使用chrome80+浏览器访问http://localhost/demo.html打开demo进行测试
+方式二：
+使node https.js启动web服务器，使用chrome80+浏览器访问https://localhost:9091/demo.html打开demo进行测试

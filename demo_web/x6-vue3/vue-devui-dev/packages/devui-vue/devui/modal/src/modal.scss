@@ -1,0 +1,115 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  border-radius: $devui-border-radius-card;
+  border: none;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  background-color: $devui-fullscreen-overlay-bg;
+  background-clip: padding-box;
+  outline: 0;
+  box-shadow: $devui-shadow-length-fullscreen-overlay $devui-shadow;
+  z-index: $devui-z-index-modal;
+
+  .btn-close {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    -webkit-appearance: none;
+    z-index: calc(var(--devui-z-index-modal, 1050) + 1);
+
+    .#{$devui-prefix}-icon__container {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  .type-content {
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      margin-right: 8px;
+      width: 24px;
+      height: 24px;
+      line-height: 16px;
+    }
+
+    &-text {
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: 18px;
+    }
+  }
+}
+
+.#{$devui-prefix}-modal-content {
+  background: $devui-fullscreen-overlay-bg;
+  border-radius: $devui-border-radius;
+}
+
+.#{$devui-prefix}-modal__header {
+  width: 100%;
+  height: 46px;
+  line-height: 26px;
+  padding: 20px 20px 0;
+  font-size: $devui-font-size-modal-title;
+  font-weight: bold;
+  letter-spacing: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+
+  .header-alert-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    line-height: 16px;
+    text-align: center;
+  }
+}
+
+.#{$devui-prefix}-modal__body {
+  padding: 20px;
+  font-size: $devui-font-size;
+  color: $devui-text-weak;
+  box-sizing: border-box;
+}
+
+.#{$devui-prefix}-modal__footer {
+  width: 100%;
+  border-top: none;
+  text-align: center;
+  padding: 0 32px 24px;
+  box-sizing: border-box;
+
+  &>* {
+    margin: 0 4px;
+  }
+}
+
+.#{$devui-prefix}-modal--wipe {
+  &-enter-active {
+    transition: opacity 0.1s cubic-bezier(0.16, 0.75, 0.5, 1), top 0.1s cubic-bezier(0, 0, 1, 1);
+  }
+
+  &-leave-active {
+    transition: opacity 0.1s cubic-bezier(0.5, 0, 0.84, 0.25), top 0.1s cubic-bezier(0, 0, 1, 1);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0.2;
+    top: calc(50% - 24px);
+  }
+}

@@ -1,0 +1,6 @@
+@import './variables.scss';
+
+$dropdown-prefix-cls: '#{$x6-prefix}-dropdown';
+.#{$dropdown-prefix-cls} {
+    position: inherit;
+}

@@ -1,0 +1,61 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-status {
+  line-height: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    display: inline-block;
+    content: '';
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 100%;
+  }
+}
+
+.#{$devui-prefix}-status.#{$devui-prefix}-status__bg {
+  &--success {
+    &::before {
+      background-color: $devui-success;
+    }
+  }
+
+  &--error {
+    &::before {
+      background-color: $devui-danger;
+    }
+  }
+
+  &--warning {
+    &::before {
+      background-color: $devui-warning;
+    }
+  }
+
+  &--initial {
+    &::before {
+      background-color: $devui-initial;
+    }
+  }
+
+  &--waiting {
+    &::before {
+      background-color: $devui-waiting;
+    }
+  }
+
+  &--running {
+    &::before {
+      background-color: $devui-info;
+    }
+  }
+
+  &--invalid {
+    &::before {
+      background-color: $devui-dividing-line;
+    }
+  }
+}

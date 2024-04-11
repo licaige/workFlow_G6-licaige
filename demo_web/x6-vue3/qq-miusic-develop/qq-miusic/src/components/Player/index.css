@@ -1,0 +1,383 @@
+* { touch-action: pan-y; }
+.player p {
+    margin: 0;
+}
+
+.player {
+    display       : flex;
+    flex-direction: column;
+    height        : 100vh;
+}
+
+.playHead {
+    position  : sticky;
+    left      : 0;
+    top       : 0;
+    width     : 100%;
+    height    : 1.3rem;
+    overflow  : hidden;
+    padding   : 0 0 0 0.2rem;
+    box-sizing: border-box;
+    z-index   : 100;
+    background: rgba(0, 0, 0, 0.4);
+    color     : white;
+}
+
+.playHead p {
+    float : left;
+    margin: 0;
+}
+
+.playHead .p1 {
+    width     : 1rem;
+    margin-top: 0.15rem;
+}
+
+.playHead .p1 img {
+    width: 100%;
+}
+
+.playHead .p2 {
+    margin-left: 0.15rem;
+    font-size  : 0.38rem;
+    font-family: "微软雅黑";
+    line-height: 1.4rem;
+}
+
+.playHead .p3 {
+    padding      : 0.1rem 0.2rem;
+    text-align   : center;
+    font-size    : 0.32rem;
+    border       : 1px solid #ccc;
+    border-radius: 0.3rem;
+    margin-top   : 0.35rem;
+    margin-right : 0.2rem;
+    float        : right;
+}
+
+.playInfo {
+    position: absolute;
+    flex    : 1;
+    width   : 100%;
+    height  : 100%;
+}
+
+.songPic {
+    width   : 100%;
+    height  : 100%;
+    position: absolute;
+    left    : 0;
+    top     : 0;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center center;
+    opacity : 0.9;
+}
+
+.playVideo {
+    position      : absolute;
+    left          : 0;
+    top           : 0;
+    width         : 100%;
+    height        : 100%;
+    background    : rgba(78, 72, 72, 0.5);
+    display       : flex;
+    flex-direction: column;
+}
+
+.play_song {
+    margin-top  : 1.3rem;
+    text-align: center;
+    background: rgba(0,0,0,0.25);
+    padding-bottom: 0.7rem;
+    box-sizing: border-box;
+}
+
+.play_song .singerPic {
+    width        : 2.5rem;
+    height       : 2.5rem;
+    margin       : 0.2rem auto;
+    border-radius: 50%;
+    overflow     : hidden;
+    position     : relative;
+    border       : 2px solid orange;
+    animation    : move 5s linear infinite;
+}
+
+.play_song .singerPic1 {
+    width        : 2.8rem;
+    height       : 2.8rem;
+    margin       : 0.2rem auto;
+    border-radius: 50%;
+    overflow     : hidden;
+    position     : relative;
+    border       : 2px solid #fff;
+    transform    : rotate(0deg);
+    animation    : round 15s linear infinite;
+}
+.play_song .singerPic1.pause{
+  animation-play-state:paused
+}
+@keyframes round {
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform:rotate(360deg);
+  }
+}
+.play_song .singerPic1 img{
+  width:100%;
+}
+
+.singerPic span,
+.singerPic1 span {
+    width          : 0.4rem;
+    height         : 0.4rem;
+    border-radius  : 50%;
+    border         : 2px solid white;
+    position       : absolute;
+    left           : 50%;
+    top            : 50%;
+    transform      : translate(-50%, -50%);
+    background     : rgba(0,0,0,0.4);
+    background-clip: text;
+
+}
+
+.singerPic img {
+    width: 100%;
+}
+
+.play_songName {
+    font-size     : 0.5rem;
+    font-weight   : bold;
+    color         : white;
+    /* background : rgba(0, 0, 0, 0.1) */
+}
+
+.play_singeName {
+    color         : #fff;
+    font-size     : 0.38rem;
+}
+
+.lrc {
+    height  : 51vh;
+    overflow: auto;
+    position: relative;
+    background: rgba(0,0,0,0.25);
+}
+
+.lrc .inner {
+    height    : auto;
+    position  : absolute;
+    left      : 0px;
+    top       : 0px;
+    transition: top 0.5s;
+    width     : 100%;
+    overflow  : hidden;
+}
+
+.lrc .inner p {
+    line-height  : 0.86rem;
+    text-align   : center;
+    max-width    : 90%;
+    margin       : 0 auto;
+    color        : #fff;
+    font-size    : 0.38rem;
+    white-space  : nowrap;
+    text-overflow: ellipsis;
+    overflow     : hidden;
+}
+.lrc_box{
+  margin-top:20vh;
+  position:relative;
+}
+
+.lrc .inner p.active {
+  color:#31c27c;
+}
+
+.lrc .inner .select {
+    background   : rgba(11, 12, 12, 0.8);
+    font-size    : 0.3rem;
+    color        : white;
+    transition   : all 0.5s;
+    border-radius: 10px;
+    animation    : move2 0.5s linear forwards;
+}
+
+.audiooBox {
+    width     : 100%;
+    background: url(/static/bg.jpg) no-repeat;
+    position  : relative;
+}
+
+.audioBox {
+    flex         : 1;
+    width        : 100%;
+    position     : relative;
+    background   : linear-gradient(to right, rgba(37, 27, 27, 0.4), rgba(46, 46, 39, 0.4), rgba(27, 27, 34, 0.4));
+    z-index      : 100;
+    border-radius: 5px;
+}
+
+.play_touxiang {
+    width        : 1rem;
+    height       : 1rem;
+    position     : absolute;
+    left         : 0.2rem;
+    top          : 0.2rem;
+    border-radius: 8px;
+    overflow     : hidden;
+}
+
+.play_touxiang img {
+    width: 100%;
+}
+
+.play_btn_songname {
+    position     : absolute;
+    left         : 0.5rem;
+    top          : 0.1rem;
+    font-size    : 0.33rem;
+    color        : white;
+    width        : 75%;
+    white-space  : nowrap;
+    text-overflow: ellipsis;
+    overflow     : hidden;
+}
+
+.play_btn_box {
+    /* width   : 3rem; */
+    position   : absolute;
+    left       : 0.3rem;
+    top        : 0.6rem;
+    color      : white;
+}
+
+.play_btn_box p {
+    float    : left;
+    font-size: 0.55rem;
+    margin   : 0 0.3rem;
+}
+
+.play_acound {
+    position: absolute;
+    left    : 4.2rem;
+    top     : 0.74rem;
+}
+
+.play_acound .muted {
+    font-size: 0.3rem;
+    color    : white;
+    float    : left;
+}
+
+.acoundBox {
+    float        : left;
+    width        : 1.4rem;
+    height       : 5px;
+    background   : rgba(0, 0, 0, 0.6);
+    margin       : 0.18rem;
+    border-radius: 3px;
+    position     : relative;
+}
+
+.acoundJindu {
+    width     : 100%;
+    height    : 100%;
+    background: white;
+    position  : absolute;
+    left      : 0;
+    top       : 0;
+}
+
+.acoundBox .acoud_on {
+    background: transparent;
+}
+
+.play_plan_box {
+    position: absolute;
+    right   : 0.3rem;
+    bottom  : 0.1rem;
+}
+
+.play_time {
+    float    : left;
+    color    : white;
+    font-size: 0.3rem;
+
+}
+
+.play_plan {
+    margin       : 0.21rem 0.3rem;
+    float        : left;
+    width        : 430px;
+    height       : 5px;
+    background   : rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+
+}
+
+.play_plan_aa {
+    width        : 0;
+    height       : 100%;
+    background   : white;
+    border-radius: 5px;
+}
+
+.speedBox {
+    width        : 1.4rem;
+    position     : absolute;
+    right        : 0.2rem;
+    top          : 0.12rem;
+    color        : white;
+    background   : #333;
+    text-align   : center;
+    border-radius: 5px;
+
+}
+
+.speed_cont {
+    width   : 100%;
+    position: absolute;
+    left    : 0;
+    top     : -2.05rem;
+    overflow: hidden;
+}
+.speed_cont1{
+    height:2rem;
+}
+.speed_cont2{
+    height:1.4rem;
+}
+
+.speed_cont p {
+    width: 100%;
+    border-radius: 3px;
+    background: rgba(27, 27, 34, 0.4)
+}
+.speed_cont .sppedOn{
+    color:tomato;
+}
+
+@keyframes move {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes move2 {
+    0% {
+        transform: rotateX(180deg);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+    }
+}

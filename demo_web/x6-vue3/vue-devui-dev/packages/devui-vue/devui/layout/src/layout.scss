@@ -1,0 +1,11 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-layout {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+
+  &__aside {
+    flex-direction: row;
+  }
+}

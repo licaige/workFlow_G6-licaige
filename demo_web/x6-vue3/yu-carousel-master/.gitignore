@@ -1,0 +1,10 @@
+# ignore CI generated files
+logs/*
+application/logs/
+application/cache/
+logs/*
+
+# node
+node_modules/
+npm-debug.log
+soft/nodejs/node_cache/*

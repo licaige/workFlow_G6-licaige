@@ -1,0 +1,208 @@
+[
+    {
+        "label": "视频监控点",
+        "id": "root000000",
+        "indexCode": "root000000",
+        "children": [
+            {
+                "label": "水库",
+                "id": "a9f07d20-0521-4a69-a344-9e9dfd597599",
+                "indexCode": "a9f07d20-0521-4a69-a344-9e9dfd597599",
+                "children": [
+                    {
+                        "label": "中型水库",
+                        "id": "c7719308-3229-41c6-b9ae-db3da154c212",
+                        "indexCode": "c7719308-3229-41c6-b9ae-db3da154c212",
+                        "children": [
+                            {
+                                "label": "进贤县秧塘水库",
+                                "id": "624d49c8-0d22-4690-805a-6fb72809e108",
+                                "indexCode": "624d49c8-0d22-4690-805a-6fb72809e108"
+                            },
+                            {
+                                "label": "进贤县钟凌水库",
+                                "id": "ffb06799-9ace-4645-9c1d-9fef3a175d9c",
+                                "indexCode": "ffb06799-9ace-4645-9c1d-9fef3a175d9c"
+                            },
+                            {
+                                "label": "新建区溪霞水库",
+                                "id": "f2898e18-8f42-4f6b-b368-fab25d4d1b93",
+                                "indexCode": "f2898e18-8f42-4f6b-b368-fab25d4d1b93"
+                            },
+                            {
+                                "label": "新建区幸福水库",
+                                "id": "9354d422-95f7-44ca-b2e7-421c1ce2ccac",
+                                "indexCode": "9354d422-95f7-44ca-b2e7-421c1ce2ccac"
+                            },
+                            {
+                                "label": "新建区肖峰水库",
+                                "id": "3b3a3d01-a6ac-404a-81c3-99ed80ae9266",
+                                "indexCode": "3b3a3d01-a6ac-404a-81c3-99ed80ae9266"
+                            },
+                            {
+                                "label": "新建区梦山水库",
+                                "id": "024563b2-ddb5-4c8c-b756-e4f7e11c486e",
+                                "indexCode": "024563b2-ddb5-4c8c-b756-e4f7e11c486e"
+                            },
+                            {
+                                "label": "新建区朱坊水库",
+                                "id": "b78973a9-d4ca-4d04-bd29-22e46ef0d7e3",
+                                "indexCode": "b78973a9-d4ca-4d04-bd29-22e46ef0d7e3"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "小（一）型水库",
+                        "id": "e09135fe-a64d-4901-b891-794036f8c688",
+                        "indexCode": "e09135fe-a64d-4901-b891-794036f8c688"
+                    },
+                    {
+                        "label": "小（二）型水库",
+                        "id": "60eb0a65-c718-429c-8829-188ac0175317",
+                        "indexCode": "60eb0a65-c718-429c-8829-188ac0175317"
+                    }
+                ]
+            },
+            {
+                "label": "堤防险工险段",
+                "id": "ec906158-da85-4fce-8059-11e13507ef7e",
+                "indexCode": "ec906158-da85-4fce-8059-11e13507ef7e"
+            },
+            {
+                "label": "采砂区监控",
+                "id": "b01bc553-a06d-4aec-95b6-4474810c0eaf",
+                "indexCode": "b01bc553-a06d-4aec-95b6-4474810c0eaf",
+                "children": [
+                    {
+                        "label": "堤防采砂(自建)",
+                        "id": "a9ceeccd-8edf-40e2-b743-f5cbc5ea27aa",
+                        "indexCode": "a9ceeccd-8edf-40e2-b743-f5cbc5ea27aa"
+                    },
+                    {
+                        "label": "堤防采砂(铁塔)",
+                        "id": "96745b83-ad0c-448f-9c38-f7a907c9b220",
+                        "indexCode": "96745b83-ad0c-448f-9c38-f7a907c9b220"
+                    }
+                ]
+            },
+            {
+                "label": "赣江城区段",
+                "id": "5a2fba1e-45fb-419a-aa0a-02379eb6f94f",
+                "indexCode": "5a2fba1e-45fb-419a-aa0a-02379eb6f94f"
+            },
+            {
+                "label": "重点断面",
+                "id": "6bd8ef62-9842-42d6-9c86-94340cdee621",
+                "indexCode": "6bd8ef62-9842-42d6-9c86-94340cdee621"
+            },
+            {
+                "label": "水政执法",
+                "id": "6ead1b58-c393-474b-a1d6-026fdf9843b2",
+                "indexCode": "6ead1b58-c393-474b-a1d6-026fdf9843b2",
+                "children": [
+                    {
+                        "label": "新建区水政执法",
+                        "id": "659a5634-1db5-469a-ab18-b4142ce13132",
+                        "indexCode": "659a5634-1db5-469a-ab18-b4142ce13132"
+                    }
+                ]
+            },
+            {
+                "label": "防洪排涝管理处",
+                "id": "d1a35224-29fe-42cf-b981-0a21aede27df",
+                "indexCode": "d1a35224-29fe-42cf-b981-0a21aede27df",
+                "children": [
+                    {
+                        "label": "赣东管理处",
+                        "id": "4041bff5-d4b3-4a3b-90de-843cbbd8803a",
+                        "indexCode": "4041bff5-d4b3-4a3b-90de-843cbbd8803a"
+                    },
+                    {
+                        "label": "南隔堤管理处",
+                        "id": "29415cbe-98d2-4c62-bcbf-6db0c7a02e47",
+                        "indexCode": "29415cbe-98d2-4c62-bcbf-6db0c7a02e47"
+                    },
+                    {
+                        "label": "昌北管理处",
+                        "id": "27393154-4606-4b87-845a-85af28b23d95",
+                        "indexCode": "27393154-4606-4b87-845a-85af28b23d95"
+                    },
+                    {
+                        "label": "昌南管理处",
+                        "id": "c6fc3631-05f1-4261-bbcc-a5df29f6a4a2",
+                        "indexCode": "c6fc3631-05f1-4261-bbcc-a5df29f6a4a2",
+                        "children": [
+                            {
+                                "label": "堤防（昌南）",
+                                "id": "36011100582160000010",
+                                "indexCode": "36011100582160000010"
+                            },
+                            {
+                                "label": "青山湖新站电排站",
+                                "id": "36011100582160000011",
+                                "indexCode": "36011100582160000011"
+                            },
+                            {
+                                "label": "青山湖老站电排站",
+                                "id": "36011100582160000012",
+                                "indexCode": "36011100582160000012"
+                            },
+                            {
+                                "label": "吴公庙电排站",
+                                "id": "36011100582160000013",
+                                "indexCode": "36011100582160000013"
+                            },
+                            {
+                                "label": "鱼尾电排站",
+                                "id": "36011100582160000014",
+                                "indexCode": "36011100582160000014"
+                            },
+                            {
+                                "label": "南塘湖电排站",
+                                "id": "36011100582160000015",
+                                "indexCode": "36011100582160000015"
+                            },
+                            {
+                                "label": "昌东电排站",
+                                "id": "36011100582160000016",
+                                "indexCode": "36011100582160000016"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "城区水厂取水口",
+                "id": "622f50db-f9f3-4bd7-9f34-f0d964c09c46",
+                "indexCode": "622f50db-f9f3-4bd7-9f34-f0d964c09c46"
+            },
+            {
+                "label": "小水电站",
+                "id": "0fc289df-682f-4add-81f1-bcd5dcbc2394",
+                "indexCode": "0fc289df-682f-4add-81f1-bcd5dcbc2394",
+                "children": [
+                    {
+                        "label": "雷家电站",
+                        "id": "b9a6903c-b839-4e02-ab31-3b290a70a599",
+                        "indexCode": "b9a6903c-b839-4e02-ab31-3b290a70a599"
+                    },
+                    {
+                        "label": "南潦水电站",
+                        "id": "16f9d7b4-ddbb-43e9-a011-ce234cc3b14f",
+                        "indexCode": "16f9d7b4-ddbb-43e9-a011-ce234cc3b14f"
+                    },
+                    {
+                        "label": "文峰水电站",
+                        "id": "6a7f2936-0652-456d-abb0-3da1bb9c7577",
+                        "indexCode": "6a7f2936-0652-456d-abb0-3da1bb9c7577"
+                    },
+                    {
+                        "label": "张王庙水电站",
+                        "id": "906ab4f0-a088-4bdd-bbde-52c997589c77",
+                        "indexCode": "906ab4f0-a088-4bdd-bbde-52c997589c77"
+                    }
+                ]
+            }
+        ]
+    }
+]

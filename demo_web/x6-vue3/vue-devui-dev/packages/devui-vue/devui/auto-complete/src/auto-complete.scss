@@ -1,0 +1,344 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-auto-complete,
+.#{$devui-prefix}-auto-complete__menu {
+  .#{$devui-prefix}-dropdown-menu {
+    width: 100%;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    box-shadow: none;
+
+    ul {
+      width: 100%;
+      padding: 0;
+    }
+  }
+}
+
+.#{$devui-prefix}-auto-complete {
+  .#{$devui-prefix}-form-control {
+    padding: 4px 0;
+    width: 100%;
+    background-color: transparent;
+  }
+}
+
+.#{$devui-prefix}-auto-complete,
+.#{$devui-prefix}-auto-complete__menu {
+  .active {
+    background: $devui-list-item-hover-bg;
+  }
+
+  .#{$devui-prefix}-dropdown-menu {
+    width: 100%;
+    display: block;
+  }
+
+  .#{$devui-prefix}-auto-complete__dropdown-menu-cdk {
+    position: static;
+  }
+
+  .#{$devui-prefix}-dropdown-item {
+    cursor: pointer;
+    display: block;
+    line-height: 20px;
+    padding: 8px 12px;
+    clear: both;
+    border: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:not(:first-child) {
+      margin-top: 4px;
+    }
+  }
+
+  .#{$devui-prefix}-dropdown-menu {
+    .#{$devui-prefix}-dropdown-item:not(.disabled) {
+      &:hover {
+        background-color: $devui-list-item-hover-bg;
+        color: $devui-list-item-hover-text;
+      }
+
+      &.selected,
+      &.selected &:hover {
+        color: $devui-list-item-active-text !important;
+        background-color: $devui-list-item-active-bg !important;
+      }
+    }
+  }
+
+  .#{$devui-prefix}-auto-complete__no-result-template,
+  .#{$devui-prefix}-auto-complete__searching-template {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    clear: both;
+    border: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: not-allowed;
+    background-color: $devui-disabled-bg;
+    color: $devui-disabled-text;
+    line-height: 14px;
+
+    &:hover,
+    &:active,
+    &:hover:active {
+      background-color: $devui-unavailable;
+    }
+  }
+
+  /* 选项disabled */
+  .#{$devui-prefix}-dropdown-item.disabled,
+  .#{$devui-prefix}-dropdown-item.disabled:hover {
+    cursor: not-allowed;
+    color: $devui-disabled-text;
+  }
+
+  ul.#{$devui-prefix}-auto-complete__list-unstyled {
+    margin: 0;
+    overflow-y: auto;
+  }
+
+  .#{$devui-prefix}-auto-complete__dropdown-bg {
+    background: $devui-list-item-hover-bg;
+    color: $devui-list-item-hover-text;
+  }
+
+  .#{$devui-prefix}-auto-complete__popup-tips {
+    color: $devui-text-weak; // TODO: Color-Question
+    padding: 4px 12px;
+  }
+
+  .#{$devui-prefix}-auto-complete__dropdown-latestSource ul {
+    line-height: initial !important;
+  }
+}
+
+.#{$devui-prefix}-auto-complete {
+  &--sm {
+    height: $devui-size-sm;
+    font-size: $devui-font-size-sm;
+  }
+
+  &--md {
+    height: $devui-size-md;
+    font-size: $devui-font-size-md;
+  }
+
+  &--lg {
+    height: $devui-size-lg;
+    font-size: $devui-font-size-lg;
+  }
+
+  &__clear--icon {
+    cursor: pointer;
+  }
+
+  &-input {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+
+    &:not(.#{$devui-prefix}-auto-complete--focus) {
+      .#{$devui-prefix}-auto-complete--glow-style:hover {
+        box-shadow: 0 0 0 4px $devui-form-control-interactive-outline;
+        border-color: $devui-form-control-line;
+      }
+    }
+
+    &__wrapper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0 8px;
+      border: 1px solid $devui-form-control-line;
+      border-radius: $devui-border-radius;
+      background-color: $devui-form-control-bg;
+      transition: border-color 0.3s $devui-animation-ease-in-out-smooth, box-shadow $devui-animation-duration-base $devui-animation-ease-in;
+
+      &:not(.#{$devui-prefix}-auto-complete--disabled):not(.#{$devui-prefix}-auto-complete-input__wrapper--error):hover {
+        border-color: $devui-form-control-line-hover;
+      }
+
+      > input {
+        border: none !important;
+      }
+
+      &--error {
+        border-color: $devui-danger-line;
+        background-color: $devui-danger-bg;
+      }
+
+      &--feedback {
+        padding-right: 28px;
+      }
+    }
+
+    &__prepend,
+    &__append {
+      color: var(--devui-text);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      padding: 0 20px;
+      white-space: nowrap;
+      border: 1px solid $devui-form-control-line;
+      border-radius: $devui-border-radius;
+      background-color: $devui-form-control-bg;
+
+      .#{$devui-prefix}-button,
+      .#{$devui-prefix}-select .#{$devui-prefix}-select__selection {
+        border: none;
+        background-color: transparent;
+        color: inherit;
+      }
+
+      .#{$devui-prefix}-button,
+      .#{$devui-prefix}-select__selection {
+        display: inline-block;
+        margin: 0 -20px;
+      }
+    }
+  }
+
+  &--glow-style:not(.#{$devui-prefix}-auto-complete--disabled):not(.#{$devui-prefix}-auto-complete-input__wrapper--error):hover {
+    box-shadow: 0 0 0 4px $devui-form-control-interactive-outline;
+    border-color: $devui-form-control-line;
+  }
+
+  &--focus {
+    .#{$devui-prefix}-auto-complete-input__wrapper:not(.#{$devui-prefix}-auto-complete-input__wrapper--error) {
+      border-color: $devui-form-control-line-active;
+
+      &:hover {
+        border-color: $devui-form-control-line-active;
+      }
+    }
+
+    .#{$devui-prefix}-auto-complete--glow-style:not(.#{$devui-prefix}-auto-complete-input__wrapper--error) {
+      box-shadow: 0 0 0 4px $devui-form-control-interactive-outline;
+      border-color: $devui-form-control-line-active;
+    }
+  }
+
+  &--disabled {
+    color: $devui-disabled-text;
+    background-color: $devui-disabled-bg;
+    border-color: $devui-disabled-line;
+    cursor: not-allowed;
+    .#{$devui-prefix}-dropdown-origin {
+      cursor: not-allowed;
+      background-color: transparent !important;
+    }
+  }
+
+  &--prepend {
+    .#{$devui-prefix}-auto-complete-input__wrapper {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &--append {
+    .#{$devui-prefix}-auto-complete-input__wrapper {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &-slot {
+    display: inline-flex;
+    width: 100%;
+    align-items: stretch;
+    .#{$devui-prefix}-auto-complete-input__prepend {
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .#{$devui-prefix}-auto-complete-input__append {
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .#{$devui-prefix}-auto-complete-input__prefix,
+    .#{$devui-prefix}-auto-complete-input__suffix {
+      display: inline-flex;
+      white-space: nowrap;
+      flex-shrink: 0;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .#{$devui-prefix}-auto-complete-input__prefix {
+      > * {
+        margin-right: 8px;
+      }
+    }
+
+    .#{$devui-prefix}-auto-complete-input__suffix {
+      > * {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+.#{$devui-prefix}-auto-complete--fade {
+  &-bottom {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0.8;
+      transform: scaleY(0.8) translateY(-4px);
+    }
+
+    &-enter-to,
+    &-leave-from {
+      opacity: 1;
+      transform: scaleY(0.9999) translateY(0);
+    }
+
+    &-enter-active {
+      transition: transform 0.2s cubic-bezier(0.16, 0.75, 0.5, 1), opacity 0.2s cubic-bezier(0.16, 0.75, 0.5, 1);
+    }
+
+    &-leave-active {
+      transition: transform 0.2s cubic-bezier(0.5, 0, 0.84, 0.25), opacity 0.2s cubic-bezier(0.5, 0, 0.84, 0.25);
+    }
+  }
+
+  &-top {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0.8;
+      transform: scaleY(0.8) translateY(4px);
+    }
+
+    &-enter-to,
+    &-leave-from {
+      opacity: 1;
+      transform: scaleY(0.9999) translateY(0);
+    }
+
+    &-enter-active {
+      transition: transform 0.2s cubic-bezier(0.16, 0.75, 0.5, 1), opacity 0.2s cubic-bezier(0.16, 0.75, 0.5, 1);
+    }
+
+    &-leave-active {
+      transition: transform 0.2s cubic-bezier(0.5, 0, 0.84, 0.25), opacity 0.2s cubic-bezier(0.5, 0, 0.84, 0.25);
+    }
+  }
+}

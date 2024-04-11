@@ -1,0 +1,12 @@
+{
+  "name": "singleton",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "xx",
+  "main": "test.js",
+  "scripts": {
+    "test": "xx"
+  },
+  "author": "",
+  "license": "ISC"
+}

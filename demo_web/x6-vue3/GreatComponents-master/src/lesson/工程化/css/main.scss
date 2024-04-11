@@ -1,0 +1,73 @@
+html {
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'lato', sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  letter-spacing: 10px;
+  margin-top: -60px;
+  padding-left: 10px;
+  background: linear-gradient(white, #38495a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+$colors: #f67a87, #636eed;
+@for $i from 3 to 30 {
+  $colors: join($colors,#fff);
+}
+@debug $colors;
+
+@function createShadow($n) {
+  $shadow: '#{random(100)}vw #{random(100)}vh #fff';
+  @for $i from 2 through $n {
+    $shadow: '#{$shadow}, #{random(100)}vw #{random(100)}vh #{nth($colors, random(length($colors)))}';
+  }
+  @return unquote($shadow);
+}
+
+$count: 1000;
+$duration: 400s;
+@for $i from 1 to 6 {
+  $count: floor(calc($count / 2));
+  @debug $count;
+  $duration: floor(calc($duration / 2));
+  @debug $duration;
+  .layer#{$i} {
+    $size: #{$i * 2}px;
+    position: fixed;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    box-shadow: createShadow($count);
+    animation: moveup $duration linear infinite;
+    &::after {
+      content: '';
+      position: fixed;
+      top: 100vh;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border: inherit;
+      box-shadow: inherit;
+    }
+  }
+}
+@keyframes moveup {
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+

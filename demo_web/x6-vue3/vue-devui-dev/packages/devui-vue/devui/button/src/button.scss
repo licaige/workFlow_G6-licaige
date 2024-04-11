@@ -1,0 +1,437 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+$devui-btn-padding: var(--devui-btn-padding, 0 20px);
+$devui-btn-common-bg: var(--devui-btn-common-bg, $devui-base-bg);
+$devui-btn-common-bg-hover: var(--devui-btn-common-bg-hover, $devui-base-bg);
+$devui-btn-common-bg-active: var(--devui-btn-common-bg-active, $devui-base-bg);
+$devui-btn-common-color-hover: var(--devui-btn-common-color-hover, $devui-brand-active);
+$devui-btn-common-color-active: var(--devui-btn-common-color-active, $devui-brand-active);
+$devui-btn-common-border-color: var(--devui-btn-common-border-color, $devui-line);
+$devui-btn-common-border-color-hover: var(--devui-btn-common-border-color-hover, $devui-form-control-line-active);
+$devui-btn-common-border-color-active: var(--devui-btn-common-border-color-active, $devui-form-control-line-active);
+$devui-btn-sm-padding: var(--devui-btn-sm-padding, 0 16px);
+$devui-btn-lg-padding: var(--devui-btn-lg-padding, 0 24px);
+
+@mixin btn-solid-style {
+  color: $devui-brand-active;
+  border-color: $devui-form-control-line-active;
+}
+
+.#{$devui-prefix}-button {
+  position: relative;
+  padding: $devui-btn-padding;
+  font-size: $devui-font-size-md;
+  height: $devui-size-md;
+  line-height: $devui-line-height-base;
+  border-radius: $devui-border-radius;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  overflow: hidden;
+
+  &.mousedown:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  .water-wave {
+    position: absolute;
+    background-color: $devui-base-bg;
+    border-radius: 50%;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    animation: waterWave $devui-animation-duration-slow $devui-animation-linear;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &--is-loading {
+    pointer-events: none;
+  }
+
+  &--solid {
+    color: $devui-light-text;
+    min-width: 64px;
+
+    i {
+      color: $devui-light-text;
+    }
+
+    &--secondary {
+      color: $devui-text;
+      border-color: $devui-btn-common-border-color;
+      background-color: $devui-btn-common-bg;
+
+      &:hover {
+        color: $devui-btn-common-color-hover;
+        border-color: $devui-btn-common-border-color-hover;
+        background-color: $devui-btn-common-bg-hover;
+      }
+
+      &:focus {
+        color: $devui-btn-common-color-active;
+        border-color: $devui-btn-common-border-color-active;
+        background-color: $devui-btn-common-bg-hover;
+      }
+
+      &:active {
+        color: $devui-btn-common-color-active;
+        border-color: $devui-btn-common-border-color-active;
+        background-color: $devui-btn-common-bg-hover;
+      }
+
+      &:disabled {
+        opacity: 0.8;
+      }
+    }
+
+    &--primary {
+      background-color: $devui-primary;
+
+      &:hover {
+        background-color: $devui-primary-hover;
+      }
+
+      &:focus {
+        background-color: $devui-primary-hover;
+      }
+
+      &:active {
+        background-color: $devui-primary-active;
+      }
+
+      &:disabled {
+        color: $devui-light-text;
+        background: $devui-primary-disabled;
+        border: none;
+      }
+    }
+
+    &--danger {
+      background-color: $devui-contrast;
+
+      &:hover {
+        background-color: $devui-contrast-hover;
+      }
+
+      &:focus {
+        background-color: $devui-contrast-hover;
+      }
+
+      &:active {
+        background-color: $devui-contrast-active;
+      }
+
+      &:disabled {
+        background-color: $devui-contrast-disabled;
+      }
+    }
+  }
+
+  &--outline {
+    background-color: $devui-block;
+    border-style: solid;
+
+    i {
+      color: $devui-text;
+    }
+
+    &--secondary {
+      color: $devui-text;
+      border-color: $devui-line;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $devui-brand-active;
+        border-color: $devui-form-control-line-active;
+
+        i {
+          color: $devui-brand-active;
+          border-color: $devui-form-control-line-active;
+        }
+      }
+
+      &:disabled {
+        color: $devui-disabled-text;
+        border-color: $devui-disabled-line;
+        background-color: $devui-disabled-bg;
+
+        i {
+          color: $devui-disabled-text;
+        }
+      }
+    }
+
+    &--primary {
+      color: $devui-brand-active;
+      border-color: $devui-form-control-line-active;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $devui-brand-active-focus;
+        border-color: $devui-form-control-line-active-hover;
+
+        i {
+          color: $devui-brand-active-focus;
+          border-color: $devui-form-control-line-active-hover;
+        }
+      }
+
+      &:disabled {
+        opacity: 0.8;
+        color: $devui-brand-active;
+        border-color: $devui-form-control-line-active;
+
+        i {
+          color: $devui-brand-active;
+        }
+      }
+    }
+
+    &--danger {
+      color: $devui-contrast;
+      border-color: $devui-contrast;
+
+      i {
+        color: $devui-contrast;
+      }
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:disabled {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &--text {
+    padding: 0;
+
+    &--secondary {
+      color: $devui-text;
+
+      &:hover {
+        color: $devui-list-item-hover-text;
+      }
+
+      &:focus {
+        color: $devui-list-item-hover-text;
+      }
+
+      &:active {
+        color: $devui-list-item-hover-text;
+      }
+
+      &:disabled {
+        color: $devui-disabled-text;
+      }
+    }
+
+    &--primary {
+      color: $devui-brand-active;
+
+      &:hover {
+        color: $devui-link-active;
+      }
+
+      &:focus {
+        color: $devui-brand-active-focus;
+      }
+
+      &:active {
+        color: $devui-brand-active-focus;
+      }
+
+      &:disabled {
+        opacity: 0.8;
+      }
+    }
+
+    &--danger {
+      color: $devui-contrast;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:disabled {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &--sm {
+    padding: $devui-btn-sm-padding;
+    height: $devui-size-sm;
+    font-size: $devui-font-size-sm;
+    min-width: 56px;
+  }
+
+  &--lg {
+    padding: $devui-btn-lg-padding;
+    height: $devui-size-lg;
+    font-size: $devui-font-size-lg;
+    min-width: 72px;
+  }
+
+  &.#{$devui-prefix}-button__icon:not(.#{$devui-prefix}-button--solid) {
+    &:hover,
+    &:focus {
+      border: 1px solid $devui-list-item-hover-bg;
+      background-color: $devui-list-item-hover-bg;
+    }
+
+    &:disabled {
+      background-color: $devui-disabled-bg;
+    }
+  }
+
+  &:not(:disabled) {
+    &.#{$devui-prefix}-button--text {
+      &.#{$devui-prefix}-button__icon-wrap {
+        color: $devui-text;
+
+        .#{$devui-prefix}-button__icon-fix {
+          color: $devui-text-weak;
+        }
+
+        &:hover {
+          color: $devui-list-item-hover-text;
+
+          .#{$devui-prefix}-button__icon-fix {
+            color: $devui-icon-fill-active;
+          }
+
+          .button-content {
+            color: $devui-brand;
+          }
+        }
+      }
+    }
+  }
+
+  &--circle {
+    border-radius: 100%;
+  }
+
+  &--round {
+    border-radius: 20px;
+  }
+}
+
+.#{$devui-prefix}-loading {
+  .#{$devui-prefix}-loading-default-spinner {
+    div {
+      background-color: $devui-text;
+    }
+  }
+}
+
+.#{$devui-prefix}-button {
+  transition: background-color $devui-animation-duration-slow $devui-animation-ease-in-out-smooth,
+    border-color $devui-animation-duration-slow $devui-animation-ease-in-out-smooth,
+    color $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+
+  &.#{$devui-prefix}-button__icon {
+    padding: 8px;
+    line-height: 1em;
+    min-width: unset;
+
+    &:not(.#{$devui-prefix}-button--circle) {
+      border: 1px solid transparent;
+    }
+
+    &.#{$devui-prefix}-button--sm {
+      padding: 4px;
+      min-width: 24px;
+    }
+
+    &.#{$devui-prefix}-button--lg {
+      .icon {
+        font-size: $devui-font-size-icon;
+      }
+
+      min-width: 32px;
+    }
+
+    &.#{$devui-prefix}-button--circle {
+      width: $devui-size-md;
+
+      &.#{$devui-prefix}-button--sm {
+        width: $devui-size-sm;
+      }
+
+      &.#{$devui-prefix}-button--lg {
+        width: $devui-size-lg;
+      }
+    }
+  }
+
+  &:not(.#{$devui-prefix}-button__icon) {
+    .icon-fix {
+      font-size: $devui-font-size-icon;
+    }
+  }
+}
+
+.#{$devui-prefix}-button__icon-fix {
+  position: relative;
+  font-size: $devui-font-size;
+}
+
+.button-content {
+  display: inline-block;
+  position: relative;
+}
+
+.clear-right-5 {
+  margin-right: 5px;
+}
+
+.loading-icon__container {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 5px;
+
+  .button-icon-loading {
+    animation: rotating 1.5s linear infinite;
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes waterWave {
+  0% {
+    opacity: 0.2;
+    width: 30px;
+    height: 30px;
+  }
+
+  100% {
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+  }
+}

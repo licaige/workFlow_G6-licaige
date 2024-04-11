@@ -1,0 +1,139 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+$font-size-map: (
+  lg: $devui-font-size-lg,
+  md: $devui-font-size-md,
+  sm: $devui-font-size-sm,
+);
+$radio-width-map: (
+  lg: 18px,
+  md: 16px,
+  sm: 14px,
+);
+$radio-label-height-map: (
+  lg: $devui-size-lg,
+  md: $devui-size-md,
+  sm: $devui-size-sm,
+);
+
+.#{$devui-prefix}-radio {
+  font-size: $devui-font-size;
+  line-height: 1.5;
+  font-weight: normal;
+  cursor: pointer;
+  color: $devui-text;
+
+  &__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &.active {
+    .#{$devui-prefix}-radio__material {
+      border-width: 4px;
+      border-color: $devui-brand;
+    }
+
+    &.#{$devui-prefix}-radio--bordered {
+      border-color: $devui-primary-hover;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    .#{$devui-prefix}-radio__label {
+      color: $devui-disabled-text;
+    }
+
+    &.#{$devui-prefix}-radio--bordered {
+      border-color: $devui-disabled-line;
+    }
+
+    .#{$devui-prefix}-radio__material {
+      border-color: $devui-shape-icon-fill;
+      background-color: $devui-shape-icon-fill-disabled;
+    }
+
+    &.active {
+      .#{$devui-prefix}-radio__material {
+        border-color: $devui-icon-fill-active-disabled;
+      }
+    }
+  }
+
+  /* 选择图标-容器 */
+  &__material {
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: 16px;
+    width: 16px;
+    border: 1px solid $devui-shape-icon-fill;
+    border-radius: $devui-border-radius-full;
+    transform: translateY(-1px);
+    user-select: none;
+    transition: border $devui-animation-duration-base $devui-animation-ease-in-out;
+  }
+
+  /* 内容 */
+  &__label {
+    color: $devui-text;
+    margin-left: 8px;
+    font-size: $devui-font-size;
+  }
+
+  &__input {
+    opacity: 0;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    display: none;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  &--glow-style.#{$devui-prefix}-radio {
+    .#{$devui-prefix}-radio__material {
+      transition: box-shadow $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+    }
+
+    &:not(.disabled):hover {
+      .#{$devui-prefix}-radio__material {
+        box-shadow: 0 0 0 6px $devui-range-item-hover-bg;
+      }
+    }
+  }
+
+  &--bordered {
+    border: 1px solid $devui-disabled-line;
+    border-radius: $devui-border-radius;
+    padding: 0 15px 0 10px;
+  }
+  @each $size in ('lg', 'md', 'sm') {
+    &.#{$devui-prefix}-radio--#{$size} {
+      display: flex;
+      align-items: center;
+
+      .#{$devui-prefix}-radio__label {
+        font-size: map-get($font-size-map, #{$size});
+      }
+
+      .#{$devui-prefix}-radio__material {
+        width: map-get($radio-width-map, #{$size});
+        height: map-get($radio-width-map, #{$size});
+
+        & > svg {
+          width: map-get($radio-width-map, #{$size});
+          height: map-get($radio-width-map, #{$size});
+        }
+      }
+
+      &.#{$devui-prefix}-radio--bordered {
+        height: map-get($radio-label-height-map, #{$size});
+      }
+    }
+  }
+}

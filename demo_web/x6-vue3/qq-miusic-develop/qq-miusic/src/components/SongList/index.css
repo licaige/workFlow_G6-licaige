@@ -1,0 +1,154 @@
+.headbox2 {
+  background: #f4f4f4;
+}
+.headbox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1.33rem;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.4rem 0.2rem 0.2rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f4f4f4;
+  z-index: 100;
+}
+.songInfoBox {
+  margin-top: 1.33rem;
+  padding-top: 0.2rem;
+  color: black;
+  background: #f3f3f3;
+}
+.headbox .p1 {
+  text-align: left;
+}
+.headbox p {
+  -ms-flex: 1;
+  flex: 1;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+.headbox .p2 {
+  text-align: right;
+}
+.songInfo {
+  text-align: center;
+}
+.headbox .p1 img {
+  width: 3.1rem;
+}
+.headbox .p2 span {
+  display: inline-block;
+  padding: 0 0.2rem;
+  text-align: center;
+  font-size: 0.4rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  margin-top: 0.1rem;
+}
+.song_pic {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.3rem;
+  margin: 0.2rem auto;
+  overflow: hidden;
+  box-shadow: 0 0 15px #666;
+}
+.song_title {
+  font-size: 0.45rem;
+  margin-bottom: 0.2rem;
+}
+.song_number {
+  font-size: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+.song_time {
+  font-size: 0.37rem;
+  color: #999;
+  margin-bottom: 0.15rem;
+}
+.song_play {
+  width: 5rem;
+  height: 1.1rem;
+  line-height: 1.1rem;
+  margin: 0.3rem auto 0.2rem;
+  background: #22d59c;
+  border-radius: 0.7rem;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 6px 32px rgba(24, 213, 156, .5);
+  position: none;
+}
+.songList_num {
+  margin-left: 0.2rem;
+  font-size: 0.42rem;
+  color: grey;
+  margin-bottom: 0.15rem;
+}
+.songList ul{
+  margin: 0;
+  padding: 0;
+}
+.songList ul li {
+  display: -ms-flexbox;
+  display: flex;
+  height: 1.4rem;
+  margin: 0.15rem 2%;
+  padding: 0;
+  width: 96%;
+}
+.songlist_num3 {
+  color: red;
+}
+.songlist_index {
+  width: 1rem;
+  font-size: 0.45rem;
+  text-align: center;
+  color: grey;
+}
+.songlist_name {
+  -ms-flex: 1;
+  flex: 1;
+  overflow: hidden;
+}
+.songList_xiazai {
+  width: 0.8rem;
+  text-align: center;
+  font-size: 0.5rem;
+  color: #b3b3b3;
+}
+.songlist_name p {
+  margin: 0;
+  line-height: 1.4;
+  max-width: 100%;
+}
+.song_name {
+  font-size: 0.4rem;
+  color: black;
+}
+.songlist_name p {
+  margin: 0;
+  line-height: 1.4;
+  max-width: 100%;
+}
+.singer_name {
+  font-size: 0.36rem;
+  color: rgba(0, 0, 0, .4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.singer_name span {
+  padding: 0 0.1rem;
+}
+.song_pic img {
+  width: 100%;
+}
+.icon-you{
+  position: none;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      display: block;
+      width: 202px;
+      height: 66px;
+    }
+  </style>
+</head>
+<body>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <img src="" data-src="https://www.baidu.com/img/flexible/logo/pc/result.png"/>
+  <script>
+    var num = document.getElementsByTagName('img').length
+    var img = document.getElementsByTagName('img')
+    var n = 0 // 存储图片加载到的位置，避免每次都从第一个图片开始遍历
+
+    var isLoadImg = false // 是否当前容器、页面里的图片全部加载完
+    var _clientHeight = document.documentElement.clientHeight
+    var _scrollTop = document.documentElement.scrollTop || document.body.scrollTop // 滚动条距离顶部高度
+    function computedClientHeight () {
+      _clientHeight = document.documentElement.clientHeight // 可见区域高度
+    }
+    lazyload()
+    function lazyload () {
+      isLoadImg = n >= num
+      _scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      for (var i = n; i < num; i++) {
+        if (img[i].offsetTop < _clientHeight + _scrollTop) {
+          if (img[i].getAttribute('src') == '') {
+            img[i].src = img[i].getAttribute('data-src')
+          }
+          n = i + 1
+        }
+      }
+    }
+
+
+    function debounce (fn, delay) {
+      let timer = null
+      return () => {
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(fn, delay)
+      }
+    }
+
+    // flag是否继续触发节流函数，（根据需求自定义，图片全部加载完就不需要进行节流了）
+    function throttle (fn, delay, flag) {
+      let timer = null
+      return () => {
+        if (flag) return
+        if (!timer) {
+          timer = setTimeout(() => {
+            fn()
+            timer = null
+          }, delay)
+        }
+      }
+    }
+    // 使用节流实现性能更好的懒加载
+    window.addEventListener('scroll', throttle(lazyload, 100, isLoadImg))
+    // 使用防抖优化不断触发的窗口变化
+    window.addEventListener('resize', debounce(computedClientHeight, 800))
+  </script>
+</body>
+</html>

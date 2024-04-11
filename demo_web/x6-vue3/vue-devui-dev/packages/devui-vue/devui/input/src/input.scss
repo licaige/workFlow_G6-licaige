@@ -1,0 +1,227 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-input {
+  width: 100%;
+  height: $devui-size-md;
+  font-size: $devui-font-size;
+
+  &__wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border: 1px solid $devui-form-control-line;
+    border-radius: $devui-border-radius;
+    background-color: $devui-form-control-bg;
+    transition: border-color 0.3s $devui-animation-ease-in-out-smooth, box-shadow $devui-animation-duration-base $devui-animation-ease-in;
+    height: 100%;
+
+    &:not(.#{$devui-prefix}-input--error):not(.#{$devui-prefix}-input--disabled):not(.#{$devui-prefix}-input--focus):hover {
+      border-color: $devui-form-control-line-hover;
+    }
+
+    &.#{$devui-prefix}-input--glow-style:not(.#{$devui-prefix}-input--error):not(.#{$devui-prefix}-input--disabled):not(.#{$devui-prefix}-input--focus):hover {
+      box-shadow: 0 0 0 4px $devui-form-control-interactive-outline;
+      border-color: $devui-form-control-line;
+    }
+  }
+
+  &--focus:not(.#{$devui-prefix}-input--error) {
+    border-color: $devui-form-control-line-active;
+  }
+
+  &--focus.#{$devui-prefix}-input--glow-style:not(.#{$devui-prefix}-input--error) {
+    box-shadow: 0 0 0 4px $devui-form-control-interactive-outline;
+    border-color: $devui-form-control-line-active;
+  }
+
+  &--disabled {
+    color: $devui-disabled-text;
+    border-color: $devui-disabled-line;
+    background-color: $devui-disabled-bg;
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: $devui-disabled-line;
+    }
+
+    .#{$devui-prefix}-input__inner {
+      color: $devui-disabled-text;
+      cursor: not-allowed;
+    }
+  }
+
+  &--error {
+    border-color: $devui-danger-line;
+    background-color: $devui-danger-bg;
+  }
+
+  &--sm {
+    height: 26px;
+    font-size: $devui-font-size-sm;
+
+    .#{$devui-prefix}-input__clear--icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &--lg {
+    height: 46px;
+    font-size: $devui-font-size-lg;
+
+    .#{$devui-prefix}-input__clear--icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &--feedback {
+    padding-right: 28px;
+  }
+
+  &__inner {
+    width: 100%;
+    height: 100%;
+    color: $devui-text;
+    font-size: inherit;
+    padding: 4px 0;
+    border: none;
+    background: none;
+    outline: none;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: $devui-placeholder;
+    }
+  }
+
+  &--prepend {
+    .#{$devui-prefix}-input__wrapper {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &--append {
+    .#{$devui-prefix}-input__wrapper {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &-slot {
+    display: inline-flex;
+    width: 100%;
+    align-items: stretch;
+
+    &__prepend,
+    &__append {
+      color: var(--devui-text);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      padding: 0 20px;
+      white-space: nowrap;
+      border: 1px solid $devui-form-control-line;
+      border-radius: $devui-border-radius;
+      background-color: $devui-form-control-bg;
+
+      .#{$devui-prefix}-button,
+      .#{$devui-prefix}-select .#{$devui-prefix}-select__selection {
+        border: none !important;
+        background-color: transparent !important;
+        color: inherit;
+      }
+
+      .#{$devui-prefix}-button,
+      .#{$devui-prefix}-select__selection {
+        margin: 0 -20px;
+      }
+    }
+
+    &__prepend {
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &__append {
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &__prefix,
+    &__suffix {
+      display: inline-flex;
+      white-space: nowrap;
+      flex-shrink: 0;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    &__prefix {
+      > * {
+        margin-right: 8px;
+      }
+    }
+
+    &__suffix {
+      > * {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &__clear--icon,
+  &__password--icon {
+    cursor: pointer;
+  }
+
+  &__clear--icon {
+    path {
+      fill: $devui-shape-icon-fill;
+      transition: all $devui-animation-ease-in-out-smooth $devui-animation-duration-slow;
+    }
+
+    &:hover {
+      path {
+        fill: $devui-shape-icon-fill-hover;
+      }
+    }
+  }
+
+  &--gray-style:not(.#{$devui-prefix}-input--disabled) {
+    .#{$devui-prefix}-input__wrapper:not(.#{$devui-prefix}-input--error) {
+      background: $devui-gray-5;
+      border-color: $devui-gray-5;
+
+      &:hover {
+        background: $devui-gray-10;
+        border-color: $devui-gray-10;
+      }
+    }
+  }
+}
+
+body[ui-theme='galaxy-theme'] {
+  .#{$devui-prefix}-input__inner:-webkit-autofill,
+  .#{$devui-prefix}-input__inner:-webkit-autofill:hover,
+  .#{$devui-prefix}-input__inner:-webkit-autofill:focus,
+  .#{$devui-prefix}-input__inner:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    caret-color: white;
+  }
+
+  .#{$devui-prefix}-input__inner:-internal-autofill-previewed,
+  .#{$devui-prefix}-input__inner:-internal-autofill-selected {
+    -webkit-text-fill-color: $devui-text;
+    transition: background-color 99999s ease-out 0.5s;
+  }
+}

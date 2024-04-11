@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <style>
+      #app, body, html {
+        height: 100%;width: 100%;padding: 0;margin: 0;
+      }
+      #app {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+      #app .main {
+        flex: 1;
+        padding-top: 20px;
+        text-align: center;
+      }
+      #app .main .huabu {
+        margin: 20px;
+        height: calc(100% - 70px);
+        background-color: rgba(15, 13, 13, 0.204);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #app .main .huabu img {
+        filter: var(--filter);
+        position: absolute;
+        cursor: move;
+      }
+      #app .tool {
+        flex: 0 0 auto;
+        width: 300px;
+        padding: 30px 20px;
+        border-left: 1px solid #696969;
+      }
+      #app .tool form {
+      }
+      #app .tool form button {
+        margin-top: 20px;
+      }
+      #app .tool form label {
+        display: inline-block;
+        width: 100px;
+        margin-top: 20px;
+      }
+      #app .tool form input {
+        margin-top: 20px;
+      }
+      
+      .cover {
+        z-index: 9999;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #ccc;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <script src="" async defer></script>
+    <div id="app">
+      <div class="main">
+        <input type="file" accept="image/*" @change="onChange">
+        <div class="huabu">
+          <img id="myPic"
+               :src="imgUrl"
+               :style="{'--filter': filter, transform: 'rotate('+90 * deg+'deg)'}"
+               :width="width * Math.pow(1.1,size)"
+               @mousedown="onmousedown">
+        </div>
+      </div>
+      <div class="tool">
+        <form>
+          <input type="button" value="旋转" @click="rotate"></input>
+          <input type="button" value="居中" @click="center"></input>
+          <br>
+          <label>模糊（px）</label>
+          <input v-model.number="value.value1" type="number">
+          <label>明暗（%）</label>
+          <input v-model.number="value.value2" type="number">
+          <label>对比度（%）</label>
+          <input v-model.number="value.value3" type="number">
+          <label>取反色（%）</label>
+          <input v-model.number="value.value4" type="number">
+          <label>图片大小：</label>
+          {{(width * Math.pow(1.1,size)).toFixed(2)}} × {{(height * Math.pow(1.1,size)).toFixed(2)}}
+          <br>
+          <label>图片位置：</label>
+          <!-- {{position.x}}（左）<br> -->
+          {{Number(position.x - ((deg % 2) ? ((height - width) * Math.pow(1.1,size) / 2) : 0)).toFixed(2)}}（左）<br>
+          <label style="opacity: 0;">图片位置：</label>
+          <!-- {{position.y}}（上） -->
+          {{Number(position.y + ((deg % 2) ? ((height - width) * Math.pow(1.1,size) / 2) : 0)).toFixed(2)}}（上）
+          <br>
+        </form>
+        <!-- <div class="img-info">
+          <span>
+            图片大小：{{(width * Math.pow(1.1,size)).toFixed(2)}} × {{(height * Math.pow(1.1,size)).toFixed(2)}}
+          </span><br>
+          <span>
+            图片位置：
+            {{position.x}}（左）
+            {{position.y}}（上）
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        imgUrl: '',
+        value: {
+          value1: 0,
+          value2: 100,
+          value3: 100,
+          value4: 0,
+        },
+        size: 0,
+        width: 'auto',
+        height: '',
+        current: null,
+        cursor: {
+          x: 0,
+          y: 0
+        },
+        position: {
+          x: 0,
+          y: 0
+        },
+        deg: 0,
+      },
+      mounted() {
+      },
+      computed: {
+        filter () {
+          let filter = ''
+          let {value1, value2, value3, value4} = this.value
+          if (value1 !== 0) {
+            filter += ` blur(${value1}px)`
+          }
+          if (value2 !== 100) {
+            filter += ` brightness(${value2}%)`
+          }
+          if (value3 !== 100) {
+            filter += ` contrast(${value3}%)`
+          }
+          if (value4 !== 0) {
+            filter += ` invert(${value4}%)`
+          }
+          return filter
+        },
+        myPic () {
+          return this.$el.querySelector('#myPic')
+        },
+      },
+      beforeUpdate () {
+        this.updatePosition()
+      },
+      methods: {
+        updatePosition () {
+          this.position = {
+            x: Number(this.myPic.style.getPropertyValue('left').split('px')[0]),
+            y: Number(this.myPic.style.getPropertyValue('top').split('px')[0])
+          }
+        },
+        rotate () {
+          this.deg++
+          this.updatePosition()
+        },
+        center () {
+          // 画布左上角到浏览器左上角
+          let { left, top, height, width } = document.querySelector('.huabu').getBoundingClientRect()
+          let { height: imgHeight, width: imgWidth, size } = this
+          this.myPic.style.setProperty('left', `${left + width / 2 - imgWidth * Math.pow(1.1,size) / 2}px`)
+          this.myPic.style.setProperty('top', `${top + height / 2 - imgHeight * Math.pow(1.1,size) / 2}px`)
+        },
+        onChange (e) {
+          let onmousewheel = (e) => {
+            if (e.wheelDelta > 0) {
+              this.size += 1
+            } else if (e.wheelDelta < 0) {
+              this.size -= 1
+            }
+            // 画布左上角到浏览器左上角
+            let { left: huabuLeft, top: huabuTop, height, width } = document.querySelector('.huabu').getBoundingClientRect()
+            let { height: imgHeight, width: imgWidth, size, position, deg } = this
+            // let { left, top } = this.myPic.getBoundingClientRect()
+            let left = Number(position.x - ((deg % 2) ? ((imgHeight - imgWidth) * Math.pow(1.1,size) / 2) : 0))
+            let top = Number(position.y + ((deg % 2) ? ((imgHeight - imgWidth) * Math.pow(1.1,size) / 2) : 0))
+            if (
+                  (left < 0 && left <= width - imgWidth * Math.pow(1.1,size)) ||
+                  (left > 0 && left > width - imgWidth * Math.pow(1.1,size)) ||
+                  (top < 0 && top <= height - imgHeight * Math.pow(1.1,size)) ||
+                  (top > 0 && top > height - imgHeight * Math.pow(1.1,size))
+               ) {
+              this.myPic.style.setProperty('left', `${huabuLeft + width / 2 - imgWidth * Math.pow(1.1,size) / 2}px`)
+              this.myPic.style.setProperty('top', `${huabuTop + height / 2 - imgHeight * Math.pow(1.1,size) / 2}px`)
+            }
+          }
+          const fileReader = new FileReader()
+          fileReader.readAsDataURL(e.target.files[0])
+          fileReader.onload = async (evt) => {
+            this.imgUrl = evt.target.result
+            await this.$nextTick();
+            this.width = this.myPic.clientWidth
+            this.height = this.myPic.clientHeight
+            this.$el.querySelector('.main').onmousewheel = onmousewheel
+            let { left, top } = this.myPic.getBoundingClientRect()
+            this.myPic.style.setProperty('left', `${left - 20}px`)
+            this.myPic.style.setProperty('top', `${top - 65}px`)
+          }
+        },
+        onmousedown (e) {
+          if (e) {
+            // 鼠标到浏览器左上角
+            let { clientX, clientY } = e
+            // 图片左上角到浏览器左上角
+            let { left, top } = this.myPic.getBoundingClientRect()
+            this.cursor = {
+              x: clientX - left,
+              y: clientY - top
+            }
+            let cover = document.createElement('div')
+            cover.classList.add('cover')
+            document.body.append(cover)
+            this.current = document.querySelector('.cover')
+            this.current.addEventListener('mousemove', this.onMouseMove)
+            this.current.addEventListener('mouseup', this.onMouseUp)
+          }
+        },
+        onMouseMove (event) {
+          let { movementX, movementY } = event
+          let { position } = this
+          this.myPic.style.setProperty('left', `${position.x + movementX}px`)
+          this.myPic.style.setProperty('top', `${position.y + movementY}px`)
+          this.updatePosition()
+        },
+        onMouseUp () {
+          this.current.removeEventListener('mousemove', this.onMouseMove)
+          this.current.remove()
+        },
+      }
+    })
+  </script>
+</html>

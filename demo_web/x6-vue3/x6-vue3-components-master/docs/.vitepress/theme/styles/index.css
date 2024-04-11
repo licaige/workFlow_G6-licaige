@@ -1,0 +1,20 @@
+:root {
+  --c-brand: #873bf4;
+  --c-brand-light: #873bf4;
+}
+.m-0 {
+  margin: 0;
+}
+.container {
+  padding: unset!important;
+  margin-left: 5rem!important;
+}
+.next-and-prev-link {
+  padding-bottom: 5rem!important;
+}
+table tr td:nth-child(2) {
+  max-width: 350px;
+}
+table tr td:nth-child(4) {
+  max-width: 200px;
+}

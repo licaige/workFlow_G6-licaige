@@ -1,0 +1,189 @@
+.#{$devui-prefix}-menu-horizontal {
+  display: flex;
+  box-sizing: border-box;
+  line-height: $devui-line-height-base;
+  background: $devui-menu-bg;
+  padding: 14px 20px;
+
+  .#{$devui-prefix}-menu-item {
+    display: flex;
+    position: relative;
+    box-sizing: content-box;
+    padding: 0 20px !important;
+    line-height: 24px;
+    cursor: pointer;
+  }
+
+  .#{$devui-prefix}-menu-item::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    width: auto;
+    height: 2px;
+  }
+
+  ::after {
+    transition: all $devui-animation-duration-fast $devui-animation-ease-in-smooth;
+    background: transparent;
+  }
+
+  .#{$devui-prefix}-menu-item-select,
+  .#{$devui-prefix}-menu-active-parent {
+    .#{$devui-prefix}-submenu-title-content {
+      color: $devui-menu-item-select;
+    }
+
+    &::after {
+      display: block;
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 0;
+      width: auto;
+      height: 2px;
+      content: '';
+      opacity: 1;
+      background: $devui-brand;
+    }
+  }
+
+  .#{$devui-prefix}-menu-item {
+    span,
+    a {
+      color: $devui-text;
+    }
+  }
+
+  .#{$devui-prefix}-menu-item:hover {
+    span,
+    a {
+      color: $devui-brand;
+    }
+
+    &::after {
+      background: $devui-brand;
+    }
+  }
+
+  .#{$devui-prefix}-submenu {
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    div.#{$devui-prefix}-submenu-title {
+      padding: 0 20px;
+
+      span {
+        margin: 0;
+      }
+
+      .icon-chevron-up,
+      .icon-chevron-right {
+        transition: transform $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+      }
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 0;
+      width: auto;
+      height: 2px;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &::after {
+        background: $devui-brand;
+      }
+
+      > div > i.icon-chevron-up {
+        transform: rotate(180deg);
+      }
+
+      > div > i.icon-chevron-right {
+        transform: rotate(180deg);
+      }
+    }
+
+    div.#{$devui-prefix}-menu-item-horizontal-wrapper {
+      transition:
+        all $devui-animation-duration-fast $devui-animation-ease-in-smooth,
+        left 0 linear;
+      background: $devui-menu-bg;
+      z-index: $devui-z-index-modal;
+    }
+
+    div.#{$devui-prefix}-menu-item-horizontal-wrapper-show {
+      transition: all $devui-animation-duration-fast $devui-animation-ease-in-smooth;
+      opacity: 1;
+      visibility: visible;
+      max-height: 100vh;
+      padding: 10px 0 !important;
+      border-radius: 8px;
+      position: absolute;
+
+      .#{$devui-prefix}-menu-item {
+        margin-top: 5px;
+      }
+
+      .#{$devui-prefix}-submenu {
+        margin: 5px 0;
+        padding: 0 20px !important;
+
+        div.#{$devui-prefix}-submenu-title {
+          padding: 0 !important;
+        }
+      }
+
+      .#{$devui-prefix}-menu-item-horizontal-wrapper-level .#{$devui-prefix}-submenu {
+        padding: 0 20px !important;
+      }
+    }
+
+    div.#{$devui-prefix}-menu-item-horizontal-wrapper-hidden {
+      transition: all $devui-animation-duration-fast $devui-animation-ease-in-smooth;
+      visibility: hidden;
+      position: absolute;
+      padding: 0 !important;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      .#{$devui-prefix}-menu-item {
+        margin-top: 5px;
+      }
+
+      .#{$devui-prefix}-submenu {
+        margin: 5px 0;
+        padding: 0 20px !important;
+
+        div.#{$devui-prefix}-submenu-title {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+
+  .#{$devui-prefix}-menu-item-disabled,
+  .#{$devui-prefix}-submenu-disabled {
+    span,
+    a {
+      color: $devui-menu-item-disabled !important;
+      cursor: not-allowed;
+    }
+
+    &::after {
+      content: unset !important;
+    }
+    &+.#{$devui-prefix}-menu-item-horizontal-wrapper {
+      display: none;
+    }
+  }
+}

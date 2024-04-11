@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>响应式轮播</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="../dist/carousel.min.css">
+    <style>
+    .carousel-inner {
+        height: 200px;
+        max-width: 350px;
+    }
+
+    .carousel-inner .item:nth-child(2n) {
+        background: pink;
+    }
+
+    .carousel-inner .item:nth-child(2n+1) {
+        background: lightblue;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="carousel-inner" id="carousel_container">
+        <div class="item">
+            <div>first slide content</div>
+        </div>
+        <div class="item">
+            <div>second slide content</div>
+        </div>
+        <div class="item">
+            <div>third slide content</div>
+        </div>
+        <div class="item">
+            <div>fourth slide content</div>
+        </div>
+        <span class="btn-prev">
+               ‹</span>
+        <span class="btn-next">›</span>
+        <div class="btn-num-container">
+            <span data-slide-to=0 class="btn-num"></span>
+            <span data-slide-to=1 class="btn-num"></span>
+            <span data-slide-to=2 class="btn-num"></span>
+            <span data-slide-to=3 class="btn-num"></span>
+        </div>
+    </div>
+    <script src="../dist/carousel.min.js"></script>
+    <script>
+    var carousel = new Carousel({
+        container: document.getElementById('carousel_container'),
+        startIndex: 2,
+        duration: 600,
+        interval: 2000,
+        isCycle: true,
+        isTouch: true
+        //direction:'vertical'
+    });
+    </script>
+</body>
+
+</html>

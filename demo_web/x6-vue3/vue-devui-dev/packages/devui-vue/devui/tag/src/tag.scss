@@ -1,0 +1,99 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+$font-size-map: (
+  lg: $devui-font-size-lg,
+  md: $devui-font-size-lg,
+  sm: $devui-font-size-sm,
+);
+
+$tag-height-map: (
+  lg: 32px,
+  md: 28px,
+  sm: 24px,
+);
+
+$tag-line-height-map: (
+  lg: 30px,
+  md: 26px,
+  sm: 22px,
+);
+
+$devui-tag-normal-config: (
+  default: (
+    border: 0,
+    color: $devui-text,
+    background-color: $devui-default-bg,
+  ),
+  primary: (
+    color: $devui-primary,
+    background-color: $devui-primary-bg,
+  ),
+  success: (
+    color: $devui-success,
+    background-color: $devui-success-bg,
+  ),
+  warning: (
+    color: $devui-warning,
+    background-color: $devui-warning-bg,
+  ),
+  danger: (
+    color: $devui-danger,
+    background-color: $devui-danger-bg,
+  ),
+  colorful: (
+    background-color: #ffffff,
+  ),
+  deletable: (
+    padding-right: 32px,
+  ),
+);
+
+.#{$devui-prefix}-tag {
+  display: inline-block;
+
+  .#{$devui-prefix}-tag__item {
+    display: block;
+    position: relative;
+    padding: 0 8px;
+    height: 20px;
+    border: 1px solid;
+    border-radius: $devui-border-radius;
+    font-size: $devui-font-size;
+    line-height: 20px;
+    cursor: default;
+    @each $type in default, primary, success, warning, danger, colorful, deletable {
+      &.#{$devui-prefix}-tag--#{$type} {
+        @each $key, $value in map-get($devui-tag-normal-config, $type) {
+          #{$key}: $value;
+        }
+      }
+    }
+    @each $size in ('lg', 'md', 'sm') {
+      &.#{$devui-prefix}-tag--#{$size} {
+        font-size: map-get($font-size-map, #{$size});
+        height: map-get($tag-height-map, #{$size});
+        line-height: map-get($tag-line-height-map, #{$size});
+      }
+    }
+  }
+
+  .remove-button {
+    display: inline-block;
+    margin-left: 12px;
+    font-size: $devui-font-size-icon;
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    i {
+      /* 取消icon自带的偏移 */
+      vertical-align: 0;
+    }
+  }
+}

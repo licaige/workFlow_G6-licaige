@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`card should render correctly 1`] = `
+<div
+  class="card-container devui-card devui-card__shadow--hover"
+>
+  <!---->
+  <div
+    class="devui-card__header"
+  >
+    
+    <div>
+      <div
+        class="devui-card__title"
+      >
+        <!---->
+      </div>
+      <div
+        class="devui-card__subtitle"
+      >
+        <!---->
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="devui-card__content"
+  >
+    <!---->
+  </div>
+  <div
+    class="devui-card__actions"
+  >
+    
+  </div>
+</div>
+`;

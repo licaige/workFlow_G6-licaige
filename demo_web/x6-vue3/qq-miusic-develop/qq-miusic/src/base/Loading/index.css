@@ -1,0 +1,9 @@
+.loading{
+  width: 100%;
+  text-align: center;
+}
+.loading .desc{
+  line-height: 22px;
+  font-size: 22px;
+  color: #333;
+}

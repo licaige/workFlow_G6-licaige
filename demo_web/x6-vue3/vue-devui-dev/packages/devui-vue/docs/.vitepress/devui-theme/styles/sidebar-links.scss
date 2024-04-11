@@ -1,0 +1,168 @@
+@import '@devui/styles-var/devui-var';
+
+.sidebar-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: calc(100% - 50px);
+  overflow: hidden;
+
+  &:hover {
+    overflow: auto;
+  }
+}
+
+.sidebar-link-item {
+  display: block;
+  margin: 0;
+  border-left: 0.25rem solid transparent;
+  color: $devui-text;
+}
+
+a.sidebar-link-item:hover {
+  text-decoration: none;
+  color: $devui-brand;
+}
+
+a.sidebar-link-item.active {
+  color: $devui-brand;
+}
+
+.sidebar > .sidebar-links {
+  padding: 0.75rem 0 5rem;
+}
+
+@media (min-width: 720px) {
+  .sidebar > .sidebar-links {
+    padding: 0 12px 16px 8px;
+
+    &:hover {
+      padding-right: 8px;
+    }
+  }
+
+  .sidebar > .sidebar-links > .sidebar-link > .sidebar-link-item {
+    border-radius: $devui-border-radius-full;
+    cursor: pointer;
+
+    &:hover {
+      color: $devui-text;
+      background-color: $devui-list-item-hover-bg;
+    }
+
+    &.active {
+      color: $devui-text;
+      background-color: $devui-list-item-active-bg;
+    }
+  }
+
+  .sidebar > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link > .sidebar-link-item {
+    line-height: 27px;
+    margin-top: 8px;
+    border-radius: $devui-border-radius-full;
+    cursor: pointer;
+
+    &:hover {
+      color: $devui-text;
+      background-color: $devui-list-item-hover-bg;
+    }
+
+    &.active {
+      color: $devui-text;
+      background-color: $devui-list-item-active-bg;
+    }
+  }
+}
+
+.sidebar > .sidebar-links > .sidebar-link + .sidebar-link {
+  padding-top: 0.5rem;
+}
+
+@media (min-width: 720px) {
+  .sidebar > .sidebar-links > .sidebar-link + .sidebar-link {
+    padding-top: 0;
+    margin-top: 8px;
+  }
+}
+
+.sidebar > .sidebar-links > .sidebar-link > .sidebar-link-item {
+  padding: 0.35rem 1.5rem 0.35rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.sidebar > .sidebar-links > .sidebar-link > a.sidebar-link-item.active {
+  font-weight: 600;
+}
+
+.sidebar > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link > .sidebar-link-item {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 1.5rem 0.35rem 2rem;
+  line-height: 27px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.sidebar > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link > a.sidebar-link-item.active {
+  font-weight: 600;
+}
+
+.sidebar > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link > .sidebar-links > .sidebar-link > .sidebar-link-item {
+  display: block;
+  padding: 0.3rem 1.5rem 0.3rem 3rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.sidebar
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-links
+  > .sidebar-link
+  > .sidebar-link-item {
+  display: block;
+  padding: 0.3rem 1.5rem 0.3rem 4rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.sidebar {
+  .sidebar-link-status {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 8px;
+    border-radius: 50px;
+  }
+
+  .sidebar-link-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .sidebar-link-text-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      padding: 0 2px;
+      min-width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      font-size: $devui-font-size;
+      font-weight: normal;
+      border: 1px solid $devui-disabled-line;
+      border-radius: $devui-border-radius;
+      background-color: $devui-disabled-bg;
+      color: $devui-disabled-text;
+    }
+  }
+}

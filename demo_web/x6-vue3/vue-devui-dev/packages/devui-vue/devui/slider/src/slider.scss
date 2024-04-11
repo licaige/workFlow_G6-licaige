@@ -1,0 +1,106 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-slider {
+  position: relative;
+  width: 100%;
+  display: block;
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: $devui-disabled-line;
+    border-color: $devui-disabled-line;
+  }
+
+  &__runway {
+    position: relative;
+    width: 100%;
+    padding: 4px 0;
+    margin: 4px 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: $devui-border-radius-full;
+    background-color: $devui-area;
+
+    &.disabled {
+      background-color: $devui-disabled-bg;
+      cursor: not-allowed;
+    }
+
+    &:hover .#{$devui-prefix}-slider__bar:not(.disabled) {
+      background-color: $devui-brand-hover;
+    }
+
+    .#{$devui-prefix}-slider__bar {
+      height: 6px;
+      background-color: $devui-brand;
+      border-top-left-radius: $devui-border-radius-full;
+      border-bottom-left-radius: $devui-border-radius-full;
+      position: absolute;
+
+      &.disabled {
+        background-color: $devui-disabled-line;
+        border-color: $devui-disabled-line;
+      }
+
+      &.disabled:hover {
+        cursor: not-allowed;
+      }
+    }
+
+    .#{$devui-prefix}-slider__button {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid $devui-brand;
+      background-color: $devui-base-bg;
+      border-radius: 50%;
+      margin-left: -7px;
+      transition: transform 0.2s ease-in-out;
+
+      &:hover:not(.disabled) {
+        border-color: $devui-brand-hover;
+        transform: scale(1.3);
+      }
+
+      &.disabled {
+        border-color: $devui-disabled-line;
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    .#{$devui-prefix}-slider__popover {
+      position: relative;
+      bottom: 26px;
+      transform: translate(-50%);
+      border-radius: $devui-border-radius-feedback;
+      font-size: $devui-font-size-sm;
+      color: $devui-feedback-overlay-text;
+
+      .#{$devui-prefix}-slider__popover-arrow {
+        position: absolute;
+        left: 50%;
+        margin-left: -4px;
+        bottom: -4px;
+        width: 8px;
+        height: 8px;
+        transform: rotate(45deg);
+        display: block;
+        z-index: -1;
+        background-color: $devui-feedback-overlay-bg;
+      }
+
+      .#{$devui-prefix}-slider__popover-content {
+        padding: 5px 14px;
+        text-align: center;
+        border-radius: $devui-border-radius-feedback;
+        background-color: $devui-feedback-overlay-bg;
+      }
+    }
+  }
+}

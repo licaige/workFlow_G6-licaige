@@ -1,0 +1,105 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-dropdown span {
+  &.icon-chevron-down,
+  &.icon-select-arrow {
+    display: inline-block;
+    vertical-align: text-top;
+  }
+}
+
+.#{$devui-prefix}-dropdown__menu-wrap .#{$devui-prefix}-dropdown-menu {
+  width: 100%;
+}
+
+.#{$devui-prefix}-dropdown-animation span {
+  &.icon-chevron-down,
+  &.icon-select-arrow {
+    transition: transform $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+  }
+}
+
+.#{$devui-prefix}-dropdown.open span {
+  &.icon-chevron-down,
+  &.icon-select-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+.fade-in-top {
+  animation: fadeInTop 0.2s cubic-bezier(0.16, 0.75, 0.5, 1);
+}
+
+.fade-in-bottom {
+  animation: fadeInBottom 0.2s cubic-bezier(0.16, 0.75, 0.5, 1);
+}
+
+@keyframes fadeInTop {
+  from {
+    opacity: 0.8;
+    transform: scaleY(0.8) translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(0.9999) translateY(0);
+  }
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0.8;
+    transform: scaleY(0.8) translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(0.9999) translateY(0);
+  }
+}
+
+.#{$devui-prefix}-dropdown--fade {
+  &-bottom {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0.8;
+      transform: scaleY(0.8) translateY(-4px);
+    }
+
+    &-enter-to,
+    &-leave-from {
+      opacity: 1;
+      transform: scaleY(0.9999) translateY(0);
+    }
+
+    &-enter-active {
+      transition: transform 0.2s cubic-bezier(0.16, 0.75, 0.5, 1), opacity 0.2s cubic-bezier(0.16, 0.75, 0.5, 1);
+    }
+
+    &-leave-active {
+      transition: transform 0.2s cubic-bezier(0.5, 0, 0.84, 0.25), opacity 0.2s cubic-bezier(0.5, 0, 0.84, 0.25);
+    }
+  }
+
+  &-top {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0.8;
+      transform: scaleY(0.8) translateY(4px);
+    }
+
+    &-enter-to,
+    &-leave-from {
+      opacity: 1;
+      transform: scaleY(0.9999) translateY(0);
+    }
+
+    &-enter-active {
+      transition: transform 0.2s cubic-bezier(0.16, 0.75, 0.5, 1), opacity 0.2s cubic-bezier(0.16, 0.75, 0.5, 1);
+    }
+
+    &-leave-active {
+      transition: transform 0.2s cubic-bezier(0.5, 0, 0.84, 0.25), opacity 0.2s cubic-bezier(0.5, 0, 0.84, 0.25);
+    }
+  }
+}

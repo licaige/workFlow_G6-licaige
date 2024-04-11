@@ -1,0 +1,7 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-form-operation {
+  .star {
+    color: red;
+  }
+}

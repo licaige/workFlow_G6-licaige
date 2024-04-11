@@ -1,0 +1,129 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-collapse {
+  font-size: $devui-font-size;
+  background: $devui-base-bg;
+  width: 100%;
+  overflow-y: auto;
+  box-shadow: $devui-shadow-length-base $devui-shadow;
+}
+
+:host {
+  display: block;
+}
+
+.#{$devui-prefix}-collapse__item {
+  .#{$devui-prefix}-collapse--overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+.#{$devui-prefix}-collapse__item-title {
+  display: block;
+  height: 45px;
+  width: 100%;
+  padding: 0 28px 0 20px;
+  font-weight: 400;
+  line-height: 45px;
+  color: $devui-text;
+  background-color: $devui-base-bg;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &.#{$devui-prefix}-collapse__item--disabled {
+    color: $devui-disabled-text;
+    cursor: not-allowed;
+
+    & > .#{$devui-prefix}-collapse__open-icon svg path {
+      fill: currentColor !important;
+    }
+  }
+
+  &:not(.#{$devui-prefix}-collapse__item--disabled) {
+    &:hover {
+      background: $devui-list-item-hover-bg;
+      color: $devui-list-item-hover-text;
+    }
+  }
+}
+
+/* 展开图标相关 */
+.#{$devui-prefix}-collapse__item > .#{$devui-prefix}-collapse__item-title {
+  position: relative;
+
+  & > .#{$devui-prefix}-collapse__open-icon {
+    display: inline-block;
+    text-indent: 0;
+    pointer-events: none; /* 让鼠标穿透 */
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    transition: transform ease-out 0.4s;
+
+    svg {
+      width: 16px;
+      height: 16px;
+
+      path {
+        fill: $devui-text-weak;
+      }
+    }
+  }
+
+  &.#{$devui-prefix}-collapse--open > .#{$devui-prefix}-collapse__open-icon {
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+}
+
+/* 展开内容相关 */
+.#{$devui-prefix}-collapse__item-content {
+  padding: 0 12px 0 20px;
+  line-height: 1.5;
+  color: $devui-text-weak;
+}
+
+/* 下拉收起相关 */
+.#{$devui-prefix}-collapse-transition-leave-active {
+  transition: all 0.4s ease-in-out;
+  animation: panelUpOut 0.4s ease-in-out;
+  animation-fill-mode: both;
+}
+
+.#{$devui-prefix}-collapse-transition-enter-active {
+  transition: all 0.4s ease-in-out;
+  animation: panelUpIn 0.4s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes panelUpOut {
+  0% {
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: 0% 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes panelUpIn {
+  0% {
+    transform: scaleY(0);
+    transform-origin: 0% 0%;
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,19 @@
+@import '@devui/theme/styles-var/devui-var.scss';
+
+.#{$devui-prefix}-skeleton {
+  width: 100%;
+
+  &__paragraph {
+    margin-bottom: 12px;
+
+    &:last-child {
+      width: 60%;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.#{$devui-prefix}-skeleton-item.#{$devui-prefix}-skeleton__title {
+  width: 40%;
+  margin-bottom: 16px;
+}
